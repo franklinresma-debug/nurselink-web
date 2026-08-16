@@ -330,28 +330,19 @@ export async function getSmartRegistration() {
   )
 }
 
-export async function uploadApplicationDocument(
-  applicationId,
-  category,
-  file
-) {
+export async function uploadApplicationDocument(file) {
   await csrf()
 
   const formData =
     new FormData()
 
   formData.append(
-    'category',
-    category
-  )
-
-  formData.append(
-    'file',
+    'document',
     file
   )
 
   return request(
-    `/api/applications/${applicationId}/documents`,
+    '/api/smart-registration/documents',
     {
       method: 'POST',
       body: formData,

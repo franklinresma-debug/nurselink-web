@@ -5842,7 +5842,7 @@ import './nurselink-mobile.css';
         <small>
           Access is denied by default. An existing application administrator may
           already qualify, or explicit reviewer/admin access can be granted from
-          cPanel Terminal using the v2.3 reviewer access utility.
+          the Administrator Management area or the server-side reviewer access utility.
         </small>
       `;
     }
@@ -8473,8 +8473,11 @@ import './nurselink-mobile.css';
   const nurselinkSuperAdminTestModeState = {
     loaded: false,
     loading: null,
-    data: null
+    data: null,
+    nextRetryAt: 0
   };
+
+  const NURSELINK_TEST_MODE_RETRY_DELAY_MS = 30000;
 
   function clearSuperAdminTestModeDecoration(shell) {
     document.documentElement.classList.remove(
@@ -8575,6 +8578,13 @@ import './nurselink-mobile.css';
       return nurselinkSuperAdminTestModeState.loading;
     }
 
+    if (
+      !force
+      && nurselinkSuperAdminTestModeState.nextRetryAt > Date.now()
+    ) {
+      return nurselinkSuperAdminTestModeState.data;
+    }
+
     nurselinkSuperAdminTestModeState.loading =
       nurseLinkJsonRequest(
         `${NURSELINK_API_ORIGIN}/api/nurselink/admin/test-mode/session`
@@ -8583,7 +8593,21 @@ import './nurselink-mobile.css';
           nurselinkSuperAdminTestModeState.data =
             payload?.data || null;
           nurselinkSuperAdminTestModeState.loaded = true;
+          nurselinkSuperAdminTestModeState.nextRetryAt = 0;
           return nurselinkSuperAdminTestModeState.data;
+        })
+        .catch(error => {
+          nurselinkSuperAdminTestModeState.data = null;
+
+          if (error?.status === 401 || error?.status === 403) {
+            nurselinkSuperAdminTestModeState.loaded = true;
+            nurselinkSuperAdminTestModeState.nextRetryAt = 0;
+          } else {
+            nurselinkSuperAdminTestModeState.nextRetryAt =
+              Date.now() + NURSELINK_TEST_MODE_RETRY_DELAY_MS;
+          }
+
+          throw error;
         })
         .finally(() => {
           nurselinkSuperAdminTestModeState.loading = null;
@@ -9435,7 +9459,8 @@ import './nurselink-mobile.css';
     loading: null,
     data: null,
     notice: '',
-    noticeTone: 'info'
+    noticeTone: 'info',
+    pollTimer: null
   };
 
   const SMART_REGISTRATION_STEPS = [
@@ -9646,11 +9671,21 @@ import './nurselink-mobile.css';
             </div>
             ${documents.map(doc => {
               const fields = Object.keys(doc.extracted_fields || {}).length;
-              const status = doc.extraction_status === 'extracted'
+              const status = doc.security_status === 'quarantined'
+                ? 'Blocked by document security scan'
+                : doc.security_status === 'unavailable'
+                  ? 'Security scan unavailable · manual entry required'
+                  : doc.security_status === 'scanning' || doc.security_status === 'pending'
+                    ? 'Security scan in progress'
+                    : doc.extraction_status === 'extracted'
                 ? `${fields} field${fields === 1 ? '' : 's'} detected`
                 : doc.extraction_status === 'needs_input'
                   ? 'Uploaded · manual confirmation needed'
-                  : 'Processing';
+                  : doc.extraction_status === 'failed'
+                    ? 'Extraction failed · enter missing information manually'
+                    : doc.extraction_status === 'queued'
+                      ? 'Queued for extraction'
+                      : 'Processing';
               return `
                 <div class="nurselink-smart557-document">
                   <span class="file">▤</span>
@@ -10161,6 +10196,26 @@ import './nurselink-mobile.css';
 
     root.innerHTML = `${smartStepHeader(step, completion)}${smartNoticeHtml()}${body}`;
     bindSmartRegistration557(root);
+
+    const extractionPending = (Array.isArray(data.documents) ? data.documents : [])
+      .some(document =>
+        ['pending', 'scanning', 'scan_failed'].includes(document?.security_status)
+        || ['queued', 'processing'].includes(document?.extraction_status)
+      );
+
+    if (extractionPending && !smartRegistration557State.pollTimer) {
+      smartRegistration557State.pollTimer = setTimeout(() => {
+        smartRegistration557State.pollTimer = null;
+        loadSmartRegistration557(true)
+          .then(() => renderSmartRegistration557(
+            document.querySelector('.page') || document.querySelector('main')
+          ))
+          .catch(() => {});
+      }, 2500);
+    } else if (!extractionPending && smartRegistration557State.pollTimer) {
+      clearTimeout(smartRegistration557State.pollTimer);
+      smartRegistration557State.pollTimer = null;
+    }
   }
 
   function enhanceSmartRegistration557(page) {

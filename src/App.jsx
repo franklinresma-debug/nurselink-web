@@ -8,7 +8,7 @@ import {
   useLocation,
 } from 'react-router-dom'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import './App.css'
 
@@ -108,13 +108,21 @@ function Login() {
   const [submitting, setSubmitting] =
     useState(false)
 
+  useEffect(() => {
+    if (
+      authenticated &&
+      verificationUrl
+    ) {
+      window.location.assign(
+        verificationUrl
+      )
+    }
+  }, [authenticated, verificationUrl])
+
   if (
     authenticated &&
     verificationUrl
   ) {
-    window.location.href =
-      verificationUrl
-
     return (
       <div className="auth-screen">
         Completing email verification...

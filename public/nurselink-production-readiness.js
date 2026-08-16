@@ -88,7 +88,7 @@
 
     root.innerHTML = `
       <section class="hero ${esc(data.status || 'blocked')}">
-        <div><span>NURSELINK RELEASE v${esc(data.release || '3.2.0')}</span><h1>Production UAT Center</h1><p>Automated infrastructure checks plus a formal end-to-end acceptance checklist before production sign-off.</p></div>
+        <div><span>NURSELINK RELEASE ${esc(data.release || 'NL-011.2-cpanel')}</span><h1>Production UAT Center</h1><p>Automated infrastructure checks plus a formal end-to-end acceptance checklist before production sign-off.</p></div>
         <div class="score"><strong>${esc(data.score ?? 0)}%</strong><span>${esc(statusLabel(data.status))}</span></div>
       </section>
 
@@ -149,7 +149,7 @@
     }));
     const report = {
       product:'KAPIT-BISIG NurseLink',
-      release:automatedData.release || '3.2.0',
+      release:automatedData.release || 'NL-011.2-cpanel',
       generated_at:new Date().toISOString(),
       automated:automatedData,
       manual_uat:manual,

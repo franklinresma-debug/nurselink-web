@@ -7,32 +7,8 @@ import {
   createApplication,
   getApplication,
   getSmartRegistration,
-  refreshMissingFields,
   uploadApplicationDocument,
 } from '../lib/api'
-
-const categories = [
-  ['cv', 'CV / Resume'],
-  ['prc_license', 'PRC License'],
-  ['diploma', 'Diploma'],
-  [
-    'employment_certificate',
-    'Employment Certificate',
-  ],
-  [
-    'training_certificate',
-    'Training Certificate',
-  ],
-  [
-    'international_license',
-    'International License',
-  ],
-  [
-    'passport_id',
-    'Passport / ID',
-  ],
-  ['other', 'Other Document'],
-]
 
 export default function SmartRegistration() {
   const [
@@ -44,9 +20,6 @@ export default function SmartRegistration() {
     overview,
     setOverview,
   ] = useState(null)
-
-  const [category, setCategory] =
-    useState('cv')
 
   const [file, setFile] =
     useState(null)
@@ -115,13 +88,7 @@ export default function SmartRegistration() {
 
     try {
       await uploadApplicationDocument(
-        application.id,
-        category,
         file
-      )
-
-      await refreshMissingFields(
-        application.id
       )
 
       await loadData()
@@ -131,7 +98,7 @@ export default function SmartRegistration() {
       event.target.reset()
 
       setMessage(
-        'Document uploaded successfully. It is now queued for security review.'
+        'Document uploaded successfully. Review the extracted fields and complete anything NurseLink could not detect.'
       )
     } catch (err) {
       const validationErrors =
@@ -224,30 +191,6 @@ export default function SmartRegistration() {
               {error}
             </div>
           )}
-
-          <label>
-            Document Type
-
-            <select
-              value={category}
-              onChange={(event) =>
-                setCategory(
-                  event.target.value
-                )
-              }
-            >
-              {categories.map(
-                ([value, label]) => (
-                  <option
-                    key={value}
-                    value={value}
-                  >
-                    {label}
-                  </option>
-                )
-              )}
-            </select>
-          </label>
 
           <label>
             Select File

@@ -1302,8 +1302,44 @@ import './nurselink-mobile.css';
   const profilePhotoState = {
     loaded: false,
     loading: null,
-    url: null
+    url: null,
+    objectUrl: null
   };
+
+  function releaseProfilePhotoObjectUrl() {
+    if (!profilePhotoState.objectUrl) return;
+    URL.revokeObjectURL(profilePhotoState.objectUrl);
+    profilePhotoState.objectUrl = null;
+  }
+
+  async function resolveProfilePhotoUrl(remoteUrl) {
+    if (!remoteUrl) {
+      releaseProfilePhotoObjectUrl();
+      return null;
+    }
+
+    const response = await fetch(remoteUrl, {
+      method: 'GET',
+      credentials: 'include',
+      cache: 'no-store',
+      headers: {
+        Accept: 'image/avif,image/webp,image/apng,image/jpeg,image/png,image/*,*/*;q=0.8'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Unable to load the saved profile photo.');
+    }
+
+    const blob = await response.blob();
+    if (!blob.type.toLowerCase().startsWith('image/')) {
+      throw new Error('The profile photo response was not an image.');
+    }
+
+    releaseProfilePhotoObjectUrl();
+    profilePhotoState.objectUrl = URL.createObjectURL(blob);
+    return profilePhotoState.objectUrl;
+  }
 
   function cookieValue(name) {
     const prefix = `${name}=`;
@@ -1396,6 +1432,12 @@ import './nurselink-mobile.css';
           avatar.appendChild(img);
         }
 
+        img.onerror = () => {
+          avatar.classList.remove('has-profile-photo');
+          avatar.innerHTML = '';
+          avatar.textContent = avatar.dataset.nurselinkInitial || profileInitial();
+        };
+
         if (img.src !== url) img.src = url;
       } else {
         avatar.innerHTML = '';
@@ -1409,6 +1451,15 @@ import './nurselink-mobile.css';
         if (!(img instanceof HTMLImageElement)) return;
 
         if (url) {
+          img.onerror = () => {
+            img.hidden = true;
+            img.removeAttribute('src');
+            const fallback = img.parentElement?.querySelector('.nurselink-profile-photo-fallback');
+            if (fallback) {
+              fallback.hidden = false;
+              fallback.textContent = profileInitial();
+            }
+          };
           img.src = url;
           img.hidden = false;
         } else {
@@ -1442,13 +1493,16 @@ import './nurselink-mobile.css';
     }
 
     profilePhotoState.loading = profilePhotoRequest()
-      .then(payload => {
-        profilePhotoState.url = payload?.data?.profile_photo_url || null;
+      .then(async payload => {
+        profilePhotoState.url = await resolveProfilePhotoUrl(
+          payload?.data?.profile_photo_url || null
+        );
         profilePhotoState.loaded = true;
         applyProfilePhotoToAvatar(profilePhotoState.url);
         return profilePhotoState.url;
       })
       .catch(() => {
+        releaseProfilePhotoObjectUrl();
         profilePhotoState.loaded = true;
         profilePhotoState.url = null;
         applyProfilePhotoToAvatar(null);
@@ -1724,7 +1778,9 @@ import './nurselink-mobile.css';
       });
 
       profilePhotoState.loaded = true;
-      profilePhotoState.url = payload?.data?.profile_photo_url || null;
+      profilePhotoState.url = await resolveProfilePhotoUrl(
+        payload?.data?.profile_photo_url || null
+      );
 
       applyProfilePhotoToAvatar(profilePhotoState.url);
       setProfilePhotoStatus(card, 'Profile photo updated.', 'success');
@@ -1811,6 +1867,7 @@ import './nurselink-mobile.css';
 
         try {
           await profilePhotoRequest('', { method: 'DELETE' });
+          releaseProfilePhotoObjectUrl();
           profilePhotoState.loaded = true;
           profilePhotoState.url = null;
           applyProfilePhotoToAvatar(null);

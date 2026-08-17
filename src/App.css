@@ -1811,6 +1811,42 @@ td {
   letter-spacing: 0.08em;
 }
 
+.navigation-tour-guides {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 7px;
+  margin-bottom: 16px;
+  padding: 5px;
+  border: 1px solid #d8e5f1;
+  border-radius: 12px;
+  background: #f3f8fd;
+}
+
+.navigation-tour-guides button {
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #496681;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.navigation-tour-guides button[aria-pressed="true"] {
+  border-color: #a9cce9;
+  background: #fff;
+  color: #075fae;
+  box-shadow: 0 3px 10px rgba(17, 74, 123, 0.08);
+}
+
+.navigation-tour-guides button:focus-visible {
+  outline: 3px solid rgba(11, 115, 206, 0.2);
+  outline-offset: 1px;
+}
+
 .navigation-tour-box h2 {
   margin: 14px 0 8px;
   color: #102f52;

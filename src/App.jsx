@@ -1004,8 +1004,9 @@ function NavigationTour({
   onClose,
 }) {
   const [stepIndex, setStepIndex] = useState(0)
+  const [guideMode, setGuideMode] = useState('navigation')
 
-  const steps = useMemo(() => [
+  const navigationSteps = useMemo(() => [
     {
       path: '/dashboard',
       title: 'Your NurseLink dashboard',
@@ -1046,6 +1047,43 @@ function NavigationTour({
       text: 'Check updates from NurseLink and respond when an action is required.',
     },
   ], [isMember])
+
+  const smartRegistrationSteps = useMemo(() => [
+    {
+      path: '/smart-registration',
+      title: '1. Upload your documents',
+      text: 'Upload a clear PRC license, résumé, diploma, passport, ID or employment certificate. Supported files are PDF, JPG, PNG and DOCX, up to 15 MB each.',
+    },
+    {
+      path: '/smart-registration',
+      title: '2. Review OCR suggestions',
+      text: 'NurseLink proposes information extracted from your documents. Compare every proposed value with the evidence and correct anything that was interpreted incorrectly.',
+    },
+    {
+      path: '/profile',
+      title: '3. Complete missing information',
+      text: 'Fill in required details OCR could not find clearly, such as your birth date, mobile number, address, employer or nursing experience. You can save and return later.',
+    },
+    {
+      path: '/smart-registration',
+      title: '4. Add credentials and evidence',
+      text: 'Record your PRC license and other credentials, enter dates exactly as issued, and attach the matching evidence. Member confirmation is not reviewer verification.',
+    },
+    {
+      path: '/application-status',
+      title: '5. Review application readiness',
+      text: 'Open each Review or Attention item and confirm personal information, professional details, employment history, credentials and uploaded documents.',
+    },
+    {
+      path: '/application-status',
+      title: '6. Submit and track review',
+      text: 'Submit when all required information is complete. Watch Application Status, email and notifications for assignment, requests for information, decisions and onboarding.',
+    },
+  ], [])
+
+  const steps = guideMode === 'smart-registration'
+    ? smartRegistrationSteps
+    : navigationSteps
 
   useEffect(() => {
     if (!open) return undefined
@@ -1090,8 +1128,30 @@ function NavigationTour({
         aria-modal="true"
         aria-labelledby="navigation-tour-title"
       >
+        <div className="navigation-tour-guides" aria-label="Help topics">
+          <button
+            type="button"
+            aria-pressed={guideMode === 'navigation'}
+            onClick={() => {
+              setGuideMode('navigation')
+              setStepIndex(0)
+            }}
+          >
+            Navigation
+          </button>
+          <button
+            type="button"
+            aria-pressed={guideMode === 'smart-registration'}
+            onClick={() => {
+              setGuideMode('smart-registration')
+              setStepIndex(0)
+            }}
+          >
+            Smart Registration
+          </button>
+        </div>
         <div className="navigation-tour-progress">
-          <span>Navigation guide</span>
+          <span>{guideMode === 'smart-registration' ? 'Smart Registration guide' : 'Navigation guide'}</span>
           <strong>{stepIndex + 1} of {steps.length}</strong>
         </div>
         <h2 id="navigation-tour-title">{step.title}</h2>
@@ -1099,9 +1159,9 @@ function NavigationTour({
         <div className="navigation-tour-actions">
           <button type="button" className="tour-skip" onClick={() => {
             setStepIndex(0)
-            onClose(true)
+            onClose(guideMode === 'navigation')
           }}>
-            Skip tour
+            {guideMode === 'navigation' ? 'Skip tour' : 'Close guide'}
           </button>
           <div>
             <button
@@ -1118,7 +1178,7 @@ function NavigationTour({
               onClick={() => {
                 if (isLast) {
                   setStepIndex(0)
-                  onClose(true)
+                  onClose(guideMode === 'navigation')
                 }
                 else setStepIndex((current) => current + 1)
               }}

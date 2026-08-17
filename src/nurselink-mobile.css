@@ -6352,7 +6352,7 @@ html.nurselink-photo-modal-open body {
 
 .nurselink-member-portfolio-summary span {
   color: #0b72d5;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 850;
   letter-spacing: .11em;
 }
@@ -6366,13 +6366,18 @@ html.nurselink-photo-modal-open body {
 .nurselink-member-portfolio-summary small {
   margin-top: 2px;
   color: #758299;
-  font-size: 10px;
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .nurselink-member-portfolio-summary a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 10px;
   color: #0b72d5;
   text-decoration: none;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 750;
 }
 

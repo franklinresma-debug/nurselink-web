@@ -11779,3 +11779,82 @@ html.nurselink-smart-registration-v557 .nurselink-smart-dropzone {
   }
 }
 /* NURSELINK_APPLICANT_READABILITY_V563_END */
+
+/* NURSELINK_DASHBOARD_PRIMARY_GRID_V564_START */
+/* Keep the two most-used member dashboard tools visible without excess whitespace. */
+.nurselink-dashboard-primary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
+  gap: 18px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.nurselink-dashboard-primary-grid > .nurselink-digital-member-card,
+.nurselink-dashboard-primary-grid > .nurselink-notification-center {
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.nurselink-dashboard-primary-grid .nurselink-member-id-band > div > span {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.nurselink-dashboard-primary-grid .nurselink-member-id-band > div > small,
+.nurselink-dashboard-primary-grid .nurselink-member-id-band em,
+.nurselink-dashboard-primary-grid .nurselink-member-id-copy > span,
+.nurselink-dashboard-primary-grid .nurselink-member-id-qr > strong,
+.nurselink-dashboard-primary-grid .nurselink-member-id-qr > small {
+  font-size: 10px;
+  line-height: 15px;
+}
+
+.nurselink-dashboard-primary-grid .nurselink-member-id-copy > strong {
+  font-size: 21px;
+  line-height: 27px;
+}
+
+.nurselink-dashboard-primary-grid .nurselink-member-id-copy > small {
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.nurselink-dashboard-primary-grid .nurselink-member-id-status > strong,
+.nurselink-dashboard-primary-grid .nurselink-member-id-footer > div:not(.nurselink-member-id-actions) > span,
+.nurselink-dashboard-primary-grid .nurselink-member-id-footer > div:not(.nurselink-member-id-actions) > strong,
+.nurselink-dashboard-primary-grid .nurselink-member-id-actions button,
+.nurselink-dashboard-primary-grid .nurselink-member-id-actions a,
+.nurselink-dashboard-primary-grid .nurselink-member-id-note {
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.nurselink-dashboard-primary-grid .nurselink-member-id-actions button,
+.nurselink-dashboard-primary-grid .nurselink-member-id-actions a {
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+@media (max-width: 980px) {
+  .nurselink-dashboard-primary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .nurselink-dashboard-primary-grid {
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .nurselink-dashboard-primary-grid .nurselink-member-id-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .nurselink-dashboard-primary-grid .nurselink-member-id-actions {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+}
+/* NURSELINK_DASHBOARD_PRIMARY_GRID_V564_END */

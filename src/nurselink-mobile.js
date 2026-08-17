@@ -6804,6 +6804,24 @@ import './nurselink-mobile.css';
         else page.insertBefore(center, page.firstChild);
       }
 
+      const memberId = page.querySelector('.nurselink-digital-member-card');
+
+      if (memberId) {
+        let primaryGrid = page.querySelector('.nurselink-dashboard-primary-grid');
+
+        if (!primaryGrid) {
+          primaryGrid = document.createElement('div');
+          primaryGrid.className = 'nurselink-dashboard-primary-grid';
+          primaryGrid.setAttribute(
+            'aria-label',
+            'Membership identity and notification center'
+          );
+          memberId.insertAdjacentElement('beforebegin', primaryGrid);
+        }
+
+        primaryGrid.append(memberId, center);
+      }
+
       try {
         await loadMembership().catch(() => null);
         await loadNotifications();

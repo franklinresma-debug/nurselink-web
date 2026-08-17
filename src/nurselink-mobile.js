@@ -9726,7 +9726,26 @@ import './nurselink-mobile.css';
 
   function smartNoticeHtml() {
     if (!smartRegistration557State.notice) return '';
-    return `<div class="nurselink-smart557-notice" data-tone="${smartEsc(smartRegistration557State.noticeTone)}">${smartEsc(smartRegistration557State.notice)}</div>`;
+    return `<div class="nurselink-smart557-notice" role="alert" aria-live="assertive" tabindex="-1" data-tone="${smartEsc(smartRegistration557State.noticeTone)}">${smartEsc(smartRegistration557State.notice)}</div>`;
+  }
+
+  function smartLockedApplication(data) {
+    const status = String(data?.membership?.status || '').replace(/_/g, ' ');
+    return `
+      <section class="nurselink-smart557-card nurselink-smart557-locked">
+        <div class="nurselink-smart557-card-heading centered">
+          <span class="nurselink-smart557-icon" aria-hidden="true">🔒</span>
+          <h1>Your submitted application is locked</h1>
+          <p>Your current status is <strong>${smartEsc(status || 'under review')}</strong>. Information cannot be changed while NurseLink is reviewing it.</p>
+        </div>
+        <div class="nurselink-smart557-complete-callout">
+          If a reviewer needs corrections, your status will change to <strong>Needs Information</strong>. You can then return here, save the requested details, and resubmit.
+        </div>
+        <div class="nurselink-smart557-actions centered">
+          <a class="primary-button" href="/application-status">View Application Status →</a>
+        </div>
+      </section>
+    `;
   }
 
   function smartUploadStep(data) {
@@ -10230,6 +10249,9 @@ import './nurselink-mobile.css';
           button.textContent = section === 'personal' ? 'Save & Continue →' : 'Save & Review →';
         }
         renderSmartRegistration557(document.querySelector('.page') || document.querySelector('main'));
+        const notice = document.querySelector('.nurselink-smart557-notice');
+        notice?.focus({ preventScroll: true });
+        notice?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
 
@@ -10302,13 +10324,17 @@ import './nurselink-mobile.css';
     }
 
     const completion = Number(data.completion || 0);
-    const body = step === 1
-      ? smartUploadStep(data)
-      : step === 2
-        ? smartPersonalStep(data)
-        : step === 3
-          ? smartProfessionalStep(data)
-          : smartReviewStep(data);
+    const membershipStatus = String(data?.membership?.status || 'draft');
+    const editable = ['draft', 'needs_information'].includes(membershipStatus);
+    const body = !editable
+      ? smartLockedApplication(data)
+      : step === 1
+        ? smartUploadStep(data)
+        : step === 2
+          ? smartPersonalStep(data)
+          : step === 3
+            ? smartProfessionalStep(data)
+            : smartReviewStep(data);
 
     root.innerHTML = `${smartStepHeader(step, completion)}${smartNoticeHtml()}${body}`;
     bindSmartRegistration557(root);

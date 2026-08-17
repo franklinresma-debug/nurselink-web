@@ -1,0 +1,128 @@
+.ndi-card-body {
+  grid-template-columns: 140px minmax(0, 1fr) 142px;
+  gap: 24px;
+  padding-inline: 28px;
+}
+
+.ndi-photo {
+  width: 140px;
+  height: 174px;
+}
+
+.ndi-qr-block {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  align-self: center;
+}
+
+.ndi-qr {
+  display: grid;
+  place-items: center;
+  width: 142px;
+  height: 142px;
+  padding: 5px;
+  border: 2px solid rgba(255, 255, 255, .82);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+}
+
+.ndi-qr canvas,
+.ndi-qr img {
+  display: block;
+  width: 132px !important;
+  height: 132px !important;
+}
+
+.ndi-qr-block > small {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.ndi-scan-info {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #c9ddf1;
+  border-radius: 12px;
+  background: #eef7ff;
+}
+
+.ndi-scan-info strong {
+  color: #0d4778;
+}
+
+.ndi-scan-info p {
+  margin: 6px 0 12px;
+  color: #526c86;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ndi-scan-info a {
+  color: #086abd;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+@media (max-width: 700px) {
+  .ndi-card-body {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 16px;
+    padding-inline: 17px;
+  }
+
+  .ndi-photo {
+    width: 100px;
+    height: 126px;
+  }
+
+  .ndi-qr-block {
+    grid-column: 1 / -1;
+    width: 100%;
+    grid-template-columns: 118px 1fr;
+    justify-items: start;
+    align-items: center;
+    padding-top: 4px;
+  }
+
+  .ndi-qr {
+    width: 118px;
+    height: 118px;
+  }
+
+  .ndi-qr canvas,
+  .ndi-qr img {
+    width: 108px !important;
+    height: 108px !important;
+  }
+
+  .ndi-qr-block > small {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 390px) {
+  .ndi-card-body {
+    grid-template-columns: 82px minmax(0, 1fr);
+  }
+
+  .ndi-photo {
+    width: 82px;
+    height: 105px;
+  }
+}
+
+@media print {
+  .ndi-card-body {
+    grid-template-columns: 140px minmax(0, 1fr) 142px;
+  }
+
+  .ndi-scan-info {
+    display: none;
+  }
+}

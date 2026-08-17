@@ -187,13 +187,16 @@
     location.replace('/nurselink-admin-login.html');
   }
 
-  function metric(title, value, note = '', tone = '', applicationStatus = null) {
-    const tag = applicationStatus === null ? 'div' : 'button';
-    const action = applicationStatus === null
-      ? ''
-      : ` type="button" data-open-applications="${esc(applicationStatus)}" aria-label="Open ${esc(title)} applications"`;
+  function metric(title, value, note = '', tone = '', applicationStatus = null, dashboardTarget = '') {
+    const interactive = applicationStatus !== null || Boolean(dashboardTarget);
+    const tag = interactive ? 'button' : 'div';
+    const action = applicationStatus !== null
+      ? ` type="button" data-open-applications="${esc(applicationStatus)}" aria-label="Open ${esc(title)} applications"`
+      : dashboardTarget
+        ? ` type="button" data-dashboard-target="${esc(dashboardTarget)}" aria-label="Open ${esc(title)} details"`
+        : '';
     return `
-      <${tag} class="nl530-metric${applicationStatus === null ? '' : ' nl-admin-card-link'}" data-tone="${esc(tone)}"${action}>
+      <${tag} class="nl530-metric${interactive ? ' nl-admin-card-link' : ''}" data-tone="${esc(tone)}"${action}>
         <span>${esc(title)}</span>
         <strong>${esc(value)}</strong>
         <small>${esc(note)}</small>
@@ -632,6 +635,10 @@
 
       summary = operationsPayload?.data || {};
       const m = summary.metrics || {};
+      const policyConsent = summary.policy_consent || {};
+      const pendingConsentAccounts = Array.isArray(policyConsent.pending_accounts)
+        ? policyConsent.pending_accounts
+        : [];
       const membership = membershipPayload?.data || {};
       const counts = membership.counts || {};
       const standing = membership.standing || {};
@@ -652,8 +659,39 @@
         metric('Training & Events', m.upcoming_events ?? 0, 'Upcoming NurseLink events'),
         metric('Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), `${onboarding.overdue ?? 0} overdue`),
         metric('Notifications', m.unread_member_notifications ?? 0, 'Unread in-app member notifications'),
-        metric('Policy Consent', m.policy_consent_current ?? 0, `${m.policy_consent_pending ?? 0} active account(s) pending`, Number(m.policy_consent_pending || 0) ? 'attention' : 'good')
+        metric('Policy Consent', m.policy_consent_current ?? 0, `${m.policy_consent_pending ?? 0} active account(s) pending`, Number(m.policy_consent_pending || 0) ? 'attention' : 'good', null, 'dashboardPolicyConsent')
       ].join('');
+
+      $('dashboardPolicyConsent').innerHTML = `
+        <div class="nl530-card-head">
+          <div>
+            <span>POLICY GOVERNANCE</span>
+            <h2 id="dashboardPolicyConsentTitle">Current Terms & Privacy Consent</h2>
+            <p>Account holders must accept both current policy versions themselves. Administrators can monitor completion but cannot consent on a member’s behalf.</p>
+          </div>
+          <div class="nl558-consent-summary" data-tone="${pendingConsentAccounts.length ? 'attention' : 'good'}">
+            <strong>${esc(policyConsent.current ?? 0)} of ${esc(policyConsent.active_accounts ?? 0)}</strong>
+            <span>current</span>
+          </div>
+        </div>
+        <div class="nl558-consent-versions">
+          <span>Terms <strong>${esc(policyConsent.terms_version || '—')}</strong></span>
+          <span>Privacy <strong>${esc(policyConsent.privacy_version || '—')}</strong></span>
+        </div>
+        ${pendingConsentAccounts.length ? `
+          <div class="nl558-consent-list" role="list" aria-label="Accounts awaiting current policy consent">
+            ${pendingConsentAccounts.map(account => `
+              <article class="nl558-consent-account" role="listitem">
+                <div>
+                  <strong>${esc(account.name || 'NurseLink account')}</strong>
+                  <small>${esc(account.email || '')}</small>
+                </div>
+                <span>Re-consent required</span>
+              </article>
+            `).join('')}
+          </div>
+        ` : '<div class="nl558-consent-complete">All active accounts are on the current Terms and Privacy versions.</div>'}
+      `;
 
       $('membershipProgress').innerHTML = [
         progressStage('Submitted', counts.submitted ?? 0, 'Awaiting review assignment', Number(counts.submitted || 0) ? 'attention' : '', 'submitted'),
@@ -3210,6 +3248,13 @@
   });
 
   document.addEventListener('click', event => {
+    const dashboardTarget = event.target.closest('[data-dashboard-target]');
+    if (dashboardTarget) {
+      document.getElementById(dashboardTarget.dataset.dashboardTarget)
+        ?.scrollIntoView({behavior: 'smooth', block: 'start'});
+      return;
+    }
+
     const tabCard = event.target.closest('[data-open-admin-tab]');
     if (tabCard) {
       setTab(tabCard.dataset.openAdminTab || 'dashboard');

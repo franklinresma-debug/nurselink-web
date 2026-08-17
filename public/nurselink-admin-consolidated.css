@@ -1476,3 +1476,20 @@ body.nl-admin-body,
 .nl-admin-card-link:focus-visible{outline:3px solid rgba(11,114,213,.32);outline-offset:2px}
 .nl-admin-card-link:active{transform:translateY(0)}
 @media(prefers-reduced-motion:no-preference){.nl-admin-card-link{transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}}
+
+/* NURSELINK_POLICY_CONSENT_GOVERNANCE_V558_START */
+.nl558-policy-consent-card{margin-top:12px;scroll-margin-top:18px}
+.nl558-consent-summary{min-width:112px;padding:10px 12px;border:1px solid #cce4d8;border-radius:10px;background:#f2fbf6;text-align:center}
+.nl558-consent-summary[data-tone=attention]{border-color:#ecd49d;background:#fff8e8}
+.nl558-consent-summary strong,.nl558-consent-summary span{display:block}
+.nl558-consent-summary strong{font-size:18px;line-height:1.2}.nl558-consent-summary span{margin-top:2px;color:#64748b;font-size:12px}
+.nl558-consent-versions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.nl558-consent-versions>span{padding:7px 9px;border-radius:8px;background:#f1f5f9;color:#64748b;font-size:12px}.nl558-consent-versions strong{color:#173253}
+.nl558-consent-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.nl558-consent-account{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;border:1px solid #e5cf9b;border-radius:10px;background:#fffbf1}
+.nl558-consent-account>div{min-width:0}.nl558-consent-account strong,.nl558-consent-account small{display:block;overflow-wrap:anywhere}
+.nl558-consent-account strong{font-size:14px;line-height:1.35}.nl558-consent-account small{margin-top:2px;color:#64748b;font-size:12px;line-height:1.4}
+.nl558-consent-account>span{flex:0 0 auto;color:#8a6415;font-size:11px;font-weight:800}
+.nl558-consent-complete{padding:12px;border:1px solid #cce4d8;border-radius:10px;background:#f2fbf6;color:#176c4c;font-size:13px;font-weight:700}
+@media(max-width:760px){.nl558-consent-list{grid-template-columns:1fr}.nl558-consent-summary{width:100%}.nl558-consent-account{align-items:flex-start;flex-direction:column}.nl558-consent-account strong{font-size:15px}.nl558-consent-account small,.nl558-consent-account>span,.nl558-consent-versions>span,.nl558-consent-summary span{font-size:13px}}
+/* NURSELINK_POLICY_CONSENT_GOVERNANCE_V558_END */

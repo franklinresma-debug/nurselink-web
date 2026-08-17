@@ -10173,6 +10173,11 @@ import './nurselink-mobile.css';
       else page.insertBefore(root, page.firstChild);
     }
 
+    // The global enhancement observer runs after every DOM mutation. Mark this
+    // route before rendering so that observer passes do not continuously replace
+    // controls while a user is trying to click or focus them.
+    root.dataset.smartRenderedLocation = location.pathname + location.search + location.hash;
+
     const data = smartRegistration557State.data;
     const step = smartStep();
 
@@ -10231,6 +10236,11 @@ import './nurselink-mobile.css';
 
   function enhanceSmartRegistration557(page) {
     if (!page || routeSlug() !== 'smart-registration' || !isApplicantPortal()) return;
+
+    const root = page.querySelector('.nurselink-smart557');
+    const locationKey = location.pathname + location.search + location.hash;
+    if (root?.dataset.smartRenderedLocation === locationKey) return;
+
     renderSmartRegistration557(page);
   }
 

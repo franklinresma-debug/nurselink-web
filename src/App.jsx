@@ -386,6 +386,12 @@ function Register() {
   const [submitting, setSubmitting] =
     useState(false)
 
+  const [termsAccepted, setTermsAccepted] =
+    useState(false)
+
+  const [privacyAccepted, setPrivacyAccepted] =
+    useState(false)
+
   const [registrationMode, setRegistrationMode] =
     useState('open')
 
@@ -432,6 +438,11 @@ function Register() {
       return
     }
 
+    if (!termsAccepted || !privacyAccepted) {
+      setError('Please review and accept the Terms of Use and Privacy Notice to continue.')
+      return
+    }
+
     setSubmitting(true)
 
     try {
@@ -446,6 +457,8 @@ function Register() {
           password,
           password_confirmation:
             passwordConfirmation,
+          terms_accepted: termsAccepted,
+          privacy_accepted: privacyAccepted,
         })
 
       if (
@@ -602,6 +615,28 @@ function Register() {
             />
           </label>
 
+          <div className="registration-consent" role="group" aria-label="Registration consent">
+            <label className="consent-option">
+              <input
+                type="checkbox"
+                checked={termsAccepted}
+                onChange={(event) => setTermsAccepted(event.target.checked)}
+                required
+              />
+              <span>I have read and agree to the <NavLink to="/terms" target="_blank">Terms of Use</NavLink>.</span>
+            </label>
+
+            <label className="consent-option">
+              <input
+                type="checkbox"
+                checked={privacyAccepted}
+                onChange={(event) => setPrivacyAccepted(event.target.checked)}
+                required
+              />
+              <span>I have read the <NavLink to="/privacy" target="_blank">Privacy Notice</NavLink> and understand how my information is handled.</span>
+            </label>
+          </div>
+
           <button
             type="submit"
             className="primary-button full"
@@ -624,6 +659,42 @@ function Register() {
         </p>
       </div>
     </div>
+  )
+}
+
+function PublicPolicy({ type }) {
+  const isPrivacy = type === 'privacy'
+
+  return (
+    <main className="policy-screen">
+      <article className="policy-document">
+        <NavLink className="policy-back" to="/register">← Back to registration</NavLink>
+        <div className="eyebrow">KAPIT-BISIG NurseLink</div>
+        <h1>{isPrivacy ? 'Privacy Notice' : 'Terms of Use'}</h1>
+        <p className="policy-version">Effective 18 August 2026 · Version 2026-08-18</p>
+
+        {isPrivacy ? (
+          <>
+            <section><h2>Information we collect</h2><p>NurseLink collects account details, contact information, professional history, credentials, uploaded documents, application records, and service activity needed to administer membership and member services.</p></section>
+            <section><h2>Why we use it</h2><p>We use this information to verify identity and qualifications, process applications, maintain the professional registry, deliver requested services, protect the platform, meet governance obligations, and communicate important membership updates.</p></section>
+            <section><h2>Document processing and OCR</h2><p>Documents submitted through Smart Registration may be scanned for malware and processed with optical character recognition. Extracted values assist data entry and remain subject to applicant confirmation and authorized reviewer verification.</p></section>
+            <section><h2>Access and disclosure</h2><p>Access is limited by role. Authorized NurseLink reviewers, administrators, and service providers may process information only for approved operational purposes. NurseLink does not publish private evidence documents as part of a member profile.</p></section>
+            <section><h2>Retention and protection</h2><p>Records are retained only as required for membership administration, audit, legal, security, and continuity purposes. NurseLink uses access controls, encryption in transit, monitoring, restricted backups, and audit records to protect information.</p></section>
+            <section><h2>Your choices and rights</h2><p>You may request access, correction, a copy, restriction, or deletion where applicable through NurseLink support and privacy-request services. Some records may need to be retained for legal, security, or governance reasons.</p></section>
+          </>
+        ) : (
+          <>
+            <section><h2>Using NurseLink</h2><p>You must provide accurate information, maintain the security of your account, and use NurseLink only for lawful membership and professional purposes. You are responsible for reviewing extracted information before confirming or submitting it.</p></section>
+            <section><h2>Applications and credentials</h2><p>Submitting information does not guarantee membership, credential verification, employment, placement, or access to a particular service. NurseLink reviewers may request additional evidence and make governed decisions under current membership rules.</p></section>
+            <section><h2>Acceptable use</h2><p>Do not impersonate another person, upload malicious or misleading material, attempt unauthorized access, interfere with the service, or misuse member information. Access may be restricted or suspended to protect members and the platform.</p></section>
+            <section><h2>Service availability</h2><p>NurseLink works to keep services available and records protected, but maintenance, security events, or circumstances outside its control may temporarily interrupt access.</p></section>
+            <section><h2>Changes</h2><p>Material updates will be identified by a new version and effective date. NurseLink may request renewed acceptance when changes affect how the service or member information is governed.</p></section>
+          </>
+        )}
+
+        <section><h2>Questions or requests</h2><p>Use the NurseLink Support Cases service for policy questions, account concerns, or privacy requests. Urgent security concerns should be reported as soon as possible.</p></section>
+      </article>
+    </main>
   )
 }
 
@@ -1566,6 +1637,9 @@ export default function App() {
           path="/register"
           element={<Register />}
         />
+
+        <Route path="/terms" element={<PublicPolicy type="terms" />} />
+        <Route path="/privacy" element={<PublicPolicy type="privacy" />} />
 
         <Route
           path="/reset-password"

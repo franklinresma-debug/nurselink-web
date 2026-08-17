@@ -165,6 +165,8 @@ export async function register({
   email,
   password,
   password_confirmation,
+  terms_accepted,
+  privacy_accepted,
 }) {
   await csrf()
 
@@ -176,6 +178,8 @@ export async function register({
       password,
       password_confirmation:
         password_confirmation || password,
+      terms_accepted,
+      privacy_accepted,
     }),
   })
 }

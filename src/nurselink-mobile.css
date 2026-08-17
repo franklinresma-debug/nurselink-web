@@ -10995,7 +10995,19 @@ html.nurselink-smart-registration-v557 .nurselink-smart-dropzone {
 .nurselink-smart557-dropzone .docicon { color: #8f9cb1; font-size: 31px; }
 .nurselink-smart557-dropzone strong { font-size: 15px; }
 .nurselink-smart557-dropzone small { color: #7b879b; font-size: 12px; }
-.nurselink-smart557-dropzone .browse { color: var(--smart-blue-dark); font-weight: 800; font-size: 14px; }
+.nurselink-smart557-dropzone .browse {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--smart-blue-dark);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.nurselink-smart557-dropzone .browse:hover,
+.nurselink-smart557-dropzone .browse:focus-visible { text-decoration: underline; }
 .nurselink-smart557-dropzone em { color: #8b96a8; font-size: 11px; font-style: normal; }
 .nurselink-smart557-dropzone input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 

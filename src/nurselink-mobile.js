@@ -9642,14 +9642,14 @@ import './nurselink-mobile.css';
           <p>We’ll extract your information automatically and pre-fill your registration.</p>
         </div>
 
-        <label class="nurselink-smart557-dropzone" for="nurselinkSmart557Files">
+        <div class="nurselink-smart557-dropzone">
           <span class="docicon">▤</span>
           <strong>Drag & drop your documents here</strong>
           <small>or</small>
-          <span class="browse">Browse Files</span>
+          <button type="button" class="browse" data-smart-browse>Browse Files</button>
           <input id="nurselinkSmart557Files" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,application/pdf,image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
           <em>PDF, JPG, PNG, DOC or DOCX · Up to 15 MB per file</em>
-        </label>
+        </div>
 
         <div class="nurselink-smart557-document-types">
           <strong>Documents we can use</strong>
@@ -9715,7 +9715,9 @@ import './nurselink-mobile.css';
         ${missing.length ? `<div class="nurselink-smart557-missing compact"><strong>Still needed:</strong> ${missing.map(item => smartEsc(item.label)).join(', ')}</div>` : ''}
 
         <div class="nurselink-smart557-actions end">
-          <button type="button" class="primary-button" data-smart-next="2" ${documents.length ? '' : 'disabled'}>Continue to Personal Information →</button>
+          ${documents.length
+            ? '<a class="primary-button" href="/smart-registration?smartstep=2" data-smart-next="2">Continue to Personal Information →</a>'
+            : '<button type="button" class="primary-button" disabled>Continue to Personal Information →</button>'}
         </div>
       </section>
       <p class="nurselink-smart557-terms">By continuing, you agree to NurseLink’s Terms of Service and Privacy Policy.</p>
@@ -9953,8 +9955,17 @@ import './nurselink-mobile.css';
       root.dataset.smartBound = '1';
 
       root.addEventListener('click', async event => {
+      const browse = event.target.closest('[data-smart-browse]');
+      if (browse) {
+        event.preventDefault();
+        root.querySelector('#nurselinkSmart557Files')?.click();
+        return;
+      }
+
       const stepButton = event.target.closest('[data-smart-step],[data-smart-next]');
       if (stepButton) {
+        // Links retain native navigation as a fallback if app enhancements are interrupted.
+        if (stepButton.matches('a[href]')) return;
         event.preventDefault();
         smartSetStep(stepButton.dataset.smartStep || stepButton.dataset.smartNext);
         return;

@@ -42,6 +42,7 @@ const menu = [
   ['Programs & Initiatives', '/initiatives'],
   ['Policies & Advocacy', '/policies'],
   ['Welfare & Crisis', '/welfare'],
+  ['Policy & Privacy', '/policy-center'],
 ]
 
 const memberOnlyPaths = [
@@ -697,6 +698,90 @@ function PublicPolicy({ type }) {
         <section><h2>Questions or requests</h2><p>Use the NurseLink Support Cases service for policy questions, account concerns, or privacy requests. Urgent security concerns should be reported as soon as possible.</p></section>
       </article>
     </main>
+  )
+}
+
+function PolicyCenter({ onAccepted }) {
+  const [status, setStatus] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    getPolicyConsent()
+      .then((result) => setStatus(result?.data || null))
+      .catch((requestError) => setError(getErrorMessage(requestError)))
+      .finally(() => setLoading(false))
+  }, [])
+
+  async function acceptPolicies() {
+    setSaving(true)
+    setError('')
+
+    try {
+      const result = await acceptCurrentPolicies()
+      const nextStatus = result?.data || { current: true }
+      setStatus(nextStatus)
+      onAccepted?.(nextStatus)
+    } catch (requestError) {
+      setError(getErrorMessage(requestError))
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <div className="page policy-center-page">
+      <div className="page-heading">
+        <div>
+          <div className="eyebrow">Account Governance</div>
+          <h1>Policy &amp; Privacy Center</h1>
+          <p>Review NurseLink’s current policies and your recorded acceptance status.</p>
+        </div>
+      </div>
+
+      {loading && <div className="panel policy-center-loading">Loading policy status…</div>}
+      {error && <div className="form-error">{error}</div>}
+
+      {!loading && status && (
+        <>
+          <section className={`policy-center-status ${status.current ? 'is-current' : 'is-pending'}`}>
+            <div>
+              <span>{status.current ? 'CURRENT' : 'ACTION REQUESTED'}</span>
+              <h2>{status.current ? 'Your policy acceptance is up to date' : 'Please review and accept the current policies'}</h2>
+              <p>{status.current ? 'NurseLink has recorded your explicit acceptance of both current documents.' : 'Your access remains available while you review. Acceptance is recorded only when you select the button below.'}</p>
+            </div>
+            {!status.current && (
+              <button type="button" onClick={acceptPolicies} disabled={saving}>
+                {saving ? 'Recording acceptance…' : 'Accept both policies'}
+              </button>
+            )}
+          </section>
+
+          <div className="policy-center-grid">
+            <article className="panel policy-center-card">
+              <div className="eyebrow">Terms</div>
+              <h2>Terms of Use</h2>
+              <p>Current version: <strong>{status.terms_version}</strong></p>
+              <p>Accepted: <strong>{status.terms_accepted_at ? new Date(status.terms_accepted_at).toLocaleString() : 'Not yet recorded'}</strong></p>
+              <NavLink to="/terms" target="_blank">Read Terms of Use</NavLink>
+            </article>
+            <article className="panel policy-center-card">
+              <div className="eyebrow">Privacy</div>
+              <h2>Privacy Notice</h2>
+              <p>Current version: <strong>{status.privacy_version}</strong></p>
+              <p>Accepted: <strong>{status.privacy_accepted_at ? new Date(status.privacy_accepted_at).toLocaleString() : 'Not yet recorded'}</strong></p>
+              <NavLink to="/privacy" target="_blank">Read Privacy Notice</NavLink>
+            </article>
+          </div>
+
+          <section className="panel policy-center-help">
+            <h2>Questions or privacy requests</h2>
+            <p>Use NurseLink Support Cases for questions, correction requests, account concerns, or other privacy requests. Policy acceptance does not waive rights available under applicable law.</p>
+          </section>
+        </>
+      )}
+    </div>
   )
 }
 
@@ -1656,6 +1741,8 @@ function AppLayout() {
               />
             }
           />
+
+          <Route path="/policy-center" element={<PolicyCenter onAccepted={setPolicyConsent} />} />
 
           {isAdministrator && (
             <Route

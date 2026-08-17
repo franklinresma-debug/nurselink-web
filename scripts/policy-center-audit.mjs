@@ -30,7 +30,7 @@ for (const viewport of viewports) {
   await page.getByRole('heading', { name: 'Policy & Privacy Center' }).waitFor();
   results.push({
     viewport: viewport.name,
-    statusVisible: await page.locator('.policy-center-status').isVisible(),
+    statusVisible: await page.locator('.policy-center-status:visible').first().isVisible(),
     cards: await page.locator('.policy-center-card').count(),
     links: await page.locator('.policy-center-card a').count(),
     acceptButton: await page.locator('.policy-center-status').getByRole('button', { name: 'Accept both policies' }).isVisible(),

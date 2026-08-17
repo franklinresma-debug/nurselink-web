@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f4f8fc">
+  <title>QR Scan Center | KAPIT-BISIG NurseLink</title>
+  <link rel="stylesheet" href="/nurselink-admin-portal.css?nlv=560">
+  <link rel="stylesheet" href="/nurselink-qr-scan-center.css?nlv=560">
+</head>
+<body>
+  <header class="qsc-topbar"><a href="/nurselink-admin-dashboard.html"><b>NL</b><span><strong>NurseLink</strong><small>Administration Operations Center</small></span></a><div id="adminIdentity">Checking staff session…</div></header>
+  <main class="qsc-main">
+    <section class="qsc-heading"><div><span>MEMBER SERVICES</span><h1>QR Scan Center</h1><p>Validate an active member and record benefits, workshops, events or other authorized NurseLink services.</p></div><a href="/nurselink-admin-dashboard.html">Back to Administration</a></section>
+    <div id="notice" class="qsc-notice" role="status" aria-live="polite" hidden></div>
+    <div class="qsc-grid">
+      <section class="qsc-panel">
+        <div class="qsc-panel-head"><div><span>STEP 1</span><h2>Scan or enter member ID</h2></div><button id="startCamera" type="button">Use Camera</button></div>
+        <div id="cameraBox" class="qsc-camera" hidden><video id="cameraVideo" playsinline muted></video><div class="qsc-camera-guide" aria-hidden="true"></div><button id="stopCamera" type="button">Stop Camera</button></div>
+        <form id="lookupForm" class="qsc-form"><label><span>QR verification link or member number</span><input id="scanValue" autocomplete="off" required placeholder="Scan QR or enter NL-2026-000001"></label><button type="submit">Validate Member</button></form>
+        <div id="memberResult" class="qsc-member" hidden></div>
+      </section>
+      <section class="qsc-panel">
+        <div class="qsc-panel-head"><div><span>STEP 2</span><h2>Record service use</h2></div></div>
+        <form id="recordForm" class="qsc-form">
+          <label><span>Purpose</span><select id="purpose"><option value="benefit">Benefit</option><option value="workshop">Workshop</option><option value="event">Event</option><option value="program">Program</option><option value="other">Other</option></select></label>
+          <label><span>Service, workshop or event name</span><input id="referenceLabel" maxlength="190" required placeholder="Example: First Aid Workshop"></label>
+          <label><span>Reference ID (optional)</span><input id="referenceId" maxlength="120" placeholder="Event or benefit reference"></label>
+          <label><span>Staff note (optional)</span><textarea id="scanNote" maxlength="2000" rows="3"></textarea></label>
+          <button id="recordButton" type="submit" disabled>Record Service Use</button>
+        </form>
+      </section>
+    </div>
+    <section class="qsc-panel qsc-history"><div class="qsc-panel-head"><div><span>AUDIT TRAIL</span><h2>Recent scans</h2></div><button id="refreshHistory" type="button">Refresh</button></div><div id="historyList" class="qsc-list"><div class="qsc-empty">Loading recent scans…</div></div></section>
+    <section class="qsc-governance"><strong>Privacy and governance</strong><span>The QR verifies NurseLink membership only. It is not a government ID, professional license, payment credential or automatic entitlement. Staff must select the correct service purpose before recording use.</span></section>
+  </main>
+  <script src="/nurselink-qr-scan-center.js?nlv=560" defer></script>
+</body>
+</html>

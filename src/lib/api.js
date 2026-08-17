@@ -180,6 +180,10 @@ export async function register({
   })
 }
 
+export async function getRegistrationStatus() {
+  return request('/api/registration-status')
+}
+
 export async function resetPassword({
   token,
   email,

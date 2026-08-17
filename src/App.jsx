@@ -21,6 +21,7 @@ import ApplicationStatus from './pages/ApplicationStatus'
 import Credentials from './pages/Credentials'
 import ResetPassword from './pages/ResetPassword'
 import {
+  getRegistrationStatus,
   requestPasswordReset,
   resendEmailVerification,
 } from './lib/api'
@@ -385,6 +386,28 @@ function Register() {
   const [submitting, setSubmitting] =
     useState(false)
 
+  const [registrationMode, setRegistrationMode] =
+    useState('open')
+
+  useEffect(() => {
+    let active = true
+
+    getRegistrationStatus()
+      .then((result) => {
+        if (active) {
+          setRegistrationMode(result?.data?.mode || 'closed')
+        }
+      })
+      .catch(() => {
+        // The server remains authoritative on submission if this advisory
+        // status request is temporarily unavailable.
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
   if (authenticated) {
     return (
       <Navigate
@@ -480,6 +503,18 @@ function Register() {
           Create account
         </h2>
 
+        {registrationMode === 'pilot' && (
+          <div className="form-notice">
+            NurseLink registration is currently available to invited pilot participants only.
+          </div>
+        )}
+
+        {registrationMode === 'closed' && (
+          <div className="form-notice form-notice-closed">
+            New member registration is temporarily closed. Existing members may still sign in.
+          </div>
+        )}
+
         {error && (
           <div className="form-error">
             {error}
@@ -570,9 +605,11 @@ function Register() {
           <button
             type="submit"
             className="primary-button full"
-            disabled={submitting}
+            disabled={submitting || registrationMode === 'closed'}
           >
-            {submitting
+            {registrationMode === 'closed'
+              ? 'Registration Closed'
+              : submitting
               ? 'Creating account...'
               : 'Continue Registration'}
           </button>

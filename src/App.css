@@ -487,6 +487,23 @@ input {
   line-height: 1.5;
 }
 
+.form-notice {
+  margin: 18px 0;
+  padding: 12px 14px;
+  background: #eef6ff;
+  border: 1px solid #bdd8f3;
+  border-radius: 8px;
+  color: #174f82;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.form-notice-closed {
+  background: #fff7e8;
+  border-color: #ead19b;
+  color: #76510b;
+}
+
 .verification-email {
   margin: 18px 0;
   padding: 14px;

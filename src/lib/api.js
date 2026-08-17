@@ -248,6 +248,19 @@ export async function getApplication() {
   return response.data
 }
 
+export async function getMember() {
+  const response = await request('/api/members/me')
+  return response.data
+}
+
+export async function updateMemberProfile(values) {
+  const response = await request('/api/members/me/profile', {
+    method: 'PATCH',
+    body: JSON.stringify(values),
+  })
+  return response.data
+}
+
 export async function createApplication() {
   const response =
     await request(

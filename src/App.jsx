@@ -8,7 +8,7 @@ import {
   useLocation,
 } from 'react-router-dom'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import './App.css'
 
@@ -961,6 +961,140 @@ function Dashboard() {
   )
 }
 
+function NavigationTour({
+  open,
+  isMember,
+  onClose,
+}) {
+  const [stepIndex, setStepIndex] = useState(0)
+
+  const steps = useMemo(() => [
+    {
+      path: '/dashboard',
+      title: 'Your NurseLink dashboard',
+      text: 'Start here for membership progress, readiness and the next action NurseLink recommends.',
+    },
+    {
+      path: '/profile',
+      title: 'Keep your profile current',
+      text: 'Update your personal and professional information so applications and services use accurate details.',
+    },
+    {
+      path: '/smart-registration',
+      title: 'Smart Registration',
+      text: 'Upload documents, review extracted information and supply anything the document could not provide.',
+    },
+    {
+      path: '/application-status',
+      title: 'Follow your application',
+      text: 'See the current review stage, decisions and requests for additional information.',
+    },
+    ...(isMember
+      ? [
+          {
+            path: '/credentials',
+            title: 'Credentials and evidence',
+            text: 'Maintain licenses and certificates, attach supporting files and follow verification status.',
+          },
+          {
+            path: '/documents',
+            title: 'Your private documents',
+            text: 'Find documents you uploaded or that NurseLink retained from your approved application.',
+          },
+        ]
+      : []),
+    {
+      path: '/messages',
+      title: 'Messages and notifications',
+      text: 'Check updates from NurseLink and respond when an action is required.',
+    },
+  ], [isMember])
+
+  useEffect(() => {
+    if (!open) return undefined
+
+    const step = steps[stepIndex]
+    const target = document.querySelector(`[data-tour-path="${step.path}"]`)
+    target?.classList.add('navigation-tour-target')
+    target?.scrollIntoView({ block: 'nearest' })
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        setStepIndex(0)
+        onClose(false)
+      }
+      if (event.key === 'ArrowRight' && stepIndex < steps.length - 1) {
+        setStepIndex((current) => current + 1)
+      }
+      if (event.key === 'ArrowLeft' && stepIndex > 0) {
+        setStepIndex((current) => current - 1)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      target?.classList.remove('navigation-tour-target')
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [onClose, open, stepIndex, steps])
+
+  if (!open) return null
+
+  const step = steps[stepIndex]
+  const isLast = stepIndex === steps.length - 1
+
+  return (
+    <div className="navigation-tour-layer" role="presentation">
+      <div className="navigation-tour-backdrop" />
+      <section
+        className="navigation-tour-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="navigation-tour-title"
+      >
+        <div className="navigation-tour-progress">
+          <span>Navigation guide</span>
+          <strong>{stepIndex + 1} of {steps.length}</strong>
+        </div>
+        <h2 id="navigation-tour-title">{step.title}</h2>
+        <p>{step.text}</p>
+        <div className="navigation-tour-actions">
+          <button type="button" className="tour-skip" onClick={() => {
+            setStepIndex(0)
+            onClose(true)
+          }}>
+            Skip tour
+          </button>
+          <div>
+            <button
+              type="button"
+              className="tour-secondary"
+              disabled={stepIndex === 0}
+              onClick={() => setStepIndex((current) => current - 1)}
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              className="tour-primary"
+              onClick={() => {
+                if (isLast) {
+                  setStepIndex(0)
+                  onClose(true)
+                }
+                else setStepIndex((current) => current + 1)
+              }}
+            >
+              {isLast ? 'Finish' : 'Next'}
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
 function AppLayout() {
   const navigate =
     useNavigate()
@@ -975,6 +1109,11 @@ function AppLayout() {
     setSigningOut,
   ] = useState(false)
 
+  const [
+    navigationTourOpen,
+    setNavigationTourOpen,
+  ] = useState(false)
+
   const isMember =
     user?.roles?.includes('member') ||
     Boolean(user?.member)
@@ -986,6 +1125,20 @@ function AppLayout() {
         'super_administrator',
       ].includes(role)
     )
+
+  const tourStorageKey = `nurselink-navigation-tour-v1:${user?.id || user?.email || 'member'}`
+
+  useEffect(() => {
+    if (window.localStorage.getItem(tourStorageKey)) {
+      return undefined
+    }
+
+    const timer = window.setTimeout(() => {
+      setNavigationTourOpen(true)
+    }, 700)
+
+    return () => window.clearTimeout(timer)
+  }, [tourStorageKey])
 
   async function handleLogout() {
     setSigningOut(true)
@@ -1051,6 +1204,7 @@ function AppLayout() {
                 <NavLink
                   key={path}
                   to={path}
+                  data-tour-path={path}
                   className={({
                     isActive,
                   }) =>
@@ -1114,6 +1268,16 @@ function AppLayout() {
             </span>
           </div>
 
+          <div className="topbar-member-actions">
+            <button
+              type="button"
+              className="navigation-help-button"
+              onClick={() => setNavigationTourOpen(true)}
+              aria-label="Open member navigation guide"
+            >
+              ? <span>Help</span>
+            </button>
+
           <div className="user-chip">
             <div className="avatar">
               {user?.name
@@ -1135,7 +1299,19 @@ function AppLayout() {
               </small>
             </div>
           </div>
+          </div>
         </header>
+
+        <NavigationTour
+          open={navigationTourOpen}
+          isMember={isMember}
+          onClose={(completed = false) => {
+            if (completed) {
+              window.localStorage.setItem(tourStorageKey, 'completed')
+            }
+            setNavigationTourOpen(false)
+          }}
+        />
 
         <Routes>
           <Route

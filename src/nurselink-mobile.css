@@ -11508,3 +11508,87 @@ html.nurselink-smart-registration-v557 .nurselink-smart-dropzone {
 .nurselink-membership-timeline ol{display:grid;gap:0;margin:0;padding:0;list-style:none}.nurselink-membership-timeline li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:9px;position:relative;padding:0 0 13px}.nurselink-membership-timeline li:not(:last-child)::before{content:"";position:absolute;left:5px;top:11px;bottom:-1px;width:2px;background:#d9e5ef}.nurselink-membership-timeline li>i{position:relative;z-index:1;width:12px;height:12px;margin-top:3px;border:3px solid #d7e9f8;border-radius:50%;background:#1678cf}.nurselink-membership-timeline li>div{display:grid;gap:2px;min-width:0}.nurselink-membership-timeline li strong{font-size:14px;line-height:1.35;color:#173656}.nurselink-membership-timeline li time{font-size:12px;line-height:1.4;color:#75869a}.nurselink-membership-timeline li p{margin:2px 0 0;font-size:13px;line-height:1.45;color:#53677d;white-space:pre-wrap}
 @media(max-width:760px){.nurselink-smart557-document{align-items:flex-start;flex-wrap:wrap}.nurselink-smart558-document-actions{width:100%;justify-content:flex-end;padding-left:40px}.nurselink-smart557-document .replace{min-height:44px;font-size:15px;padding:0 14px}.nurselink-membership-timeline-head{align-items:flex-start;flex-direction:column;gap:3px}.nurselink-membership-timeline-head span{font-size:13px}.nurselink-membership-timeline-head strong{font-size:14px}.nurselink-membership-timeline li strong{font-size:16px}.nurselink-membership-timeline li time,.nurselink-membership-timeline li p{font-size:14px}}
 /* NURSELINK_MEMBERSHIP_CYCLE_V558_END */
+
+/* NURSELINK_RESPONSIVE_ACCEPTANCE_V560_START */
+.nurselink-approved-member-dashboard > .stats-grid,
+.nurselink-approved-member-dashboard > .content-grid {
+  display: none !important;
+}
+
+.nurselink-member-welcome > div:first-child > span,
+.nurselink-member-readiness-ring span,
+.nurselink-member-readiness-mini > small,
+.nurselink-member-status-row span,
+.nurselink-member-status-row small,
+.nurselink-member-section-head span,
+.nurselink-member-module-copy small,
+.nurselink-member-note {
+  font-size: 12px;
+}
+
+.nurselink-member-welcome > div:first-child > span,
+.nurselink-member-status-row span,
+.nurselink-member-section-head span {
+  line-height: 17px;
+}
+
+.nurselink-member-status-row small,
+.nurselink-member-module-copy small,
+.nurselink-member-note {
+  line-height: 18px;
+}
+
+.nurselink-member-module-copy strong {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.nurselink-member-section-head > a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 9px;
+  font-size: 13px;
+}
+
+@media (max-width: 767px) {
+  .nurselink-member-welcome p {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .nurselink-member-module-card {
+    min-height: 112px;
+  }
+
+  .nurselink-member-section-head {
+    gap: 8px;
+  }
+
+  .nurselink-member-section-head > a {
+    flex: 0 0 auto;
+  }
+}
+/* NURSELINK_RESPONSIVE_ACCEPTANCE_V560_END */
+
+/* NURSELINK_RESPONSIVE_TYPOGRAPHY_V561_START */
+.nurselink-member-portal-loading small,
+.nurselink-member-v200-strip span,
+.nurselink-member-v200-strip small,
+.nurselink-auth-trust-item span {
+  font-size: 12px !important;
+  line-height: 18px !important;
+}
+
+.nurselink-auth-trust-icon {
+  font-size: 13px !important;
+}
+
+@media (max-width: 780px) {
+  .topbar > div:first-of-type span,
+  .topbar > div:first-of-type small {
+    font-size: 12px;
+  }
+}
+/* NURSELINK_RESPONSIVE_TYPOGRAPHY_V561_END */

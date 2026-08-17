@@ -6,7 +6,9 @@ import {
 import {
   createApplication,
   getApplication,
+  getMember,
   updateApplicationProfile,
+  updateMemberProfile,
 } from '../lib/api'
 
 import { useAuth } from '../context/AuthContext'
@@ -36,6 +38,9 @@ export default function Profile() {
     setApplication,
   ] = useState(null)
 
+  const [member, setMember] =
+    useState(null)
+
   const [form, setForm] =
     useState(emptyForm)
 
@@ -54,6 +59,29 @@ export default function Profile() {
   useEffect(() => {
     async function load() {
       try {
+        let currentMember = null
+
+        try {
+          currentMember = await getMember()
+        } catch (memberError) {
+          if (![403, 404].includes(memberError?.status)) {
+            throw memberError
+          }
+        }
+
+        if (currentMember) {
+          setMember(currentMember)
+          if (currentMember.profile) {
+            setForm({
+              ...emptyForm,
+              ...currentMember.profile,
+              years_experience:
+                currentMember.profile.years_experience ?? '',
+            })
+          }
+          return
+        }
+
         let app = await getApplication()
 
         if (!app) {
@@ -119,13 +147,20 @@ export default function Profile() {
         progress_percent: 60,
       }
 
-      const updated =
-        await updateApplicationProfile(
+      if (member) {
+        const updatedMember = await updateMemberProfile(payload)
+        setMember(updatedMember)
+      } else {
+        if (!application?.id) {
+          throw new Error('Unable to resolve your membership application.')
+        }
+
+        const updated = await updateApplicationProfile(
           application.id,
           payload
         )
-
-      setApplication(updated)
+        setApplication(updated)
+      }
 
       await refreshUser()
 
@@ -178,9 +213,9 @@ export default function Profile() {
           <h1>My Profile</h1>
 
           <p>
-            Complete your personal and
-            professional information for
-            your NurseLink application.
+            {member
+              ? 'Keep your NurseLink member profile current.'
+              : 'Complete your personal and professional information for your NurseLink application.'}
           </p>
         </div>
 

@@ -14,6 +14,7 @@ import {
   getDocuments,
   getProfessionalDevelopment,
   uploadMemberDocument,
+  updateCredential,
 } from '../lib/api'
 
 const credentialDefaults = {
@@ -27,6 +28,7 @@ const credentialDefaults = {
   issued_on: '',
   expires_on: '',
   does_not_expire: false,
+  primary_document_id: '',
 }
 
 const documentDefaults = {
@@ -137,6 +139,9 @@ export default function Credentials() {
     savingCredential,
     setSavingCredential,
   ] = useState(false)
+
+  const [editingCredentialId, setEditingCredentialId] =
+    useState(null)
 
   const [
     savingDocument,
@@ -271,7 +276,7 @@ export default function Credentials() {
     setError('')
 
     try {
-      await createCredential({
+      const payload = {
         category:
           credentialForm.category,
 
@@ -311,14 +316,26 @@ export default function Credentials() {
         does_not_expire:
           credentialForm
             .does_not_expire,
-      })
+
+        primary_document_id:
+          credentialForm.primary_document_id || null,
+      }
+
+      if (editingCredentialId) {
+        await updateCredential(editingCredentialId, payload)
+      } else {
+        await createCredential(payload)
+      }
 
       setCredentialForm({
         ...credentialDefaults,
       })
+      setEditingCredentialId(null)
 
       setMessage(
-        'Professional credential added successfully.'
+        editingCredentialId
+          ? 'Professional credential updated and returned to unverified review status.'
+          : 'Professional credential added successfully.'
       )
 
       await loadData()
@@ -329,6 +346,32 @@ export default function Credentials() {
     } finally {
       setSavingCredential(false)
     }
+  }
+
+  function startCredentialEdit(credential) {
+    setEditingCredentialId(credential.id)
+    setCredentialForm({
+      category: credential.category || credentialDefaults.category,
+      credential_type: credential.credential_type || '',
+      title: credential.title || '',
+      credential_number: credential.credential_number || '',
+      issuing_authority: credential.issuing_authority || '',
+      country: credential.country || '',
+      issued_on: credential.issued_on || '',
+      expires_on: credential.expires_on || '',
+      does_not_expire: !!credential.does_not_expire,
+      primary_document_id:
+        credential.primary_document_id || credential.primary_document?.id || '',
+    })
+    setMessage('Editing credential. Saving changes will require reviewer verification.')
+    setError('')
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  }
+
+  function cancelCredentialEdit() {
+    setEditingCredentialId(null)
+    setCredentialForm({...credentialDefaults})
+    setMessage('')
   }
 
   async function handleDocumentSubmit(
@@ -631,7 +674,9 @@ export default function Credentials() {
           }
         >
           <h2>
-            Add Professional Credential
+            {editingCredentialId
+              ? 'Edit Professional Credential'
+              : 'Add Professional Credential'}
           </h2>
 
           <div className="profile-grid two">
@@ -782,6 +827,23 @@ export default function Credentials() {
                 }
               />
             </label>
+
+            <label>
+              Supporting Evidence
+
+              <select
+                name="primary_document_id"
+                value={credentialForm.primary_document_id}
+                onChange={updateCredentialField}
+              >
+                <option value="">No document selected</option>
+                {documents.map((document) => (
+                  <option key={document.id} value={document.id}>
+                    {document.title || document.original_name || 'Document'}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
 
           <label className="checkbox-row">
@@ -811,8 +873,21 @@ export default function Credentials() {
           >
             {savingCredential
               ? 'Saving...'
-              : 'Add Credential'}
+              : editingCredentialId
+                ? 'Save Credential'
+                : 'Add Credential'}
           </button>
+
+          {editingCredentialId && (
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={cancelCredentialEdit}
+              disabled={savingCredential}
+            >
+              Cancel Edit
+            </button>
+          )}
         </form>
 
         <div className="panel">
@@ -886,6 +961,14 @@ export default function Credentials() {
                           'Pending'
                         }
                       </span>
+
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        onClick={() => startCredentialEdit(credential)}
+                      >
+                        Edit
+                      </button>
 
                       <button
                         type="button"

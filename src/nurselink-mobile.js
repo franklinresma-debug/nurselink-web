@@ -3476,7 +3476,7 @@ import './nurselink-mobile.css';
       <div class="nurselink-member-welcome">
         <div>
           <span>APPROVED MEMBER</span>
-          <h2>${name ? `Welcome, ${name}` : 'Welcome to your NurseLink Member Hub'}</h2>
+          <h2>Your NurseLink Professional Hub</h2>
           <p>
             Manage your professional profile, qualifications, credentials,
             opportunities and continuing development from one place.
@@ -9134,9 +9134,9 @@ import './nurselink-mobile.css';
       );
 
       if (hub) {
-        hub.insertBefore(
-          card,
-          hub.firstChild
+        hub.insertAdjacentElement(
+          'beforebegin',
+          card
         );
       } else {
         const header = page.querySelector(
@@ -9179,12 +9179,53 @@ import './nurselink-mobile.css';
 
     if (!data) return;
 
+    // The consolidated Member Portal is the active Welcome Center. Record the
+    // welcome acknowledgement when the approved member can actually see this
+    // membership card; the retired standalone page now redirects here.
+    if (!data.onboarding?.welcome_viewed_at) {
+      try {
+        await nurseLinkJsonRequest(
+          `${NURSELINK_API_ORIGIN}/api/membership/onboarding/progress`,
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              action: 'welcome_viewed'
+            })
+          }
+        );
+
+        nurselinkPortal520State.onboardingLoaded = false;
+        data = await loadMemberPortalOnboarding520(true);
+      } catch (_) {
+        // Keep the card usable and retry acknowledgement on the next render.
+      }
+    }
+
     const membership =
       data.membership || {};
     const onboarding =
       data.onboarding || {};
     const signals =
       data.signals || {};
+
+    const renderSignature = JSON.stringify({
+      member_number: membership.member_number || '',
+      standing: membership.standing || '',
+      onboarding_status: onboarding.status || '',
+      welcome_viewed_at: onboarding.welcome_viewed_at || '',
+      orientation_completed_at: onboarding.orientation_completed_at || '',
+      activation_score: Number(signals.activation_score || 0),
+      profile_photo_ready: !!signals.profile_photo_ready,
+      credentials_registered: Number(signals.credentials_registered || 0),
+      portfolio_started: !!signals.portfolio_started,
+      digital_member_identity_ready: !!signals.digital_member_identity_ready
+    });
+
+    if (card.dataset.onboardingRenderSignature === renderSignature) {
+      return;
+    }
+
+    card.dataset.onboardingRenderSignature = renderSignature;
 
     card.innerHTML = `
       <div class="nurselink-member-portal-head">

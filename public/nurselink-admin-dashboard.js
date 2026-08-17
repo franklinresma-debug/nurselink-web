@@ -186,13 +186,17 @@
     location.replace('/nurselink-admin-login.html');
   }
 
-  function metric(title, value, note = '', tone = '') {
+  function metric(title, value, note = '', tone = '', applicationStatus = null) {
+    const tag = applicationStatus === null ? 'div' : 'button';
+    const action = applicationStatus === null
+      ? ''
+      : ` type="button" data-open-applications="${esc(applicationStatus)}" aria-label="Open ${esc(title)} applications"`;
     return `
-      <div class="nl530-metric" data-tone="${esc(tone)}">
+      <${tag} class="nl530-metric${applicationStatus === null ? '' : ' nl-admin-card-link'}" data-tone="${esc(tone)}"${action}>
         <span>${esc(title)}</span>
         <strong>${esc(value)}</strong>
         <small>${esc(note)}</small>
-      </div>
+      </${tag}>
     `;
   }
 
@@ -563,13 +567,17 @@
     `).join('');
   }
 
-  function progressStage(title, value, note, tone = '') {
+  function progressStage(title, value, note, tone = '', applicationStatus = null) {
+    const tag = applicationStatus === null ? 'div' : 'button';
+    const action = applicationStatus === null
+      ? ''
+      : ` type="button" data-open-applications="${esc(applicationStatus)}" aria-label="Open ${esc(title)} applications"`;
     return `
-      <div class="nl540-progress-stage" data-tone="${esc(tone)}">
+      <${tag} class="nl540-progress-stage${applicationStatus === null ? '' : ' nl-admin-card-link'}" data-tone="${esc(tone)}"${action}>
         <span>${esc(title)}</span>
         <strong>${esc(value)}</strong>
         <small>${esc(note)}</small>
-      </div>
+      </${tag}>
     `;
   }
 
@@ -635,7 +643,7 @@
 
       $('dashboardMetrics').innerHTML = [
         metric('Members', m.approved_members ?? 0, 'Approved NurseLink members'),
-        metric('Applications', m.pending_membership_applications ?? 0, `${counts.ready_for_approval ?? 0} ready for approval`, Number(m.pending_membership_applications || 0) ? 'attention' : 'good'),
+        metric('Applications', m.pending_membership_applications ?? 0, `${counts.ready_for_approval ?? 0} ready for approval`, Number(m.pending_membership_applications || 0) ? 'attention' : 'good', ''),
         metric('Verification', m.pending_verifications ?? 0, 'Credentials awaiting review', Number(m.pending_verifications || 0) ? 'attention' : ''),
         metric('Organizations', m.pending_organizations ?? 0, 'Pending organization verification', Number(m.pending_organizations || 0) ? 'attention' : ''),
         metric('Support Cases', m.open_support_cases ?? 0, 'Open operational cases', Number(m.open_support_cases || 0) ? 'danger' : 'good'),
@@ -646,11 +654,11 @@
       ].join('');
 
       $('membershipProgress').innerHTML = [
-        progressStage('Submitted', counts.submitted ?? 0, 'Awaiting review assignment', Number(counts.submitted || 0) ? 'attention' : ''),
-        progressStage('Under Review', counts.under_review ?? 0, `${membership.unassigned_reviews ?? 0} unassigned`, Number(membership.unassigned_reviews || 0) ? 'attention' : ''),
-        progressStage('Needs Information', counts.needs_information ?? 0, 'Applicant follow-up required', Number(counts.needs_information || 0) ? 'attention' : ''),
-        progressStage('Ready for Approval', counts.ready_for_approval ?? 0, 'Administrator decision queue', Number(counts.ready_for_approval || 0) ? 'good' : ''),
-        progressStage('Approved', counts.approved ?? 0, `${standing.active ?? 0} active standing`, 'good'),
+        progressStage('Submitted', counts.submitted ?? 0, 'Awaiting review assignment', Number(counts.submitted || 0) ? 'attention' : '', 'submitted'),
+        progressStage('Under Review', counts.under_review ?? 0, `${membership.unassigned_reviews ?? 0} unassigned`, Number(membership.unassigned_reviews || 0) ? 'attention' : '', 'under_review'),
+        progressStage('Needs Information', counts.needs_information ?? 0, 'Applicant follow-up required', Number(counts.needs_information || 0) ? 'attention' : '', 'needs_information'),
+        progressStage('Ready for Approval', counts.ready_for_approval ?? 0, 'Administrator decision queue', Number(counts.ready_for_approval || 0) ? 'good' : '', 'ready_for_approval'),
+        progressStage('Approved', counts.approved ?? 0, `${standing.active ?? 0} active standing`, 'good', 'approved'),
         progressStage('Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), `${onboardingCounts.completed ?? 0} completed`, Number(onboarding.overdue || 0) ? 'attention' : ''),
         progressStage('Review Aging 8+ Days', Number(aging['8_14_days'] || 0) + Number(aging['15_plus_days'] || 0), `${aging['15_plus_days'] ?? 0} at 15+ days`, Number(aging['15_plus_days'] || 0) ? 'danger' : ''),
         progressStage('Inactive / Suspended', Number(standing.inactive || 0) + Number(standing.suspended || 0), `${standing.suspended ?? 0} suspended`, Number(standing.suspended || 0) ? 'danger' : '')
@@ -1859,6 +1867,14 @@
     selectedApplicationId = null;
   }
 
+  function applicationDrawerFeedback(message, tone = 'success') {
+    const feedback = $('applicationActionFeedback');
+    if (!feedback) return;
+    feedback.hidden = false;
+    feedback.dataset.tone = tone;
+    feedback.textContent = message;
+  }
+
   async function openApplication(id) {
     selectedApplicationId = id;
     const drawer = $('applicationDetailDrawer');
@@ -1902,6 +1918,7 @@
           <div><span class="nl-admin-eyebrow">${esc(queueRow.application_reference || `APPLICATION #${id}`)}</span><h2>${esc(applicant.name || applicant.email || 'Applicant')}</h2><p>${esc(applicant.email || '')}</p></div>
           <span class="nl530-badge">${esc(label(membership.status))}</span>
         </div>
+        <div id="applicationActionFeedback" class="nl558-drawer-feedback" role="status" aria-live="polite" hidden></div>
         <div class="nl530-principles" style="margin-top:10px">
           <div><strong>Profile readiness</strong><span>Photo ${profile.profile_photo_uploaded ? 'uploaded' : 'missing'} · Employment ${esc(profile.employment_records ?? 0)} · Credentials ${esc(profile.credentials?.verified ?? 0)}/${esc(profile.credentials?.total ?? 0)} verified</span></div>
         </div>
@@ -1910,7 +1927,7 @@
         <section class="nl530-subpanel">
           <strong>Review assignment</strong>
           <form id="applicationAssignmentForm" class="nl530-row-form">
-            <label class="wide"><span>Assigned reviewer</span><select id="applicationReviewer"><option value="">Unassigned</option>${privilegedUsers.filter(row => row.active && ['reviewer','admin','super_admin'].includes(row.role)).map(row => `<option value="${esc(row.user_id)}">${esc(row.name || row.email)} · ${esc(label(row.role))}</option>`).join('')}</select></label>
+            <label class="wide"><span>Assigned reviewer</span><select id="applicationReviewer"><option value="">Unassigned</option>${privilegedUsers.filter(row => row.active && ['reviewer','admin','super_admin'].includes(row.role)).map(row => `<option value="${esc(row.user_id)}">${esc(row.name || row.email)} · ${esc(row.email || '')} · ${esc(label(row.role))}</option>`).join('')}</select></label>
             <label><span>Priority</span><select id="applicationPriority"><option value="low">Low</option><option value="normal">Normal</option><option value="high">High</option><option value="urgent">Urgent</option></select></label>
             <label><span>Review due</span><input id="applicationDue" type="datetime-local"></label>
             <button type="submit">Save Assignment</button>
@@ -1950,6 +1967,12 @@
 
         assignmentForm.addEventListener('submit', async event => {
           event.preventDefault();
+          const button = event.submitter;
+          if (button) {
+            button.disabled = true;
+            button.textContent = 'Saving…';
+          }
+          applicationDrawerFeedback('Saving review assignment…', 'working');
 
           try {
             const result = await request(
@@ -1970,8 +1993,15 @@
             applicationCommandData = null;
             await loadApplications();
             await openApplication(id);
+            applicationDrawerFeedback(result?.message || 'Review assignment saved.', 'success');
           } catch (error) {
             notice(error.message, 'error');
+            applicationDrawerFeedback(error.message || 'Unable to save assignment.', 'error');
+          } finally {
+            if (button?.isConnected) {
+              button.disabled = false;
+              button.textContent = 'Save Assignment';
+            }
           }
         });
       }
@@ -1979,9 +2009,20 @@
       $('applicationDecisionForm')?.addEventListener('submit', async event => {
         event.preventDefault();
         const status = $('applicationNextStatus').value;
-        if (!status) return;
+        if (!status) {
+          applicationDrawerFeedback('Choose a next status before applying an action.', 'error');
+          $('applicationNextStatus').focus();
+          return;
+        }
 
         if (['approved', 'declined'].includes(status) && !confirm(`${label(status)} this membership application?`)) return;
+
+        const button = event.submitter;
+        if (button) {
+          button.disabled = true;
+          button.textContent = 'Applying…';
+        }
+        applicationDrawerFeedback(`Applying ${label(status)}…`, 'working');
 
         try {
           const result = await request(`/api/nurselink/admin/membership-command/${id}/transition`, {
@@ -1997,8 +2038,15 @@
           notice(result?.message || 'Application updated.', 'success');
           await Promise.all([loadApplications(), loadDashboard()]);
           await openApplication(id);
+          applicationDrawerFeedback(result?.message || 'Application updated.', 'success');
         } catch (error) {
           notice(error.message, 'error');
+          applicationDrawerFeedback(error.message || 'Unable to apply action.', 'error');
+        } finally {
+          if (button?.isConnected) {
+            button.disabled = false;
+            button.textContent = 'Apply Action';
+          }
         }
       });
 
@@ -2148,9 +2196,14 @@
             ${badges([label(row.verification_status), row.verification_status === 'verified' ? 'good' : row.verification_status === 'expired' ? 'danger' : 'attention'])}
             <strong>${esc(row.title || row.credential_type)}</strong>
             <small>${esc(row.member || row.user_id)} · ${esc(row.issuing_body || '')} · ${esc(row.country || '')}</small>
+            ${row.evidence_download_url
+              ? row.evidence_security_status === 'clean'
+                ? `<a href="${esc(`${API}${row.evidence_download_url}`)}" target="_blank" rel="noopener">Open evidence</a>`
+                : `<small>Evidence unavailable: ${esc(label(row.evidence_security_status || 'pending scan'))}</small>`
+              : '<small>No primary evidence linked.</small>'}
           </div>
           <div class="nl530-row-form">
-            <label><span>Status</span><select name="status"><option value="unverified">Unverified</option><option value="pending">Pending</option><option value="verified">Verified</option><option value="expired">Expired</option></select></label>
+            <label><span>Status</span><select name="status"><option value="unverified">Unverified</option><option value="pending">Pending Review</option><option value="document_supported">Document Supported</option><option value="verified">Verified</option><option value="unable_to_verify">Unable to Verify</option><option value="discrepancy">Discrepancy</option></select></label>
             <label class="wide"><span>Review notes</span><textarea name="notes" maxlength="4000">${esc(row.review_notes || '')}</textarea></label>
             <button type="submit">Save Verification</button>
           </div>
@@ -3128,6 +3181,24 @@
   window.addEventListener('hashchange', () => {
     setMobileNavigation(false);
     setTab(location.hash.replace(/^#/, '') || 'dashboard');
+  });
+
+  document.addEventListener('click', event => {
+    const card = event.target.closest('[data-open-applications]');
+    if (!card) return;
+
+    const status = card.dataset.openApplications || '';
+    if ($('applicationStatus')) $('applicationStatus').value = status;
+    markApplicationQuickView('');
+    setTab('applications');
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        $('applicationsArea')
+          ?.closest('.nl550-queue-card')
+          ?.scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    });
   });
 
   async function boot() {

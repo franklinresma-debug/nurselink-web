@@ -98,7 +98,7 @@ html.nurselink-public-login #root {
   bottom: 0 !important;
   width: 66% !important;
   background:
-    url('/nurselink-nurse-montage.png') center top / cover no-repeat !important;
+    url('/nurselink-nurse-montage.webp') center top / cover no-repeat !important;
   opacity: .98 !important;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.30) 10%, #000 33%, #000 100%);
   mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.30) 10%, #000 33%, #000 100%);
@@ -2402,7 +2402,7 @@ html.nurselink-public-login #root {
     top: 2% !important;
     bottom: auto !important;
     background:
-      url('/nurselink-nurse-montage.png') center top / contain no-repeat !important;
+      url('/nurselink-nurse-montage.webp') center top / contain no-repeat !important;
     opacity: 1 !important;
     filter: saturate(1.08) contrast(1.035) brightness(1.045) !important;
     -webkit-mask-image:
@@ -2641,7 +2641,7 @@ html.nurselink-public-login #root {
     right: -3% !important;
     top: 3% !important;
     bottom: auto !important;
-    background: url('/nurselink-nurse-montage.png') center top / contain no-repeat !important;
+    background: url('/nurselink-nurse-montage.webp') center top / contain no-repeat !important;
   }
 
   .nurselink-auth-copy h1 {
@@ -2711,7 +2711,7 @@ html.nurselink-public-login #root {
     right: -9% !important;
     top: 4% !important;
     bottom: auto !important;
-    background: url('/nurselink-nurse-montage.png') center top / contain no-repeat !important;
+    background: url('/nurselink-nurse-montage.webp') center top / contain no-repeat !important;
   }
 
   .nurselink-auth-copy {
@@ -2819,7 +2819,7 @@ html.nurselink-public-login #root {
     right: -18% !important;
     top: 1% !important;
     bottom: auto !important;
-    background: url('/nurselink-nurse-montage.png') center top / contain no-repeat !important;
+    background: url('/nurselink-nurse-montage.webp') center top / contain no-repeat !important;
     filter: saturate(1.06) contrast(1.02) brightness(1.04) !important;
   }
 

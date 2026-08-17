@@ -11597,3 +11597,20 @@ html.nurselink-smart-registration-v557 .nurselink-smart-dropzone {
   }
 }
 /* NURSELINK_RESPONSIVE_TYPOGRAPHY_V561_END */
+
+/* NURSELINK_ACCESSIBLE_RESPONSIVE_TYPE_V562_START */
+.nurselink-review-checklist-head h1 { margin:3px 0 0;color:#10204d;font-size:20px;line-height:1.25 }
+.nurselink-review-checklist-head span,
+.nurselink-review-item .copy small,
+.nurselink-review-item .open,
+.nurselink-credential-heading span,
+.nurselink-smart-dropzone span,
+.nurselink-smart-dropzone small,
+.nurselink-profile-photo-eyebrow,
+.nurselink-profile-photo-copy small { font-size:12px!important;line-height:18px!important }
+
+:is(.nurselink-credential-renewal-launcher,.nurselink-events-programs-launcher,.nurselink-chapters-launcher,.nurselink-mentoring-launcher,.nurselink-engagement-hub-launcher,.nurselink-benefits-launcher,.nurselink-enterprise-launcher) span { font-size:12px!important;line-height:18px!important }
+:is(.nurselink-credential-renewal-launcher,.nurselink-events-programs-launcher,.nurselink-chapters-launcher,.nurselink-mentoring-launcher,.nurselink-engagement-hub-launcher,.nurselink-benefits-launcher,.nurselink-enterprise-launcher) strong { font-size:14px!important;line-height:20px!important }
+:is(.nurselink-credential-renewal-launcher,.nurselink-events-programs-launcher,.nurselink-chapters-launcher,.nurselink-mentoring-launcher,.nurselink-engagement-hub-launcher,.nurselink-benefits-launcher,.nurselink-enterprise-launcher) small { font-size:12px!important;line-height:18px!important }
+:is(.nurselink-credential-renewal-launcher,.nurselink-events-programs-launcher,.nurselink-chapters-launcher,.nurselink-mentoring-launcher,.nurselink-engagement-hub-launcher,.nurselink-benefits-launcher,.nurselink-enterprise-launcher) a { min-height:44px!important;padding:0 14px!important;font-size:13px!important }
+/* NURSELINK_ACCESSIBLE_RESPONSIVE_TYPE_V562_END */

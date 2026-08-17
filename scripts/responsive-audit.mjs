@@ -19,14 +19,21 @@ const member = {
   application: { progress_percent: 72, status: 'approved' },
 };
 
+const pageCases = [
+  { name: 'register', url: 'https://app.amsertech.com/register', authenticated: false },
+  { name: 'login', url: 'https://app.amsertech.com/login', authenticated: false },
+  { name: 'dashboard', url: 'https://app.amsertech.com/dashboard', authenticated: true },
+  { name: 'smart-registration', url: 'https://app.amsertech.com/smart-registration', authenticated: true },
+  { name: 'application-status', url: 'https://app.amsertech.com/application-status', authenticated: true },
+  { name: 'profile', url: 'https://app.amsertech.com/profile', authenticated: true },
+  { name: 'credentials', url: 'https://app.amsertech.com/credentials', authenticated: true },
+];
+
 const browser = await chromium.launch({ headless: true });
 const results = [];
 
 for (const viewport of viewports) {
-  for (const pageCase of [
-    { name: 'register', url: 'https://app.amsertech.com/register', authenticated: false },
-    { name: 'dashboard', url: 'https://app.amsertech.com/dashboard', authenticated: true },
-  ]) {
+  for (const pageCase of pageCases) {
     const context = await browser.newContext({
       viewport: { width: viewport.width, height: viewport.height },
       deviceScaleFactor: 1,
@@ -92,6 +99,12 @@ for (const viewport of viewports) {
 
       const smallTargets = [...document.querySelectorAll('button,a[href],input,select,textarea')]
         .filter(visible)
+        // A labeled native checkbox/radio has a deliberately small control;
+        // its surrounding label provides the full interactive hit area.
+        .filter((element) => !(
+          element.matches('input[type="checkbox"],input[type="radio"]')
+          && element.closest('label')
+        ))
         .map((element) => ({ element, rect: element.getBoundingClientRect() }))
         .filter(({ rect }) => rect.width < 40 || rect.height < 40)
         .slice(0, 12)
@@ -102,6 +115,46 @@ for (const viewport of viewports) {
           text: (element.textContent || element.getAttribute('aria-label') || '').trim().slice(0, 60),
         }));
 
+      const hasAccessibleName = (element) => Boolean(
+        (element.getAttribute('aria-label') || '').trim()
+        || (element.getAttribute('aria-labelledby') || '').trim()
+        || (element.textContent || '').trim()
+        || (element.getAttribute('title') || '').trim()
+      );
+
+      const unnamedControls = [...document.querySelectorAll('button,a[href]')]
+        .filter(visible)
+        .filter((element) => !hasAccessibleName(element))
+        .slice(0, 12)
+        .map((element) => element.outerHTML.slice(0, 140));
+
+      const unlabeledFields = [...document.querySelectorAll('input:not([type="hidden"]),select,textarea')]
+        .filter(visible)
+        .filter((element) => {
+          const id = element.getAttribute('id');
+          return !element.closest('label')
+            && !(id && document.querySelector(`label[for="${CSS.escape(id)}"]`))
+            && !(element.getAttribute('aria-label') || '').trim()
+            && !(element.getAttribute('aria-labelledby') || '').trim();
+        })
+        .slice(0, 12)
+        .map((element) => element.outerHTML.slice(0, 140));
+
+      const imagesMissingAlt = [...document.querySelectorAll('img')]
+        .filter(visible)
+        .filter((element) => !element.hasAttribute('alt'))
+        .slice(0, 12)
+        .map((element) => element.outerHTML.slice(0, 140));
+
+      const accessibilityIssues = {
+        missingDocumentLanguage: !(document.documentElement.lang || '').trim(),
+        missingMainLandmark: !document.querySelector('main,[role="main"]'),
+        visibleH1Count: [...document.querySelectorAll('h1:not([aria-hidden="true"]):not([role="presentation"]),[role="heading"][aria-level="1"]')].filter(visible).length,
+        unnamedControls,
+        unlabeledFields,
+        imagesMissingAlt,
+      };
+
       return {
         title: document.title,
         bodyWidth: document.body.scrollWidth,
@@ -110,6 +163,7 @@ for (const viewport of viewports) {
         overflowers,
         tinyText,
         smallTargets,
+        accessibilityIssues,
       };
     });
 

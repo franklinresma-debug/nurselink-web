@@ -125,7 +125,7 @@ function Login() {
     verificationUrl
   ) {
     return (
-      <div className="auth-screen">
+      <div className="auth-screen" role="main">
         Completing email verification...
       </div>
     )
@@ -181,13 +181,13 @@ function Login() {
   }
 
   return (
-    <div className="auth-screen">
+    <div className="auth-screen" role="main">
       <div className="auth-brand">
         <div className="brand-mark">
           NL
         </div>
 
-        <h1>NurseLink</h1>
+        <h1 aria-hidden="true">NurseLink</h1>
 
         <p>
           Professional network and support
@@ -309,10 +309,10 @@ function ForgotPassword() {
   }
 
   return (
-    <div className="auth-screen">
+    <div className="auth-screen" role="main">
       <div className="auth-brand">
         <div className="brand-mark">NL</div>
-        <h1>NurseLink</h1>
+        <h1 aria-hidden="true">NurseLink</h1>
         <p>Securely recover access to your NurseLink account.</p>
       </div>
 
@@ -480,13 +480,13 @@ function Register() {
   }
 
   return (
-    <div className="auth-screen">
+    <div className="auth-screen" role="main">
       <div className="auth-brand">
         <div className="brand-mark">
           NL
         </div>
 
-        <h1>Join NurseLink</h1>
+        <h1 aria-hidden="true">Join NurseLink</h1>
 
         <p>
           Create your account and begin
@@ -655,13 +655,13 @@ function VerifyEmail() {
   }
 
   return (
-    <div className="auth-screen">
+    <div className="auth-screen" role="main">
       <div className="auth-brand">
         <div className="brand-mark">
           NL
         </div>
 
-        <h1>NurseLink</h1>
+        <h1 aria-hidden="true">NurseLink</h1>
 
         <p>
           Verify your email before

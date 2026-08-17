@@ -573,7 +573,7 @@ import './nurselink-mobile.css';
 
         <div class="nurselink-auth-copy">
           <span class="nurselink-auth-kicker">${type === 'login' ? 'MEMBER ACCESS' : 'MEMBER REGISTRATION'}</span>
-          <h1>${type === 'login' ? 'Welcome back to NurseLink' : 'Join NurseLink'}</h1>
+          <h1 role="presentation" aria-hidden="true">${type === 'login' ? 'Welcome back to NurseLink' : 'Join NurseLink'}</h1>
           <p>${type === 'login'
             ? 'Access your profile, credentials, learning, opportunities, and professional network.'
             : 'Start your journey. Connect. Grow. Make an impact.'}</p>
@@ -667,6 +667,8 @@ import './nurselink-mobile.css';
 
     if (title) {
       title.classList.add('nurselink-auth-form-title');
+      title.setAttribute('role', 'heading');
+      title.setAttribute('aria-level', '1');
 
       if (type === 'register') {
         title.textContent = 'Create your NurseLink Account';
@@ -2443,7 +2445,7 @@ import './nurselink-mobile.css';
     root.innerHTML = `
       <div class="nurselink-review-checklist-head">
         <span>APPLICATION READINESS</span>
-        <strong>Review before you submit</strong>
+        <h1>Review before you submit</h1>
         <p>Open any section below to confirm or complete your information.</p>
       </div>
 

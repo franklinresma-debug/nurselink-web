@@ -1008,29 +1008,35 @@
     return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
   }
 
-  function applicationMetricCard(icon, title, value, note, tone = '') {
+  function applicationMetricCard(icon, title, value, note, tone = '', tab = '') {
+    const action = tab
+      ? ` type="button" data-open-admin-tab="${esc(tab)}" aria-label="Open ${esc(title)}"`
+      : ' type="button" disabled aria-disabled="true"';
     return `
-      <article class="nl550-kpi" data-tone="${esc(tone)}">
+      <button class="nl550-kpi nl-admin-card-link" data-tone="${esc(tone)}"${action}>
         <div class="nl550-kpi-icon" aria-hidden="true">${applicationIcon(icon)}</div>
         <div>
           <span>${esc(title)}</span>
           <strong>${esc(value)}</strong>
           <small>${esc(note)}</small>
         </div>
-      </article>
+      </button>
     `;
   }
 
-  function applicationProgressCard(icon, title, value, note, tone = '') {
+  function applicationProgressCard(icon, title, value, note, tone = '', status = '', tab = '') {
+    const action = status
+      ? ` type="button" data-open-applications="${esc(status)}" aria-label="Open ${esc(title)} applications"`
+      : ` type="button" data-open-admin-tab="${esc(tab || 'applications')}" aria-label="Open ${esc(title)}"`;
     return `
-      <article class="nl550-progress-item" data-tone="${esc(tone)}">
+      <button class="nl550-progress-item nl-admin-card-link" data-tone="${esc(tone)}"${action}>
         <div class="nl550-progress-icon" aria-hidden="true">${applicationIcon(icon)}</div>
         <div class="nl550-progress-copy">
           <strong>${esc(value)}</strong>
           <span>${esc(title)}</span>
           <small>${esc(note)}</small>
         </div>
-      </article>
+      </button>
     `;
   }
 
@@ -1048,25 +1054,25 @@
     }
 
     $('applicationCommandMetrics').innerHTML = [
-      applicationMetricCard('members', 'Members', metrics.approved_members ?? 0, 'Approved members', 'blue'),
-      applicationMetricCard('applications', 'Applications', metrics.pending_membership_applications ?? 0, `${counts.ready_for_approval ?? 0} ready for approval`, 'amber'),
-      applicationMetricCard('verification', 'Verification', metrics.pending_verifications ?? 0, 'Credentials waiting', 'blue'),
-      applicationMetricCard('organizations', 'Organizations', metrics.pending_organizations ?? 0, 'Pending verification', 'blue'),
-      applicationMetricCard('support', 'Support Cases', metrics.open_support_cases ?? 0, 'Open cases', Number(metrics.open_support_cases || 0) ? 'green' : 'blue'),
-      applicationMetricCard('opportunities', 'Opportunities', metrics.active_opportunities ?? 0, 'Open opportunities', 'blue'),
-      applicationMetricCard('events', 'Training & Events', metrics.upcoming_events ?? 0, 'Upcoming events', 'blue'),
-      applicationMetricCard('notifications', 'Notifications', metrics.unread_member_notifications ?? 0, 'Unread notifications', Number(metrics.unread_member_notifications || 0) ? 'amber' : 'blue')
+      applicationMetricCard('members', 'Members', metrics.approved_members ?? 0, 'Approved members', 'blue', 'members'),
+      applicationMetricCard('applications', 'Applications', metrics.pending_membership_applications ?? 0, `${counts.ready_for_approval ?? 0} ready for approval`, 'amber', 'applications'),
+      applicationMetricCard('verification', 'Verification', metrics.pending_verifications ?? 0, 'Credentials waiting', 'blue', 'verification'),
+      applicationMetricCard('organizations', 'Organizations', metrics.pending_organizations ?? 0, 'Pending verification', 'blue', 'organizations'),
+      applicationMetricCard('support', 'Support Cases', metrics.open_support_cases ?? 0, 'Open cases', Number(metrics.open_support_cases || 0) ? 'green' : 'blue', 'support'),
+      applicationMetricCard('opportunities', 'Opportunities', metrics.active_opportunities ?? 0, 'Open opportunities', 'blue', 'employment'),
+      applicationMetricCard('events', 'Training & Events', metrics.upcoming_events ?? 0, 'Upcoming events', 'blue', 'training'),
+      applicationMetricCard('notifications', 'Notifications', metrics.unread_member_notifications ?? 0, 'Unread notifications', Number(metrics.unread_member_notifications || 0) ? 'amber' : 'blue', 'communications')
     ].join('');
 
     $('applicationProgress').innerHTML = [
-      applicationProgressCard('applications', 'Submitted', counts.submitted ?? 0, 'Awaiting review', 'blue'),
-      applicationProgressCard('clock', 'Under Review', counts.under_review ?? 0, `${membership.unassigned_reviews ?? 0} unassigned`, 'amber'),
-      applicationProgressCard('question', 'Needs Information', counts.needs_information ?? 0, 'Applicant follow-up', 'orange'),
-      applicationProgressCard('approval', 'Ready for Approval', counts.ready_for_approval ?? 0, 'Admin decision queue', 'purple'),
-      applicationProgressCard('check', 'Approved', counts.approved ?? 0, `${standing.active ?? 0} active members`, 'green'),
-      applicationProgressCard('onboarding', 'Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), 'Completing setup', 'cyan'),
-      applicationProgressCard('clock', 'Review Aging 8+ Days', Number(aging['8_14_days'] || 0) + Number(aging['15_plus_days'] || 0), `${aging['15_plus_days'] ?? 0} at 15+ days`, 'red'),
-      applicationProgressCard('inactive', 'Inactive / Suspended', Number(standing.inactive || 0) + Number(standing.suspended || 0), `${standing.suspended ?? 0} suspended`, 'gray')
+      applicationProgressCard('applications', 'Submitted', counts.submitted ?? 0, 'Awaiting review', 'blue', 'submitted'),
+      applicationProgressCard('clock', 'Under Review', counts.under_review ?? 0, `${membership.unassigned_reviews ?? 0} unassigned`, 'amber', 'under_review'),
+      applicationProgressCard('question', 'Needs Information', counts.needs_information ?? 0, 'Applicant follow-up', 'orange', 'needs_information'),
+      applicationProgressCard('approval', 'Ready for Approval', counts.ready_for_approval ?? 0, 'Admin decision queue', 'purple', 'ready_for_approval'),
+      applicationProgressCard('check', 'Approved', counts.approved ?? 0, `${standing.active ?? 0} active members`, 'green', 'approved'),
+      applicationProgressCard('onboarding', 'Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), 'Completing setup', 'cyan', '', 'members'),
+      applicationProgressCard('clock', 'Review Aging 8+ Days', Number(aging['8_14_days'] || 0) + Number(aging['15_plus_days'] || 0), `${aging['15_plus_days'] ?? 0} at 15+ days`, 'red', '', 'applications'),
+      applicationProgressCard('inactive', 'Inactive / Suspended', Number(standing.inactive || 0) + Number(standing.suspended || 0), `${standing.suspended ?? 0} suspended`, 'gray', '', 'members')
     ].join('');
   }
 
@@ -1578,7 +1584,7 @@
         const initials = applicantInitials(row.name, row.email);
 
         return `
-          <article class="nl552-workload-item" data-tone="${esc(tone)}">
+          <button type="button" class="nl552-workload-item nl-admin-card-link" data-tone="${esc(tone)}" data-open-workload-queue="${row.is_current_user ? 'mine' : 'assigned'}" aria-label="Open ${row.is_current_user ? 'your' : 'assigned'} application workload">
             <div class="nl552-workload-person">
               <span class="nl552-workload-avatar">${esc(initials)}</span>
               <div>
@@ -1595,7 +1601,7 @@
             <div class="nl552-load-level" data-tone="${esc(tone)}">
               ${esc(label(row.workload_level || 'light'))} queue
             </div>
-          </article>
+          </button>
         `;
       })
       .join('');
@@ -3184,6 +3190,20 @@
   });
 
   document.addEventListener('click', event => {
+    const tabCard = event.target.closest('[data-open-admin-tab]');
+    if (tabCard) {
+      setTab(tabCard.dataset.openAdminTab || 'dashboard');
+      return;
+    }
+
+    const reviewerCard = event.target.closest('[data-open-workload-queue]');
+    if (reviewerCard) {
+      if ($('applicationAssignment')) $('applicationAssignment').value = reviewerCard.dataset.openWorkloadQueue || 'assigned';
+      markApplicationQuickView('');
+      setTab('applications');
+      return;
+    }
+
     const card = event.target.closest('[data-open-applications]');
     if (!card) return;
 

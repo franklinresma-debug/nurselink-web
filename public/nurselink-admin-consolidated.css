@@ -1468,3 +1468,11 @@ body.nl-admin-body,
 }
 @media (max-width:480px){.nl557-smart-review-grid{grid-template-columns:1fr}}
 /* NURSELINK_SMART_REGISTRATION_REVIEW_V557_END */
+
+/* Clickable administration KPI, pipeline and workload cards. */
+.nl-admin-card-link{width:100%;margin:0;color:inherit;font:inherit;text-align:left;cursor:pointer;appearance:none}
+.nl550-kpi.nl-admin-card-link,.nl550-progress-item.nl-admin-card-link,.nl552-workload-item.nl-admin-card-link{border-left:0;border-right:0;border-bottom:0}
+.nl-admin-card-link:hover{border-color:#79aee5!important;box-shadow:0 4px 16px rgba(15,86,153,.14);transform:translateY(-1px)}
+.nl-admin-card-link:focus-visible{outline:3px solid rgba(11,114,213,.32);outline-offset:2px}
+.nl-admin-card-link:active{transform:translateY(0)}
+@media(prefers-reduced-motion:no-preference){.nl-admin-card-link{transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}}

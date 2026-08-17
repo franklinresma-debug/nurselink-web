@@ -1481,6 +1481,10 @@ body.nl-admin-body,
 }
 .nl-admin-card-link:hover{border-color:#79aee5!important;box-shadow:0 3px 12px rgba(15,86,153,.1)}
 .nl-admin-card-link:focus-visible{outline:3px solid rgba(11,114,213,.28);outline-offset:2px}
+.nl550-kpi.nl-admin-card-link,.nl550-progress-item.nl-admin-card-link,.nl552-workload-item.nl-admin-card-link{border-left:0;border-right:0;border-bottom:0}
+.nl-admin-card-link:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(15,86,153,.14)}
+.nl-admin-card-link:active{transform:translateY(0)}
+@media(prefers-reduced-motion:no-preference){.nl-admin-card-link{transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease}}
 .nl530-panel[hidden]{display:none!important}
 .nl558-drawer-feedback{margin:10px 0;padding:11px 12px;border:1px solid #b9d8f4;border-radius:9px;background:#eef7ff;color:#165a91;font-size:13px;font-weight:700;line-height:1.4}
 .nl558-drawer-feedback[data-tone="success"]{border-color:#a9dbc3;background:#edf9f3;color:#176b49}

@@ -37,6 +37,7 @@ const menu = [
   ['Credentials', '/credentials'],
   ['Qualifications', '/qualifications'],
   ['Documents', '/documents'],
+  ['Digital Member ID', '/digital-member-id'],
   ['Messages', '/messages'],
   ['Events', '/events'],
   ['Programs & Initiatives', '/initiatives'],
@@ -50,7 +51,23 @@ const memberOnlyPaths = [
   '/credentials',
   '/qualifications',
   '/documents',
+  '/digital-member-id',
 ]
+
+function DigitalMemberIdRedirect() {
+  useEffect(() => {
+    window.location.replace(
+      '/nurselink-digital-id.html'
+    )
+  }, [])
+
+  return (
+    <section className="page-card">
+      <h1>Digital Member ID</h1>
+      <p>Opening your secure NurseLink member ID…</p>
+    </section>
+  )
+}
 
 const statusLabels = {
   draft: 'Draft',
@@ -1689,6 +1706,14 @@ function AppLayout() {
                 title="Documents"
                 description="Securely manage your professional documents."
               />
+            )}
+          />
+
+          <Route
+            path="/digital-member-id"
+            element={routeForMemberFeature(
+              'Digital Member ID',
+              <DigitalMemberIdRedirect />
             )}
           />
 

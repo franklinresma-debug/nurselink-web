@@ -74,7 +74,12 @@ for (const viewport of viewports) {
           className: String(element.className || '').slice(0, 90),
           rect: element.getBoundingClientRect(),
         }))
-        .filter(({ rect }) => rect.right > window.innerWidth + 2 || rect.left < -2)
+        // Ignore deliberately parked off-canvas navigation. Only report an
+        // element when it crosses an edge of the visible viewport.
+        .filter(({ rect }) => (
+          (rect.right > window.innerWidth + 2 && rect.left < window.innerWidth)
+          || (rect.left < -2 && rect.right > 0)
+        ))
         .slice(0, 12)
         .map(({ tag, className, rect }) => ({ tag, className, left: Math.round(rect.left), right: Math.round(rect.right) }));
 

@@ -650,7 +650,8 @@
         metric('Opportunities', m.active_opportunities ?? 0, `${m.job_applications ?? 0} job application(s)`),
         metric('Training & Events', m.upcoming_events ?? 0, 'Upcoming NurseLink events'),
         metric('Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), `${onboarding.overdue ?? 0} overdue`),
-        metric('Notifications', m.unread_member_notifications ?? 0, 'Unread in-app member notifications')
+        metric('Notifications', m.unread_member_notifications ?? 0, 'Unread in-app member notifications'),
+        metric('Policy Consent', m.policy_consent_current ?? 0, `${m.policy_consent_pending ?? 0} active account(s) pending`, Number(m.policy_consent_pending || 0) ? 'attention' : 'good')
       ].join('');
 
       $('membershipProgress').innerHTML = [

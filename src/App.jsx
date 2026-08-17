@@ -22,6 +22,8 @@ import Credentials from './pages/Credentials'
 import ResetPassword from './pages/ResetPassword'
 import {
   getRegistrationStatus,
+  getPolicyConsent,
+  acceptCurrentPolicies,
   requestPasswordReset,
   resendEmailVerification,
 } from './lib/api'
@@ -1282,6 +1284,10 @@ function AppLayout() {
     setNavigationTourOpen,
   ] = useState(false)
 
+  const [policyConsent, setPolicyConsent] = useState(null)
+  const [policyConsentSaving, setPolicyConsentSaving] = useState(false)
+  const [policyConsentError, setPolicyConsentError] = useState('')
+
   const isMember =
     user?.roles?.includes('member') ||
     Boolean(user?.member)
@@ -1307,6 +1313,36 @@ function AppLayout() {
 
     return () => window.clearTimeout(timer)
   }, [tourStorageKey])
+
+  useEffect(() => {
+    let active = true
+
+    getPolicyConsent()
+      .then((result) => {
+        if (active) setPolicyConsent(result?.data || null)
+      })
+      .catch(() => {
+        if (active) setPolicyConsentError('Policy status is temporarily unavailable. You can continue using NurseLink.')
+      })
+
+    return () => {
+      active = false
+    }
+  }, [user?.id])
+
+  async function handlePolicyConsent() {
+    setPolicyConsentSaving(true)
+    setPolicyConsentError('')
+
+    try {
+      const result = await acceptCurrentPolicies()
+      setPolicyConsent(result?.data || { current: true })
+    } catch (error) {
+      setPolicyConsentError(getErrorMessage(error))
+    } finally {
+      setPolicyConsentSaving(false)
+    }
+  }
 
   async function handleLogout() {
     setSigningOut(true)
@@ -1469,6 +1505,30 @@ function AppLayout() {
           </div>
           </div>
         </header>
+
+        {policyConsent && !policyConsent.current && (
+          <section className="policy-consent-banner" aria-labelledby="policy-consent-title">
+            <div>
+              <strong id="policy-consent-title">Please review NurseLink’s current policies</strong>
+              <p>
+                The Terms of Use and Privacy Notice were updated on 18 August 2026.
+                Review both documents before recording your acceptance. Your access remains available while you review.
+              </p>
+              <div className="policy-consent-links">
+                <NavLink to="/terms" target="_blank">Read Terms of Use</NavLink>
+                <NavLink to="/privacy" target="_blank">Read Privacy Notice</NavLink>
+              </div>
+              {policyConsentError && <div className="policy-consent-error">{policyConsentError}</div>}
+            </div>
+            <button type="button" onClick={handlePolicyConsent} disabled={policyConsentSaving}>
+              {policyConsentSaving ? 'Recording acceptance…' : 'Accept both policies'}
+            </button>
+          </section>
+        )}
+
+        {!policyConsent && policyConsentError && (
+          <div className="policy-consent-advisory">{policyConsentError}</div>
+        )}
 
         <NavigationTour
           open={navigationTourOpen}

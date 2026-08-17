@@ -188,6 +188,20 @@ export async function getRegistrationStatus() {
   return request('/api/registration-status')
 }
 
+export async function getPolicyConsent() {
+  return request('/api/policy-consent')
+}
+
+export async function acceptCurrentPolicies() {
+  return request('/api/policy-consent', {
+    method: 'POST',
+    body: JSON.stringify({
+      terms_accepted: true,
+      privacy_accepted: true,
+    }),
+  })
+}
+
 export async function resetPassword({
   token,
   email,

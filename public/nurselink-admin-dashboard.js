@@ -122,6 +122,7 @@
     const response = await fetch(`${API}${path}`, {
       ...options,
       method,
+      cache: options.cache || 'no-store',
       credentials: 'include',
       headers
     });
@@ -2031,16 +2032,34 @@
         }
         applicationDrawerFeedback(`Applying ${label(status)}…`, 'working');
 
-        try {
-          const result = await request(`/api/nurselink/admin/membership-command/${id}/transition`, {
+        const transition = confirmSelfAction => request(
+          `/api/nurselink/admin/membership-command/${id}/transition`,
+          {
             method: 'POST',
             body: JSON.stringify({
               status,
               reviewer_notes: $('applicationReviewNotes').value.trim() || null,
               decision_reason: $('applicationReason').value.trim() || null,
-              confirm_self_action: false
+              confirm_self_action: confirmSelfAction
             })
-          });
+          }
+        );
+
+        try {
+          let result;
+
+          try {
+            result = await transition(false);
+          } catch (error) {
+            if (
+              error.payload?.confirmation_required
+              && confirm('This is your own membership application. Confirm this audited Super Administrator action?')
+            ) {
+              result = await transition(true);
+            } else {
+              throw error;
+            }
+          }
 
           notice(result?.message || 'Application updated.', 'success');
           await Promise.all([loadApplications(), loadDashboard()]);

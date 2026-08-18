@@ -1498,6 +1498,9 @@ body.nl-admin-body,
 .nl-admin-identity span,.nl552-quick-views>span{font-size:12px!important}
 .nl540-inline-link,.nl550-pagination-tools select,.nl550-pagination button{min-height:44px!important}
 .nl550-pagination button{min-width:44px!important;height:44px!important}
+#healthArea .nl530-health-table{grid-column:1/-1;min-width:0;width:100%}
+#healthArea .nl530-health-row{min-width:0}
+#healthArea .nl530-health-row span{min-width:0;overflow-wrap:anywhere}
 @media(max-width:950px){
   .nl555-mobile-brand{min-height:44px}
   .nl555-mobile-role{font-size:12px!important}

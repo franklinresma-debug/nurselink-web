@@ -5,7 +5,7 @@ const viewports = [
   { name: 'tablet', width: 768, height: 1024 },
   { name: 'mobile', width: 390, height: 844 },
 ];
-const panels = ['dashboard', 'applications'];
+const panels = ['dashboard', 'applications', 'verification', 'support', 'health', 'settings'];
 const browser = await chromium.launch({ headless: true });
 const results = [];
 const json = (route, data) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data }) });
@@ -32,6 +32,22 @@ for (const viewport of viewports) {
     await context.route('**/api.amsertech.com/api/nurselink/admin/membership-administration/staff', route => json(route, []));
     await context.route('**/api.amsertech.com/api/nurselink/admin/membership-administration/queue?**', route => json(route, []));
     await context.route('**/api.amsertech.com/api/nurselink/admin/operations-center/audit-log', route => json(route, []));
+    await context.route('**/api.amsertech.com/api/reviewer/credentials**', route => json(route, []));
+    await context.route('**/api.amsertech.com/api/nurselink/admin/users', route => json(route, []));
+    await context.route('**/api.amsertech.com/api/nurselink/admin/operations-center/support-cases?**', route => json(route, []));
+    await context.route('**/api.amsertech.com/api/nurselink/admin/operations-center/system-health', route => json(route, {
+      release: '1.0.0-ultahost-pilot.1', database_connected: true, storage_writable: true,
+      all_required_tables_present: true, tables: { users: true, members: true, applications: true },
+    }));
+    await context.route('**/api.amsertech.com/api/reviewer/production-readiness', route => json(route, { summary: { passed: 8 } }));
+    await context.route('**/api.amsertech.com/api/nurselink/admin/operations-center/settings', route => json(route, {
+      governance: { raw_database_administration: false }, entry_points: { administrator_login: '/nurselink-admin-login.html', administrator_portal: '/admin/' },
+    }));
+    await context.route('**/api.amsertech.com/api/nurselink/admin/management', route => route.fulfill({
+      status: 200, contentType: 'application/json', body: JSON.stringify({
+        data: { roles: [], administrators: [], invitations: [] }, permissions: { can_manage_administrators: false },
+      }),
+    }));
 
     const page = await context.newPage();
     const errors = [];
@@ -69,9 +85,16 @@ for (const viewport of viewports) {
         return !element.closest('label') && !(id && document.querySelector(`label[for="${CSS.escape(id)}"]`))
           && !(element.getAttribute('aria-label') || '').trim() && !(element.getAttribute('aria-labelledby') || '').trim();
       }).map(element => element.outerHTML.slice(0, 120));
+      const overflowers = [...document.querySelectorAll('body *')].filter(visible)
+        .map(element => ({ element, rect: element.getBoundingClientRect() }))
+        .filter(({ rect }) => (rect.right > innerWidth + 2 && rect.left < innerWidth) || (rect.left < -2 && rect.right > 0))
+        .map(({ element, rect }) => ({
+          tag: element.tagName.toLowerCase(), className: String(element.className || '').slice(0, 80),
+          left: Math.round(rect.left), right: Math.round(rect.right), text: (element.textContent || '').trim().slice(0, 80),
+        })).slice(0, 12);
       return {
         overflow: document.documentElement.scrollWidth > innerWidth + 1,
-        tinyText, smallTargets, unnamedControls, unlabeledFields,
+        overflowers, tinyText, smallTargets, unnamedControls, unlabeledFields,
         h1Count: [...document.querySelectorAll('h1,[role="heading"][aria-level="1"]')].filter(visible).length,
         hasMain: Boolean(document.querySelector('main,[role="main"]')),
       };

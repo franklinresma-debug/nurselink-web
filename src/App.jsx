@@ -712,7 +712,15 @@ function PublicPolicy({ type }) {
           </>
         )}
 
-        <section><h2>Questions or requests</h2><p>Use the NurseLink Support Cases service for policy questions, account concerns, or privacy requests. Urgent security concerns should be reported as soon as possible.</p></section>
+        <section>
+          <h2>Questions or requests</h2>
+          <p>
+            Use the NurseLink Support Cases service for policy questions and account concerns.
+            Privacy requests may also be sent to the designated NurseLink privacy contact,
+            Franklin Resma, at <a href="mailto:franklin.resma@gmail.com">franklin.resma@gmail.com</a>.
+            Urgent security concerns should be reported as soon as possible.
+          </p>
+        </section>
       </article>
     </main>
   )
@@ -794,7 +802,11 @@ function PolicyCenter({ onAccepted }) {
 
           <section className="panel policy-center-help">
             <h2>Questions or privacy requests</h2>
-            <p>Use NurseLink Support Cases for questions, correction requests, account concerns, or other privacy requests. Policy acceptance does not waive rights available under applicable law.</p>
+            <p>
+              Use NurseLink Support Cases for questions, correction requests, or account concerns.
+              You may also contact Franklin Resma at <a href="mailto:franklin.resma@gmail.com">franklin.resma@gmail.com</a> for privacy requests.
+              Policy acceptance does not waive rights available under applicable law.
+            </p>
           </section>
         </>
       )}

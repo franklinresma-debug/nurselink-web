@@ -5,7 +5,10 @@ const viewports = [
   { name: 'tablet', width: 768, height: 1024 },
   { name: 'mobile', width: 390, height: 844 },
 ];
-const panels = ['dashboard', 'applications', 'verification', 'support', 'health', 'settings'];
+const panels = [
+  'dashboard', 'applications', 'members', 'verification', 'organizations', 'programs', 'employment',
+  'training', 'communications', 'reports', 'support', 'audit', 'health', 'settings',
+];
 const browser = await chromium.launch({ headless: true });
 const results = [];
 const json = (route, data) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ data }) });
@@ -13,6 +16,7 @@ const json = (route, data) => route.fulfill({ status: 200, contentType: 'applica
 for (const viewport of viewports) {
   for (const panel of panels) {
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
+    await context.route('**/api.amsertech.com/api/**', route => json(route, []));
     await context.route('**/api.amsertech.com/api/nurselink/admin/session', route => json(route, {
       user: { id: 1, name: 'Responsive Audit Administrator', email: 'admin@example.test' },
       access: { role: 'super_administrator', label: 'Super Administrator', is_admin: true, is_super_admin: true, is_reviewer: true },

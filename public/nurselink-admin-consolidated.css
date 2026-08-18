@@ -1493,3 +1493,13 @@ body.nl-admin-body,
 .nl558-consent-complete{padding:12px;border:1px solid #cce4d8;border-radius:10px;background:#f2fbf6;color:#176c4c;font-size:13px;font-weight:700}
 @media(max-width:760px){.nl558-consent-list{grid-template-columns:1fr}.nl558-consent-summary{width:100%}.nl558-consent-account{align-items:flex-start;flex-direction:column}.nl558-consent-account strong{font-size:15px}.nl558-consent-account small,.nl558-consent-account>span,.nl558-consent-versions>span,.nl558-consent-summary span{font-size:13px}}
 /* NURSELINK_POLICY_CONSENT_GOVERNANCE_V558_END */
+
+/* NURSELINK_ADMIN_ACCESSIBILITY_V559_START */
+.nl-admin-identity span,.nl552-quick-views>span{font-size:12px!important}
+.nl540-inline-link,.nl550-pagination-tools select,.nl550-pagination button{min-height:44px!important}
+.nl550-pagination button{min-width:44px!important;height:44px!important}
+@media(max-width:950px){
+  .nl555-mobile-brand{min-height:44px}
+  .nl555-mobile-role{font-size:12px!important}
+}
+/* NURSELINK_ADMIN_ACCESSIBILITY_V559_END */

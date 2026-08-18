@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 
 const localCss = readFileSync(new URL('../public/nurselink-member-verify.css', import.meta.url), 'utf8');
 const localJs = readFileSync(new URL('../public/nurselink-member-verify.js', import.meta.url), 'utf8');
+const useLocalAssets = process.env.AUDIT_LIVE !== '1';
 
 const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
@@ -16,12 +17,14 @@ const results = [];
 for (const viewport of viewports) {
   for (const state of cases) {
     const context = await browser.newContext({ viewport, reducedMotion: 'reduce' });
-    await context.route('**/nurselink-member-verify.css', route => route.fulfill({
-      status: 200, contentType: 'text/css', body: localCss,
-    }));
-    await context.route('**/nurselink-member-verify.js', route => route.fulfill({
-      status: 200, contentType: 'text/javascript', body: localJs,
-    }));
+    if (useLocalAssets) {
+      await context.route('**/nurselink-member-verify.css', route => route.fulfill({
+        status: 200, contentType: 'text/css', body: localCss,
+      }));
+      await context.route('**/nurselink-member-verify.js', route => route.fulfill({
+        status: 200, contentType: 'text/javascript', body: localJs,
+      }));
+    }
     await context.route('**/api.amsertech.com/api/membership/verify/**', route => route.fulfill({
       status: 200,
       contentType: 'application/json',

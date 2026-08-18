@@ -537,6 +537,19 @@ input {
   font-weight: 700;
 }
 
+.auth-card .consent-option a {
+  display: inline-block;
+  min-height: 44px;
+  margin-block: -11px;
+  padding: 11px 4px;
+  border-radius: 4px;
+}
+
+.auth-card .consent-option a:focus-visible {
+  outline: 3px solid #8cc8ff;
+  outline-offset: 2px;
+}
+
 .policy-screen {
   min-height: 100vh;
   padding: 48px 20px;

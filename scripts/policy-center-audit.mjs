@@ -28,12 +28,22 @@ for (const viewport of viewports) {
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto(`${baseUrl}/policy-center`, { waitUntil: 'domcontentloaded' });
   await page.getByRole('heading', { name: 'Policy & Privacy Center' }).waitFor();
+  const statusVisible = await page.locator('.policy-center-status:visible').first().isVisible();
+  const cards = await page.locator('.policy-center-card').count();
+  const links = await page.locator('.policy-center-card a').count();
+  const acceptButton = await page.locator('.policy-center-status').getByRole('button', { name: 'Accept both policies' }).isVisible();
+  const centerContactVisible = await page.getByRole('link', { name: 'franklin.resma@gmail.com' }).isVisible();
+  await page.goto(`${baseUrl}/privacy`, { waitUntil: 'domcontentloaded' });
+  await page.getByRole('heading', { name: 'Privacy Notice' }).waitFor();
+  const publicContactVisible = await page.getByRole('link', { name: 'franklin.resma@gmail.com' }).isVisible();
   results.push({
     viewport: viewport.name,
-    statusVisible: await page.locator('.policy-center-status:visible').first().isVisible(),
-    cards: await page.locator('.policy-center-card').count(),
-    links: await page.locator('.policy-center-card a').count(),
-    acceptButton: await page.locator('.policy-center-status').getByRole('button', { name: 'Accept both policies' }).isVisible(),
+    statusVisible,
+    cards,
+    links,
+    acceptButton,
+    centerContactVisible,
+    publicContactVisible,
     overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1),
     errors,
   });
@@ -42,4 +52,4 @@ for (const viewport of viewports) {
 
 await browser.close();
 console.log(JSON.stringify(results, null, 2));
-if (results.some((result) => !result.statusVisible || result.cards !== 2 || result.links !== 2 || !result.acceptButton || result.overflow || result.errors.length)) process.exitCode = 1;
+if (results.some((result) => !result.statusVisible || result.cards !== 2 || result.links !== 2 || !result.acceptButton || !result.centerContactVisible || !result.publicContactVisible || result.overflow || result.errors.length)) process.exitCode = 1;

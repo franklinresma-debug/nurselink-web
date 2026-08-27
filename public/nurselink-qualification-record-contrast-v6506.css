@@ -1,0 +1,50 @@
+/* Qualification record tabs: final icon, count and status contrast layer. */
+:root:not([data-nl-effective-theme="dark"]):not([data-theme="dark"]):not(.dark) .nl6439-page :is(
+  .nl6441-record-icon,.nl6441-empty > div,.nl6441-overview-grid button > span
+){
+  background:#eaf2ff !important;
+  border:1px solid #b9d6fa !important;
+  color:#075eae !important;
+  -webkit-text-fill-color:#075eae !important;
+}
+:root:not([data-nl-effective-theme="dark"]):not([data-theme="dark"]):not(.dark) .nl6439-page .nl6441-count{
+  background:#f1f6fc !important;
+  border-color:#cbdcec !important;
+}
+:root:not([data-nl-effective-theme="dark"]):not([data-theme="dark"]):not(.dark) .nl6439-page .nl6441-count strong{color:#10233f !important}
+:root:not([data-nl-effective-theme="dark"]):not([data-theme="dark"]):not(.dark) .nl6439-page .nl6441-count span{color:#52657c !important}
+:root:not([data-nl-effective-theme="dark"]):not([data-theme="dark"]):not(.dark) .nl6439-page .nl6441-status{
+  background:#eaf2ff !important;
+  color:#075eae !important;
+  -webkit-text-fill-color:#075eae !important;
+}
+:root:not([data-nl-effective-theme="dark"]):not([data-theme="dark"]):not(.dark) .nl6439-page .nl6441-status.good{
+  background:#e8f7f0 !important;
+  color:#0d6548 !important;
+  -webkit-text-fill-color:#0d6548 !important;
+}
+
+:root:is([data-nl-effective-theme="dark"],[data-theme="dark"],.dark) .nl6439-page :is(
+  .nl6441-record-icon,.nl6441-empty > div,.nl6441-overview-grid button > span
+){
+  background:#203a59 !important;
+  border:1px solid #4775a4 !important;
+  color:#dcecff !important;
+  -webkit-text-fill-color:#dcecff !important;
+}
+:root:is([data-nl-effective-theme="dark"],[data-theme="dark"],.dark) .nl6439-page .nl6441-count{
+  background:#1b2d42 !important;
+  border-color:#405a77 !important;
+}
+:root:is([data-nl-effective-theme="dark"],[data-theme="dark"],.dark) .nl6439-page .nl6441-count strong{color:#f8fbff !important}
+:root:is([data-nl-effective-theme="dark"],[data-theme="dark"],.dark) .nl6439-page .nl6441-count span{color:#c5d5e8 !important}
+:root:is([data-nl-effective-theme="dark"],[data-theme="dark"],.dark) .nl6439-page .nl6441-status{
+  background:#30455e !important;
+  color:#f7fbff !important;
+  -webkit-text-fill-color:#f7fbff !important;
+}
+:root:is([data-nl-effective-theme="dark"],[data-theme="dark"],.dark) .nl6439-page .nl6441-status.good{
+  background:#14532d !important;
+  color:#dcfce7 !important;
+  -webkit-text-fill-color:#dcfce7 !important;
+}

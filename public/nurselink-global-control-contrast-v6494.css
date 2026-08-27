@@ -32,6 +32,33 @@ html body .member-react-safe-shell-v108 :is(
   color: #ffffff !important;
 }
 
+/* Profile/learning launcher CTAs are intentionally plain anchors, not buttons. */
+html body .member-react-safe-shell-v108 :is(
+  .nurselink-credential-renewal-launcher,
+  .nurselink-events-programs-launcher,
+  .nurselink-chapters-launcher,
+  .nurselink-mentoring-launcher,
+  .nurselink-engagement-hub-launcher,
+  .nurselink-benefits-launcher,
+  .nurselink-enterprise-launcher
+) > a {
+  color: #ffffff !important;
+}
+
+html body .member-react-safe-shell-v108 :is(
+  .nurselink-credential-renewal-launcher,
+  .nurselink-events-programs-launcher,
+  .nurselink-chapters-launcher,
+  .nurselink-mentoring-launcher,
+  .nurselink-engagement-hub-launcher,
+  .nurselink-benefits-launcher,
+  .nurselink-enterprise-launcher
+) > a :is(span,strong,b,small,svg,path,i) {
+  color: inherit !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
 /* PQF/reference-band pill shown in the reported Qualifications layout. */
 html[data-nl-route="qualifications"] body .nl6439-pill.purple,
 html[data-nl-route="qualifications"] body .nl6439-pill.advanced,

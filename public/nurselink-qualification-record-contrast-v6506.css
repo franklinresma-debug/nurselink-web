@@ -48,3 +48,10 @@
   color:#dcfce7 !important;
   -webkit-text-fill-color:#dcfce7 !important;
 }
+
+/* The member role is a filled blue badge, not ordinary profile copy. */
+.nl6439-page .nl6439-member-badge{
+  background:#146fc5 !important;
+  color:#ffffff !important;
+  -webkit-text-fill-color:#ffffff !important;
+}

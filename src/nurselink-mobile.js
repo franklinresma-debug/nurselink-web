@@ -10227,14 +10227,14 @@ import './nurselink-mobile.css';
     return (Array.isArray(missing) ? missing : []).filter(item => Number(item?.step) === Number(step));
   }
 
-  function smartStepHeader(step, completion) {
+  function smartStepHeader(step, completion, isSignedInMember = false) {
     return `
       <div class="nurselink-smart557-brandbar">
         <div class="nurselink-smart557-brand">
           <span class="logo">NL</span>
           <span><strong>NurseLink</strong><small>Smart Membership Registration</small></span>
         </div>
-        <a href="/login">Already have an account? <strong>Sign In</strong></a>
+        ${isSignedInMember ? '' : '<a href="/login">Already have an account? <strong>Sign In</strong></a>'}
       </div>
       <div class="nurselink-smart557-stepper" aria-label="Registration progress">
         ${SMART_REGISTRATION_STEPS.map(item => `
@@ -10879,7 +10879,7 @@ import './nurselink-mobile.css';
             ? smartProfessionalStep(data)
             : smartReviewStep(data);
 
-    root.innerHTML = `${smartStepHeader(step, completion)}${smartNoticeHtml()}${body}`;
+    root.innerHTML = `${smartStepHeader(step, completion, Boolean(data?.membership))}${smartNoticeHtml()}${body}`;
     bindSmartRegistration557(root);
 
     const extractionPending = (Array.isArray(data.documents) ? data.documents : [])

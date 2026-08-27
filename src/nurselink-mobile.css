@@ -9,7 +9,7 @@ html, body, #root {
 }
 
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 *, *::before, *::after {
@@ -23,6 +23,17 @@ html, body {
 
 .app-shell, .main-area, .page, .panel, .card, section, article {
   min-width: 0;
+}
+
+.main-area {
+  overflow: visible !important;
+}
+
+.topbar {
+  position: sticky !important;
+  top: 0 !important;
+  inset-block-start: 0 !important;
+  z-index: 900 !important;
 }
 
 .mobile-menu-button,
@@ -454,12 +465,12 @@ html.nurselink-public-login #root {
     background: #10204d;
   }
 
-  .topbar > div:first-of-type {
+  .topbar-left {
     min-width: 0;
     flex: 1 1 auto;
   }
 
-  .topbar > div:first-of-type strong {
+  .topbar-brand-copy strong {
     display: block;
     max-width: 100%;
     font-size: 14px;
@@ -468,8 +479,8 @@ html.nurselink-public-login #root {
     text-overflow: ellipsis;
   }
 
-  .topbar > div:first-of-type span,
-  .topbar > div:first-of-type small {
+  .topbar-brand-copy span,
+  .topbar-brand-copy small {
     font-size: 11px;
   }
 
@@ -1603,6 +1614,228 @@ html.nurselink-public-login #root {
     font-size: 12px !important;
     line-height: 18px !important;
     font-weight: 400 !important;
+  }
+}
+
+/* Senior-readable, equal-size primary actions within member content cards. */
+:is(
+  .nurselink-credential-renewal-launcher,
+  .nurselink-events-programs-launcher,
+  .nurselink-chapters-launcher,
+  .nurselink-mentoring-launcher,
+  .nurselink-engagement-hub-launcher,
+  .nurselink-benefits-launcher,
+  .nurselink-enterprise-launcher,
+  .nurselink-career-intelligence-launcher
+) a {
+  width: 230px !important;
+  min-width: 230px !important;
+  min-height: 52px !important;
+  padding: 0 18px !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+}
+
+@media (max-width: 767px) {
+  :is(
+    .nurselink-credential-renewal-launcher,
+    .nurselink-events-programs-launcher,
+    .nurselink-chapters-launcher,
+    .nurselink-mentoring-launcher,
+    .nurselink-engagement-hub-launcher,
+    .nurselink-benefits-launcher,
+    .nurselink-enterprise-launcher,
+    .nurselink-career-intelligence-launcher
+  ) a {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* =========================================================
+   COMPLETE DARK SURFACE COVERAGE FOR DYNAMIC MEMBER MODULES
+   ========================================================= */
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-public-profile-settings,
+  .nurselink-public-profile-share,
+  .nurselink-public-profile-editor,
+  .nurselink-public-profile-grid label.toggle,
+  .nurselink-public-profile-grid fieldset,
+  .nurselink-public-profile-checks label,
+  .nurselink-credential-registry,
+  .nurselink-credential-record,
+  .nurselink-credential-empty,
+  .nurselink-credential-editor,
+  .nurselink-credential-review-state,
+  .nurselink-review-checklist,
+  .nurselink-review-item,
+  .nurselink-step-actions,
+  .nurselink-member-id-footer,
+  .nurselink-member-id-footer > div
+) {
+  border-color: var(--nl-dark-border) !important;
+  background: var(--nl-dark-surface) !important;
+  color: var(--nl-dark-text) !important;
+  box-shadow: none !important;
+}
+
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-public-profile-share,
+  .nurselink-public-profile-editor,
+  .nurselink-public-profile-grid label.toggle,
+  .nurselink-public-profile-grid fieldset,
+  .nurselink-public-profile-checks label,
+  .nurselink-credential-record,
+  .nurselink-credential-empty,
+  .nurselink-credential-review-state,
+  .nurselink-review-item,
+  .nurselink-step-actions
+) {
+  background: var(--nl-dark-surface-raised) !important;
+}
+
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-public-profile-settings,
+  .nurselink-public-profile-editor,
+  .nurselink-public-profile-grid,
+  .nurselink-public-profile-share,
+  .nurselink-credential-registry,
+  .nurselink-credential-record,
+  .nurselink-review-checklist,
+  .nurselink-review-item,
+  .nurselink-member-id-footer
+) :where(h1, h2, h3, strong, label, legend, span:not(.state), em) {
+  color: var(--nl-dark-text) !important;
+  opacity: 1 !important;
+}
+
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-public-profile-settings,
+  .nurselink-public-profile-editor,
+  .nurselink-public-profile-share,
+  .nurselink-credential-registry,
+  .nurselink-credential-record,
+  .nurselink-review-checklist,
+  .nurselink-review-item,
+  .nurselink-member-id-footer
+) :where(p, small) {
+  color: var(--nl-dark-muted) !important;
+  opacity: 1 !important;
+}
+
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-public-profile-grid input,
+  .nurselink-public-profile-grid textarea,
+  .nurselink-credential-editor input,
+  .nurselink-credential-editor select,
+  .nurselink-credential-editor textarea
+) {
+  border-color: #405873 !important;
+  background: #0b1725 !important;
+  color: #f1f6fc !important;
+  caret-color: #79bfff;
+}
+
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-public-profile-grid input,
+  .nurselink-public-profile-grid textarea,
+  .nurselink-credential-editor input,
+  .nurselink-credential-editor textarea
+)::placeholder {
+  color: #91a5bb !important;
+  opacity: 1;
+}
+
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-public-profile-share button,
+  .nurselink-public-profile-share a,
+  .nurselink-credential-actions button,
+  .nurselink-credential-actions a,
+  .nurselink-review-item .open
+) {
+  border-color: #55708e !important;
+  background: #173553 !important;
+  color: #dcecff !important;
+}
+
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-credential-count,
+  .nurselink-public-profile-heading > em,
+  .nurselink-credential-record-head em
+) {
+  border-color: #405873 !important;
+  background: #23364c !important;
+  color: #e8f1fb !important;
+}
+
+html[data-nurselink-theme="dark"] .nurselink-review-item .state {
+  background: #243b53 !important;
+  color: #b9d8f5 !important;
+}
+
+html[data-nurselink-theme="dark"] .nurselink-review-item[data-status="complete"] .state {
+  background: #153a32 !important;
+  color: #69d5a8 !important;
+}
+
+html[data-nurselink-theme="dark"] .nurselink-review-item[data-status="attention"] .state {
+  background: #493719 !important;
+  color: #ffd27e !important;
+}
+
+/* Shared spacing for dynamically injected card and table modules. */
+:where(
+  .nurselink-dashboard-primary-grid,
+  .nurselink-member-module-grid,
+  .nurselink-review-checklist-grid,
+  .nurselink-credential-list,
+  .nurselink-public-profile-checks,
+  .nurselink-readiness-grid,
+  .nurselink-readiness-metrics,
+  .nurselink-member-status-row
+) {
+  gap: 16px !important;
+}
+
+:where(
+  .nurselink-public-profile-settings,
+  .nurselink-credential-registry,
+  .nurselink-review-checklist,
+  .nurselink-qualification-readiness,
+  .nurselink-profile-photo-card,
+  .nurselink-member-id-card,
+  .nurselink-notification-center
+) + :where(
+  .nurselink-public-profile-settings,
+  .nurselink-credential-registry,
+  .nurselink-review-checklist,
+  .nurselink-qualification-readiness,
+  .nurselink-profile-photo-card,
+  .nurselink-member-id-card,
+  .nurselink-notification-center
+) {
+  margin-top: 16px !important;
+}
+
+.main-area :where(.nurselink-mobile-scroll, .table-wrap) {
+  margin-block: 16px;
+}
+
+@media (max-width: 767px) {
+  :where(
+    .nurselink-dashboard-primary-grid,
+    .nurselink-member-module-grid,
+    .nurselink-review-checklist-grid,
+    .nurselink-credential-list,
+    .nurselink-public-profile-checks,
+    .nurselink-readiness-grid,
+    .nurselink-readiness-metrics,
+    .nurselink-member-status-row
+  ) {
+    gap: 14px !important;
   }
 }
 
@@ -3762,7 +3995,7 @@ html.nurselink-public-verification .nurselink-auth-panel-wrap {
 .topbar .avatar.has-profile-photo {
   overflow: hidden;
   padding: 0 !important;
-  border: 2px solid #e5eef8;
+  border: 0 !important;
   background: #fff !important;
 }
 
@@ -8107,7 +8340,7 @@ html.nurselink-photo-modal-open body {
 
 .nurselink-member-id-status strong {
   margin-top: 2px;
-  color: ##172033;
+  color: #16865c;
   font-size: 10px;
 }
 
@@ -9722,6 +9955,23 @@ html.nurselink-photo-modal-open body {
 
 /* NurseLink v5.5.2 — corrected copy/validate/build/deploy order. */
 
+@media (max-width: 780px) {
+  html[data-nurselink-theme="dark"] .topbar {
+    border-bottom-color: #243449 !important;
+    background: rgba(12, 23, 38, .97) !important;
+    color: #eef6ff !important;
+  }
+
+  html[data-nurselink-theme="dark"] .mobile-menu-button {
+    border-color: #34475d !important;
+    background: #132237 !important;
+  }
+
+  html[data-nurselink-theme="dark"] .mobile-menu-button span {
+    background: #e7f1fc !important;
+  }
+}
+
 /* NurseLink v5.5.2 — route policy installed before live validation. */
 
 /* NurseLink v5.5.2 — semantic cache-policy validation fix. */
@@ -9749,13 +9999,16 @@ html.nurselink-super-admin-session .topbar{
   box-shadow:inset 0 3px 0 #e4bd55,0 1px 0 rgba(15,31,61,.06)
 }
 .nurselink-super-admin-badge{
+  width:40px;
+  min-width:40px;
+  height:40px;
   display:inline-flex;
   align-items:center;
-  gap:8px;
+  justify-content:center;
+  gap:0;
   min-height:40px;
-  margin-left:auto;
-  margin-right:10px;
-  padding:5px 10px 5px 7px;
+  margin:0;
+  padding:0;
   border:1px solid #d7b759;
   border-radius:11px;
   background:#24184f;
@@ -9777,7 +10030,7 @@ html.nurselink-super-admin-session .topbar{
   letter-spacing:.04em
 }
 .nurselink-super-admin-copy{
-  display:grid;
+  display:none!important;
   line-height:1.08
 }
 .nurselink-super-admin-copy strong{
@@ -9793,8 +10046,7 @@ html.nurselink-super-admin-session .topbar{
   font-weight:650
 }
 .user-chip.nurselink-super-admin-user{
-  outline: none !important;
-  outline-offset: 0 !important;
+  outline:none!important
 }
 .nurselink-super-admin-banner{
   display:flex;
@@ -9847,9 +10099,12 @@ html.nurselink-super-admin-session .topbar{
 }
 @media(max-width:767px){
   .nurselink-super-admin-badge{
-    min-height:36px;
-    margin-right:6px;
-    padding:4px 6px
+    width:40px;
+    min-width:40px;
+    height:40px;
+    min-height:40px;
+    margin:0;
+    padding:0
   }
   .nurselink-super-admin-mark{
     width:25px;
@@ -11591,8 +11846,8 @@ html.nurselink-smart-registration-v557 .nurselink-smart-dropzone {
 }
 
 @media (max-width: 780px) {
-  .topbar > div:first-of-type span,
-  .topbar > div:first-of-type small {
+  .topbar-brand-copy span,
+  .topbar-brand-copy small {
     font-size: 12px;
   }
 }
@@ -11859,325 +12114,372 @@ html.nurselink-smart-registration-v557 .nurselink-smart-dropzone {
 }
 /* NURSELINK_DASHBOARD_PRIMARY_GRID_V564_END */
 
-/* NurseLink Auth Trust Icons v623 */
+/* =========================================================
+   THEME-AWARE MEMBER SURFACES
+   Keep dynamically injected cards, tables and workflow rows in sync with
+   the theme selected by the React shell.
+   ========================================================= */
 
-.nurselink-auth-trust-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+html[data-nurselink-theme="dark"] {
+  --nl-dark-canvas: #091321;
+  --nl-dark-surface: #111f30;
+  --nl-dark-surface-raised: #16263a;
+  --nl-dark-border: #2b3f57;
+  --nl-dark-text: #e8f1fb;
+  --nl-dark-muted: #a1b3c8;
+  --nl-dark-link: #79bfff;
 }
 
-.nurselink-auth-trust-icon {
-  flex: 0 0 44px !important;
-
-  width: 44px !important;
-  height: 44px !important;
-  min-width: 44px !important;
-  min-height: 44px !important;
-
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  padding: 0 !important;
-  margin: 0 !important;
-
-  border-radius: 50% !important;
-  background: #e5f1ff !important;
-  color: #0b72d5 !important;
-
-  line-height: 1 !important;
+html[data-nurselink-theme="dark"] .main-area {
+  background: var(--nl-dark-canvas) !important;
 }
 
-.nurselink-auth-trust-icon svg {
-  display: block !important;
-
-  width: 22px !important;
-  height: 22px !important;
-
-  fill: none !important;
-  stroke: currentColor !important;
-  stroke-width: 1.9 !important;
-  stroke-linecap: round !important;
-  stroke-linejoin: round !important;
+html[data-nurselink-theme="dark"] .main-area :where(
+  .panel,
+  .stat-card,
+  [class*="-card"],
+  [class*="-panel"],
+  .nurselink-member-portal-membership-v520,
+  .nurselink-access-membership-summary,
+  .nurselink-access-membership-summary-grid > div,
+  .nurselink-member-portal-score,
+  .nurselink-member-portal-action,
+  .nurselink-member-welcome,
+  .nurselink-member-status-row > div,
+  .nurselink-member-module-card,
+  .nurselink-readiness-metrics > div,
+  .nurselink-readiness-item,
+  .nurselink-v200-strip,
+  .nurselink-v220-strip,
+  .nurselink-learning-record,
+  .nurselink-credential-row,
+  .nurselink-notification-item,
+  .nurselink-notification-center,
+  .nurselink-message-list article,
+  .nurselink-interview-list > article
+  , .qualification-record-metrics a
+  , .qualification-record-list article
+) {
+  border-color: var(--nl-dark-border) !important;
+  background: var(--nl-dark-surface) !important;
+  color: var(--nl-dark-text) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .2) !important;
 }
 
-.nurselink-auth-trust-item > div {
-  min-width: 0;
-  flex: 1 1 auto;
+html[data-nurselink-theme="dark"] .main-area :where(
+  .nurselink-member-readiness-ring > div,
+  .nurselink-readiness-ring > div,
+  .nurselink-career-ring > div,
+  .nurselink-member-welcome-actions .secondary-button,
+  .secondary-button,
+  .nurselink-notification-head-actions .view-all,
+  .copy-verification,
+  .nurselink-message-form textarea,
+  .nurselink-interview-response textarea,
+  .nurselink-interview-response button
+) {
+  border-color: var(--nl-dark-border) !important;
+  background: var(--nl-dark-surface-raised) !important;
+  color: var(--nl-dark-text) !important;
 }
 
-.nurselink-auth-trust-item strong {
-  display: block;
-  margin: 0 0 3px;
+html[data-nurselink-theme="dark"] .main-area :where(
+  [class*="-card"],
+  [class*="-panel"],
+  .panel,
+  .stat-card,
+  .nurselink-member-welcome,
+  .nurselink-member-status-row > div,
+  .nurselink-member-module-card,
+  .nurselink-member-portal-membership-v520
+  , .nurselink-access-membership-summary
+  , .nurselink-access-membership-summary-grid > div
+  , .nurselink-member-portal-action
+  , .qualification-record-metrics a
+  , .qualification-record-list article
+) :where(h1, h2, h3, h4, strong, dt, dd) {
+  color: var(--nl-dark-text) !important;
 }
 
-@media (max-width: 680px) {
-  .nurselink-auth-trust-item {
-    gap: 12px;
-  }
-
-  .nurselink-auth-trust-icon {
-    flex-basis: 46px !important;
-    width: 46px !important;
-    height: 46px !important;
-    min-width: 46px !important;
-    min-height: 46px !important;
-  }
-
-  .nurselink-auth-trust-icon svg {
-    width: 23px !important;
-    height: 23px !important;
-  }
+html[data-nurselink-theme="dark"] .main-area :where(
+  [class*="-card"],
+  [class*="-panel"],
+  .panel,
+  .stat-card,
+  .nurselink-member-welcome,
+  .nurselink-member-status-row > div,
+  .nurselink-member-module-card,
+  .nurselink-member-portal-membership-v520
+  , .nurselink-access-membership-summary
+  , .nurselink-access-membership-summary-grid > div
+  , .nurselink-member-portal-action
+  , .qualification-record-metrics a
+  , .qualification-record-list article
+) :where(p, small, dt) {
+  color: var(--nl-dark-muted) !important;
 }
 
-/* NurseLink Registration Hero Slider v624 */
-
-html.nurselink-public-register .nurselink-auth-hero::before {
-  display: none !important;
-  content: none !important;
+html[data-nurselink-theme="dark"] .main-area :where(a:not(.primary-button)) {
+  color: var(--nl-dark-link);
 }
 
-html.nurselink-public-register .nurselink-auth-hero {
-  isolation: isolate;
-  background: #032b68 !important;
+html[data-nurselink-theme="dark"] .main-area :where(
+  table,
+  thead,
+  tbody,
+  tfoot,
+  tr,
+  th,
+  td,
+  .table-wrap,
+  .nurselink-mobile-scroll
+) {
+  border-color: var(--nl-dark-border) !important;
+  background: var(--nl-dark-surface) !important;
+  color: var(--nl-dark-text) !important;
 }
 
-.nurselink-registration-hero-slider {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  background: #032b68;
+html[data-nurselink-theme="dark"] .main-area :where(thead th, tfoot td) {
+  background: var(--nl-dark-surface-raised) !important;
 }
 
-.nurselink-registration-hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .9s ease, visibility .9s ease;
+html[data-nurselink-theme="dark"] .main-area :where(tbody tr:hover, tbody tr:focus-within) {
+  background: #1a2d43 !important;
 }
 
-.nurselink-registration-hero-slide.is-active {
-  opacity: 1;
-  visibility: visible;
+html[data-nurselink-theme="dark"] .main-area :where(input, select, textarea) {
+  border-color: var(--nl-dark-border) !important;
+  background: #0c1827 !important;
+  color: var(--nl-dark-text) !important;
 }
 
-.nurselink-registration-hero-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 72% 50%;
+html[data-nurselink-theme="dark"] .main-area :where(input, textarea)::placeholder {
+  color: #71869e !important;
 }
 
-html.nurselink-public-register .nurselink-auth-hero::after {
-  z-index: 1 !important;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(2,34,84,.97) 0%,
-      rgba(3,45,105,.92) 25%,
-      rgba(3,57,128,.66) 43%,
-      rgba(3,68,148,.22) 61%,
-      rgba(3,68,148,.05) 100%
-    ) !important;
+html[data-nurselink-theme="dark"] .main-area :where(
+  .nurselink-member-note,
+  .nurselink-readiness-disclaimer,
+  .nurselink-learning-disclaimer,
+  .nurselink-comm-privacy,
+  .nurselink-source-note
+) {
+  border-color: var(--nl-dark-border) !important;
+  background: #101d2d !important;
+  color: var(--nl-dark-muted) !important;
 }
 
-html.nurselink-public-register .nurselink-auth-hero-inner {
-  z-index: 2 !important;
+html[data-nurselink-theme="dark"] .main-area :where(
+  .nurselink-member-module-icon,
+  .nurselink-readiness-item-state,
+  .nurselink-profile-photo-icon
+) {
+  background: #173553 !important;
+  color: #80c6ff !important;
 }
 
-.nurselink-registration-hero-dots {
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  bottom: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transform: translateX(-50%);
+html[data-nurselink-theme="light"] .main-area {
+  color-scheme: light;
 }
 
-.nurselink-registration-hero-dot {
-  width: 10px !important;
-  height: 10px !important;
-  min-width: 10px !important;
-  min-height: 10px !important;
-  padding: 0 !important;
-  border: 1px solid rgba(255,255,255,.8) !important;
-  border-radius: 999px !important;
-  background: rgba(255,255,255,.35) !important;
-  box-shadow: none !important;
-  transition: width .25s ease, background .25s ease;
+/* Digital Member ID contrast in both theme states. */
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-member-id-main,
+  .nurselink-member-id-footer,
+  .nurselink-public-profile,
+  .nurselink-public-profile-share
+) {
+  border-color: var(--nl-dark-border) !important;
+  background: var(--nl-dark-surface) !important;
+  color: var(--nl-dark-text) !important;
 }
 
-.nurselink-registration-hero-dot.is-active {
-  width: 28px !important;
-  background: #fff !important;
+html[data-nurselink-theme="dark"] :where(
+  .nurselink-member-id-copy,
+  .nurselink-member-id-status,
+  .nurselink-member-id-footer,
+  .nurselink-member-id-note,
+  .nurselink-public-profile,
+  .nurselink-public-profile-share
+) :where(span, strong, small, p, h1, h2, h3) {
+  color: var(--nl-dark-text) !important;
+  opacity: 1 !important;
 }
 
-/* Desktop */
-@media (min-width: 1025px) {
-  .nurselink-registration-hero-slide img {
-    object-position: 72% 50%;
-  }
+html[data-nurselink-theme="dark"] .nurselink-member-id-note,
+html[data-nurselink-theme="dark"] .nurselink-public-profile :where(p, small) {
+  color: var(--nl-dark-muted) !important;
 }
 
-/* Large desktop */
-@media (min-width: 1440px) {
-  .nurselink-registration-hero-slide img {
-    object-position: 74% 50%;
-  }
+html[data-nurselink-theme="dark"] .nurselink-member-id-footer :where(button, a) {
+  border-color: #55708e !important;
+  background: #173553 !important;
+  color: #f5f9ff !important;
 }
 
-/* Tablet */
-@media (min-width: 681px) and (max-width: 1024px) {
-  .nurselink-registration-hero-slide img {
-    object-position: 72% 44%;
-  }
+html[data-nurselink-theme="dark"] .nurselink-member-id-status {
+  background: #153a32 !important;
 }
 
-/* Mobile */
-@media (max-width: 680px) {
-  html.nurselink-public-register .nurselink-auth-hero {
-    min-height: 440px !important;
-  }
-
-  .nurselink-registration-hero-slide img {
-    object-position: 76% 25%;
-  }
-
-  html.nurselink-public-register .nurselink-auth-hero::after {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(2,34,82,.10) 0%,
-        rgba(2,39,92,.18) 42%,
-        rgba(2,40,96,.55) 73%,
-        rgba(2,35,85,.95) 100%
-      ),
-      linear-gradient(
-        90deg,
-        rgba(2,35,86,.48) 0%,
-        rgba(2,45,105,.12) 60%,
-        rgba(2,45,105,.03) 100%
-      ) !important;
-  }
-
-  .nurselink-registration-hero-dots {
-    bottom: 14px;
-  }
+/* Digital Member ID: keep membership and verification information legible. */
+.nurselink-digital-member-card .nurselink-member-id-band > div > small {
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  opacity: .94;
 }
 
-/* Small phones */
-@media (max-width: 390px) {
-  html.nurselink-public-register .nurselink-auth-hero {
-    min-height: 420px !important;
-  }
-
-  .nurselink-registration-hero-slide img {
-    object-position: 77% 23%;
-  }
+.nurselink-digital-member-card .nurselink-member-id-band em {
+  color: #fff !important;
+  font-size: 9px;
+  line-height: 13px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .nurselink-registration-hero-slide,
-  .nurselink-registration-hero-dot {
-    transition: none !important;
-  }
+.nurselink-digital-member-card .nurselink-member-id-footer {
+  padding: 13px 15px;
+}
+
+.nurselink-digital-member-card .nurselink-member-id-footer > div:not(.nurselink-member-id-actions) > span {
+  color: #526985;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 14px;
+}
+
+.nurselink-digital-member-card .nurselink-member-id-footer > div:not(.nurselink-member-id-actions) > strong {
+  color: #10204d;
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 17px;
+}
+
+.nurselink-digital-member-card .nurselink-member-id-actions button,
+.nurselink-digital-member-card .nurselink-member-id-actions a {
+  font-size: 11px;
+}
+
+.nurselink-digital-member-card .nurselink-member-id-note {
+  color: #526985;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 15px;
+}
+
+html[data-nurselink-theme="dark"] .nurselink-digital-member-card .nurselink-member-id-band > div > small,
+html[data-nurselink-theme="dark"] .nurselink-digital-member-card .nurselink-member-id-band em {
+  color: #fff !important;
+}
+
+html[data-nurselink-theme="dark"] .nurselink-digital-member-card .nurselink-member-id-footer > div:not(.nurselink-member-id-actions) > span,
+html[data-nurselink-theme="dark"] .nurselink-digital-member-card .nurselink-member-id-note {
+  color: #bed1e8 !important;
+}
+
+html[data-nurselink-theme="dark"] .nurselink-digital-member-card .nurselink-member-id-footer > div:not(.nurselink-member-id-actions) > strong {
+  color: #f5f9ff !important;
 }
 
 /* =========================================================
+   CONSISTENT MEMBER CARD ACTIONS AND TYPOGRAPHY
+   ========================================================= */
 
-/* ==========================================================
-   NurseLink v631 Canonical Hero System
-   One source of truth replacing stacked hero generations.
-   ========================================================== */
-
-.nurselink-auth-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.52fr) minmax(380px, 0.88fr);
-  min-height: 100vh;
+:is(
+  .nurselink-credential-renewal-launcher,
+  .nurselink-events-programs-launcher,
+  .nurselink-chapters-launcher,
+  .nurselink-mentoring-launcher,
+  .nurselink-engagement-hub-launcher,
+  .nurselink-benefits-launcher,
+  .nurselink-enterprise-launcher
+) a {
+  width: 230px !important;
+  min-width: 230px !important;
+  min-height: 52px !important;
+  box-sizing: border-box;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
 }
 
-.nurselink-auth-hero {
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
+.nurselink-profile-photo-actions {
+  width: 184px;
+  min-width: 184px;
 }
 
-.nurselink-registration-hero-slider {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-.nurselink-registration-hero-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity var(--nl-hero-transition, 800ms) ease;
-}
-
-.nurselink-registration-hero-slide.is-active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.nurselink-registration-hero-slide picture,
-.nurselink-registration-hero-slide img {
-  display: block;
+.nurselink-profile-photo-actions :is(label, button) {
   width: 100%;
-  height: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+  text-align: center;
 }
 
-.nurselink-registration-hero-slide img {
-  object-fit: var(--nl-hero-fit-desktop, cover);
-  object-position: var(--nl-hero-x-desktop, 50%) var(--nl-hero-y-desktop, 46%);
+.main-area :where([class*="-card"], [class*="-panel"], .panel, table) {
+  font-size: 14px;
+  line-height: 1.45;
 }
 
-.nurselink-registration-hero-dots {
-  position: absolute;
-  left: 50%;
-  bottom: 24px;
-  z-index: 6;
-  display: flex;
-  gap: 10px;
-  transform: translateX(-50%);
+.main-area :where([class*="-card"], [class*="-panel"], .panel, table)
+  :where(button, .primary-button, .secondary-button, [role="button"]) {
+  min-height: 44px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.2;
 }
 
-.nurselink-registration-hero-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
+.main-area table :where(th, td) {
+  font-size: 13px;
+  line-height: 1.45;
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
-  .nurselink-auth-layout {
-    grid-template-columns: minmax(0, 1.24fr) minmax(350px, 0.94fr);
-  }
-  .nurselink-registration-hero-slide img {
-    object-fit: var(--nl-hero-fit-tablet, cover);
-    object-position: var(--nl-hero-x-tablet, 50%) var(--nl-hero-y-tablet, 44%);
-  }
+.nurselink-super-admin-mark {
+  line-height: 1;
+  text-align: center;
+}
+
+.topbar-right .nurselink-notification-button {
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.topbar-right .nurselink-notification-button > span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  place-items: center;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.qualification-digital-id .primary-button {
+  width: fit-content;
+  margin-top: 8px;
 }
 
 @media (max-width: 767px) {
-  .nurselink-auth-layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .nurselink-registration-hero-slide img {
-    object-fit: var(--nl-hero-fit-mobile, cover);
-    object-position: var(--nl-hero-x-mobile, 50%) var(--nl-hero-y-mobile, 36%);
-  }
-  .nurselink-registration-hero-dots {
-    bottom: 16px;
+  :is(
+    .nurselink-credential-renewal-launcher,
+    .nurselink-events-programs-launcher,
+    .nurselink-chapters-launcher,
+    .nurselink-mentoring-launcher,
+    .nurselink-engagement-hub-launcher,
+    .nurselink-benefits-launcher,
+    .nurselink-enterprise-launcher
+  ) a {
+    width: 100% !important;
+    min-width: 0 !important;
   }
 }
-

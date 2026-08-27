@@ -26,18 +26,19 @@
     input.type = visible ? "text" : "password";
     input.dataset.nlPasswordVisible = String(visible);
 
-    button.innerHTML = visible ? eyeOpen : eyeClosed;
+    if (button.dataset.nlPasswordVisible !== String(visible)) {
+      button.innerHTML = visible ? eyeOpen : eyeClosed;
+      button.dataset.nlPasswordVisible = String(visible);
+    }
     button.setAttribute(
       "aria-label",
       visible ? "Hide password" : "Show password"
     );
     button.setAttribute("aria-pressed", String(visible));
-    button.hidden = input.value.length === 0;
+    button.hidden = false;
   }
 
   function enhance() {
-    if (!/replace your password/i.test(document.body?.innerText || "")) return;
-
     const inputs = [...document.querySelectorAll(
       'input[type="password"], input[data-nl-password-visible]'
     )];

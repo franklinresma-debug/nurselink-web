@@ -1938,7 +1938,17 @@ function AppLayout() {
         </div>
 
         <nav>
-          {menu.map(
+          {menu
+            .filter(([, path]) =>
+              !(
+                isMember &&
+                [
+                  '/smart-registration',
+                  '/application-status',
+                ].includes(path)
+              )
+            )
+            .map(
             ([label, path, icon]) => {
               const locked =
                 memberOnlyPaths.includes(
@@ -2147,7 +2157,9 @@ function AppLayout() {
           <Route
             path="/smart-registration"
             element={
-              <SmartRegistration />
+              isMember
+                ? <Navigate to="/documents" replace />
+                : <SmartRegistration />
             }
           />
 

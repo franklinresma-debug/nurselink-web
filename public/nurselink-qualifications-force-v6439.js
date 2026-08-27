@@ -222,7 +222,9 @@
   }
 
   function findRoot() {
-    return document.querySelector('.main-area main,.main-area .page,.main-area') || document.querySelector('main');
+    // Never use .main-area itself: it owns the persistent topbar. During a
+    // route transition the page may not exist yet, so wait for it instead.
+    return document.querySelector('.main-area .page') || null;
   }
 
   function forceMount(data=fallback) {

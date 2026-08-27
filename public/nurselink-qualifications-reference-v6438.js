@@ -206,7 +206,9 @@
   }
 
   function mount(data) {
-    const main = document.querySelector('.main-area main, .main-area .page, .main-area') || document.querySelector('main');
+    // The member topbar is a direct child of .main-area. Wait for the route
+    // page instead of treating the whole shell as replaceable content.
+    const main = document.querySelector('.main-area .page');
     if (!main) return false;
 
     if (main.querySelector('.nl6438-page')) return true;

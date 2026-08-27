@@ -1,0 +1,5 @@
+/* Qualifications renderer must never hide the persistent member topbar. */
+.main-area > .topbar[data-nl6439-old="1"],
+.main-area > .topbar[data-nl6438-original-content="1"] {
+  display: flex !important;
+}

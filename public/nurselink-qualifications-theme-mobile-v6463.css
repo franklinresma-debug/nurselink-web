@@ -1,0 +1,217 @@
+/* NurseLink Qualifications Theme + Mobile Topbar v64.6.3
+   Cumulative compatibility layer. No inline style blocks required.
+*/
+:root {
+  --nlq-page: #f6f8fc;
+  --nlq-surface: #ffffff;
+  --nlq-surface-2: #f8fafc;
+  --nlq-surface-3: #eef3f9;
+  --nlq-text: #14213d;
+  --nlq-muted: #68758a;
+  --nlq-border: #dbe3ee;
+  --nlq-accent: #1769e0;
+  --nlq-accent-soft: #eaf2ff;
+  --nlq-success: #11845b;
+  --nlq-success-soft: #e9f8f1;
+  --nlq-purple: #7457e8;
+  --nlq-purple-soft: #f0edff;
+  --nlq-warning-bg: #fff8e8;
+  --nlq-warning-border: #ead7a1;
+  --nlq-shadow: 0 8px 26px rgba(28, 45, 76, .08);
+  color-scheme: light;
+}
+
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark {
+  --nlq-page: #0d1423;
+  --nlq-surface: #141d2d;
+  --nlq-surface-2: #192436;
+  --nlq-surface-3: #202d42;
+  --nlq-text: #f4f7fb;
+  --nlq-muted: #a8b5c8;
+  --nlq-border: #2c3a50;
+  --nlq-accent: #5ea0ff;
+  --nlq-accent-soft: #172d4f;
+  --nlq-success: #63d6a6;
+  --nlq-success-soft: #17352e;
+  --nlq-purple: #a894ff;
+  --nlq-purple-soft: #29234c;
+  --nlq-warning-bg: #332b19;
+  --nlq-warning-border: #5c4e2c;
+  --nlq-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+
+/* Qualifications: scope only when runtime identifies this route. */
+html[data-nl-route="qualifications"] body,
+body[data-nl-route="qualifications"] {
+  background: var(--nlq-page) !important;
+  color: var(--nlq-text) !important;
+}
+
+html[data-nl-route="qualifications"] main,
+html[data-nl-route="qualifications"] .main,
+html[data-nl-route="qualifications"] .content,
+html[data-nl-route="qualifications"] [class*="qualification"] {
+  color: var(--nlq-text);
+}
+
+html[data-nl-route="qualifications"] :is(
+  .card, .panel, [class*="-card"], [class*="-panel"],
+  [class*="framework"], [class*="readiness"], [class*="standing"],
+  [class*="snapshot"], [class*="provenance"], [class*="disclaimer"]
+) {
+  border-color: var(--nlq-border);
+}
+
+html[data-nl-route="qualifications"] :is(
+  .card, .panel, [class*="-card"], [class*="-panel"]
+):not(.sidebar):not([class*="sidebar"]) {
+  background-color: var(--nlq-surface);
+  color: var(--nlq-text);
+}
+
+html[data-nl-route="qualifications"] :is(
+  h1,h2,h3,h4,h5,h6,strong,b,dt,th,
+  [class*="title"], [class*="heading"], [class*="value"]
+) {
+  color: var(--nlq-text);
+}
+
+html[data-nl-route="qualifications"] :is(
+  p,small,dd,td,label,
+  [class*="muted"], [class*="meta"], [class*="subtitle"],
+  [class*="description"], [class*="caption"]
+) {
+  color: var(--nlq-muted);
+}
+
+html[data-nl-route="qualifications"] a {
+  color: var(--nlq-accent);
+}
+
+html[data-nl-route="qualifications"] :is(
+  [role="tab"], .tab, [class*="tab"]
+) {
+  border-color: var(--nlq-border);
+}
+
+html[data-nl-route="qualifications"] :is(
+  [aria-selected="true"], .active, [class*="active"]
+)[role="tab"],
+html[data-nl-route="qualifications"] .tab.active {
+  color: var(--nlq-accent);
+  border-color: var(--nlq-accent);
+}
+
+html[data-nl-route="qualifications"] :is(
+  [class*="qualification"][class*="level"],
+  [class*="pqf"][class*="level"],
+  [class*="reference-band"]
+) {
+  color: var(--nlq-purple);
+}
+
+html[data-nl-route="qualifications"] :is(
+  [class*="verified"], [class*="current"], [class*="success"]
+) {
+  color: var(--nlq-success);
+}
+
+html[data-nl-route="qualifications"] :is(
+  [class*="disclaimer"], [class*="notice"], [class*="important"]
+) {
+  background-color: var(--nlq-warning-bg);
+  border-color: var(--nlq-warning-border);
+}
+
+/* Inputs / controls that appear in or around Qualifications. */
+html[data-nl-route="qualifications"] :is(input,select,textarea,button) {
+  color: var(--nlq-text);
+  border-color: var(--nlq-border);
+}
+html[data-nl-route="qualifications"] :is(input,select,textarea) {
+  background: var(--nlq-surface-2);
+}
+html[data-nl-route="qualifications"] :is(button,[role="button"]):focus-visible,
+html[data-nl-route="qualifications"] a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--nlq-accent) 35%, transparent);
+  outline-offset: 2px;
+}
+
+/* Semantic mobile topbar, tagged by the companion JS. */
+@media (max-width: 767px) {
+  [data-nl-mobile-topbar="true"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    padding-left: max(10px, env(safe-area-inset-left)) !important;
+    padding-right: max(10px, env(safe-area-inset-right)) !important;
+    overflow: visible !important;
+  }
+
+  [data-nl-topbar-left="true"] {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  [data-nl-topbar-brand="true"] {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    line-height: 1.05 !important;
+    white-space: nowrap !important;
+  }
+
+  [data-nl-topbar-brand="true"] > * {
+    max-width: 100% !important;
+  }
+
+  [data-nl-topbar-actions="true"] {
+    margin-left: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex: 0 0 auto !important;
+    gap: 5px !important;
+    min-width: max-content !important;
+  }
+
+  [data-nl-topbar-profile="true"] {
+    margin-right: 25px !important; /* plus actions' 5px gap = approved 30px separation */
+    flex: 0 0 auto !important;
+  }
+
+  [data-nl-topbar-theme="true"],
+  [data-nl-topbar-notifications="true"],
+  [data-nl-topbar-menu="true"] {
+    flex: 0 0 auto !important;
+  }
+
+  [data-nl-mobile-topbar="true"] :is(button,a,[role="button"]) {
+    touch-action: manipulation;
+  }
+}
+
+/* Narrow phones: preserve one row by tightening non-essential widths only. */
+@media (max-width: 390px) {
+  [data-nl-mobile-topbar="true"] { gap: 6px !important; }
+  [data-nl-topbar-left="true"] { gap: 6px !important; }
+  [data-nl-topbar-profile="true"] { margin-right: 17px !important; } /* 22px effective */
+  [data-nl-topbar-brand="true"] { font-size: .95em !important; }
+}
+
+@media (max-width: 350px) {
+  [data-nl-topbar-profile-label="true"] { display: none !important; }
+  [data-nl-topbar-brand="true"] { font-size: .9em !important; }
+}

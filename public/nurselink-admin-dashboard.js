@@ -40,6 +40,7 @@
   let applicationVisibleRows = [];
   let applicationCommandData = null;
   let applicationStaffRows = [];
+  let applicationViewMode = 'membership';
   let applicationActiveQuickView = 'all';
 
   const subtitles = {
@@ -56,7 +57,8 @@
     support: 'Track operational cases with ownership, status, priority and resolution workflow.',
     audit: 'Review normalized administrative actions without exposing raw before/after database state.',
     health: 'Monitor platform readiness and required operational data services.',
-    settings: 'Invite administrators, manage multi-role permissions, record governance reasons and review immutable access history.'
+    settings: 'Invite administrators, manage multi-role permissions, record governance reasons and review immutable access history.',
+    qat: 'System Quality Assurance checks across NurseLink registration, professional information, privacy, security and platform operations.'
   };
 
   const esc = value => String(value ?? '')
@@ -262,9 +264,19 @@
     const tabLabel = (CFG.adminTabs || [])
       .find(row => row[0] === tab)?.[1] || 'Dashboard';
 
-    titleEl.textContent = tabLabel;
+    if (tab === 'qat') {
+      titleEl.textContent = '';
+      subtitleEl.textContent = '';
+      titleEl.hidden = true;
+      subtitleEl.hidden = true;
+    } else {
+      titleEl.hidden = false;
+      subtitleEl.hidden = false;
+      titleEl.textContent = tabLabel;
+      subtitleEl.textContent = subtitles[tab] || '';
+    }
+
     if (mobileTitleEl) mobileTitleEl.textContent = tabLabel;
-    subtitleEl.textContent = subtitles[tab] || '';
 
     if (location.hash !== `#${tab}`) {
       history.replaceState(null, '', `#${tab}`);
@@ -283,7 +295,12 @@
       support: loadSupport,
       audit: loadAudit,
       health: loadHealth,
-      settings: loadSettings
+      settings: loadSettings,
+      qat: () => {
+        if (typeof window.NurseLinkLoadLiveQat === 'function') {
+          window.NurseLinkLoadLiveQat();
+        }
+      }
     };
 
     loaders[tab]?.();
@@ -294,7 +311,10 @@
   }
 
   function applyGranularNavigation() {
-    if (!adminPermissionProfile) return;
+    if (!adminPermissionProfile) {
+      return;
+    }
+
     const scopes = new Set(adminPermissionProfile.scopes || []);
     const unrestricted = scopes.has('*') || scopes.has('legacy');
     const readOnly = !!adminPermissionProfile.read_only;
@@ -312,7 +332,8 @@
       support: 'support',
       audit: 'reports',
       health: 'health',
-      settings: 'admin_management'
+      settings: 'admin_management',
+      qat: 'admin_management'
     };
 
     document.querySelectorAll('[data-tab]').forEach(link => {
@@ -325,6 +346,8 @@
         || (needed === 'admin_management' && adminPermissionProfile.is_super_admin);
       link.hidden = !allowed;
     });
+
+
   }
 
   function renderRoleWorkbench() {
@@ -652,14 +675,8 @@
       $('dashboardMetrics').innerHTML = [
         metric('Members', m.approved_members ?? 0, 'Approved NurseLink members'),
         metric('Applications', m.pending_membership_applications ?? 0, `${counts.ready_for_approval ?? 0} ready for approval`, Number(m.pending_membership_applications || 0) ? 'attention' : 'good', ''),
-        metric('Verification', m.pending_verifications ?? 0, 'Credentials awaiting review', Number(m.pending_verifications || 0) ? 'attention' : ''),
-        metric('Organizations', m.pending_organizations ?? 0, 'Pending organization verification', Number(m.pending_organizations || 0) ? 'attention' : ''),
-        metric('Support Cases', m.open_support_cases ?? 0, 'Open operational cases', Number(m.open_support_cases || 0) ? 'danger' : 'good'),
-        metric('Opportunities', m.active_opportunities ?? 0, `${m.job_applications ?? 0} job application(s)`),
-        metric('Training & Events', m.upcoming_events ?? 0, 'Upcoming NurseLink events'),
-        metric('Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), `${onboarding.overdue ?? 0} overdue`),
-        metric('Notifications', m.unread_member_notifications ?? 0, 'Unread in-app member notifications'),
-        metric('Policy Consent', m.policy_consent_current ?? 0, `${m.policy_consent_pending ?? 0} active account(s) pending`, Number(m.policy_consent_pending || 0) ? 'attention' : 'good', null, 'dashboardPolicyConsent')
+        metric('Verification', m.pending_verifications ?? 0, 'Credentials awaiting review', Number(m.pending_verifications || 0) ? 'attention' : 'good'),
+        metric('Support Cases', m.open_support_cases ?? 0, 'Open operational cases', Number(m.open_support_cases || 0) ? 'danger' : 'good')
       ].join('');
 
       $('dashboardPolicyConsent').innerHTML = `
@@ -686,7 +703,7 @@
                   <strong>${esc(account.name || 'NurseLink account')}</strong>
                   <small>${esc(account.email || '')}</small>
                 </div>
-                <span>Re-consent required</span>
+                <span>Needs updated consent</span>
               </article>
             `).join('')}
           </div>
@@ -1242,7 +1259,12 @@
       .forEach(button => {
         button.addEventListener('click', () => {
           applicationPage = Number(button.dataset.page || 1);
-          renderApplicationTable();
+
+          if (applicationViewMode === 'all') {
+            renderAllApplicationTable();
+          } else {
+            renderApplicationTable();
+          }
         });
       });
   }
@@ -1462,6 +1484,8 @@
 
     if (key === 'ready') {
       base.status = 'ready_for_approval';
+    } else if (key === 'approved') {
+      base.status = 'approved';
     } else if (key === 'overdue') {
       base.overdue = true;
     } else if (key === 'unassigned') {
@@ -1751,7 +1775,778 @@
     );
   }
 
+
+  function setApplicationViewMode(mode = 'membership') {
+    applicationViewMode =
+      mode === 'all'
+        ? 'all'
+        : 'membership';
+
+    const button = $('viewAllApplications');
+
+    const heading =
+      document.querySelector(
+        '.nl550-queue-heading h2'
+      );
+
+    const description =
+      document.querySelector(
+        '.nl550-queue-heading p'
+      );
+
+    const triage =
+      document.querySelector(
+        '.nl552-triagebar'
+      );
+
+    [
+      'applicationStage',
+      'applicationAssignment',
+      'applicationFilterPriority',
+      'applicationOrganization',
+      'applicationOverdue'
+    ].forEach(id => {
+      const field = $(id);
+      const wrapper = field?.closest('label');
+
+      if (wrapper) {
+        wrapper.hidden =
+          applicationViewMode === 'all';
+      }
+    });
+
+    if (triage) {
+      triage.hidden =
+        applicationViewMode === 'all';
+    }
+
+    if (button) {
+      button.textContent =
+        applicationViewMode === 'all'
+          ? 'Back to Membership Queue'
+          : 'View All Applications';
+    }
+
+    if (heading) {
+      heading.textContent =
+        applicationViewMode === 'all'
+          ? 'All Applications'
+          : 'Membership Applications';
+    }
+
+    if (description) {
+      description.textContent =
+        applicationViewMode === 'all'
+          ? 'View every NurseLink application, including draft and Temporary Encoder imports.'
+          : 'Review, assign and progress membership applications through governed NurseLink workflows.';
+    }
+
+    const status = $('applicationStatus');
+
+    if (status) {
+      status.innerHTML =
+        applicationViewMode === 'all'
+          ? `
+            <option value="">All Statuses</option>
+            <option value="draft">Draft</option>
+            <option value="ready">Ready</option>
+            <option value="submitted">Submitted</option>
+            <option value="under_review">Under Review</option>
+            <option value="returned_for_information">Returned for Information</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          `
+          : `
+            <option value="">Pending only</option>
+            <option value="submitted">Submitted</option>
+            <option value="under_review">Under Review</option>
+            <option value="needs_information">Needs Information</option>
+            <option value="ready_for_approval">Ready for Approval</option>
+            <option value="approved">Approved</option>
+            <option value="declined">Declined</option>
+          `;
+
+      status.value = '';
+    }
+  }
+
+
+  function allApplicationSource(row) {
+    const profile =
+      row?.profile_data
+      && typeof row.profile_data === 'object'
+        ? row.profile_data
+        : {};
+
+    const snapshot =
+      profile._bulk_professional_snapshot
+      && typeof profile._bulk_professional_snapshot === 'object'
+        ? profile._bulk_professional_snapshot
+        : null;
+
+    return snapshot?.source === 'bulk_nurse_intake'
+      ? 'Temporary Encoder Import'
+      : 'Applicant';
+  }
+
+
+  function allApplicationRow(row) {
+    const user = row.user || {};
+    const reviewer = row.reviewer || {};
+
+    const initials =
+      applicantInitials(
+        user.name,
+        user.email
+      );
+
+    return `
+      <tr>
+        <td class="nl550-check-cell">
+          <input type="checkbox" disabled>
+        </td>
+
+        <td data-label="Applicant">
+          <button
+            type="button"
+            class="nl550-applicant-button"
+            data-all-application="${esc(row.id)}"
+          >
+            <span class="nl550-avatar">
+              ${esc(initials)}
+            </span>
+
+            <span>
+              <strong>${esc(user.name || 'Applicant')}</strong>
+              <small>${esc(user.email || '')}</small>
+            </span>
+          </button>
+        </td>
+
+        <td data-label="Application ID">
+          <button
+            type="button"
+            class="nl550-reference"
+            data-all-application="${esc(row.id)}"
+          >
+            ${esc(row.application_no || row.id)}
+          </button>
+        </td>
+
+        <td data-label="Source">
+          <strong>${esc(allApplicationSource(row))}</strong>
+        </td>
+
+        <td data-label="Progress">
+          <strong>${esc(row.progress_percent ?? 0)}%</strong>
+        </td>
+
+        <td data-label="Created">
+          <div class="nl550-date-cell">
+            ${formatApplicationDate(row.created_at, false)}
+          </div>
+        </td>
+
+        <td data-label="Status">
+          <span
+            class="nl550-status"
+            data-tone="${esc(applicationTone(row.status))}"
+          >
+            ${esc(label(row.status))}
+          </span>
+        </td>
+
+        <td data-label="Reviewer">
+          <strong>${esc(reviewer.name || 'Unassigned')}</strong>
+        </td>
+
+        <td class="nl550-actions-cell">
+          <button
+            type="button"
+            class="nl550-row-menu"
+            data-all-application="${esc(row.id)}"
+          >•••</button>
+        </td>
+      </tr>
+    `;
+  }
+
+
+  function renderAllApplicationTable() {
+    const el = $('applicationsArea');
+    const rows = applicationVisibleRows;
+
+    const pageSize =
+      Math.max(
+        1,
+        Number(applicationPageSize || 10)
+      );
+
+    const start =
+      (applicationPage - 1) * pageSize;
+
+    const pageRows =
+      rows.slice(
+        start,
+        start + pageSize
+      );
+
+    if (!rows.length) {
+      el.innerHTML =
+        '<div class="nl530-empty nl550-empty-table">No applications match these filters.</div>';
+
+      renderApplicationPagination(0);
+      return;
+    }
+
+    el.innerHTML = `
+      <table class="nl550-applications-table">
+        <thead>
+          <tr>
+            <th class="nl550-check-cell">
+              <input type="checkbox" disabled>
+            </th>
+            <th>Applicant</th>
+            <th>Application ID</th>
+            <th>Source</th>
+            <th>Progress</th>
+            <th>Created</th>
+            <th>Status</th>
+            <th>Reviewer</th>
+            <th class="nl550-actions-cell">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${pageRows.map(allApplicationRow).join('')}
+        </tbody>
+      </table>
+    `;
+
+    el
+      .querySelectorAll('[data-all-application]')
+      .forEach(button => {
+        button.addEventListener(
+          'click',
+          () => openAllApplication(
+            button.dataset.allApplication
+          )
+        );
+      });
+
+    renderApplicationPagination(
+      rows.length
+    );
+  }
+
+
+  async function openAllApplication(id) {
+    selectedApplicationId = id;
+
+    const drawer =
+      $('applicationDetailDrawer');
+
+    const el =
+      $('applicationDetail');
+
+    if (drawer) {
+      drawer.hidden = false;
+
+      document.body.classList.add(
+        'nl550-detail-open'
+      );
+    }
+
+    el.innerHTML =
+      '<div class="nl-admin-loading">Loading application…</div>';
+
+    try {
+      const payload =
+        await request(
+          `/api/admin/applications/${encodeURIComponent(id)}`
+        );
+
+      const data =
+        payload?.data || {};
+
+      const user =
+        data.user || {};
+
+      const reviewer =
+        data.reviewer || {};
+
+      const profile =
+        data.profile_data
+        && typeof data.profile_data === 'object'
+          ? data.profile_data
+          : {};
+
+      const snapshot =
+        profile._bulk_professional_snapshot
+        && typeof profile._bulk_professional_snapshot === 'object'
+          ? profile._bulk_professional_snapshot
+          : null;
+
+      const counts = {
+        education:
+          Array.isArray(snapshot?.education)
+            ? snapshot.education.length
+            : 0,
+
+        employment:
+          Array.isArray(snapshot?.employment)
+            ? snapshot.employment.length
+            : 0,
+
+        credentials:
+          Array.isArray(snapshot?.credentials)
+            ? snapshot.credentials.length
+            : 0,
+
+        competencies:
+          Array.isArray(snapshot?.competencies)
+            ? snapshot.competencies.length
+            : 0,
+
+        languages:
+          Array.isArray(snapshot?.languages)
+            ? snapshot.languages.length
+            : 0,
+
+        references:
+          Array.isArray(snapshot?.references)
+            ? snapshot.references.length
+            : 0
+      };
+
+      const imported =
+        snapshot?.source === 'bulk_nurse_intake';
+
+      if ($('applicationDetailTitle')) {
+        $('applicationDetailTitle').textContent =
+          data.application_no
+          || 'Application';
+      }
+
+      el.innerHTML = `
+        <div class="nl530-detail-head">
+          <div>
+            <span class="nl-admin-eyebrow">
+              ${esc(data.application_no || 'APPLICATION')}
+            </span>
+
+            <h2>
+              ${esc(user.name || user.email || 'Applicant')}
+            </h2>
+
+            <p>${esc(user.email || '')}</p>
+          </div>
+
+          <span class="nl530-badge">
+            ${esc(label(data.status))}
+          </span>
+        </div>
+
+        <section class="nl530-subpanel">
+          <strong>Application status</strong>
+
+          <div class="nl557-smart-review-grid">
+
+            <div class="nl557-smart-review-item">
+              <span>Progress</span>
+              <strong>${esc(data.progress_percent ?? 0)}%</strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Source</span>
+              <strong>
+                ${esc(imported ? 'Temporary Encoder Import' : 'Applicant')}
+              </strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Reviewer</span>
+              <strong>${esc(reviewer.name || 'Unassigned')}</strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Created</span>
+              <strong>
+                ${formatApplicationDate(data.created_at, false)}
+              </strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Submitted</span>
+              <strong>
+                ${
+                  data.submitted_at
+                    ? formatApplicationDate(data.submitted_at, true)
+                    : 'Not submitted'
+                }
+              </strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Application ID</span>
+              <strong>
+                ${esc(data.application_no || data.id)}
+              </strong>
+            </div>
+
+          </div>
+        </section>
+
+        ${
+          imported
+            ? `
+              <section class="nl530-subpanel">
+                <strong>Imported professional snapshot</strong>
+
+                <p>
+                  Created through the governed Temporary Encoder /
+                  Bulk Nurse Import workflow.
+                </p>
+
+                <div class="nl557-smart-review-grid">
+
+                  <div class="nl557-smart-review-item">
+                    <span>Education</span>
+                    <strong>${esc(counts.education ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Employment</span>
+                    <strong>${esc(counts.employment ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Credentials</span>
+                    <strong>${esc(counts.credentials ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Competencies</span>
+                    <strong>${esc(counts.competencies ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Languages</span>
+                    <strong>${esc(counts.languages ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Private references</span>
+                    <strong>${esc(counts.references ?? 0)}</strong>
+                  </div>
+
+                </div>
+              </section>
+            `
+            : ''
+        }
+
+        <section class="nl530-subpanel">
+          <strong>Workflow position</strong>
+
+          ${
+            data.status === 'draft'
+              ? `
+                <div class="nl530-empty">
+                  Draft application. It has not yet been submitted
+                  into the membership review queue.
+                </div>
+
+                ${
+                  imported
+                    ? `
+                      <div
+                        id="importedActivationFeedback"
+                        class="nl558-drawer-feedback"
+                        role="status"
+                        aria-live="polite"
+                        hidden
+                      ></div>
+
+                      <div class="nl530-row-actions" style="margin-top:14px">
+                        <button
+                          id="resendImportedActivation"
+                          type="button"
+                          class="primary"
+                        >
+                          Resend Activation Link
+                        </button>
+                      </div>
+
+                      <p class="nl557-smart-review-boundary">
+                        This sends a new password setup / activation link only.
+                        The applicant must sign in, review the imported draft,
+                        accept required policies, and submit the application personally.
+                      </p>
+                    `
+                    : ''
+                }
+              `
+              : `
+                <div class="nl530-empty">
+                  Current status: ${esc(label(data.status))}.
+                  Membership review actions remain in the governed
+                  Membership Applications queue.
+                </div>
+              `
+          }
+        </section>
+      `;
+
+      const resendActivationButton =
+        $('resendImportedActivation');
+
+      if (resendActivationButton) {
+        resendActivationButton.addEventListener(
+          'click',
+          async () => {
+            if (
+              !confirm(
+                `Send a new activation and password setup link to ${user.email || 'this applicant'}?`
+              )
+            ) {
+              return;
+            }
+
+            const feedback =
+              $('importedActivationFeedback');
+
+            resendActivationButton.disabled = true;
+            resendActivationButton.textContent =
+              'Sending…';
+
+            if (feedback) {
+              feedback.hidden = false;
+              feedback.dataset.tone = 'working';
+              feedback.textContent =
+                'Sending a new activation link…';
+            }
+
+            try {
+              const result =
+                await request(
+                  `/api/admin/applications/${encodeURIComponent(id)}/resend-activation`,
+                  {
+                    method: 'POST',
+                    body: '{}'
+                  }
+                );
+
+              notice(
+                result?.message
+                  || 'Activation link sent.',
+                'success'
+              );
+
+              if (feedback) {
+                feedback.dataset.tone = 'success';
+                feedback.textContent =
+                  result?.message
+                  || 'Activation link sent.';
+              }
+
+              resendActivationButton.textContent =
+                'Resend Activation Link';
+
+            } catch (error) {
+              notice(
+                error.message
+                  || 'Unable to send activation link.',
+                'error'
+              );
+
+              if (feedback) {
+                feedback.dataset.tone = 'error';
+                feedback.textContent =
+                  error.message
+                  || 'Unable to send activation link.';
+              }
+
+            } finally {
+              if (resendActivationButton.isConnected) {
+                resendActivationButton.disabled = false;
+
+                if (
+                  resendActivationButton.textContent
+                  === 'Sending…'
+                ) {
+                  resendActivationButton.textContent =
+                    'Resend Activation Link';
+                }
+              }
+            }
+          }
+        );
+      }
+
+    } catch (error) {
+      if (needsLogin(error)) {
+        redirectToLogin();
+        return;
+      }
+
+      el.innerHTML =
+        `<div class="nl530-empty">${esc(error.message)}</div>`;
+    }
+  }
+
+
+  async function loadAllApplications() {
+    const el =
+      $('applicationsArea');
+
+    el.innerHTML =
+      '<div class="nl-admin-loading">Loading all NurseLink applications…</div>';
+
+    const search =
+      $('applicationSearch')?.value.trim()
+      || '';
+
+    const status =
+      $('applicationStatus')?.value
+      || '';
+
+    const params =
+      new URLSearchParams();
+
+    if (search) {
+      params.set(
+        'search',
+        search
+      );
+    }
+
+    if (status) {
+      params.set(
+        'status',
+        status
+      );
+    }
+
+    try {
+      const first =
+        await request(
+          `/api/admin/applications?${params.toString()}`
+        );
+
+      let rows =
+        Array.isArray(first?.data)
+          ? first.data
+          : [];
+
+      const lastPage =
+        Math.max(
+          1,
+          Number(first?.last_page || 1)
+        );
+
+      if (lastPage > 1) {
+        const requests = [];
+
+        for (
+          let page = 2;
+          page <= lastPage;
+          page += 1
+        ) {
+          const pageParams =
+            new URLSearchParams(
+              params
+            );
+
+          pageParams.set(
+            'page',
+            String(page)
+          );
+
+          requests.push(
+            request(
+              `/api/admin/applications?${pageParams.toString()}`
+            )
+          );
+        }
+
+        const payloads =
+          await Promise.all(
+            requests
+          );
+
+        payloads.forEach(payload => {
+          if (Array.isArray(payload?.data)) {
+            rows = rows.concat(
+              payload.data
+            );
+          }
+        });
+      }
+
+      applicationRows = rows;
+      applicationVisibleRows = rows;
+      applicationPage = 1;
+
+      renderAllApplicationTable();
+
+    } catch (error) {
+      if (needsLogin(error)) {
+        redirectToLogin();
+        return;
+      }
+
+      el.innerHTML =
+        `<div class="nl530-empty">${esc(error.message)}</div>`;
+    }
+  }
+
+
+  function viewAllApplications() {
+    if (
+      applicationViewMode === 'all'
+    ) {
+      setApplicationViewMode(
+        'membership'
+      );
+
+      if ($('applicationSearch')) {
+        $('applicationSearch').value = '';
+      }
+
+      if ($('applicationStatus')) {
+        $('applicationStatus').value = '';
+      }
+
+      applicationPage = 1;
+      loadApplications();
+      return;
+    }
+
+    setApplicationViewMode(
+      'all'
+    );
+
+    markApplicationQuickView('');
+
+    if ($('applicationSearch')) {
+      $('applicationSearch').value = '';
+    }
+
+    if ($('applicationStatus')) {
+      $('applicationStatus').value = '';
+    }
+
+    applicationPage = 1;
+    loadAllApplications();
+  }
+
+
   async function loadApplications() {
+    if (applicationViewMode === 'all') {
+      return loadAllApplications();
+    }
+
     const el = $('applicationsArea');
     el.innerHTML =
       '<div class="nl-admin-loading">Loading professional applications command center…</div>';
@@ -2667,19 +3462,113 @@
         metric('Storage', h.storage_writable ? 'Writable' : 'Check', 'Laravel storage path', h.storage_writable ? 'good' : 'danger'),
         metric('Required Tables', h.all_required_tables_present ? 'Ready' : 'Attention', `${Object.values(tables).filter(Boolean).length}/${Object.keys(tables).length} present`, h.all_required_tables_present ? 'good' : 'danger'),
         metric('Readiness Checks', readyData?.summary?.passed ?? readyData?.pass ?? '—', 'Production readiness service')
-      ].join('') + `<div class="nl530-health-table">${Object.entries(tables).map(([name, ok]) => `<div class="nl530-health-row"><span>${esc(name)}</span><b class="${ok ? 'good' : 'danger'}">${ok ? 'AVAILABLE' : 'MISSING'}</b></div>`).join('')}</div>`;
+      ].join('') + `<div class="nl530-health-table">${Object.entries(tables).map(([name, ok]) => {
+        const icons = {
+          users: '👤',
+          nurselink_memberships: '🪪',
+          nurselink_credentials_registry: '🎓',
+          nurselink_partner_organizations: '🏥',
+          nurselink_job_opportunities: '💼',
+          nurselink_job_applications: '📄',
+          nurselink_events: '📅',
+          nurselink_notifications: '🔔',
+          nurselink_review_audit: '🧾',
+          nurselink_support_cases: '🛟'
+        };
+
+        const icon = icons[name] || '⚙️';
+
+        return `
+          <div class="nl530-health-row">
+            <span class="nl575-health-name">
+              <i class="nl575-health-icon" aria-hidden="true">${icon}</i>
+              <span>${esc(name)}</span>
+            </span>
+            <b class="${ok ? 'good' : 'danger'}">
+              ${ok ? 'AVAILABLE' : 'MISSING'}
+            </b>
+          </div>
+        `;
+      }).join('')}</div>`;
     } catch (error) {
       if (needsLogin(error)) return redirectToLogin();
       el.innerHTML = `<div class="nl530-empty">${esc(error.message)}</div>`;
     }
   }
 
-  function roleCheckbox(role, selected = [], disabled = false) {
-    const checked = selected.includes(role.key) ? 'checked' : '';
+  function roleCheckbox(role, selectedRoles = [], forceDisabled = false) {
+    const selected =
+      Array.isArray(selectedRoles)
+        ? selectedRoles.includes(role.key)
+        : false;
+
+    const disabled = !!forceDisabled;
+
+    const roleHelp = {
+      super_administrator:
+        'Full administrative access, including administrator management, permissions, governance controls and protected system functions.',
+
+      membership_administrator:
+        'Manages membership applications, approvals, onboarding, member standing and membership administration.',
+
+      verification_officer:
+        'Reviews nursing credentials, submitted documents and professional verification requirements.',
+
+      content_administrator:
+        'Manages approved member-facing content, informational content and controlled administrative content.',
+
+      program_administrator:
+        'Manages NurseLink programs, initiatives and related program administration.',
+
+      employment_administrator:
+        'Manages employment opportunities, applications and workforce-related workflows.',
+
+      training_events_administrator:
+        'Manages training activities, events, schedules, registrations and related program information.',
+
+      communications_administrator:
+        'Manages member communications, announcements, notifications and communication campaigns.',
+
+      support_officer:
+        'Handles member support cases, inquiries, follow-ups and operational service requests.',
+
+      finance_treasurer:
+        'Provides access to permitted finance-related administrative functions and financial records.',
+
+      reports_analytics:
+        'Provides access to reports, dashboards, operational metrics and analytics.',
+
+      auditor_read_only:
+        'Provides read-only access to governed administrative records and audit information.'
+    };
+
+    const helpText =
+      roleHelp[role.key] ||
+      role.description ||
+      'Controls access to the administrative functions associated with this role.';
+
     return `
-      <label class="nl553-role-option">
-        <input type="checkbox" value="${esc(role.key)}" ${checked} ${disabled ? 'disabled' : ''}>
-        <span><strong>${esc(role.label)}</strong><small>${esc(role.description || '')}</small></span>
+      <label
+        class="nl553-role-option nl597-role-card ${selected ? 'is-selected' : ''}"
+      >
+        <input
+          type="checkbox"
+          value="${esc(role.key)}"
+          ${selected ? 'checked' : ''}
+          ${disabled ? 'disabled' : ''}
+        >
+
+        <span class="nl597-role-copy">
+          <strong>${esc(role.label || role.name || label(role.key))}</strong>
+          <small>${esc(role.description || '')}</small>
+        </span>
+        <span
+          class="nl611-role-info"
+          data-tooltip="${esc(helpText)}"
+          tabindex="0"
+          role="button"
+          aria-label="About ${esc(role.label || role.name || label(role.key))}"
+        >ⓘ</span>
       </label>
     `;
   }
@@ -2828,6 +3717,219 @@
     return {reason: reason.trim(), approval_notes: approval.trim() || null};
   }
 
+
+  function renderMemberAssignmentRoles(roles) {
+    const area = $('adminMemberRoles');
+    if (!area) return;
+
+    area.innerHTML = roles.map(role => `
+      <label>
+        <input type="checkbox" value="${esc(role.key)}">
+        <span>
+          <strong>${esc(role.label)}</strong>
+          <small>${esc(role.description || '')}</small>
+        </span>
+      </label>
+    `).join('');
+  }
+
+  let adminMemberCandidates = [];
+
+  async function loadAdminMemberCandidates() {
+    const select = $('adminMemberCandidate');
+    if (!select) return;
+
+    const q = $('adminMemberSearch')?.value.trim() || '';
+    const params = new URLSearchParams({limit: '50'});
+
+    if (q) params.set('q', q);
+
+    select.innerHTML = '<option value="">Loading members…</option>';
+
+    try {
+      const payload = await request(
+        `/api/nurselink/admin/management/member-candidates?${params}`
+      );
+
+      const data = payload?.data || {};
+      const members = Array.isArray(data.members)
+        ? data.members
+        : Array.isArray(data.candidates)
+          ? data.candidates
+          : [];
+
+      adminMemberCandidates = members;
+
+      if (!members.length) {
+        select.innerHTML =
+          '<option value="">No eligible active verified members found</option>';
+        return;
+      }
+
+      select.innerHTML = `
+        <option value="">Select a member</option>
+        ${members.map(member => {
+          const name = member.name || member.email || 'NurseLink member';
+          const memberNo = member.member_no ? ` · ${member.member_no}` : '';
+          const status = member.already_administrator
+            ? ' · Already Administrator'
+            : '';
+
+          return `
+            <option
+              value="${esc(member.member_id)}"
+              ${member.already_administrator ? 'disabled' : ''}
+            >
+              ${esc(name)} · ${esc(member.email || '')}${esc(memberNo)}${esc(status)}
+            </option>
+          `;
+        }).join('')}
+      `;
+    } catch (error) {
+      select.innerHTML = `<option value="">${esc(error.message)}</option>`;
+    }
+  }
+
+
+  function renderAdminMemberStatus() {
+    const select = $('adminMemberCandidate');
+    const area = $('adminMemberStatus');
+
+    if (!select || !area) return;
+
+    const memberId = select.value;
+
+    if (!memberId) {
+      area.hidden = true;
+      area.innerHTML = '';
+      return;
+    }
+
+    const member = adminMemberCandidates.find(
+      row => String(row.member_id) === String(memberId)
+    );
+
+    if (!member) {
+      area.hidden = true;
+      area.innerHTML = '';
+      return;
+    }
+
+    const roles = Array.isArray(member.roles)
+      ? member.roles
+      : Array.isArray(member.admin_roles)
+        ? member.admin_roles
+        : [];
+
+    const roleText = roles.length
+      ? roles.map(role => {
+          if (typeof role === 'string') return role;
+          return role.label || role.role_key || role.key || '';
+        }).filter(Boolean).join(', ')
+      : 'None';
+
+    area.hidden = false;
+
+    area.innerHTML = `
+      <strong>${esc(member.name || member.email || 'NurseLink member')}</strong>
+      <span>
+        ${esc(member.member_no || 'No member number')}
+        · ${esc(member.email || '')}
+      </span>
+      <span>
+        Membership: ${esc(member.status || 'active')}
+      </span>
+      <span>
+        Administrator access:
+        ${member.already_administrator ? 'Active' : 'Not currently assigned'}
+      </span>
+      <span>
+        Current roles: ${esc(roleText)}
+      </span>
+      ${member.already_administrator
+        ? '<span><strong>This member already has Administrator access. Use Manage Roles in the Administrator roster for changes.</strong></span>'
+        : ''}
+    `;
+  }
+
+  async function assignAdministratorFromMember(event) {
+    event.preventDefault();
+
+    const form = $('adminMemberAssignForm');
+    const memberId = $('adminMemberCandidate')?.value || '';
+    const roles = form ? checkedRoles(form) : [];
+    const department =
+      $('adminMemberDepartment')?.value.trim() || null;
+    const reason =
+      $('adminMemberReason')?.value.trim() || '';
+    const approvalNotes =
+      $('adminMemberApprovalNotes')?.value.trim() || null;
+
+    if (!memberId) {
+      return notice('Select an eligible NurseLink member.', 'error');
+    }
+
+    if (!roles.length) {
+      return notice('Select at least one Administrator role.', 'error');
+    }
+
+    if (reason.length < 10) {
+      return notice(
+        'Enter an access reason of at least 10 characters.',
+        'error'
+      );
+    }
+
+    try {
+      const result = await request(
+        '/api/nurselink/admin/management/assign-member',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            member_id: memberId,
+            department_unit: department,
+            roles,
+            reason,
+            approval_notes: approvalNotes
+          })
+        }
+      );
+
+      const resultEl = $('adminMemberAssignResult');
+
+      if (resultEl) {
+        resultEl.hidden = false;
+        resultEl.textContent =
+          result?.message || 'Administrator access assigned.';
+      }
+
+      notice(
+        result?.message || 'Administrator access assigned.',
+        'success'
+      );
+
+      form?.reset();
+
+      adminMemberCandidates = [];
+
+      const select = $('adminMemberCandidate');
+      if (select) {
+        select.innerHTML =
+          '<option value="">Search for an active verified member first</option>';
+      }
+
+      const statusArea = $('adminMemberStatus');
+      if (statusArea) {
+        statusArea.hidden = true;
+        statusArea.innerHTML = '';
+      }
+
+      await loadSettings();
+    } catch (error) {
+      notice(error.message, 'error');
+    }
+  }
+
   async function loadSettings() {
     const settingsEl = $('settingsArea');
     const accessEl = $('settingsAccessArea');
@@ -2862,6 +3964,15 @@
       `;
 
       renderInvitationRoles(roles);
+      renderMemberAssignmentRoles(roles);
+
+      if ($('adminMemberAssignForm')) {
+        $('adminMemberAssignForm').hidden = !canManage;
+      }
+
+      if ($('adminMemberAssignLocked')) {
+        $('adminMemberAssignLocked').hidden = canManage;
+      }
       if ($('adminInviteForm')) $('adminInviteForm').hidden = !canManage;
       if ($('adminInviteLocked')) $('adminInviteLocked').hidden = canManage;
       if ($('adminGovernanceCard')) $('adminGovernanceCard').hidden = !canManage;
@@ -2982,6 +4093,21 @@
       });
     });
   }
+
+  $('adminMemberSearchButton')?.addEventListener(
+    'click',
+    loadAdminMemberCandidates
+  );
+
+  $('adminMemberCandidate')?.addEventListener(
+    'change',
+    renderAdminMemberStatus
+  );
+
+  $('adminMemberAssignForm')?.addEventListener(
+    'submit',
+    assignAdministratorFromMember
+  );
 
   $('organizationCreateForm')?.addEventListener('submit', async event => {
     event.preventDefault();
@@ -3129,7 +4255,11 @@
         $('applicationPageSize').value || 10
       );
       applicationPage = 1;
-      renderApplicationTable();
+      if (applicationViewMode === 'all') {
+        renderAllApplicationTable();
+      } else {
+        renderApplicationTable();
+      }
     });
 
     const clearApplicationFilters = () => {
@@ -3175,7 +4305,7 @@
 
     renderApplicationSavedViews();
 
-    $('viewAllApplications')?.addEventListener('click', clearApplicationFilters);
+    $('viewAllApplications')?.addEventListener('click', viewAllApplications);
     $('resetApplicationFilters')?.addEventListener('click', clearApplicationFilters);
     $('closeApplicationDetail')?.addEventListener('click', closeApplicationDetail);
     $('applicationDrawerBackdrop')?.addEventListener('click', closeApplicationDetail);
@@ -3201,8 +4331,31 @@
     $('adminGovernanceSearch')?.addEventListener('input', debounce(loadAdminGovernanceHistory, 300));
   }
 
-  mobileMenuToggleEl?.addEventListener('click', () => {
-    setMobileNavigation(!document.body.classList.contains('nl555-nav-open'));
+  // NurseLink v712 — reliable mobile menu activation on iOS/WebKit.
+  // pointerup responds immediately to a completed touch. The click handler
+  // remains as keyboard/mouse fallback and is suppressed after pointer use.
+  let mobileMenuPointerHandledAt = 0;
+
+  mobileMenuToggleEl?.addEventListener('pointerup', event => {
+    if (event.pointerType === 'touch' || event.pointerType === 'pen') {
+      event.preventDefault();
+      mobileMenuPointerHandledAt = Date.now();
+
+      setMobileNavigation(
+        !document.body.classList.contains('nl555-nav-open')
+      );
+    }
+  });
+
+  mobileMenuToggleEl?.addEventListener('click', event => {
+    if (Date.now() - mobileMenuPointerHandledAt < 700) {
+      event.preventDefault();
+      return;
+    }
+
+    setMobileNavigation(
+      !document.body.classList.contains('nl555-nav-open')
+    );
   });
   mobileMenuCloseEl?.addEventListener('click', () => {
     setMobileNavigation(false);
@@ -3332,6 +4485,7 @@
 
       revealAdministratorPortal();
       setTab(valid ? requested : 'dashboard');
+
     } catch (error) {
       if (needsLogin(error) || [401, 403, 419].includes(error.status)) {
         redirectToLogin();
@@ -3348,3 +4502,1215 @@
   boot();
 })();
 /* Legacy cumulative compatibility marker retained for installer regression checks: /api/nurselink/admin/users/grant */
+
+
+/* NurseLink Live QAT v564 */
+(() => {
+  'use strict';
+
+  const API = 'https://api.amsertech.com';
+
+  const esc = value => String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+  const label = value => String(value || '')
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
+
+  function statusClass(status) {
+    const value = String(status || '').toLowerCase();
+
+    if (value === 'passed') return 'is-passed';
+    if (value === 'resolved') return 'is-resolved';
+    if (value === 'failed') return 'is-failed';
+    if (value === 'warning') return 'is-warning';
+    if (value === 'manual_review') return 'is-manual';
+    return 'is-pending';
+  }
+
+  function priorityClass(priority) {
+    const value = String(priority || '').toLowerCase();
+
+    if (value === 'critical') return 'is-critical';
+    if (value === 'high') return 'is-high';
+    return 'is-medium';
+  }
+
+  function renderSummary(summary = {}) {
+    return `
+      <div class="nlqat-live-summary">
+        <div>
+          <span>Total</span>
+          <strong>${Number(summary.total || 0)}</strong>
+        </div>
+
+        <div>
+          <span>Passed</span>
+          <strong>${Number(summary.passed || 0)}</strong>
+        </div>
+
+        <div>
+          <span>Warnings</span>
+          <strong>${Number(summary.warnings || 0)}</strong>
+        </div>
+
+        <div>
+          <span>Failed</span>
+          <strong>${Number(summary.failed || 0)}</strong>
+        </div>
+
+        <div>
+          <span>Resolved</span>
+          <strong>${Number(summary.resolved || 0)}</strong>
+        </div>
+
+        <div>
+          <span>Manual Review</span>
+          <strong>${Number(summary.manual_review || 0)}</strong>
+        </div>
+      </div>
+    `;
+  }
+
+  function categoryIcon(name) {
+    const icons = {
+      'Registration & Identity': '👤',
+      'Professional & Migration Data': '🩺',
+      'Privacy & Security': '🛡️',
+      'Platform & Administration Quality': '⚙️'
+    };
+
+    return icons[String(name || '')] || '✓';
+  }
+
+  function renderCategory(category) {
+    const items = Array.isArray(category?.items)
+      ? category.items
+      : [];
+
+    return `
+      <section class="nlqat-live-category">
+        <header class="nlqat-live-category-heading">
+          <h3>
+            <span class="nlqat-category-icon" aria-hidden="true">
+              ${categoryIcon(category?.name)}
+            </span>
+            ${esc(category?.name || 'Quality Assurance')}
+          </h3>
+          <span>${items.length} checks</span>
+        </header>
+
+        <div class="nlqat-live-table-wrap">
+          <table class="nlqat-live-table">
+            <thead>
+              <tr>
+                <th>QAT Area</th>
+                <th>What should be tested</th>
+                <th>Priority</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              ${items.map(item => `
+                <tr>
+                  <td data-label="QAT Area">
+                    <strong>${esc(item.area)}</strong>
+                  </td>
+
+                  <td data-label="What should be tested">
+                    ${esc(item.test)}
+                  </td>
+
+                  <td data-label="Priority">
+                    <span class="nlqat-priority ${priorityClass(item.priority)}">
+                      ${esc(label(item.priority))}
+                    </span>
+                  </td>
+
+                  <td data-label="Status">
+                    <span class="nlqat-status ${statusClass(item.status)}">
+                      ${esc(label(item.status))}
+                    </span>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    `;
+  }
+
+  async function loadLiveQat() {
+    const panel = document.querySelector('[data-panel="qat"]');
+
+    if (!panel) return;
+
+    panel.innerHTML = `
+      <div class="nlqat-live-shell">
+        <div class="nlqat-live-loading">
+          Checking NurseLink Quality Assurance…
+        </div>
+      </div>
+    `;
+
+    try {
+      const response = await fetch(
+        `${API}/api/nurselink/admin/qat/summary`,
+        {
+          credentials: 'include',
+          headers: {
+            Accept: 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        }
+      );
+
+      const payload = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(
+          payload?.message
+          || `Unable to run QAT checks (${response.status}).`
+        );
+      }
+
+      const data = payload?.data || {};
+      const categories = Array.isArray(data.categories)
+        ? data.categories
+        : [];
+
+      panel.innerHTML = `
+        <div class="nlqat-live-shell">
+
+          <div class="nlqat-live-heading">
+            <div>
+              <p class="nlqat-live-eyebrow">
+                SYSTEM QUALITY ASSURANCE
+              </p>
+
+              <h2>QAT Checklist</h2>
+
+              <p>
+                NurseLink automatically evaluates defined quality assurance
+                areas and reports the current result.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              class="nlqat-refresh"
+              id="nlqatRefresh"
+            >
+              Run checks again
+            </button>
+          </div>
+
+          ${renderSummary(data.summary)}
+
+          <div class="nlqat-live-categories">
+            ${categories.map(renderCategory).join('')}
+          </div>
+
+          <div class="nlqat-generated">
+            Last generated:
+            ${
+              data.generated_at
+                ? esc(new Date(data.generated_at).toLocaleString())
+                : '—'
+            }
+          </div>
+
+        </div>
+      `;
+
+      document
+        .getElementById('nlqatRefresh')
+        ?.addEventListener('click', loadLiveQat);
+
+    } catch (error) {
+      panel.innerHTML = `
+        <div class="nlqat-live-shell">
+          <div class="nlqat-live-error">
+            <strong>Unable to run Quality Assurance checks.</strong>
+            <p>${esc(error?.message || 'Unknown QAT error.')}</p>
+
+            <button
+              type="button"
+              class="nlqat-refresh"
+              id="nlqatRetry"
+            >
+              Try again
+            </button>
+          </div>
+        </div>
+      `;
+
+      document
+        .getElementById('nlqatRetry')
+        ?.addEventListener('click', loadLiveQat);
+    }
+  }
+
+  window.NurseLinkLoadLiveQat = loadLiveQat;
+})();
+
+/* NurseLink Global Operational Icons v580 */
+(() => {
+  'use strict';
+
+  const rules = [
+    [/dashboard|overview|snapshot|metrics/i, '📊'],
+    [/member|membership|applicant|profile/i, '👥'],
+    [/application|registration|submission/i, '📝'],
+    [/verification|verify|credential|license|prc/i, '✅'],
+    [/organization|partner|hospital|facility/i, '🏥'],
+    [/program|initiative|community|benefit/i, '🧩'],
+    [/employment|opportunit|job|workforce/i, '💼'],
+    [/training|learning|education|development/i, '🎓'],
+    [/event|schedule|calendar/i, '📅'],
+    [/communication|broadcast|message|notification/i, '📣'],
+    [/report|analytic|statistic|insight/i, '📈'],
+    [/support|case|help/i, '🛟'],
+    [/audit|activity|history|log/i, '🧾'],
+    [/health|readiness|platform|system/i, '🩺'],
+    [/administrator|admin management|role|permission/i, '⚙️'],
+    [/quality assurance|qat|test register/i, '☑️'],
+    [/privacy|consent|terms|policy/i, '🔐'],
+    [/security|authentication|password|session/i, '🛡️'],
+    [/finance|treasury|payment/i, '💰'],
+    [/document|file|attachment/i, '📄'],
+    [/search|registry|directory/i, '🔎'],
+    [/approval|approved/i, '👍'],
+    [/pending|queue|attention|follow-up/i, '⏳'],
+    [/warning|issue|problem|missing/i, '⚠️'],
+    [/passed|available|active|success/i, '✓'],
+    [/rejected|declined|failed|error/i, '✕'],
+    [/email|mobile|contact/i, '✉️'],
+    [/migration|overseas|ofw/i, '🌏'],
+    [/reintegration|returning|returned/i, '🏠'],
+    [/skills|specialization|competenc/i, '🩺'],
+    [/accessibility|usability|ux|ui/i, '♿'],
+    [/performance|speed|loading/i, '⚡'],
+    [/database|data integrity|record/i, '🗄️']
+  ];
+
+  function iconFor(text = '') {
+    const value = String(text).trim();
+
+    for (const [pattern, icon] of rules) {
+      if (pattern.test(value)) return icon;
+    }
+
+    return '•';
+  }
+
+  function decorateHeading(el) {
+    if (!el || el.dataset.nlIconDecorated === '1') return;
+
+    const text = String(el.textContent || '').trim();
+    if (!text) return;
+
+    const icon = iconFor(text);
+
+    const span = document.createElement('span');
+    span.className = 'nl580-section-icon';
+    span.setAttribute('aria-hidden', 'true');
+    span.textContent = icon;
+
+    el.prepend(span);
+    el.dataset.nlIconDecorated = '1';
+  }
+
+  function decorateMetric(el) {
+    if (!el || el.dataset.nlMetricIconDecorated === '1') return;
+
+    const title =
+      el.querySelector('span, small, label, h3, h4')?.textContent?.trim()
+      || '';
+
+    if (!title) return;
+
+    const icon = iconFor(title);
+
+    const span = document.createElement('span');
+    span.className = 'nl580-metric-icon';
+    span.setAttribute('aria-hidden', 'true');
+    span.textContent = icon;
+
+    el.prepend(span);
+    el.dataset.nlMetricIconDecorated = '1';
+  }
+
+  function decorate(root = document) {
+    root.querySelectorAll(`
+      [data-panel] .nl530-card-head h2,
+      [data-panel] .nl530-section-intro h2,
+      [data-panel] .nl550-section-heading h2,
+      [data-panel] .nl550-queue-heading h2,
+      [data-panel] .nl552-workload-heading h2,
+      [data-panel] .nlqat-live-category-heading h3,
+      [data-panel] h3.nl580-icon-title
+    `).forEach(decorateHeading);
+
+    root.querySelectorAll(`
+      [data-panel] .nl530-metrics > div,
+      [data-panel] .nl550-kpi-strip > div,
+      [data-panel] .nl550-progress-grid > div,
+      [data-panel] .nl540-progress-grid > div
+    `).forEach(decorateMetric);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    decorate(document);
+
+    const observer = new MutationObserver(mutations => {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
+          if (!(node instanceof HTMLElement)) continue;
+
+          decorate(node);
+
+          if (
+            node.matches?.(
+              '.nl530-card-head h2, .nl530-section-intro h2, .nl550-section-heading h2, .nl550-queue-heading h2, .nl552-workload-heading h2'
+            )
+          ) {
+            decorateHeading(node);
+          }
+        }
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  });
+})();
+
+
+/* NurseLink Terms & Privacy Consent Management v583 */
+(() => {
+  'use strict';
+
+  const API = 'https://api.amsertech.com';
+  const byId = id => document.getElementById(id);
+
+  const esc = value => String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+  function cookie(name) {
+    const prefix = `${name}=`;
+
+    const row = document.cookie
+      .split(';')
+      .map(v => v.trim())
+      .find(v => v.startsWith(prefix));
+
+    return row ? row.slice(prefix.length) : '';
+  }
+
+  async function csrf() {
+    const response = await fetch(
+      `${API}/sanctum/csrf-cookie`,
+      {
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      }
+    );
+
+    if (!response.ok && response.status !== 204) {
+      throw new Error(
+        'Unable to initialize secure policy request.'
+      );
+    }
+  }
+
+  async function request(path, options = {}) {
+    const method =
+      String(options.method || 'GET').toUpperCase();
+
+    const mutating =
+      !['GET', 'HEAD', 'OPTIONS'].includes(method);
+
+    if (mutating) {
+      await csrf();
+    }
+
+    const headers = {
+      Accept: 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      ...(options.headers || {})
+    };
+
+    if (mutating) {
+      headers['Content-Type'] = 'application/json';
+
+      const token =
+        decodeURIComponent(cookie('XSRF-TOKEN'));
+
+      if (token) {
+        headers['X-XSRF-TOKEN'] = token;
+      }
+    }
+
+    const response = await fetch(
+      `${API}${path}`,
+      {
+        credentials: 'include',
+        ...options,
+        method,
+        headers
+      }
+    );
+
+    const payload =
+      await response.json().catch(() => null);
+
+    if (!response.ok) {
+      throw new Error(
+        payload?.message ||
+        `Policy request failed (${response.status}).`
+      );
+    }
+
+    return payload;
+  }
+
+  function notice(message, tone = 'good') {
+    const el = byId('policyManagementNotice');
+    if (!el) return;
+
+    el.hidden = false;
+    el.dataset.tone = tone;
+    el.textContent = message;
+  }
+
+  function value(id) {
+    const el = byId(id);
+    return el ? String(el.value || '') : '';
+  }
+
+  function setValue(id, value = '') {
+    const el = byId(id);
+    if (el) el.value = value ?? '';
+  }
+
+  function populate(payload) {
+    const data = payload?.data || {};
+    const published = data.published || {};
+    const draft = data.draft || null;
+    const editor = data.editor || published || {};
+
+    setValue(
+      'policyOrganizationName',
+      editor.organization_name || 'NurseLink'
+    );
+
+    setValue(
+      'policyContactEmail',
+      editor.contact_email || ''
+    );
+
+    setValue(
+      'policyPrivacyEmail',
+      editor.privacy_email || ''
+    );
+
+    setValue(
+      'policyTermsVersion',
+      editor.terms_version || ''
+    );
+
+    setValue(
+      'policyTermsEffectiveDate',
+      editor.terms_effective_date
+        ? String(editor.terms_effective_date).slice(0, 10)
+        : ''
+    );
+
+    setValue(
+      'policyTermsContent',
+      editor.terms_content || ''
+    );
+
+    setValue(
+      'policyPrivacyVersion',
+      editor.privacy_version || ''
+    );
+
+    setValue(
+      'policyPrivacyEffectiveDate',
+      editor.privacy_effective_date
+        ? String(editor.privacy_effective_date).slice(0, 10)
+        : ''
+    );
+
+    setValue(
+      'policyPrivacyContent',
+      editor.privacy_content || ''
+    );
+
+    if (byId('policyPublishedTerms')) {
+      byId('policyPublishedTerms').textContent =
+        published.terms_version || '—';
+    }
+
+    if (byId('policyPublishedPrivacy')) {
+      byId('policyPublishedPrivacy').textContent =
+        published.privacy_version || '—';
+    }
+
+    if (byId('policyPublishedAt')) {
+      byId('policyPublishedAt').textContent =
+        published.published_at
+          ? new Date(
+              published.published_at
+            ).toLocaleString()
+          : '—';
+    }
+
+    if (byId('policyDraftStatus')) {
+      byId('policyDraftStatus').textContent =
+        draft ? 'Draft available' : 'No draft';
+    }
+  }
+
+  function formPayload() {
+    return {
+      organization_name:
+        value('policyOrganizationName').trim(),
+
+      contact_email:
+        value('policyContactEmail').trim() || null,
+
+      privacy_email:
+        value('policyPrivacyEmail').trim() || null,
+
+      terms_version:
+        value('policyTermsVersion').trim(),
+
+      terms_effective_date:
+        value('policyTermsEffectiveDate') || null,
+
+      terms_content:
+        value('policyTermsContent'),
+
+      privacy_version:
+        value('policyPrivacyVersion').trim(),
+
+      privacy_effective_date:
+        value('policyPrivacyEffectiveDate') || null,
+
+      privacy_content:
+        value('policyPrivacyContent')
+    };
+  }
+
+  async function loadHistory() {
+    const el = byId('policyVersionHistory');
+    if (!el) return;
+
+    try {
+      const payload = await request(
+        '/api/nurselink/admin/privacy-consent/history'
+      );
+
+      const rows =
+        Array.isArray(payload?.data)
+          ? payload.data
+          : [];
+
+      if (!rows.length) {
+        el.innerHTML =
+          '<div class="nl530-empty">' +
+          'No published policy history yet.' +
+          '</div>';
+
+        return;
+      }
+
+      el.innerHTML = rows.map(row => `
+        <article class="nl581-policy-history-row">
+          <div>
+            <strong>
+              ${
+                row.policy_type === 'privacy'
+                  ? '🛡️ Privacy Notice'
+                  : '📜 Terms of Use'
+              }
+              · ${esc(row.version || '—')}
+            </strong>
+
+            <small>
+              ${esc(row.organization_name || 'NurseLink')}
+              ${
+                row.effective_date
+                  ? ` · Effective ${esc(
+                      String(row.effective_date).slice(0, 10)
+                    )}`
+                  : ''
+              }
+            </small>
+          </div>
+
+          <span>
+            ${
+              row.published_at
+                ? esc(
+                    new Date(
+                      row.published_at
+                    ).toLocaleString()
+                  )
+                : '—'
+            }
+          </span>
+        </article>
+      `).join('');
+
+    } catch (error) {
+      el.innerHTML = `
+        <div class="nl530-empty">
+          ${esc(
+            error?.message ||
+            'Unable to load policy history.'
+          )}
+        </div>
+      `;
+    }
+  }
+
+  async function loadSettings() {
+    if (!byId('policyManagementForm')) return;
+
+    try {
+      const payload = await request(
+        '/api/nurselink/admin/privacy-consent'
+      );
+
+      populate(payload);
+      await loadHistory();
+
+    } catch (error) {
+      notice(
+        error?.message ||
+        'Unable to load Terms & Privacy settings.',
+        'danger'
+      );
+    }
+  }
+
+  async function saveDraft(event) {
+    event?.preventDefault();
+
+    try {
+      const payload = await request(
+        '/api/nurselink/admin/privacy-consent',
+        {
+          method: 'PATCH',
+          body: JSON.stringify(formPayload())
+        }
+      );
+
+      notice(
+        payload?.message ||
+        'Terms & Privacy draft saved.'
+      );
+
+      await loadSettings();
+
+    } catch (error) {
+      notice(
+        error?.message ||
+        'Unable to save policy draft.',
+        'danger'
+      );
+
+      throw error;
+    }
+  }
+
+  async function publish(type) {
+    const publishTerms =
+      type === 'terms' || type === 'both';
+
+    const publishPrivacy =
+      type === 'privacy' || type === 'both';
+
+    const label =
+      type === 'both'
+        ? 'Terms and Privacy Notice'
+        : type === 'terms'
+          ? 'Terms of Use'
+          : 'Privacy Notice';
+
+    if (!confirm(
+      `Publish the current ${label} draft? ` +
+      'A new published version may require affected ' +
+      'members to provide updated consent.'
+    )) {
+      return;
+    }
+
+    try {
+      /*
+       * Always save the current editor contents first,
+       * ensuring what is published matches the screen.
+       */
+      await request(
+        '/api/nurselink/admin/privacy-consent',
+        {
+          method: 'PATCH',
+          body: JSON.stringify(formPayload())
+        }
+      );
+
+      const payload = await request(
+        '/api/nurselink/admin/privacy-consent/publish',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            publish_terms: publishTerms,
+            publish_privacy: publishPrivacy
+          })
+        }
+      );
+
+      notice(
+        payload?.message ||
+        `${label} published successfully.`
+      );
+
+      await loadSettings();
+
+    } catch (error) {
+      notice(
+        error?.message ||
+        `Unable to publish ${label}.`,
+        'danger'
+      );
+    }
+  }
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      byId('policyManagementForm')
+        ?.addEventListener(
+          'submit',
+          saveDraft
+        );
+
+      byId('policyPublishTerms')
+        ?.addEventListener(
+          'click',
+          () => publish('terms')
+        );
+
+      byId('policyPublishPrivacy')
+        ?.addEventListener(
+          'click',
+          () => publish('privacy')
+        );
+
+      byId('policyPublishBoth')
+        ?.addEventListener(
+          'click',
+          () => publish('both')
+        );
+
+      byId('policyRefreshHistory')
+        ?.addEventListener(
+          'click',
+          loadHistory
+        );
+
+      document
+        .querySelector('[data-tab="settings"]')
+        ?.addEventListener(
+          'click',
+          () => setTimeout(loadSettings, 50)
+        );
+
+      if (
+        location.hash.replace(/^#/, '') === 'settings'
+      ) {
+        setTimeout(loadSettings, 100);
+      }
+    }
+  );
+
+  window.NurseLinkLoadPolicyManagement =
+    loadSettings;
+})();
+
+
+
+/* NurseLink Setting Tooltips v586 */
+(() => {
+  'use strict';
+
+  function closeTips(except = null) {
+    document
+      .querySelectorAll('.nl586-tip.nl586-tip-open')
+      .forEach(el => {
+        if (el !== except) {
+          el.classList.remove('nl586-tip-open');
+          el.setAttribute('aria-expanded', 'false');
+        }
+      });
+  }
+
+  document.addEventListener('click', event => {
+    const tip = event.target.closest('.nl586-tip');
+
+    if (!tip) {
+      closeTips();
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const open =
+      !tip.classList.contains('nl586-tip-open');
+
+    closeTips(tip);
+    tip.classList.toggle('nl586-tip-open', open);
+    tip.setAttribute(
+      'aria-expanded',
+      open ? 'true' : 'false'
+    );
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeTips();
+    }
+  });
+})();
+
+
+
+
+
+
+
+
+/* NurseLink Single Role Info Enforcement v599 */
+(() => {
+  'use strict';
+
+  function enforceSingleRoleInfo() {
+    document
+      .querySelectorAll(
+        '[data-panel="settings"] .nl597-role-card'
+      )
+      .forEach(card => {
+        const canonical =
+          card.querySelector('.nl597-role-info');
+
+        if (!canonical) return;
+
+        card
+          .querySelectorAll('.nl586-tip')
+          .forEach(tip => {
+            if (tip !== canonical) {
+              tip.remove();
+            }
+          });
+      });
+  }
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    enforceSingleRoleInfo
+  );
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      const panel =
+        document.querySelector(
+          '[data-panel="settings"]'
+        );
+
+      if (!panel) return;
+
+      new MutationObserver(
+        enforceSingleRoleInfo
+      ).observe(panel, {
+        childList: true,
+        subtree: true
+      });
+    }
+  );
+
+  window.NurseLinkEnforceSingleRoleInfo =
+    enforceSingleRoleInfo;
+})();
+
+
+/* NurseLink Definitive Role Tooltip Cleanup v601 */
+(() => {
+  'use strict';
+
+  function cleanRoleCards() {
+    document
+      .querySelectorAll(
+        '[data-panel="settings"] .nl597-role-card'
+      )
+      .forEach(card => {
+        card.querySelectorAll(
+          '.nl586-tip, .nl587-admin-tip, .nl588-global-tip, .nl591-card-info, .nl592-role-info'
+        ).forEach(icon => {
+          if (!icon.classList.contains('nl597-role-info')) {
+            icon.remove();
+          }
+        });
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    cleanRoleCards();
+
+    const panel =
+      document.querySelector('[data-panel="settings"]');
+
+    if (!panel) return;
+
+    new MutationObserver(cleanRoleCards).observe(
+      panel,
+      {
+        childList: true,
+        subtree: true
+      }
+    );
+  });
+
+  window.NurseLinkCleanRoleCardTooltips =
+    cleanRoleCards;
+})();
+
+
+/* NurseLink Definitive Single Role Info v602 */
+(() => {
+  'use strict';
+
+  function enforceSingleInfo() {
+    document
+      .querySelectorAll(
+        '[data-panel="settings"] .nl597-role-card'
+      )
+      .forEach(card => {
+        const canonical =
+          card.querySelector('.nl597-role-info');
+
+        if (!canonical) return;
+
+        /*
+         * Role cards contain a checkbox INPUT and one legitimate
+         * BUTTON: the canonical top-right information control.
+         * Remove every other button regardless of its old class.
+         */
+        card.querySelectorAll('button').forEach(button => {
+          if (button !== canonical) {
+            button.remove();
+          }
+        });
+
+        /*
+         * Also remove legacy tooltip elements that may not
+         * currently be rendered as buttons.
+         */
+        card.querySelectorAll(
+          '.nl586-tip, .nl587-admin-tip, .nl588-global-tip, .nl591-card-info, .nl592-role-info'
+        ).forEach(el => {
+          if (el !== canonical) {
+            el.remove();
+          }
+        });
+      });
+  }
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      enforceSingleInfo();
+
+      const panel =
+        document.querySelector(
+          '[data-panel="settings"]'
+        );
+
+      if (!panel) return;
+
+      new MutationObserver(
+        enforceSingleInfo
+      ).observe(panel, {
+        childList: true,
+        subtree: true
+      });
+    }
+  );
+
+  window.NurseLinkEnforceSingleRoleInfo =
+    enforceSingleInfo;
+})();
+
+
+/* NurseLink Absolute Single Role Info v603 */
+(() => {
+  'use strict';
+
+  function removeExtraRoleInfo() {
+    document
+      .querySelectorAll(
+        '[data-panel="settings"] .nl597-role-card'
+      )
+      .forEach(card => {
+        const canonical =
+          card.querySelector('.nl597-role-info');
+
+        if (!canonical) return;
+
+        /*
+         * Remove any additional standalone info symbol,
+         * regardless of whether an older decorator created
+         * it as a button, span, i, div or another element.
+         */
+        [...card.querySelectorAll('*')].forEach(el => {
+          if (el === canonical) return;
+
+          if (el.contains(canonical)) return;
+
+          const text =
+            String(el.textContent || '').trim();
+
+          if (
+            text === 'ⓘ' ||
+            text === 'ℹ' ||
+            text === 'i'
+          ) {
+            el.remove();
+          }
+        });
+
+        /*
+         * There must be exactly one canonical icon.
+         */
+        card
+          .querySelectorAll('.nl597-role-info')
+          .forEach((el, index) => {
+            if (index > 0) el.remove();
+          });
+      });
+  }
+
+  function startCleanup() {
+    const panel =
+      document.querySelector(
+        '[data-panel="settings"]'
+      );
+
+    if (!panel) return;
+
+    removeExtraRoleInfo();
+
+    const observer =
+      new MutationObserver(() => {
+        removeExtraRoleInfo();
+      });
+
+    observer.observe(panel, {
+      childList: true,
+      subtree: true
+    });
+
+    /*
+     * Run again after dynamic Administrator rendering.
+     */
+    setTimeout(removeExtraRoleInfo, 50);
+    setTimeout(removeExtraRoleInfo, 250);
+    setTimeout(removeExtraRoleInfo, 750);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener(
+      'DOMContentLoaded',
+      startCleanup
+    );
+  } else {
+    startCleanup();
+  }
+
+  window.NurseLinkRemoveExtraRoleInfo =
+    removeExtraRoleInfo;
+})();
+
+
+/* NurseLink Admin Role Tooltip Final Cleanup v606 */
+(() => {
+  'use strict';
+
+  function cleanAdministratorRoleCards() {
+    document
+      .querySelectorAll(
+        '[data-panel="settings"] .nl597-role-card'
+      )
+      .forEach(card => {
+        const canonical =
+          card.querySelector('.nl597-role-info');
+
+        if (!canonical) return;
+
+        /*
+         * Remove every legacy help/info element except
+         * the dedicated top-right role information button.
+         */
+        [...card.children].forEach(child => {
+          if (child === canonical) return;
+
+          child
+            .querySelectorAll?.(
+              '.nl586-tip, .nl587-admin-tip, .nl588-global-tip, [data-tooltip]'
+            )
+            .forEach(el => {
+              if (el !== canonical) el.remove();
+            });
+        });
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    cleanAdministratorRoleCards();
+
+    const panel =
+      document.querySelector('[data-panel="settings"]');
+
+    if (!panel) return;
+
+    new MutationObserver(
+      cleanAdministratorRoleCards
+    ).observe(panel, {
+      childList: true,
+      subtree: true
+    });
+
+    setTimeout(cleanAdministratorRoleCards, 100);
+    setTimeout(cleanAdministratorRoleCards, 500);
+  });
+})();

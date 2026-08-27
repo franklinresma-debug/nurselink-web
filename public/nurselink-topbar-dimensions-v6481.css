@@ -1,0 +1,118 @@
+/* NurseLink Topbar Control Dimensions v64.8.1 */
+
+:root {
+  --nl6481-control-size: 48px;
+  --nl6481-control-radius: 12px;
+  --nl6481-control-border: #d8e1eb;
+}
+
+/* One consistent box size for Help, Theme and Notification. */
+[data-nl6481-topbar-control="1"],
+.nl6480-theme-button,
+.nl6481-theme-button {
+  width: var(--nl6481-control-size) !important;
+  min-width: var(--nl6481-control-size) !important;
+  max-width: var(--nl6481-control-size) !important;
+
+  height: var(--nl6481-control-size) !important;
+  min-height: var(--nl6481-control-size) !important;
+  max-height: var(--nl6481-control-size) !important;
+
+  flex: 0 0 var(--nl6481-control-size) !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  display: inline-grid !important;
+  place-items: center !important;
+
+  border-radius: var(--nl6481-control-radius) !important;
+  box-sizing: border-box !important;
+
+  line-height: 1 !important;
+  vertical-align: middle !important;
+}
+
+/* Help is icon-first in the compact square. */
+[data-nl6481-control-type="help"] {
+  font-size: 0 !important;
+}
+
+[data-nl6481-control-type="help"]::before {
+  content: "?";
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 800;
+  color: currentColor;
+}
+
+/* Hide nested "Help" text visually but retain the button's aria-label/title. */
+[data-nl6481-control-type="help"] > span,
+[data-nl6481-control-type="help"] > small,
+[data-nl6481-control-type="help"] [class*="label"] {
+  display: none !important;
+}
+
+/* Notification bell stays centered while badge remains top-right. */
+[data-nl6481-control-type="notification"] {
+  position: relative !important;
+}
+
+[data-nl6481-control-type="notification"] [class*="badge"],
+[data-nl6481-control-type="notification"] [class*="count"],
+[data-nl6481-control-type="notification"] [data-count],
+[data-nl6481-control-type="notification"] sup {
+  position: absolute !important;
+  top: -7px !important;
+  right: -7px !important;
+  z-index: 4;
+}
+
+/* Light-mode surface. */
+html[data-theme="light"] [data-nl6481-topbar-control="1"],
+html.light [data-nl6481-topbar-control="1"],
+body.light [data-nl6481-topbar-control="1"] {
+  background: #ffffff !important;
+  border: 1px solid var(--nl6481-control-border) !important;
+  color: #16263b !important;
+}
+
+/* Dark-mode surface. */
+html[data-theme="dark"] [data-nl6481-topbar-control="1"],
+html.dark [data-nl6481-topbar-control="1"],
+body.dark [data-nl6481-topbar-control="1"] {
+  background: #172437 !important;
+  border: 1px solid #31445a !important;
+  color: #eef4fb !important;
+}
+
+/* Keep the theme button's own state colors, only normalize dimensions/radius. */
+.nl6480-theme-button,
+.nl6481-theme-button {
+  border-radius: var(--nl6481-control-radius) !important;
+}
+
+/* Consistent hover/focus affordance without redesigning the button. */
+[data-nl6481-topbar-control="1"]:hover,
+.nl6480-theme-button:hover,
+.nl6481-theme-button:hover {
+  border-color: #4b9ddd !important;
+}
+
+[data-nl6481-topbar-control="1"]:focus-visible,
+.nl6480-theme-button:focus-visible,
+.nl6481-theme-button:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.20) !important;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --nl6481-control-size: 44px;
+    --nl6481-control-radius: 11px;
+  }
+
+  [data-nl6481-control-type="help"]::before {
+    font-size: 19px;
+  }
+}

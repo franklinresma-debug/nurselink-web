@@ -1,0 +1,96 @@
+/* NurseLink Topbar Minimal Actions v64.9.1
+   Keep only Profile, Theme, Notification in the topbar.
+   Sidebar remains the sole desktop/tablet navigation surface.
+*/
+
+:root {
+  --nltop-border:#d8e1ec;
+  --nltop-bg:#ffffff;
+  --nltop-text:#0b1730;
+  --nltop-muted:#617393;
+}
+
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark {
+  --nltop-border:#22334a;
+  --nltop-bg:#0a1625;
+  --nltop-text:#f8fbff;
+  --nltop-muted:#b0c0d3;
+}
+
+/* Preserve shared theme from v64.9.0 by keeping current custom properties inherited. */
+
+/* Topbar shell */
+[data-nl-minimal-topbar="true"] {
+  background:var(--nltop-bg)!important;
+  border-color:var(--nltop-border)!important;
+  color:var(--nltop-text)!important;
+}
+
+/* Hide every tagged topbar item except the three approved actions. */
+[data-nl-minimal-topbar="true"] [data-nl-topbar-remove="true"] {
+  display:none!important;
+}
+
+/* Approved right-side action group */
+[data-nl-minimal-topbar="true"] [data-nl-topbar-actions="true"] {
+  margin-left:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  flex-wrap:nowrap!important;
+  gap:8px!important;
+  min-width:max-content!important;
+}
+
+/* Keep exact approved controls visible */
+[data-nl-minimal-topbar="true"] :is(
+  [data-nl-topbar-profile="true"],
+  [data-nl-topbar-theme="true"],
+  [data-nl-topbar-notifications="true"]
+) {
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  flex:0 0 auto!important;
+}
+
+/* No leftover center navigation region */
+[data-nl-minimal-topbar="true"] [data-nl-topbar-center="true"] {
+  display:none!important;
+}
+
+/* Desktop/tablet: sidebar owns all page navigation */
+@media (min-width:768px) {
+  [data-nl-minimal-topbar="true"] {
+    justify-content:flex-end!important;
+  }
+
+  [data-nl-minimal-topbar="true"] [data-nl-topbar-left="true"] {
+    display:none!important;
+  }
+}
+
+/* Mobile: preserve hamburger/brand if they are required for the adaptive shell,
+   but still remove all page-menu/navigation items from the topbar. */
+@media (max-width:767px) {
+  [data-nl-minimal-topbar="true"] {
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    flex-wrap:nowrap!important;
+  }
+
+  [data-nl-minimal-topbar="true"] [data-nl-topbar-left="true"] {
+    display:flex!important;
+    min-width:0!important;
+    flex:1 1 auto!important;
+  }
+
+  [data-nl-minimal-topbar="true"] [data-nl-topbar-actions="true"] {
+    gap:5px!important;
+  }
+}

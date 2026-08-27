@@ -236,3 +236,2892 @@ body.nl-admin-body,.nl-admin-auth-body,.nl-admin-shell{font-size:14px;line-heigh
 }
 @media (max-width:480px){.nl557-smart-review-grid{grid-template-columns:1fr}}
 /* NURSELINK_SMART_REGISTRATION_REVIEW_V557_END */
+
+
+/* NurseLink Administrator role selector */
+.nl553-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.nl553-role-grid label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  margin: 0;
+  border: 1px solid #d9e4ef;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.nl553-role-grid label:hover {
+  border-color: #9fc4e8;
+  background: #f8fbff;
+}
+
+.nl553-role-grid input[type="checkbox"] {
+  appearance: auto;
+  -webkit-appearance: checkbox;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px;
+  min-height: 18px;
+  flex: 0 0 18px;
+  margin: 2px 0 0;
+  padding: 0;
+}
+
+.nl553-role-grid label > span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.nl553-role-grid label strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.nl553-role-grid label small {
+  display: block;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+@media (max-width: 760px) {
+  .nl553-role-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nl553-role-grid label {
+    padding: 12px 14px;
+  }
+}
+
+
+/* NurseLink QAT Checklist v560 */
+
+.nl530-menu a[data-tab="qat"] {
+  position: relative;
+}
+
+.nlqat-new-badge {
+  margin-left: auto;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #159447;
+  color: #fff;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.nlqat-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.nlqat-heading {
+  align-items: flex-start;
+}
+
+.nlqat-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nlqat-actions button {
+  min-height: 40px;
+}
+
+.nlqat-danger-outline {
+  background: #fff !important;
+  color: #a82424 !important;
+  border: 1px solid #e9bcbc !important;
+}
+
+.nlqat-summary {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.nlqat-summary > div {
+  padding: 15px;
+  border: 1px solid #dce7f1;
+  border-radius: 12px;
+  background: #f8fbff;
+}
+
+.nlqat-summary span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #65778a;
+}
+
+.nlqat-summary strong {
+  display: block;
+  font-size: 24px;
+  line-height: 1.1;
+  color: #163754;
+}
+
+.nlqat-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #dce6ef;
+  border-radius: 12px;
+}
+
+.nlqat-table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.nlqat-table th {
+  padding: 13px 14px;
+  text-align: left;
+  background: #176fc1;
+  color: #fff;
+  font-size: 13px;
+}
+
+.nlqat-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5edf4;
+  vertical-align: top;
+  font-size: 13px;
+}
+
+.nlqat-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.nlqat-table tbody tr:hover {
+  background: #fafcff;
+}
+
+.nlqat-priority {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 74px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nlqat-priority.critical {
+  color: #b42318;
+  background: #fee4e2;
+}
+
+.nlqat-priority.high {
+  color: #b54708;
+  background: #ffead5;
+}
+
+.nlqat-priority.medium {
+  color: #936000;
+  background: #fff3cd;
+}
+
+.nlqat-status {
+  width: 100%;
+  min-width: 125px;
+  padding: 8px 30px 8px 10px;
+  border: 1px solid #ccd9e5;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+}
+
+.nlqat-note {
+  width: 100%;
+  min-width: 230px;
+  min-height: 68px;
+  padding: 9px 10px;
+  border: 1px solid #ccd9e5;
+  border-radius: 8px;
+  resize: vertical;
+  font: inherit;
+  line-height: 1.4;
+}
+
+.nlqat-status:focus,
+.nlqat-note:focus {
+  outline: 2px solid rgba(20, 115, 200, .18);
+  border-color: #2b86d1;
+}
+
+.nlqat-architecture-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.nlqat-architecture-flow span {
+  padding: 8px 11px;
+  border: 1px solid #cfe0ef;
+  border-radius: 8px;
+  background: #f7fbff;
+  font-size: 12px;
+  font-weight: 700;
+  color: #31516c;
+}
+
+.nlqat-architecture-flow b {
+  color: #7b91a6;
+}
+
+.nlqat-alert {
+  margin-top: 18px;
+  padding: 16px;
+  border-left: 4px solid #e69620;
+  border-radius: 9px;
+  background: #fff9ec;
+}
+
+.nlqat-alert strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #754a08;
+}
+
+.nlqat-alert p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.nlqat-classifications {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.nlqat-classifications span {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #edf6ff;
+  border: 1px solid #cfe3f7;
+  color: #24567d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nlqat-governance-note {
+  margin: 17px 0 0;
+  line-height: 1.6;
+}
+
+.nlqat-review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.nlqat-review-grid > div {
+  padding: 15px;
+  border: 1px solid #dde7f0;
+  border-radius: 11px;
+  background: #fafcff;
+}
+
+.nlqat-review-grid strong,
+.nlqat-review-grid span {
+  display: block;
+}
+
+.nlqat-review-grid strong {
+  margin-bottom: 6px;
+  color: #1b4d75;
+}
+
+.nlqat-review-grid span {
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.nlqat-legend-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+
+.nlqat-legend {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nlqat-legend span {
+  font-size: 12px;
+}
+
+.nlqat-legend i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.nlqat-legend i.critical {
+  background: #db3b35;
+}
+
+.nlqat-legend i.high {
+  background: #ef8c2f;
+}
+
+.nlqat-legend i.medium {
+  background: #e6ad20;
+}
+
+@media (max-width: 980px) {
+  .nlqat-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nlqat-review-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .nlqat-summary,
+  .nlqat-review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nlqat-heading,
+  .nlqat-legend-card {
+    display: block;
+  }
+
+  .nlqat-actions {
+    margin-top: 14px;
+  }
+
+  .nlqat-actions button {
+    width: 100%;
+  }
+
+  .nlqat-legend-card small {
+    display: block;
+    margin-top: 13px;
+  }
+}
+
+
+/* NurseLink Live QAT v564 */
+
+.nlqat-live-shell {
+  width: 100%;
+}
+
+.nlqat-live-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.nlqat-live-heading h2 {
+  margin: 3px 0 6px;
+  font-size: 26px;
+}
+
+.nlqat-live-heading p {
+  margin: 0;
+  max-width: 760px;
+}
+
+.nlqat-live-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.nlqat-refresh {
+  min-height: 42px;
+  padding: 0 17px;
+  border-radius: 9px;
+  border: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.nlqat-live-summary {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.nlqat-live-summary > div {
+  border: 1px solid rgba(127,127,127,.22);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.nlqat-live-summary span {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.nlqat-live-summary strong {
+  display: block;
+  font-size: 25px;
+}
+
+.nlqat-live-category {
+  margin-bottom: 24px;
+  border: 1px solid rgba(127,127,127,.22);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.nlqat-live-category-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 18px;
+  border-bottom: 1px solid rgba(127,127,127,.22);
+}
+
+.nlqat-live-category-heading h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.nlqat-live-category-heading span {
+  font-size: 12px;
+}
+
+.nlqat-live-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.nlqat-live-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.nlqat-live-table th,
+.nlqat-live-table td {
+  padding: 14px 16px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(127,127,127,.17);
+}
+
+.nlqat-live-table th {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.nlqat-live-table th:nth-child(1) {
+  width: 23%;
+}
+
+.nlqat-live-table th:nth-child(2) {
+  width: 49%;
+}
+
+.nlqat-live-table th:nth-child(3) {
+  width: 14%;
+}
+
+.nlqat-live-table th:nth-child(4) {
+  width: 14%;
+}
+
+.nlqat-live-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.nlqat-priority,
+.nlqat-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 3px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.nlqat-priority.is-critical,
+.nlqat-status.is-failed {
+  font-weight: 900;
+}
+
+.nlqat-status.is-passed::before {
+  content: '✓';
+  margin-right: 5px;
+}
+
+.nlqat-status.is-warning::before {
+  content: '!';
+  margin-right: 5px;
+}
+
+.nlqat-status.is-failed::before {
+  content: '×';
+  margin-right: 5px;
+}
+
+.nlqat-status.is-manual::before {
+  content: '•';
+  margin-right: 5px;
+}
+
+.nlqat-generated {
+  padding: 4px 0 20px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.nlqat-live-loading,
+.nlqat-live-error {
+  border: 1px solid rgba(127,127,127,.22);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.nlqat-live-error p {
+  margin: 8px 0 18px;
+}
+
+@media (max-width: 900px) {
+  .nlqat-live-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nlqat-live-heading {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 680px) {
+  .nlqat-live-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nlqat-live-table thead {
+    display: none;
+  }
+
+  .nlqat-live-table,
+  .nlqat-live-table tbody,
+  .nlqat-live-table tr,
+  .nlqat-live-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .nlqat-live-table tr {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(127,127,127,.2);
+  }
+
+  .nlqat-live-table td {
+    padding: 7px 0;
+    border: 0;
+  }
+
+  .nlqat-live-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .nlqat-live-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+}
+
+/* NurseLink panel visibility hardening v567 */
+[hidden] {
+  display: none !important;
+}
+
+/* NurseLink QAT Responsive Two-Column Layout v569 */
+
+/* Tighten the QAT header */
+.nlqat-live-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.nlqat-live-heading h2 {
+  margin: 2px 0 4px;
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.nlqat-live-heading p {
+  max-width: 760px;
+  line-height: 1.45;
+}
+
+/* More compact KPI cards */
+.nlqat-live-summary {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.nlqat-live-summary > div {
+  min-height: 74px;
+  padding: 11px 14px;
+  border-radius: 10px;
+}
+
+.nlqat-live-summary strong {
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+/* Main 2-column QAT category grid */
+.nlqat-live-categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+/* Each category becomes a compact dashboard card */
+.nlqat-live-category {
+  min-width: 0;
+  margin: 0;
+  border-radius: 11px;
+}
+
+.nlqat-live-category-heading {
+  min-height: 52px;
+  padding: 11px 14px;
+}
+
+.nlqat-live-category-heading h3 {
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.nlqat-live-category-heading span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* Compact table */
+.nlqat-live-table {
+  table-layout: fixed;
+}
+
+.nlqat-live-table th,
+.nlqat-live-table td {
+  padding: 10px 11px;
+  line-height: 1.35;
+}
+
+.nlqat-live-table th {
+  font-size: 10px;
+}
+
+.nlqat-live-table td {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+/* Optimized widths inside half-width cards */
+.nlqat-live-table th:nth-child(1) {
+  width: 23%;
+}
+
+.nlqat-live-table th:nth-child(2) {
+  width: 45%;
+}
+
+.nlqat-live-table th:nth-child(3) {
+  width: 14%;
+}
+
+.nlqat-live-table th:nth-child(4) {
+  width: 18%;
+}
+
+.nlqat-priority,
+.nlqat-status {
+  min-height: 24px;
+  padding: 2px 8px;
+  font-size: 10px;
+}
+
+/* Keep buttons compact */
+.nlqat-refresh {
+  min-height: 38px;
+  padding: 0 14px;
+}
+
+/* Large tablet / narrow desktop */
+@media (max-width: 1250px) {
+  .nlqat-live-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nlqat-live-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .nlqat-live-table th:nth-child(1) {
+    width: 22%;
+  }
+
+  .nlqat-live-table th:nth-child(2) {
+    width: 50%;
+  }
+
+  .nlqat-live-table th:nth-child(3) {
+    width: 13%;
+  }
+
+  .nlqat-live-table th:nth-child(4) {
+    width: 15%;
+  }
+}
+
+/* Tablet */
+@media (max-width: 820px) {
+  .nlqat-live-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .nlqat-refresh {
+    width: 100%;
+  }
+
+  .nlqat-live-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nlqat-live-categories {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  .nlqat-live-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .nlqat-live-summary > div {
+    min-height: 66px;
+    padding: 10px;
+  }
+
+  .nlqat-live-summary strong {
+    font-size: 20px;
+  }
+
+  .nlqat-live-category-heading {
+    padding: 11px 12px;
+  }
+
+  /*
+   * Turn the four-column table into individual
+   * readable QA cards on small screens.
+   */
+  .nlqat-live-table-wrap {
+    overflow: visible;
+  }
+
+  .nlqat-live-table,
+  .nlqat-live-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .nlqat-live-table thead {
+    display: none;
+  }
+
+  .nlqat-live-table tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 7px 12px;
+    padding: 12px;
+    border-bottom: 1px solid rgba(127,127,127,.18);
+  }
+
+  .nlqat-live-table td {
+    display: block;
+    width: auto;
+    padding: 0;
+    border: 0;
+    font-size: 12px;
+  }
+
+  .nlqat-live-table td::before {
+    content: none;
+  }
+
+  /* QAT Area */
+  .nlqat-live-table td:nth-child(1) {
+    grid-column: 1 / -1;
+    font-size: 14px;
+  }
+
+  /* What should be tested */
+  .nlqat-live-table td:nth-child(2) {
+    grid-column: 1 / -1;
+    opacity: .88;
+    line-height: 1.4;
+  }
+
+  /* Priority */
+  .nlqat-live-table td:nth-child(3) {
+    grid-column: 1;
+  }
+
+  /* Status */
+  .nlqat-live-table td:nth-child(4) {
+    grid-column: 2;
+    text-align: right;
+  }
+
+  .nlqat-priority,
+  .nlqat-status {
+    min-height: 26px;
+    padding: 3px 9px;
+  }
+
+  .nlqat-generated {
+    text-align: left;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+  .nlqat-live-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nlqat-live-heading h2 {
+    font-size: 21px;
+  }
+
+  .nlqat-live-table tr {
+    grid-template-columns: 1fr;
+  }
+
+  .nlqat-live-table td:nth-child(3),
+  .nlqat-live-table td:nth-child(4) {
+    grid-column: 1;
+    text-align: left;
+  }
+}
+
+/* NurseLink QAT Category Icons v570 */
+.nlqat-live-category-heading h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nlqat-category-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border: 1px solid rgba(127,127,127,.22);
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1;
+}
+
+@media (max-width: 620px) {
+  .nlqat-category-icon {
+    width: 26px;
+    height: 26px;
+    flex-basis: 26px;
+    font-size: 14px;
+  }
+}
+
+/* NurseLink QAT Priority Colors v571 */
+
+.nlqat-priority.is-critical {
+  color: #b42318;
+  background: #fee4e2;
+  border-color: #fda29b;
+}
+
+.nlqat-priority.is-high {
+  color: #b54708;
+  background: #ffead5;
+  border-color: #fdba74;
+}
+
+.nlqat-priority.is-medium {
+  color: #854d0e;
+  background: #fef3c7;
+  border-color: #fcd34d;
+}
+
+/* Optional stronger contrast on hover-capable devices */
+@media (hover: hover) {
+  .nlqat-priority.is-critical:hover {
+    background: #fecaca;
+  }
+
+  .nlqat-priority.is-high:hover {
+    background: #fed7aa;
+  }
+
+  .nlqat-priority.is-medium:hover {
+    background: #fde68a;
+  }
+}
+
+/* NurseLink QAT Resolved Status v572 */
+
+.nlqat-status.is-resolved {
+  color: #067647;
+  background: #d1fadf;
+  border-color: #6ce9a6;
+}
+
+.nlqat-status.is-resolved::before {
+  content: '✓';
+  margin-right: 5px;
+}
+
+/* Six KPI cards on wide screens */
+.nlqat-live-summary {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+@media (max-width: 1250px) {
+  .nlqat-live-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .nlqat-live-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* NurseLink System Health Responsive Grid v573 */
+
+/* System Health metrics: two columns on desktop */
+[data-panel="health"] #healthArea {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Health modules: two columns on desktop */
+[data-panel="health"] #healthModules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+/* Keep individual cards from overflowing */
+[data-panel="health"] #healthArea > *,
+[data-panel="health"] #healthModules > * {
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+}
+
+/* Tablet and mobile: stack */
+@media (max-width: 900px) {
+  [data-panel="health"] #healthArea,
+  [data-panel="health"] #healthModules {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Compact phone spacing */
+@media (max-width: 620px) {
+  [data-panel="health"] #healthArea,
+  [data-panel="health"] #healthModules {
+    gap: 10px;
+  }
+
+  [data-panel="health"] #healthArea > *,
+  [data-panel="health"] #healthModules > * {
+    border-radius: 10px;
+  }
+}
+
+/* NurseLink System Health Inner Grid v574 */
+
+/* Two columns for individual readiness checks on desktop */
+[data-panel="health"] .nl530-health-table {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+}
+
+/* Keep each readiness row compact */
+[data-panel="health"] .nl530-health-row {
+  min-width: 0;
+  margin: 0;
+}
+
+/* Stack on tablet/mobile */
+@media (max-width: 900px) {
+  [data-panel="health"] .nl530-health-table {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Slightly tighter spacing on phones */
+@media (max-width: 620px) {
+  [data-panel="health"] .nl530-health-table {
+    gap: 7px;
+  }
+
+  [data-panel="health"] .nl530-health-row {
+    padding: 10px 12px;
+  }
+}
+
+/* NurseLink System Health Functional Icons v575 */
+
+[data-panel="health"] .nl530-health-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.nl575-health-name {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 9px;
+}
+
+.nl575-health-name > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.nl575-health-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  border: 1px solid rgba(127,127,127,.20);
+  border-radius: 8px;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 1;
+}
+
+[data-panel="health"] .nl530-health-row > b {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 620px) {
+  .nl575-health-icon {
+    width: 27px;
+    height: 27px;
+    flex-basis: 27px;
+    font-size: 14px;
+  }
+
+  [data-panel="health"] .nl530-health-row {
+    gap: 10px;
+  }
+}
+
+/* NurseLink Dashboard Responsive Two-Column Layout v576 */
+
+/* Main dashboard content groups */
+[data-panel="dashboard"] .nl540-grid-main,
+[data-panel="dashboard"] .nl530-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+/* Dashboard metric cards in two columns */
+[data-panel="dashboard"] #dashboardMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Keep cards from overflowing */
+[data-panel="dashboard"] .nl540-grid-main > *,
+[data-panel="dashboard"] .nl530-grid-2 > *,
+[data-panel="dashboard"] #dashboardMetrics > * {
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+}
+
+/* Slightly tighter spacing */
+[data-panel="dashboard"] {
+  --nl-dashboard-gap: 14px;
+}
+
+[data-panel="dashboard"] .nl530-card,
+[data-panel="dashboard"] .nl540-progress-card {
+  border-radius: 12px;
+}
+
+/* Tablet: still 2 columns where there is enough room */
+@media (max-width: 1100px) {
+  [data-panel="dashboard"] #dashboardMetrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile / narrow tablet: stack everything */
+@media (max-width: 760px) {
+  [data-panel="dashboard"] .nl540-grid-main,
+  [data-panel="dashboard"] .nl530-grid-2,
+  [data-panel="dashboard"] #dashboardMetrics {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* NurseLink Administration Global Responsive Grid v577 */
+
+/* =========================================================
+   MEMBERS
+   ========================================================= */
+
+[data-panel="members"] #membersArea,
+[data-panel="members"] #memberOnboardingArea {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   VERIFICATION
+   ========================================================= */
+
+[data-panel="verification"] #verificationArea,
+[data-panel="verification"] #verificationModules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   ORGANIZATIONS
+   ========================================================= */
+
+[data-panel="organizations"] .nl530-grid-2,
+[data-panel="organizations"] #organizationsArea {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   PROGRAMS
+   ========================================================= */
+
+[data-panel="programs"] #programModules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   EMPLOYMENT & OPPORTUNITIES
+   ========================================================= */
+
+[data-panel="employment"] .nl530-grid-2,
+[data-panel="employment"] #opportunitiesArea,
+[data-panel="employment"] #jobApplicationsArea {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   TRAINING & EVENTS
+   ========================================================= */
+
+[data-panel="training"] #trainingArea,
+[data-panel="training"] #trainingModules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   COMMUNICATIONS
+   ========================================================= */
+
+[data-panel="communications"] .nl530-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   REPORTS & ANALYTICS
+   ========================================================= */
+
+[data-panel="reports"] #reportsArea,
+[data-panel="reports"] #reportModules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   SUPPORT CASES
+   ========================================================= */
+
+[data-panel="support"] .nl530-grid-support,
+[data-panel="support"] #supportArea {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   AUDIT LOGS
+   ========================================================= */
+
+[data-panel="audit"] #auditArea {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   SYSTEM HEALTH
+   Existing readiness grid remains two-column.
+   ========================================================= */
+
+[data-panel="health"] #healthArea,
+[data-panel="health"] #healthModules,
+[data-panel="health"] .nl530-health-table {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+
+/* =========================================================
+   ADMINISTRATORS
+   ========================================================= */
+
+[data-panel="settings"] .nl553-admin-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+
+/* =========================================================
+   GENERIC CARD / LIST SAFETY
+   ========================================================= */
+
+[data-panel="members"] #membersArea > *,
+[data-panel="members"] #memberOnboardingArea > *,
+[data-panel="verification"] #verificationArea > *,
+[data-panel="verification"] #verificationModules > *,
+[data-panel="organizations"] #organizationsArea > *,
+[data-panel="programs"] #programModules > *,
+[data-panel="employment"] #opportunitiesArea > *,
+[data-panel="employment"] #jobApplicationsArea > *,
+[data-panel="training"] #trainingArea > *,
+[data-panel="training"] #trainingModules > *,
+[data-panel="reports"] #reportsArea > *,
+[data-panel="reports"] #reportModules > *,
+[data-panel="support"] #supportArea > *,
+[data-panel="audit"] #auditArea > *,
+[data-panel="health"] #healthArea > *,
+[data-panel="health"] #healthModules > *,
+[data-panel="settings"] .nl553-admin-layout > * {
+  min-width: 0;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+
+/* Loading / empty messages should span the full grid. */
+
+[data-panel] .nl-admin-loading,
+[data-panel] .nl530-empty {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   TABLE-BASED WORKFLOWS
+   Keep operational tables full width.
+   ========================================================= */
+
+[data-panel="applications"] .nl550-queue-card,
+[data-panel="applications"] .nl550-table-wrap,
+[data-panel="applications"] #applicationsArea {
+  width: 100%;
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  [data-panel="members"] #membersArea,
+  [data-panel="members"] #memberOnboardingArea,
+
+  [data-panel="verification"] #verificationArea,
+  [data-panel="verification"] #verificationModules,
+
+  [data-panel="organizations"] .nl530-grid-2,
+  [data-panel="organizations"] #organizationsArea,
+
+  [data-panel="programs"] #programModules,
+
+  [data-panel="employment"] .nl530-grid-2,
+  [data-panel="employment"] #opportunitiesArea,
+  [data-panel="employment"] #jobApplicationsArea,
+
+  [data-panel="training"] #trainingArea,
+  [data-panel="training"] #trainingModules,
+
+  [data-panel="communications"] .nl530-grid-2,
+
+  [data-panel="reports"] #reportsArea,
+  [data-panel="reports"] #reportModules,
+
+  [data-panel="support"] .nl530-grid-support,
+  [data-panel="support"] #supportArea,
+
+  [data-panel="audit"] #auditArea,
+
+  [data-panel="health"] #healthArea,
+  [data-panel="health"] #healthModules,
+  [data-panel="health"] .nl530-health-table,
+
+  [data-panel="settings"] .nl553-admin-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Small phones */
+
+@media (max-width: 620px) {
+
+  [data-panel="members"] #membersArea,
+  [data-panel="members"] #memberOnboardingArea,
+
+  [data-panel="verification"] #verificationArea,
+  [data-panel="verification"] #verificationModules,
+
+  [data-panel="organizations"] .nl530-grid-2,
+  [data-panel="organizations"] #organizationsArea,
+
+  [data-panel="programs"] #programModules,
+
+  [data-panel="employment"] .nl530-grid-2,
+  [data-panel="employment"] #opportunitiesArea,
+  [data-panel="employment"] #jobApplicationsArea,
+
+  [data-panel="training"] #trainingArea,
+  [data-panel="training"] #trainingModules,
+
+  [data-panel="communications"] .nl530-grid-2,
+
+  [data-panel="reports"] #reportsArea,
+  [data-panel="reports"] #reportModules,
+
+  [data-panel="support"] .nl530-grid-support,
+  [data-panel="support"] #supportArea,
+
+  [data-panel="audit"] #auditArea,
+
+  [data-panel="health"] #healthArea,
+  [data-panel="health"] #healthModules,
+  [data-panel="health"] .nl530-health-table,
+
+  [data-panel="settings"] .nl553-admin-layout {
+    gap: 10px;
+  }
+}
+
+/* NurseLink Administrator Menu Icons v579 */
+
+#operationsMenu .nl579-menu-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1;
+}
+
+#operationsMenu [data-tab] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#operationsMenu [data-tab] > span {
+  min-width: 0;
+}
+
+@media (max-width: 620px) {
+  #operationsMenu .nl579-menu-icon {
+    width: 26px;
+    height: 26px;
+    flex-basis: 26px;
+    font-size: 14px;
+  }
+}
+
+/* NurseLink Global Operational Icons v580 */
+
+.nl580-section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  vertical-align: middle;
+  border: 1px solid rgba(127,127,127,.20);
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.nl580-metric-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 7px;
+  border: 1px solid rgba(127,127,127,.18);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Keep headings aligned */
+[data-panel] .nl530-card-head h2,
+[data-panel] .nl530-section-intro h2,
+[data-panel] .nl550-section-heading h2,
+[data-panel] .nl550-queue-heading h2,
+[data-panel] .nl552-workload-heading h2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Don't duplicate dedicated icons already implemented */
+.nl575-health-name .nl580-section-icon,
+.nlqat-category-icon + .nl580-section-icon {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .nl580-section-icon {
+    width: 27px;
+    height: 27px;
+    margin-right: 7px;
+    font-size: 14px;
+  }
+
+  .nl580-metric-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+}
+
+/* NurseLink Global Operational Icons v580 */
+
+.nl580-section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  vertical-align: middle;
+  border: 1px solid rgba(127,127,127,.20);
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.nl580-metric-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 7px;
+  border: 1px solid rgba(127,127,127,.18);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Keep headings aligned */
+[data-panel] .nl530-card-head h2,
+[data-panel] .nl530-section-intro h2,
+[data-panel] .nl550-section-heading h2,
+[data-panel] .nl550-queue-heading h2,
+[data-panel] .nl552-workload-heading h2 {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Don't duplicate dedicated icons already implemented */
+.nl575-health-name .nl580-section-icon,
+.nlqat-category-icon + .nl580-section-icon {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .nl580-section-icon {
+    width: 27px;
+    height: 27px;
+    margin-right: 7px;
+    font-size: 14px;
+  }
+
+  .nl580-metric-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+}
+
+
+/* NurseLink Privacy & Consent Management v581 */
+
+.nl581-policy-admin {
+  grid-column: 1 / -1;
+}
+
+.nl581-policy-form {
+  display: grid;
+  gap: 18px;
+}
+
+.nl581-policy-section {
+  padding-top: 4px;
+}
+
+.nl581-policy-section + .nl581-policy-section {
+  padding-top: 18px;
+  border-top: 1px solid rgba(127,127,127,.18);
+}
+
+.nl581-policy-section h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+.nl581-policy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.nl581-policy-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.nl581-policy-form label > span {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nl581-policy-form input,
+.nl581-policy-form textarea {
+  width: 100%;
+}
+
+.nl581-policy-form textarea {
+  min-height: 190px;
+  resize: vertical;
+}
+
+.nl581-policy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nl581-policy-status {
+  padding: 11px 13px;
+  border: 1px solid rgba(127,127,127,.20);
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+.nl581-policy-status[data-tone="good"] {
+  border-color: rgba(18,183,106,.45);
+}
+
+.nl581-policy-status[data-tone="danger"] {
+  border-color: rgba(240,68,56,.45);
+}
+
+.nl581-policy-history {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(127,127,127,.18);
+}
+
+.nl581-history-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(127,127,127,.14);
+}
+
+.nl581-history-row:last-child {
+  border-bottom: 0;
+}
+
+.nl581-history-row > div {
+  display: grid;
+  gap: 3px;
+}
+
+.nl581-history-row > span,
+.nl581-history-row small {
+  font-size: 11px;
+}
+
+@media (max-width: 800px) {
+  .nl581-policy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nl581-history-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .nl581-policy-actions > button {
+    width: 100%;
+  }
+}
+
+
+/* NurseLink Administrators Layout v585 */
+
+[data-panel="settings"].nl585-admin-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+[data-panel="settings"].nl585-admin-panel[hidden] {
+  display: none !important;
+}
+
+/*
+ * Allow ordinary cards/sections inside Administrators
+ * to participate naturally in the two-column dashboard.
+ */
+[data-panel="settings"].nl585-admin-panel > .nl530-card,
+[data-panel="settings"].nl585-admin-panel > .nl553-admin-layout > .nl530-card {
+  min-width: 0;
+}
+
+/*
+ * If the existing page uses nl553-admin-layout as a wrapper,
+ * make that wrapper itself two-column as well.
+ */
+[data-panel="settings"] .nl553-admin-layout {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+/*
+ * Long-form policy editing should remain full-width.
+ */
+[data-panel="settings"] .nl585-admin-full,
+[data-panel="settings"] .nl581-policy-management {
+  grid-column: 1 / -1;
+}
+
+/*
+ * Also let unusually wide tables/history areas span both columns.
+ */
+[data-panel="settings"] .nl530-card:has(.nl530-table),
+[data-panel="settings"] .nl530-card:has(table) {
+  grid-column: 1 / -1;
+}
+
+.nl585-admin-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  margin-right: .35em;
+  vertical-align: -0.08em;
+}
+
+[data-panel="settings"] .nl530-card-head h2,
+[data-panel="settings"] .nl530-card-head h3 {
+  display: flex;
+  align-items: center;
+  gap: .2rem;
+}
+
+/*
+ * Improve density and alignment of cards.
+ */
+[data-panel="settings"] .nl530-card {
+  height: 100%;
+}
+
+[data-panel="settings"] .nl530-card-head {
+  align-items: flex-start;
+}
+
+/*
+ * Tablet/mobile: stack naturally.
+ */
+@media (max-width: 1050px) {
+  [data-panel="settings"].nl585-admin-panel,
+  [data-panel="settings"] .nl553-admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  [data-panel="settings"] .nl585-admin-full,
+  [data-panel="settings"] .nl581-policy-management,
+  [data-panel="settings"] .nl530-card:has(.nl530-table),
+  [data-panel="settings"] .nl530-card:has(table) {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 680px) {
+  [data-panel="settings"].nl585-admin-panel,
+  [data-panel="settings"] .nl553-admin-layout {
+    gap: 12px;
+  }
+
+  .nl585-admin-icon {
+    width: auto;
+    margin-right: .25em;
+  }
+}
+
+
+/* NurseLink Setting Tooltips v586 */
+
+.nl586-tip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  margin-left: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 1;
+  cursor: help;
+  vertical-align: middle;
+  background: transparent;
+}
+
+.nl586-tip::after,
+.nl586-tip-action::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 1000;
+  width: min(290px, calc(100vw - 36px));
+  padding: 9px 11px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(5px);
+  transition:
+    opacity .12s ease,
+    transform .12s ease,
+    visibility .12s ease;
+  box-shadow: 0 8px 28px rgba(0,0,0,.18);
+}
+
+.nl586-tip::after {
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translate(-50%, 5px);
+}
+
+.nl586-tip:hover::after,
+.nl586-tip:focus-visible::after,
+.nl586-tip.nl586-tip-open::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.nl586-tip-action {
+  position: relative;
+}
+
+.nl586-tip-action::after {
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translate(-50%, 5px);
+}
+
+.nl586-tip-action:hover::after,
+.nl586-tip-action:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 680px) {
+  .nl586-tip::after {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 18px;
+    width: auto;
+    transform: translateY(5px);
+  }
+
+  .nl586-tip:hover::after,
+  .nl586-tip:focus-visible::after,
+  .nl586-tip.nl586-tip-open::after {
+    transform: translateY(0);
+  }
+}
+
+/* NurseLink Administrator Help Tooltips v587 */
+
+[data-panel="settings"] .nl587-admin-tip {
+  flex: 0 0 auto;
+}
+
+[data-panel="settings"] label > span:has(.nl587-admin-tip),
+[data-panel="settings"] label > strong:has(.nl587-admin-tip) {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+[data-panel="settings"] .nl587-admin-action-tip {
+  position: relative;
+}
+
+[data-panel="settings"] .nl585-admin-icon + .nl586-tip {
+  margin-left: 6px;
+}
+
+/* NurseLink Tooltip Visibility Fix v589 */
+
+.nl586-tip::after,
+.nl586-tip-action::after {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  border: 1px solid #cbd5e1 !important;
+  opacity: 0;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.20),
+    0 2px 8px rgba(15, 23, 42, 0.12) !important;
+}
+
+.nl586-tip:hover::after,
+.nl586-tip:focus-visible::after,
+.nl586-tip.nl586-tip-open::after,
+.nl586-tip-action:hover::after,
+.nl586-tip-action:focus-visible::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Keep tooltip text crisp and readable */
+.nl586-tip::after,
+.nl586-tip-action::after {
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  text-shadow: none !important;
+}
+
+/* Make the information icon more visible */
+.nl586-tip {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #2563eb !important;
+}
+
+/* Mobile tooltip */
+@media (max-width: 680px) {
+  .nl586-tip::after,
+  .nl586-tip-action::after {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow:
+      0 14px 35px rgba(15, 23, 42, 0.24) !important;
+  }
+}
+
+/* NurseLink Card Tooltip Placement v591 */
+
+[data-panel="settings"] .nl591-tooltip-card {
+  position: relative;
+}
+
+[data-panel="settings"] .nl591-card-info {
+  position: absolute !important;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+
+  width: 22px !important;
+  height: 22px !important;
+
+  margin: 0 !important;
+
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 50% !important;
+
+  color: #2563eb !important;
+  cursor: help;
+}
+
+/*
+ * Give card titles a little right padding so they never
+ * overlap the info button.
+ */
+[data-panel="settings"] .nl591-tooltip-card strong,
+[data-panel="settings"] .nl591-tooltip-card h3,
+[data-panel="settings"] .nl591-tooltip-card h4 {
+  padding-right: 34px;
+}
+
+/*
+ * Tooltip itself opens inward from the right edge.
+ */
+[data-panel="settings"] .nl591-card-info::after {
+  left: auto !important;
+  right: 0 !important;
+  bottom: calc(100% + 8px) !important;
+  transform: translateY(5px) !important;
+}
+
+[data-panel="settings"] .nl591-card-info:hover::after,
+[data-panel="settings"] .nl591-card-info:focus-visible::after,
+[data-panel="settings"] .nl591-card-info.nl586-tip-open::after {
+  transform: translateY(0) !important;
+}
+
+/*
+ * Remove any leftover inline-spacing treatment.
+ */
+[data-panel="settings"] .nl591-card-info.nl586-tip {
+  flex: none !important;
+}
+
+/* NurseLink Role Card Info v592 */
+
+[data-panel="settings"] .nl592-role-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 92px;
+  padding: 14px 42px 14px 14px;
+}
+
+[data-panel="settings"] .nl592-role-content {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+[data-panel="settings"] .nl592-role-content strong {
+  padding-right: 0 !important;
+}
+
+[data-panel="settings"] .nl592-role-info {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 !important;
+
+  z-index: 20;
+}
+
+/* Tooltip opens inward so it stays inside viewport/card area */
+[data-panel="settings"] .nl592-role-info::after {
+  left: auto !important;
+  right: 0 !important;
+  bottom: calc(100% + 8px) !important;
+  transform: translateY(5px) !important;
+}
+
+[data-panel="settings"] .nl592-role-info:hover::after,
+[data-panel="settings"] .nl592-role-info:focus-visible::after,
+[data-panel="settings"] .nl592-role-info.nl586-tip-open::after {
+  transform: translateY(0) !important;
+}
+
+/* NurseLink Role Card Info Fix v593 */
+
+[data-panel="settings"] .nl553-role-option {
+  position: relative;
+  padding-right: 42px !important;
+}
+
+[data-panel="settings"] .nl592-role-info {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 !important;
+  z-index: 20;
+}
+
+[data-panel="settings"] .nl592-role-info::after {
+  left: auto !important;
+  right: 0 !important;
+}
+
+
+/* NurseLink Final Role Info Cards v597 */
+
+[data-panel="settings"] .nl597-role-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  min-height: 96px;
+  padding: 14px 44px 14px 14px;
+}
+
+[data-panel="settings"] .nl597-role-card > input {
+  margin-top: 5px;
+}
+
+[data-panel="settings"] .nl597-role-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+[data-panel="settings"] .nl597-role-copy strong {
+  padding-right: 0 !important;
+}
+
+[data-panel="settings"] .nl597-role-copy small {
+  line-height: 1.45;
+}
+
+[data-panel="settings"] .nl597-role-info {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 999px !important;
+  color: #2563eb !important;
+
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  z-index: 30;
+}
+
+[data-panel="settings"] .nl597-role-info::after {
+  left: auto !important;
+  right: 0 !important;
+  bottom: calc(100% + 8px) !important;
+  width: min(300px, calc(100vw - 36px)) !important;
+
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  border: 1px solid #cbd5e1 !important;
+
+  opacity: 0;
+  visibility: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.20),
+    0 2px 8px rgba(15, 23, 42, 0.12) !important;
+
+  transform: translateY(5px) !important;
+}
+
+[data-panel="settings"] .nl597-role-info:hover::after,
+[data-panel="settings"] .nl597-role-info:focus-visible::after,
+[data-panel="settings"] .nl597-role-info.nl586-tip-open::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* NurseLink Role Card Single Info Icon v600 */
+
+/* Hide every older/injected tooltip icon inside role cards */
+[data-panel="settings"] .nl597-role-card .nl586-tip:not(.nl597-role-info) {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Keep only the intended top-right info icon */
+[data-panel="settings"] .nl597-role-card .nl597-role-info {
+  display: inline-flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  width: 22px !important;
+  height: 22px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  z-index: 30 !important;
+}
+
+/* NurseLink Single Role Info Failsafe v602 */
+
+/* Any button in a role card is hidden by default... */
+[data-panel="settings"] .nl597-role-card button {
+  display: none !important;
+}
+
+/* ...except the intended top-right info button. */
+[data-panel="settings"] .nl597-role-card button.nl597-role-info {
+  display: inline-flex !important;
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+}
+
+/* NurseLink Role Info Button Size Fix v604 */
+[data-panel="settings"] .nl597-role-info {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  line-height: 1 !important;
+  flex: 0 0 22px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  top: 10px !important;
+  right: 10px !important;
+}
+
+/* NurseLink Role Info Button Size Fix v604 */
+[data-panel="settings"] .nl597-role-info {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  line-height: 1 !important;
+  flex: 0 0 22px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  top: 10px !important;
+  right: 10px !important;
+}
+
+/* NurseLink Single Administrator Role Info v609 */
+
+[data-panel="settings"] .nl597-role-card,
+[data-panel="settings"] .nl553-role-option {
+  position: relative;
+}
+
+[data-panel="settings"] .nl609-role-info {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 999px !important;
+  background: #fff !important;
+  color: #2563eb !important;
+
+  font-size: 13px !important;
+  line-height: 1 !important;
+  cursor: help;
+  z-index: 20;
+}
+
+[data-panel="settings"] .nl609-role-info::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+
+  width: min(300px, calc(100vw - 36px));
+  padding: 9px 11px;
+
+  background: #fff;
+  color: #1f2937;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.20),
+    0 2px 8px rgba(15,23,42,.12);
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+[data-panel="settings"] .nl609-role-info:hover::after,
+[data-panel="settings"] .nl609-role-info:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* NurseLink Restore Single Top-Right Role Info v610 */
+
+/* Keep all legacy role info buttons hidden */
+[data-panel="settings"] .nl597-role-card button {
+  display: none !important;
+}
+
+/* Show ONLY the new canonical info icon */
+[data-panel="settings"] .nl597-role-card button.nl609-role-info {
+  display: inline-flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: #ffffff !important;
+  color: #2563eb !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 999px !important;
+
+  font-size: 13px !important;
+  line-height: 1 !important;
+
+  z-index: 30 !important;
+}
+
+/* NurseLink Single Role Info Span v611 */
+
+[data-panel="settings"] .nl597-role-card,
+[data-panel="settings"] .nl553-role-option {
+  position: relative !important;
+}
+
+[data-panel="settings"] .nl611-role-info {
+  display: inline-flex !important;
+  visibility: visible !important;
+
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: #ffffff !important;
+  color: #2563eb !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 999px !important;
+
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  cursor: help;
+  z-index: 50 !important;
+}
+
+[data-panel="settings"] .nl611-role-info::after {
+  content: attr(data-tooltip);
+
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+
+  width: min(300px, calc(100vw - 36px));
+  padding: 9px 11px;
+
+  background: #ffffff;
+  color: #1f2937;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,.20),
+    0 2px 8px rgba(15,23,42,.12);
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: left;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(4px);
+  transition:
+    opacity .12s ease,
+    transform .12s ease,
+    visibility .12s ease;
+}
+
+[data-panel="settings"] .nl611-role-info:hover::after,
+[data-panel="settings"] .nl611-role-info:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* NurseLink Desktop Administrator Role Info v613 */
+
+@media (min-width: 901px) {
+  [data-panel="settings"] .nl597-role-card,
+  [data-panel="settings"] .nl553-role-option {
+    position: relative !important;
+    padding-right: 44px !important;
+  }
+
+  [data-panel="settings"] .nl611-role-info {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    bottom: auto !important;
+
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #fff !important;
+    color: #2563eb !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 999px !important;
+
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+
+    z-index: 50 !important;
+  }
+
+  [data-panel="settings"] .nl611-role-info::after {
+    right: 0 !important;
+    left: auto !important;
+    bottom: calc(100% + 8px) !important;
+  }
+}
+
+/* NurseLink Mobile Consent Checkbox Fix v614 */
+
+@media (max-width: 680px) {
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+    appearance: checkbox !important;
+
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border-radius: 4px !important;
+    box-shadow: none !important;
+
+    accent-color: #0d6efd;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"]:checked {
+    -webkit-appearance: checkbox !important;
+    appearance: checkbox !important;
+  }
+
+  /* Consent rows */
+  .policy-consent-row,
+  .consent-row,
+  .terms-consent,
+  .privacy-consent,
+  label:has(input[type="checkbox"]) {
+    align-items: flex-start !important;
+  }
+
+  label:has(input[type="checkbox"]) input[type="checkbox"] {
+    flex: 0 0 22px !important;
+    margin-top: 2px !important;
+  }
+}
+
+/* NurseLink Admin Global Readability v621 */
+
+:root {
+  --nl-admin-xs: clamp(12px, 0.74rem + 0.10vw, 14px);
+  --nl-admin-sm: clamp(14px, 0.82rem + 0.12vw, 15px);
+  --nl-admin-md: clamp(15px, 0.90rem + 0.15vw, 17px);
+  --nl-admin-lg: clamp(18px, 1rem + 0.30vw, 21px);
+  --nl-admin-xl: clamp(22px, 1.15rem + 0.70vw, 28px);
+}
+
+body {
+  font-size: var(--nl-admin-md) !important;
+  line-height: 1.5 !important;
+}
+
+main,
+section,
+article,
+aside,
+nav {
+  font-size: inherit;
+}
+
+p,
+li,
+label,
+input,
+select,
+textarea,
+button {
+  font-size: var(--nl-admin-md) !important;
+}
+
+small,
+.nl-muted,
+.nl-help,
+.nl-description,
+[class*="muted"],
+[class*="helper"],
+[class*="description"] {
+  font-size: var(--nl-admin-sm) !important;
+  line-height: 1.45 !important;
+}
+
+h1 {
+  font-size: var(--nl-admin-xl) !important;
+  line-height: 1.18 !important;
+}
+
+h2 {
+  font-size: var(--nl-admin-lg) !important;
+  line-height: 1.25 !important;
+}
+
+h3 {
+  font-size: 17px !important;
+  line-height: 1.3 !important;
+}
+
+aside a,
+aside button,
+.sidebar a,
+.sidebar button,
+nav a,
+nav button {
+  font-size: 15px !important;
+  line-height: 1.35 !important;
+}
+
+button,
+input,
+select,
+textarea {
+  min-height: 40px;
+}
+
+@media (max-width: 900px) {
+  body {
+    font-size: 16px !important;
+  }
+
+  aside a,
+  aside button,
+  .sidebar a,
+  .sidebar button,
+  nav a,
+  nav button {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 680px) {
+  body {
+    font-size: 17px !important;
+    line-height: 1.55 !important;
+  }
+
+  p,
+  li,
+  label,
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 16px !important;
+  }
+
+  small,
+  .nl-muted,
+  .nl-help,
+  .nl-description,
+  [class*="muted"],
+  [class*="helper"],
+  [class*="description"] {
+    font-size: 14px !important;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    min-height: 48px;
+  }
+}
+
+
+/* NurseLink Member/Admin typography parity — 2026-08-26 */
+.nl-admin-shell,
+.nl530-shell {
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+}
+
+.nl-admin-shell h1,
+.nl530-shell h1,
+.nl530-topbar h1 {
+  font-size: clamp(28px, 3vw, 38px) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.nl-admin-shell h2,
+.nl530-shell h2,
+.nl530-card h2 {
+  font-size: clamp(21px, 2.2vw, 28px) !important;
+  line-height: 1.22 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.nl-admin-shell h3,
+.nl530-shell h3 {
+  font-size: clamp(18px, 1.8vw, 22px) !important;
+  line-height: 1.3 !important;
+}
+
+.nl-admin-shell p,
+.nl530-shell p,
+.nl530-card p,
+.nl530-list p {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+.nl-admin-shell label,
+.nl530-shell label,
+.nl530-toolbar label {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.nl-admin-shell input,
+.nl-admin-shell select,
+.nl-admin-shell textarea,
+.nl530-shell input,
+.nl530-shell select,
+.nl530-shell textarea {
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+}
+
+.nl-admin-shell button,
+.nl-admin-shell a,
+.nl530-shell button,
+.nl530-shell a,
+.nl530-menu a {
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+}
+
+.nl530-menu a {
+  min-height: 44px !important;
+}
+
+.nl-admin-shell small,
+.nl530-shell small,
+.nl-admin-eyebrow,
+.nl530-card-head span,
+.nl530-topbar span {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+.nl-admin-identity {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+@media (max-width: 780px) {
+  .nl-admin-shell,
+  .nl530-shell {
+    font-size: 17px !important;
+    line-height: 1.55 !important;
+  }
+
+  .nl-admin-shell h1,
+  .nl530-shell h1,
+  .nl530-topbar h1 {
+    font-size: clamp(28px, 8vw, 36px) !important;
+  }
+
+  .nl-admin-shell h2,
+  .nl530-shell h2,
+  .nl530-card h2 {
+    font-size: clamp(22px, 6vw, 28px) !important;
+  }
+
+  .nl-admin-shell p,
+  .nl530-shell p,
+  .nl530-card p,
+  .nl530-list p {
+    font-size: 17px !important;
+    line-height: 1.55 !important;
+  }
+
+  .nl-admin-shell button,
+  .nl-admin-shell a,
+  .nl530-shell button,
+  .nl530-shell a,
+  .nl530-menu a {
+    font-size: 16px !important;
+  }
+
+  .nl-admin-shell small,
+  .nl530-shell small,
+  .nl-admin-eyebrow,
+  .nl530-card-head span {
+    font-size: 13px !important;
+  }
+}

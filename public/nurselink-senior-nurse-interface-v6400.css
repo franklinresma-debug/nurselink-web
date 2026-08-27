@@ -1,0 +1,428 @@
+/* NurseLink Senior Nurse Interface Cohesion v64.0.0
+   Purpose: calmer hierarchy, larger readable type, reliable touch targets,
+   coherent cards/forms, and consistent light/dark surfaces across member pages. */
+
+:root {
+  --nl64-content-max: 1480px;
+  --nl64-reading-max: 920px;
+  --nl64-radius: 18px;
+  --nl64-radius-sm: 12px;
+  --nl64-gap: clamp(16px, 2vw, 28px);
+  --nl64-pad: clamp(18px, 2.2vw, 30px);
+  --nl64-text: #172033;
+  --nl64-muted: #5d6678;
+  --nl64-border: #d9e0e8;
+  --nl64-surface: #ffffff;
+  --nl64-surface-soft: #f6f8fb;
+  --nl64-focus: #155eef;
+  --nl64-success: #16794b;
+  --nl64-danger: #b42318;
+  --nl64-warning: #9a6700;
+  --nl64-shadow: 0 8px 28px rgba(20, 33, 61, .08);
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+[data-theme="dark"] {
+  --nl64-text: #f2f5f8;
+  --nl64-muted: #b8c2cf;
+  --nl64-border: #344054;
+  --nl64-surface: #18202c;
+  --nl64-surface-soft: #111827;
+  --nl64-focus: #84adff;
+  --nl64-success: #75e0a7;
+  --nl64-danger: #fda29b;
+  --nl64-warning: #fec84b;
+  --nl64-shadow: 0 12px 34px rgba(0, 0, 0, .24);
+}
+
+/* Overall member workspace */
+html[data-nl64="enabled"] .main-area {
+  min-width: 0;
+}
+
+html[data-nl64="enabled"] .page {
+  width: min(100%, var(--nl64-content-max));
+  margin-inline: auto;
+  padding: clamp(18px, 2.4vw, 34px);
+  color: var(--nl64-text);
+}
+
+html[data-nl64="enabled"] .page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px 28px;
+  margin: 0 0 clamp(22px, 3vw, 36px);
+  padding: 0 0 clamp(18px, 2vw, 26px);
+  border-bottom: 1px solid var(--nl64-border);
+}
+
+html[data-nl64="enabled"] .page-header > div:first-child {
+  max-width: 920px;
+}
+
+html[data-nl64="enabled"] .page-header .eyebrow,
+html[data-nl64="enabled"] .eyebrow {
+  margin-bottom: 8px;
+  font-size: .84rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+html[data-nl64="enabled"] .page h1,
+html[data-nl64="enabled"] .page-header h1 {
+  margin: 0;
+  font-size: clamp(1.85rem, 2.3vw, 2.7rem);
+  line-height: 1.13;
+  letter-spacing: -.025em;
+}
+
+html[data-nl64="enabled"] .page-header p {
+  max-width: var(--nl64-reading-max);
+  margin: 10px 0 0;
+  color: var(--nl64-muted);
+  font-size: clamp(1rem, .96rem + .25vw, 1.13rem);
+  line-height: 1.7;
+}
+
+/* Calm, readable cards */
+html[data-nl64="enabled"] .panel,
+html[data-nl64="enabled"] .stat-card,
+html[data-nl64="enabled"] .credential-card,
+html[data-nl64="enabled"] article {
+  min-width: 0;
+  border: 1px solid var(--nl64-border);
+  border-radius: var(--nl64-radius);
+  background: var(--nl64-surface);
+  color: var(--nl64-text);
+  box-shadow: var(--nl64-shadow);
+}
+
+html[data-nl64="enabled"] .panel {
+  padding: var(--nl64-pad);
+}
+
+html[data-nl64="enabled"] .panel + .panel {
+  margin-top: var(--nl64-gap);
+}
+
+html[data-nl64="enabled"] .panel h2,
+html[data-nl64="enabled"] article h2,
+html[data-nl64="enabled"] article h3 {
+  margin-top: 0;
+  line-height: 1.28;
+}
+
+html[data-nl64="enabled"] .panel p,
+html[data-nl64="enabled"] article p,
+html[data-nl64="enabled"] .credential-card span,
+html[data-nl64="enabled"] .credential-card small {
+  line-height: 1.62;
+}
+
+html[data-nl64="enabled"] .muted,
+html[data-nl64="enabled"] small {
+  color: var(--nl64-muted);
+}
+
+/* Dashboard/stat summaries */
+html[data-nl64="enabled"] .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--nl64-gap);
+  margin: 0 0 var(--nl64-gap);
+}
+
+html[data-nl64="enabled"] .stat-card {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  min-height: 128px;
+  padding: 20px 22px;
+}
+
+html[data-nl64="enabled"] .stat-card > span:first-child {
+  color: var(--nl64-muted);
+  font-size: .92rem;
+  font-weight: 700;
+}
+
+html[data-nl64="enabled"] .stat-card strong {
+  font-size: clamp(1.45rem, 1.3rem + .55vw, 2rem);
+  line-height: 1.15;
+}
+
+/* Generic repeated-content grids */
+html[data-nl64="enabled"] .content-grid,
+html[data-nl64="enabled"] .credentials-layout,
+html[data-nl64="enabled"] [class*="grid"] {
+  min-width: 0;
+}
+
+html[data-nl64="enabled"][data-nl-route="initiatives"] .page > :not(.page-header):not(.form-success):not(.form-error),
+html[data-nl64="enabled"][data-nl-route="policies"] .page > :not(.page-header):not(.form-success):not(.form-error),
+html[data-nl64="enabled"][data-nl-route="welfare"] .page > :not(.page-header):not(.form-success):not(.form-error) {
+  max-width: 100%;
+}
+
+/* Senior-friendly inputs and actions */
+html[data-nl64="enabled"] button,
+html[data-nl64="enabled"] .primary-button,
+html[data-nl64="enabled"] .secondary-button,
+html[data-nl64="enabled"] a.primary-button,
+html[data-nl64="enabled"] a.secondary-button,
+html[data-nl64="enabled"] input,
+html[data-nl64="enabled"] select,
+html[data-nl64="enabled"] textarea {
+  font-size: 1rem;
+}
+
+html[data-nl64="enabled"] button,
+html[data-nl64="enabled"] .primary-button,
+html[data-nl64="enabled"] .secondary-button,
+html[data-nl64="enabled"] a.primary-button,
+html[data-nl64="enabled"] a.secondary-button {
+  min-height: 48px;
+  border-radius: 12px;
+  padding: 11px 17px;
+  font-weight: 750;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+html[data-nl64="enabled"] input,
+html[data-nl64="enabled"] select,
+html[data-nl64="enabled"] textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--nl64-border);
+  border-radius: 12px;
+  background: var(--nl64-surface);
+  color: var(--nl64-text);
+  padding: 11px 13px;
+  line-height: 1.4;
+}
+
+html[data-nl64="enabled"] textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+html[data-nl64="enabled"] label {
+  display: grid;
+  gap: 7px;
+  color: var(--nl64-text);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+html[data-nl64="enabled"] button:focus-visible,
+html[data-nl64="enabled"] a:focus-visible,
+html[data-nl64="enabled"] input:focus-visible,
+html[data-nl64="enabled"] select:focus-visible,
+html[data-nl64="enabled"] textarea:focus-visible {
+  outline: 3px solid var(--nl64-focus);
+  outline-offset: 3px;
+}
+
+/* Dangerous actions: visible but visually secondary */
+html[data-nl64="enabled"] .danger-link {
+  min-height: 44px;
+  color: var(--nl64-danger);
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Feedback blocks */
+html[data-nl64="enabled"] .form-success,
+html[data-nl64="enabled"] .form-error,
+html[data-nl64="enabled"] [class*="notice"] {
+  border-radius: 14px;
+  padding: 15px 17px;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* Credentials: convert one dense stream into clear work zones */
+html[data-nl64="enabled"][data-nl-route="credentials"] .credentials-layout {
+  display: grid;
+  grid-template-columns: minmax(330px, .92fr) minmax(460px, 1.35fr);
+  gap: var(--nl64-gap);
+  align-items: start;
+}
+
+html[data-nl64="enabled"][data-nl-route="credentials"] .credentials-form {
+  position: sticky;
+  top: 24px;
+}
+
+html[data-nl64="enabled"][data-nl-route="credentials"] .profile-grid.two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+html[data-nl64="enabled"][data-nl-route="credentials"] .credential-list {
+  display: grid;
+  gap: 14px;
+}
+
+html[data-nl64="enabled"][data-nl-route="credentials"] .credential-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 17px 18px;
+  box-shadow: none;
+}
+
+html[data-nl64="enabled"][data-nl-route="credentials"] .credential-card > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+html[data-nl64="enabled"][data-nl-route="credentials"] .credential-card strong {
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+/* Initiatives and policies: content first, actions second */
+html[data-nl64="enabled"][data-nl-route="initiatives"] article,
+html[data-nl64="enabled"][data-nl-route="policies"] article,
+html[data-nl64="enabled"][data-nl-route="initiatives"] .panel,
+html[data-nl64="enabled"][data-nl-route="policies"] .panel {
+  overflow: hidden;
+}
+
+html[data-nl64="enabled"][data-nl-route="initiatives"] .page h2,
+html[data-nl64="enabled"][data-nl-route="policies"] .page h2 {
+  font-size: clamp(1.2rem, 1.1rem + .35vw, 1.5rem);
+}
+
+/* Welfare: make urgent actions unmistakable without making the whole page alarming */
+html[data-nl64="enabled"][data-nl-route="welfare"] .page-header {
+  border-bottom-width: 2px;
+}
+
+html[data-nl64="enabled"][data-nl-route="welfare"] [class*="crisis"],
+html[data-nl64="enabled"][data-nl-route="welfare"] [class*="alert"],
+html[data-nl64="enabled"][data-nl-route="welfare"] [class*="safe"],
+html[data-nl64="enabled"][data-nl-route="welfare"] [class*="location"] {
+  min-width: 0;
+}
+
+html[data-nl64="enabled"][data-nl-route="welfare"] button,
+html[data-nl64="enabled"][data-nl-route="welfare"] .primary-button {
+  min-height: 52px;
+}
+
+/* Tables and overflow-heavy sections */
+html[data-nl64="enabled"] table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+}
+
+html[data-nl64="enabled"] th,
+html[data-nl64="enabled"] td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--nl64-border);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.45;
+}
+
+html[data-nl64="enabled"] th {
+  background: var(--nl64-surface-soft);
+  font-weight: 800;
+}
+
+/* Prevent horizontal layout breakage */
+html[data-nl64="enabled"] .page *,
+html[data-nl64="enabled"] .panel *,
+html[data-nl64="enabled"] article * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html[data-nl64="enabled"] img,
+html[data-nl64="enabled"] video,
+html[data-nl64="enabled"] canvas,
+html[data-nl64="enabled"] svg {
+  height: auto;
+}
+
+/* Tablet */
+@media (max-width: 1180px) {
+  html[data-nl64="enabled"] .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  html[data-nl64="enabled"][data-nl-route="credentials"] .credentials-layout {
+    grid-template-columns: 1fr;
+  }
+  html[data-nl64="enabled"][data-nl-route="credentials"] .credentials-form {
+    position: static;
+  }
+}
+
+/* Senior-friendly mobile */
+@media (max-width: 720px) {
+  html[data-nl64="enabled"] .page {
+    padding: 16px;
+  }
+  html[data-nl64="enabled"] .page-header {
+    display: grid;
+    gap: 14px;
+  }
+  html[data-nl64="enabled"] .page h1,
+  html[data-nl64="enabled"] .page-header h1 {
+    font-size: clamp(1.72rem, 7vw, 2.15rem);
+  }
+  html[data-nl64="enabled"] .page-header p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  html[data-nl64="enabled"] .stats-grid,
+  html[data-nl64="enabled"][data-nl-route="credentials"] .profile-grid.two {
+    grid-template-columns: 1fr;
+  }
+  html[data-nl64="enabled"] .panel {
+    padding: 18px;
+    border-radius: 15px;
+  }
+  html[data-nl64="enabled"] .stat-card {
+    min-height: 0;
+  }
+  html[data-nl64="enabled"][data-nl-route="credentials"] .credential-card {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+  html[data-nl64="enabled"] button,
+  html[data-nl64="enabled"] .primary-button,
+  html[data-nl64="enabled"] .secondary-button,
+  html[data-nl64="enabled"] a.primary-button,
+  html[data-nl64="enabled"] a.secondary-button {
+    width: 100%;
+    min-height: 52px;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Extra-large text users */
+@media (prefers-reduced-motion: reduce) {
+  html[data-nl64="enabled"] *,
+  html[data-nl64="enabled"] *::before,
+  html[data-nl64="enabled"] *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

@@ -1,0 +1,143 @@
+/* NurseLink Topbar Action Row Alignment v64.8.7 */
+
+:root {
+  --nl6487-control-size: 48px;
+  --nl6487-action-gap: 10px;
+}
+
+/* Common row that holds Theme + Profile + Notification */
+[data-nl6487-action-row="1"] {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: var(--nl6487-action-gap) !important;
+  flex-wrap: nowrap !important;
+
+  width: auto !important;
+  max-width: none !important;
+  min-height: var(--nl6487-control-size) !important;
+
+  margin-left: auto !important;
+  margin-right: 12px !important;
+  padding: 0 !important;
+
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+/* Theme button must sit inside the row, not elsewhere in the topbar. */
+[data-nl6487-action-row="1"] .nl6486-theme-button {
+  order: 10 !important;
+
+  display: inline-grid !important;
+  align-self: center !important;
+
+  width: var(--nl6487-control-size) !important;
+  min-width: var(--nl6487-control-size) !important;
+  max-width: var(--nl6487-control-size) !important;
+
+  height: var(--nl6487-control-size) !important;
+  min-height: var(--nl6487-control-size) !important;
+  max-height: var(--nl6487-control-size) !important;
+
+  flex: 0 0 var(--nl6487-control-size) !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+}
+
+/* Profile block stays immediately after Theme. */
+[data-nl6487-profile="1"] {
+  order: 20 !important;
+  align-self: center !important;
+  margin: 0 !important;
+
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+}
+
+/* Notification stays at the far right. */
+[data-nl6487-notification="1"] {
+  order: 30 !important;
+  align-self: center !important;
+
+  width: var(--nl6487-control-size) !important;
+  min-width: var(--nl6487-control-size) !important;
+  max-width: var(--nl6487-control-size) !important;
+
+  height: var(--nl6487-control-size) !important;
+  min-height: var(--nl6487-control-size) !important;
+  max-height: var(--nl6487-control-size) !important;
+
+  flex: 0 0 var(--nl6487-control-size) !important;
+  margin: 0 !important;
+
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+}
+
+/* Keep notification badge anchored to the bell box. */
+[data-nl6487-notification="1"] [class*="badge"],
+[data-nl6487-notification="1"] [class*="count"],
+[data-nl6487-notification="1"] [data-count],
+[data-nl6487-notification="1"] sup {
+  position: absolute !important;
+  top: -7px !important;
+  right: -7px !important;
+}
+
+/* Topbar itself should vertically center its internal rows. */
+#nl6484-topbar-host > [data-nl6484-topbar="1"],
+.nurselink-topbar,
+.nl-topbar,
+.member-topbar,
+header[class*="topbar"],
+[class*="topbar"][class*="member"],
+[data-nl-topbar] {
+  align-items: center !important;
+}
+
+/* Mobile/tablet: retain one-line compact action row. */
+@media (max-width: 900px) {
+  :root {
+    --nl6487-control-size: 44px;
+    --nl6487-action-gap: 8px;
+  }
+
+  [data-nl6487-action-row="1"] {
+    gap: var(--nl6487-action-gap) !important;
+    margin-right: 8px !important;
+    min-width: 0 !important;
+  }
+
+  [data-nl6487-profile="1"] {
+    min-width: 0 !important;
+  }
+}
+
+/* Very small phones: preserve profile photo, allow name text to compact if necessary. */
+@media (max-width: 560px) {
+  [data-nl6487-profile="1"] [class*="name"],
+  [data-nl6487-profile="1"] [class*="member-number"],
+  [data-nl6487-profile="1"] [class*="member-id"] {
+    max-width: 118px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+}

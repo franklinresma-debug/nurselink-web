@@ -1,0 +1,256 @@
+/* NurseLink Canonical Always-On Shell v64.10.1
+   One shell owns all member pages: fixed blue sidebar + fixed topbar.
+*/
+
+:root {
+  --nlc-sidebar-w: 232px;
+  --nlc-topbar-h: 72px;
+  --nlc-sidebar-z: 5000;
+  --nlc-topbar-z: 4900;
+  --nlc-blue-a: #145a97;
+  --nlc-blue-b: #0c477d;
+  --nlc-blue-dark-a: #082b55;
+  --nlc-blue-dark-b: #061f3d;
+  --nlc-light-page: #f5f7fb;
+  --nlc-dark-page: #06111f;
+}
+
+/* Hide all competing native sidebar/topbar UI. */
+html[data-nl-canonical-shell="true"] :is(
+  .member-react-safe-shell-v108 .sidebar,
+  .member-react-safe-shell-v108 [class*="sidebar"],
+  .member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+  .member-react-safe-shell-v108 [data-nl-mobile-topbar="true"],
+  .member-react-safe-shell-v108 .topbar,
+  .member-react-safe-shell-v108 .top-bar,
+  .member-react-safe-shell-v108 .app-header,
+  .member-react-safe-shell-v108 .member-header,
+  .member-react-safe-shell-v108 .member-topbar
+) {
+  display: none !important;
+}
+
+/* Canonical blue sidebar */
+#nurselink-canonical-sidebar {
+  position: fixed !important;
+  inset: 0 auto 0 0 !important;
+  width: var(--nlc-sidebar-w) !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  z-index: var(--nlc-sidebar-z) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+  padding: 18px 14px !important;
+  color: #fff !important;
+  background: linear-gradient(180deg, var(--nlc-blue-a) 0%, var(--nlc-blue-b) 100%) !important;
+  box-shadow: none !important;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.35) transparent;
+}
+
+html[data-nl-effective-theme="dark"] #nurselink-canonical-sidebar,
+html.dark #nurselink-canonical-sidebar {
+  background: linear-gradient(180deg, var(--nlc-blue-dark-a) 0%, var(--nlc-blue-dark-b) 100%) !important;
+}
+
+#nurselink-canonical-sidebar::-webkit-scrollbar { width: 6px; }
+#nurselink-canonical-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.30);
+  border-radius: 999px;
+}
+
+.nlc-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 6px 16px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+}
+
+.nlc-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: #2082e9;
+  color: #fff;
+  font-weight: 800;
+  flex: 0 0 auto;
+}
+
+.nlc-brand strong { display: block; color: #fff !important; font-size: 16px; }
+.nlc-brand small { display: block; color: #d9e8f7 !important; font-size: 11px; }
+
+#nurselink-canonical-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#nurselink-canonical-sidebar nav a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 7px;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#nurselink-canonical-sidebar nav a:hover,
+#nurselink-canonical-sidebar nav a[aria-current="page"] {
+  background: rgba(255,255,255,.17) !important;
+}
+
+/* Canonical fixed topbar */
+#nurselink-canonical-topbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: var(--nlc-sidebar-w) !important;
+  right: 0 !important;
+  width: auto !important;
+  height: var(--nlc-topbar-h) !important;
+  z-index: var(--nlc-topbar-z) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  padding: 0 18px !important;
+  box-sizing: border-box !important;
+  background: rgba(255,255,255,.98) !important;
+  border-bottom: 1px solid #d8e1ec !important;
+  box-shadow: 0 4px 16px rgba(31,48,78,.05) !important;
+  backdrop-filter: saturate(130%) blur(10px);
+  -webkit-backdrop-filter: saturate(130%) blur(10px);
+}
+
+html[data-nl-effective-theme="dark"] #nurselink-canonical-topbar,
+html.dark #nurselink-canonical-topbar {
+  background: rgba(10,22,37,.98) !important;
+  border-bottom-color: #22334a !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.24) !important;
+}
+
+.nlc-action {
+  min-width: 42px;
+  height: 42px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #d8e1ec;
+  border-radius: 10px;
+  background: #fff;
+  color: #0b1730;
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+html[data-nl-effective-theme="dark"] .nlc-action,
+html.dark .nlc-action {
+  background: #0b1b31;
+  color: #f8fbff;
+  border-color: #22334a;
+}
+
+.nlc-action:hover { border-color: #9eb8d8; }
+.nlc-profile { min-width: 106px; }
+.nlc-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: #1769e0; color: #fff;
+  font-size: 11px; font-weight: 800;
+}
+.nlc-profile-label { font-weight: 700; font-size: 13px; }
+
+/* Canonical content offsets */
+html[data-nl-canonical-shell="true"] body {
+  margin-left: var(--nlc-sidebar-w) !important;
+  padding-top: var(--nlc-topbar-h) !important;
+  min-height: 100vh !important;
+  box-sizing: border-box !important;
+}
+
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  min-height: calc(100vh - var(--nlc-topbar-h)) !important;
+}
+
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 main,
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 .main,
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 .content,
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 [class*="workspace"] {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove legacy injected shell from previous releases if still present. */
+#nurselink-universal-sidebar,
+#nurselink-universal-topbar {
+  display: none !important;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+  :root {
+    --nlc-sidebar-w: 210px;
+    --nlc-topbar-h: 64px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root {
+    --nlc-sidebar-w: 260px;
+    --nlc-topbar-h: 58px;
+  }
+
+  #nurselink-canonical-topbar {
+    left: 0 !important;
+    width: 100% !important;
+    height: var(--nlc-topbar-h) !important;
+    padding: 0 8px !important;
+    gap: 5px !important;
+  }
+
+  .nlc-menu {
+    display: inline-flex !important;
+    margin-right: auto !important;
+  }
+
+  .nlc-profile {
+    min-width: 42px !important;
+    padding: 0 7px !important;
+  }
+
+  .nlc-profile-label { display: none !important; }
+
+  #nurselink-canonical-sidebar {
+    width: var(--nlc-sidebar-w) !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    transform: translateX(-102%) !important;
+    transition: transform .18s ease !important;
+    box-shadow: 8px 0 28px rgba(0,0,0,.28) !important;
+  }
+
+  html[data-nl-sidebar-open="true"] #nurselink-canonical-sidebar {
+    transform: translateX(0) !important;
+  }
+
+  html[data-nl-canonical-shell="true"] body {
+    margin-left: 0 !important;
+    padding-top: var(--nlc-topbar-h) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .nlc-menu { display: none !important; }
+}

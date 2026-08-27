@@ -1,0 +1,243 @@
+/* NurseLink Full Sticky Topbar Fix v64.0.4
+   Keeps the complete member topbar and ALL controls together while scrolling:
+   brand/title, Help, theme buttons, avatar/user chip and notification bell. */
+
+:root {
+  --nl6404-topbar-z: 1200;
+  --nl6404-topbar-h: 72px;
+  --nl6404-topbar-bg: rgba(255,255,255,.96);
+  --nl6404-topbar-border: rgba(15,23,42,.10);
+  --nl6404-topbar-shadow: 0 8px 24px rgba(15,23,42,.08);
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+[data-theme="dark"] {
+  --nl6404-topbar-bg: rgba(15,23,42,.96);
+  --nl6404-topbar-border: rgba(255,255,255,.10);
+  --nl6404-topbar-shadow: 0 8px 24px rgba(0,0,0,.28);
+}
+
+/* The whole header is the sticky unit. */
+header.topbar,
+.topbar {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  top: 0 !important;
+  inset-block-start: 0 !important;
+  z-index: var(--nl6404-topbar-z) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  gap: 12px !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: var(--nl6404-topbar-h) !important;
+
+  margin: 0 !important;
+
+  background: var(--nl6404-topbar-bg) !important;
+  border-bottom: 1px solid var(--nl6404-topbar-border) !important;
+  box-shadow: var(--nl6404-topbar-shadow) !important;
+
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+
+  isolation: isolate !important;
+  transform: translateZ(0) !important;
+}
+
+/* Do not let layout ancestors break sticky behavior. */
+.main-area,
+.main-area > * {
+  min-width: 0 !important;
+}
+
+.main-area {
+  overflow: visible !important;
+  overflow-x: clip !important;
+}
+
+.main-area > header.topbar,
+.main-area > .topbar {
+  align-self: stretch !important;
+}
+
+/* Left title/portal label stays inside the sticky row. */
+.topbar > div:first-of-type {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.topbar > div:first-of-type > strong,
+.topbar > div:first-of-type > span {
+  max-width: 100% !important;
+}
+
+/* All member controls remain part of the sticky header. */
+.topbar-member-actions {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex: 0 1 auto !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* Theme control remains inside header, never floating elsewhere. */
+.topbar .member-theme-control-v337 {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+}
+
+/* Avatar/user chip remains sticky with header. */
+.topbar .user-chip,
+.topbar .nurselink-super-admin-user {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+
+  display: flex !important;
+  align-items: center !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+.topbar .avatar,
+.topbar .nurselink-avatar-photo {
+  flex: 0 0 auto !important;
+}
+
+.topbar .user-chip > div:last-child {
+  min-width: 0 !important;
+}
+
+.topbar .user-chip strong,
+.topbar .user-chip small {
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Notification bell stays inside the same sticky row. */
+.topbar > .nurselink-notification-button,
+.topbar .nurselink-notification-button {
+  position: relative !important;
+  inset: auto !important;
+  transform: none !important;
+
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  z-index: calc(var(--nl6404-topbar-z) + 1) !important;
+}
+
+/* Help button stays attached too. */
+.topbar .navigation-help-button {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+}
+
+/* Mobile menu button stays part of the sticky topbar. */
+.topbar .mobile-menu-button {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+}
+
+/* Drawers/dialogs should overlay the sticky header when opened. */
+.nurselink-notification-drawer,
+[role="dialog"],
+.mobile-navigation-drawer,
+.member-mobile-navigation,
+.sidebar.mobile-open {
+  z-index: calc(var(--nl6404-topbar-z) + 100) !important;
+}
+
+html {
+  scroll-padding-top: calc(var(--nl6404-topbar-h) + 14px) !important;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  :root {
+    --nl6404-topbar-h: 66px;
+  }
+
+  header.topbar,
+  .topbar {
+    gap: 8px !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
+  }
+
+  .topbar-member-actions {
+    gap: 6px !important;
+  }
+
+  html {
+    scroll-padding-top: calc(var(--nl6404-topbar-h) + env(safe-area-inset-top, 0px) + 12px) !important;
+  }
+}
+
+/* Small phones: keep all controls sticky but compact the text. */
+@media (max-width: 700px) {
+  .topbar .navigation-help-button span,
+  .topbar .user-chip > div:last-child {
+    display: none !important;
+  }
+
+  .topbar .user-chip {
+    flex: 0 0 auto !important;
+  }
+
+  .topbar > div:first-of-type .nurselink-super-admin-portal-label {
+    display: none !important;
+  }
+}
+
+/* Very small phones: title can truncate, controls still remain sticky. */
+@media (max-width: 480px) {
+  header.topbar,
+  .topbar {
+    gap: 5px !important;
+  }
+
+  .topbar > div:first-of-type {
+    overflow: hidden !important;
+  }
+
+  .topbar > div:first-of-type > strong {
+    display: block !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .topbar-member-actions {
+    gap: 4px !important;
+  }
+}

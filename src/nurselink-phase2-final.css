@@ -1,0 +1,25 @@
+/* NurseLink Phase 2 Final Cumulative Full-Stack v3.0.0 */
+.nl-phase2-panel{border:1px solid #e2e8f0;border-radius:14px;background:#fff;padding:18px;min-width:0}
+.nl-phase2-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.nl-phase2-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.nl-phase2-actions button,.nl-phase2-actions a{min-height:44px}
+.nl-phase2-timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.nl-phase2-stage{border:1px solid #dbe4ee;border-radius:12px;padding:10px 12px;min-height:64px}
+.nl-phase2-stage.is-complete{background:#f4f9ff}
+.nl-phase2-stage.is-current{border-color:#1677e8;box-shadow:inset 0 0 0 1px #1677e8}
+.nl-phase2-note{border:1px solid #fde3b8;background:#fff9ed;border-radius:12px;padding:14px}
+.nl-phase2-error{border:1px solid #fecaca;background:#fff5f5;border-radius:12px;padding:14px}
+.nl-phase2-progress{width:100%;height:10px;border-radius:999px;background:#edf2f7;overflow:hidden}
+.nl-phase2-progress>span{display:block;height:100%;background:#1677e8;border-radius:inherit}
+.nl-phase2-status-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #eef2f7}
+.nl-phase2-status-row:last-child{border-bottom:0}
+@media(max-width:780px){
+ .nl-phase2-grid{grid-template-columns:1fr}
+ .nl-phase2-timeline{grid-template-columns:1fr}
+ .nl-phase2-actions>*{width:100%;min-height:54px}
+ .nl-phase2-stage{min-height:54px}
+}
+html[data-theme="dark"] .nl-phase2-panel{background:#18222d;border-color:#334252;color:#f5f7fa}
+@media(prefers-color-scheme:dark){
+ html[data-theme="system"] .nl-phase2-panel{background:#18222d;border-color:#334252;color:#f5f7fa}
+}

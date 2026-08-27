@@ -1,3 +1,4 @@
+/* NurseLink Members Test Mode Function Guard v1.0.17 */
 import './nurselink-mobile.css';
 
 /**
@@ -567,7 +568,7 @@ import './nurselink-mobile.css';
           <div class="nurselink-auth-logo">NL</div>
           <div class="nurselink-auth-brand-copy">
             <strong>NurseLink</strong>
-            <span>${type === 'login' ? 'Welcome back' : 'Member Community'}</span>
+            <span>${type === 'login' ? 'KAPIT-BISIG' : 'KAPIT-BISIG'}</span>
           </div>
         </div>
 
@@ -670,7 +671,7 @@ import './nurselink-mobile.css';
       title.setAttribute('role', 'heading');
       title.setAttribute('aria-level', '1');
 
-      if (type === 'register') {
+      if (type === 'register' || type === 'login') {
         title.textContent = 'Create your NurseLink Account';
       } else if (type === 'login') {
         title.textContent = 'Welcome back to NurseLink';
@@ -705,21 +706,38 @@ import './nurselink-mobile.css';
       trust.setAttribute('aria-label', 'NurseLink trust and community benefits');
       trust.innerHTML = `
         <div class="nurselink-auth-trust-item">
-          <span class="nurselink-auth-trust-icon" aria-hidden="true">✓</span>
+          <span class="nurselink-auth-trust-icon" aria-hidden="true">
+  <svg viewBox="0 0 24 24" focusable="false">
+    <path d="M12 3 5 6v5c0 4.6 2.9 8.8 7 10 4.1-1.2 7-5.4 7-10V6l-7-3Z"/>
+    <path d="m8.7 12 2.1 2.1 4.6-5"/>
+  </svg>
+</span>
           <div>
             <strong>Secure & Private</strong>
             <span>Your data is always protected.</span>
           </div>
         </div>
         <div class="nurselink-auth-trust-item">
-          <span class="nurselink-auth-trust-icon" aria-hidden="true">◎</span>
+          <span class="nurselink-auth-trust-icon" aria-hidden="true">
+  <svg viewBox="0 0 24 24" focusable="false">
+    <circle cx="9" cy="8" r="3"/>
+    <circle cx="17" cy="9" r="2.5"/>
+    <path d="M3.5 19c.7-3.2 2.8-5 5.5-5s4.8 1.8 5.5 5"/>
+    <path d="M14.5 15c1-.9 2.1-1.3 3.4-1.3 2.2 0 3.7 1.3 4.2 3.7"/>
+  </svg>
+</span>
           <div>
             <strong>Trusted Community</strong>
             <span>Connect with nurses nationwide.</span>
           </div>
         </div>
         <div class="nurselink-auth-trust-item">
-          <span class="nurselink-auth-trust-icon" aria-hidden="true">↗</span>
+          <span class="nurselink-auth-trust-icon" aria-hidden="true">
+  <svg viewBox="0 0 24 24" focusable="false">
+    <path d="M5 19 10 14l3 3 6-8"/>
+    <path d="M14 9h5v5"/>
+  </svg>
+</span>
           <div>
             <strong>Career Growth</strong>
             <span>Opportunities and resources for you.</span>
@@ -751,6 +769,143 @@ import './nurselink-mobile.css';
     layout.setAttribute('data-nurselink-hotfix', 'standalone-routing-v321');
 
     const hero = createHero(type);
+
+    // NurseLink Registration Hero Slider v624
+    if (type === 'register' || type === 'login') {
+      const slider = document.createElement('div');
+      slider.className = 'nurselink-registration-hero-slider';
+      slider.setAttribute('aria-hidden', 'true');
+
+      const slides = [
+        {
+          desktop: '/images/registration-hero/nurselink-hero-global-hospital-01.png',
+          mobile: '/images/registration-hero/nurselink-hero-global-hospital-01-mob.png'
+        },
+        {
+          desktop: '/images/registration-hero/nurselink-hero-surgery-02.png',
+          mobile: '/images/registration-hero/nurselink-hero-surgery-02-mob.png'
+        },
+        {
+          desktop: '/images/registration-hero/nurselink-hero-hallway-03.png',
+          mobile: '/images/registration-hero/nurselink-hero-hallway-03-mob.png'
+        },
+        {
+          desktop: '/images/registration-hero/nurselink-hero-senior-global-04.png',
+          mobile: '/images/registration-hero/nurselink-hero-senior-global-04-mob.png'
+        },
+        {
+          desktop: '/images/registration-hero/nurselink-hero-middle-east-05.png',
+          mobile: '/images/registration-hero/nurselink-hero-middle-east-05-mob.png'
+        }
+      ];
+
+      slides.forEach((item, index) => {
+        const slide = document.createElement('div');
+        slide.className =
+          'nurselink-registration-hero-slide' +
+          (index === 0 ? ' is-active' : '');
+
+        const picture = document.createElement('picture');
+
+        const mobileSource = document.createElement('source');
+        mobileSource.media = '(max-width: 680px)';
+        mobileSource.srcset = item.mobile;
+
+        const img = document.createElement('img');
+        img.src = item.desktop;
+        img.alt = '';
+        img.loading = index === 0 ? 'eager' : 'lazy';
+        img.decoding = 'async';
+
+        picture.appendChild(mobileSource);
+        picture.appendChild(img);
+        slide.appendChild(picture);
+        slider.appendChild(slide);
+      });
+
+      const dots = document.createElement('div');
+      dots.className = 'nurselink-registration-hero-dots';
+
+      slides.forEach((_, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className =
+          'nurselink-registration-hero-dot' +
+          (index === 0 ? ' is-active' : '');
+        dot.dataset.slide = String(index);
+        dot.setAttribute('aria-label', `Show hero image ${index + 1}`);
+        dots.appendChild(dot);
+      });
+
+      hero.prepend(slider);
+      hero.appendChild(dots);
+
+      let currentSlide = 0;
+      let timer = null;
+      const reduceMotion =
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const showSlide = (next) => {
+        const heroSlides =
+          [...slider.querySelectorAll('.nurselink-registration-hero-slide')];
+        const heroDots =
+          [...dots.querySelectorAll('.nurselink-registration-hero-dot')];
+
+        currentSlide =
+          (next + heroSlides.length) % heroSlides.length;
+
+        heroSlides.forEach((el, i) =>
+          el.classList.toggle('is-active', i === currentSlide)
+        );
+
+        heroDots.forEach((el, i) =>
+          el.classList.toggle('is-active', i === currentSlide)
+        );
+      };
+
+      const startSlider = () => {
+        if (reduceMotion) return;
+        clearInterval(timer);
+        timer = setInterval(() => {
+          showSlide(currentSlide + 1);
+        }, 6000);
+      };
+
+      dots.addEventListener('click', event => {
+        const dot =
+          event.target.closest('.nurselink-registration-hero-dot');
+
+        if (!dot) return;
+
+        showSlide(Number(dot.dataset.slide || 0));
+        startSlider();
+      });
+
+      let touchStartX = 0;
+
+      slider.addEventListener('touchstart', event => {
+        touchStartX =
+          event.changedTouches[0]?.clientX || 0;
+      }, { passive: true });
+
+      slider.addEventListener('touchend', event => {
+        const touchEndX =
+          event.changedTouches[0]?.clientX || 0;
+
+        const delta = touchEndX - touchStartX;
+
+        if (Math.abs(delta) < 40) return;
+
+        showSlide(
+          currentSlide + (delta < 0 ? 1 : -1)
+        );
+
+        startSlider();
+      }, { passive: true });
+
+      startSlider();
+    }
+
     const panelWrap = document.createElement('div');
     panelWrap.className = 'nurselink-auth-panel-wrap';
 
@@ -3420,6 +3575,24 @@ import './nurselink-mobile.css';
       .trim();
   }
 
+  async function memberOnboardingComplete520() {
+    try {
+      const data = await loadMemberPortalOnboarding520();
+      return data?.onboarding?.status === 'completed';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function onboardingLockedModule520(card) {
+    return {
+      ...card,
+      locked: true,
+      href: '#membership',
+      text: `${card.text} Complete onboarding to unlock.`
+    };
+  }
+
   function memberModuleCards() {
     return [
       {
@@ -3448,6 +3621,7 @@ import './nurselink-mobile.css';
       },
       {
         href: '/portfolio',
+        onboardingRequired: true,
         icon: '▣',
         title: 'Professional Portfolio',
         text: 'Build a professional record of your work, achievements and nursing experience.'
@@ -3460,6 +3634,7 @@ import './nurselink-mobile.css';
       },
       {
         href: '/jobs',
+        onboardingRequired: true,
         icon: '↗',
         title: 'Jobs & Opportunities',
         text: 'Explore suitable nursing and professional opportunities.'
@@ -3472,6 +3647,7 @@ import './nurselink-mobile.css';
       },
       {
         href: '/mentoring',
+        onboardingRequired: true,
         icon: '◎',
         title: 'Mentoring',
         text: 'Connect with professional guidance, peer support and mentoring.'
@@ -3524,6 +3700,13 @@ import './nurselink-mobile.css';
     const data = await loadQualificationReadiness();
     const recommendation = memberNextRecommendation(data);
     const name = memberDisplayName();
+    const onboardingComplete = await memberOnboardingComplete520();
+
+    const modules = memberModuleCards().map(module =>
+      module.onboardingRequired && !onboardingComplete
+        ? onboardingLockedModule520(module)
+        : module
+    );
 
     root.className = 'nurselink-member-hub';
     root.style.setProperty(
@@ -3592,8 +3775,12 @@ import './nurselink-mobile.css';
       </div>
 
       <div class="nurselink-member-module-grid">
-        ${memberModuleCards().map(module => `
-          <a href="${module.href}" class="nurselink-member-module-card">
+        ${modules.map(module => `
+          <a
+            href="${module.href}"
+            class="nurselink-member-module-card${module.locked ? ' nurselink-member-module-locked' : ''}"
+            ${module.locked ? 'data-onboarding-locked="1" aria-label="' + nlV200Escape(module.title) + ' — complete onboarding to unlock"' : ''}
+          >
             <span class="nurselink-member-module-icon">${module.icon}</span>
             <span class="nurselink-member-module-copy">
               <strong>${module.title}</strong>
@@ -3925,6 +4112,7 @@ import './nurselink-mobile.css';
 
   async function refreshPortfolio(root) {
     const status = root?.querySelector('.nurselink-portfolio-status');
+    let failed = false;
 
     if (status) {
       status.textContent = 'Loading professional portfolio…';
@@ -3934,15 +4122,18 @@ import './nurselink-mobile.css';
     try {
       const rows = await loadPortfolioItems(true);
       renderPortfolio(root, rows);
-
-      if (status) {
-        status.textContent = '';
-        status.dataset.tone = '';
-      }
     } catch (error) {
+      failed = true;
+
       if (status) {
         status.textContent = error.message;
         status.dataset.tone = 'error';
+      }
+    } finally {
+      if (status && !failed) {
+        status.textContent = '';
+        status.dataset.tone = '';
+        status.hidden = true;
       }
     }
   }
@@ -4007,6 +4198,38 @@ import './nurselink-mobile.css';
 
     page.classList.add('nurselink-professional-portfolio-page');
 
+    if (!(await memberOnboardingComplete520())) {
+      let locked = page.querySelector('.nurselink-professional-portfolio');
+
+      if (!locked) {
+        locked = document.createElement('section');
+        locked.className = 'nurselink-professional-portfolio nurselink-onboarding-feature-locked';
+        locked.innerHTML = `
+          <div class="nurselink-portfolio-heading">
+            <div>
+              <span>PROFESSIONAL PORTFOLIO</span>
+              <h2>Complete onboarding to unlock</h2>
+              <p>
+                Finish your NurseLink member onboarding before using
+                the Professional Portfolio.
+              </p>
+            </div>
+          </div>
+          <div class="nurselink-portfolio-controls">
+            <a class="primary-button" href="/dashboard#membership">
+              Complete Onboarding →
+            </a>
+          </div>
+        `;
+
+        const header = page.querySelector('.page-header');
+        if (header) header.insertAdjacentElement('afterend', locked);
+        else page.insertBefore(locked, page.firstChild);
+      }
+
+      return;
+    }
+
     let root = page.querySelector('.nurselink-professional-portfolio');
 
     if (!root) {
@@ -4057,14 +4280,37 @@ import './nurselink-mobile.css';
   async function enhanceMemberDashboardPortfolio(page) {
     if (!page || routeSlug() !== 'dashboard' || !isApprovedMemberPortal()) return;
 
+    const hub = page.querySelector('.nurselink-member-hub');
+    if (!hub) return;
+
+    const onboardingComplete = await memberOnboardingComplete520();
+
+    if (!onboardingComplete) {
+      let summary = hub.querySelector('.nurselink-member-portfolio-summary');
+
+      if (!summary) {
+        summary = document.createElement('div');
+        summary.className = 'nurselink-member-portfolio-summary';
+        hub.appendChild(summary);
+      }
+
+      summary.innerHTML = `
+        <div>
+          <span>PROFESSIONAL PORTFOLIO</span>
+          <strong>🔒 Complete onboarding to unlock</strong>
+          <small>Finish member onboarding before building your professional portfolio.</small>
+        </div>
+        <a href="#membership">Complete Onboarding →</a>
+      `;
+
+      return;
+    }
+
     let rows = [];
 
     try {
       rows = await loadPortfolioItems();
     } catch (_) {}
-
-    const hub = page.querySelector('.nurselink-member-hub');
-    if (!hub) return;
 
     let summary = hub.querySelector('.nurselink-member-portfolio-summary');
 
@@ -4090,7 +4336,6 @@ import './nurselink-mobile.css';
 
   function enhanceV190(page) {
     ensureProfessionalPortfolio(page);
-    enhanceMemberDashboardPortfolio(page);
   }
 
   /* =========================================================
@@ -4350,8 +4595,34 @@ import './nurselink-mobile.css';
     form.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  async function enhanceCareerMatching(page) {
+  async function enhanceCareerMatching(page, onboardingComplete = false) {
     if (!page || routeSlug() !== 'jobs' || !isApprovedMemberPortal()) return;
+
+    if (!onboardingComplete) {
+      let locked = page.querySelector('.nurselink-career-matching.nurselink-onboarding-feature-locked');
+
+      if (!locked) {
+        locked = document.createElement('section');
+        locked.className = 'nurselink-career-matching nurselink-onboarding-feature-locked';
+        locked.innerHTML = `
+          <div class="nurselink-v200-heading">
+            <span>CAREER MATCHING</span>
+            <h2>🔒 Complete onboarding to unlock Career Matching</h2>
+            <p>Finish your NurseLink member onboarding before setting career preferences and receiving opportunity matches.</p>
+          </div>
+          <div class="nurselink-v200-actions">
+            <a href="/dashboard#membership">Complete Onboarding →</a>
+          </div>
+        `;
+
+        const header = page.querySelector('.page-header');
+        if (header) header.insertAdjacentElement('afterend', locked);
+        else page.insertBefore(locked, page.firstChild);
+      }
+
+      return;
+    }
+
     let root = page.querySelector('.nurselink-career-matching');
     if (!root) {
       root = document.createElement('section');
@@ -4365,8 +4636,8 @@ import './nurselink-mobile.css';
   }
 
   async function loadLearningRecords(force = false) {
+    if (learningState.loading) return learningState.loading;
     if (learningState.loaded && !force) return learningState.rows;
-    if (learningState.loading && !force) return learningState.loading;
     learningState.loading = nurselinkJson(LEARNING_RECORDS_API)
       .then(payload => {
         learningState.rows = Array.isArray(payload?.data) ? payload.data : [];
@@ -4455,9 +4726,30 @@ import './nurselink-mobile.css';
 
   async function refreshLearning(root) {
     const status = root.querySelector('.nurselink-learning-status');
-    if (status) status.textContent = 'Loading learning records…';
-    try { renderLearning(root, await loadLearningRecords(true)); if (status) status.textContent = ''; }
-    catch (error) { if (status) { status.textContent = error.message; status.dataset.tone = 'error'; } }
+    let failed = false;
+
+    if (status) {
+      status.hidden = false;
+      status.textContent = 'Loading learning records…';
+      status.dataset.tone = 'loading';
+    }
+
+    try {
+      renderLearning(root, await loadLearningRecords(true));
+    } catch (error) {
+      failed = true;
+
+      if (status) {
+        status.textContent = error.message;
+        status.dataset.tone = 'error';
+      }
+    } finally {
+      if (status && !failed) {
+        status.textContent = '';
+        status.dataset.tone = '';
+        status.hidden = true;
+      }
+    }
   }
 
   function openLearningEditor(root, record = null) {
@@ -4493,32 +4785,92 @@ import './nurselink-mobile.css';
     if (!root) {
       root = document.createElement('section');
       root.className = 'nurselink-learning-tracker';
-      root.innerHTML = `<div class="nurselink-v200-heading"><span>LEARNING & DEVELOPMENT</span><h2>Your Professional Learning Record</h2><p>Track continuing education, training and development. CPD units shown here are self-reported unless separately verified.</p></div><div class="nurselink-learning-metrics"><div><span>Total Records</span><strong>0</strong></div><div><span>Completed</span><strong>0</strong></div><div><span>Learning Hours</span><strong>0.0</strong></div><div><span>Self-Reported CPD</span><strong>0.0</strong></div></div><div class="nurselink-learning-controls"><button type="button" class="primary-button add">+ Add Learning Record</button><a class="secondary-button" href="/qualifications">View Qualification Readiness →</a></div><div class="nurselink-learning-status" aria-live="polite"></div><div class="nurselink-learning-empty"><div>◫</div><strong>Start your professional learning record</strong><p>Add a course, webinar, workshop, conference or other learning activity.</p></div><div class="nurselink-learning-list"></div><div class="nurselink-learning-disclaimer">* CPD units entered in NurseLink are self-reported unless the issuing or accrediting body has independently verified them. NurseLink does not replace PRC or other official CPD records.</div>`;
+      root.innerHTML = `<div class="nurselink-v200-heading"><span>LEARNING & DEVELOPMENT</span><h2>Your Professional Learning Record</h2><p>Track continuing education, training and development. CPD units shown here are self-reported unless separately verified.</p></div><div class="nurselink-learning-metrics"><div><span>Total Records</span><strong>0</strong></div><div><span>Completed</span><strong>0</strong></div><div><span>Learning Hours</span><strong>0.0</strong></div><div><span>Self-Reported CPD</span><strong>0.0</strong></div></div><div class="nurselink-learning-controls"><button type="button" class="primary-button add">+ Add Learning Record</button><a class="secondary-button" href="/qualifications">View Qualification Readiness →</a><a class="secondary-button" href="/credential-renewal">Credential Renewal →</a></div><div class="nurselink-learning-status" aria-live="polite"></div><div class="nurselink-learning-empty"><div>◫</div><strong>Start your professional learning record</strong><p>Add a course, webinar, workshop, conference or other learning activity.</p></div><div class="nurselink-learning-list"></div><div class="nurselink-learning-disclaimer">* CPD units entered in NurseLink are self-reported unless the issuing or accrediting body has independently verified them. NurseLink does not replace PRC or other official CPD records.</div>`;
       const header = page.querySelector('.page-header');
       if (header) header.insertAdjacentElement('afterend', root); else page.insertBefore(root, page.firstChild);
       root.querySelector('.add')?.addEventListener('click', () => openLearningEditor(root));
     }
+
+    if (root.dataset.nurselinkLearningInitialized === '1') {
+      return;
+    }
+
+    root.dataset.nurselinkLearningInitialized = '1';
     refreshLearning(root);
+
+    const params = new URLSearchParams(location.search);
+
+    if (
+      params.get('nladd') === 'mentoring' &&
+      root.dataset.nurselinkMentoringHandoff !== '1'
+    ) {
+      root.dataset.nurselinkMentoringHandoff = '1';
+
+      openLearningEditor(root);
+
+      const form = root.querySelector('.nurselink-learning-editor');
+
+      if (form) {
+        const type = form.elements.namedItem('learning_type');
+        const title = form.elements.namedItem('title');
+        const topic = form.elements.namedItem('topic');
+
+        if (type) type.value = 'mentoring';
+        if (title) {
+          title.value =
+            params.get('nltitle') ||
+            'Professional Mentoring';
+        }
+        if (topic) {
+          topic.value = params.get('nltopic') || '';
+        }
+
+        form.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
   }
 
-  async function enhanceMemberHubV200(page) {
+  async function enhanceMemberHubV200(page, onboardingComplete = false) {
     if (!page || routeSlug() !== 'dashboard' || !isApprovedMemberPortal()) return;
     const hub = page.querySelector('.nurselink-member-hub');
     if (!hub) return;
+
     let career = null, learning = [];
-    try { career = await loadCareerPreferences(); } catch (_) {}
+
+    if (onboardingComplete) {
+      try { career = await loadCareerPreferences(); } catch (_) {}
+    }
+
     try { learning = await loadLearningRecords(); } catch (_) {}
+
     const c = careerReadiness(career);
     const l = learningSummary(learning);
+
     let strip = hub.querySelector('.nurselink-member-v200-strip');
-    if (!strip) { strip = document.createElement('div'); strip.className = 'nurselink-member-v200-strip'; hub.appendChild(strip); }
-    strip.innerHTML = `<a href="/jobs"><span>CAREER MATCHING</span><strong>${c.score}% ready</strong><small>${c.label}</small></a><a href="/learning"><span>PROFESSIONAL LEARNING</span><strong>${l.completed} completed</strong><small>${l.hours.toFixed(1)} hours · ${l.units.toFixed(1)} self-reported CPD</small></a>`;
+    if (!strip) {
+      strip = document.createElement('div');
+      strip.className = 'nurselink-member-v200-strip';
+      hub.appendChild(strip);
+    }
+
+    const careerCard = onboardingComplete
+      ? `<a href="/jobs"><span>CAREER MATCHING</span><strong>${c.score}% ready</strong><small>${c.label}</small></a>`
+      : `<a href="#membership" class="nurselink-onboarding-feature-locked"><span>CAREER MATCHING</span><strong>🔒 Complete onboarding to unlock</strong><small>Set career preferences after completing member onboarding.</small></a>`;
+
+    strip.innerHTML = `${careerCard}<a href="/learning"><span>PROFESSIONAL LEARNING</span><strong>${l.completed} completed</strong><small>${l.hours.toFixed(1)} hours · ${l.units.toFixed(1)} self-reported CPD</small></a>`;
   }
 
-  function enhanceV200(page) {
-    enhanceCareerMatching(page);
+  async function enhanceV200(page) {
+    if (!page || !isApprovedMemberPortal()) return;
+
+    const onboardingComplete = await memberOnboardingComplete520();
+
+    enhanceCareerMatching(page, onboardingComplete);
     enhanceLearningTracker(page);
-    enhanceMemberHubV200(page);
+    enhanceMemberHubV200(page, onboardingComplete);
   }
 
 
@@ -4544,18 +4896,54 @@ import './nurselink-mobile.css';
   async function loadOpportunityCenter(force = false) {
     if (opportunityState.loaded && !force) return opportunityState;
 
-    const [jobsPayload, savedPayload, appsPayload] = await Promise.all([
+    const [jobsResult, savedResult, appsResult] = await Promise.allSettled([
       nurseLinkJsonRequest(JOB_MATCHES_API),
       nurseLinkJsonRequest(SAVED_JOBS_API),
       nurseLinkJsonRequest(JOB_APPLICATIONS_API)
     ]);
 
-    opportunityState.jobs = Array.isArray(jobsPayload?.data) ? jobsPayload.data : [];
+    const jobsPayload =
+      jobsResult.status === 'fulfilled' ? jobsResult.value : null;
+
+    const savedPayload =
+      savedResult.status === 'fulfilled' ? savedResult.value : null;
+
+    const appsPayload =
+      appsResult.status === 'fulfilled' ? appsResult.value : null;
+
+    opportunityState.jobs = Array.isArray(jobsPayload?.data)
+      ? jobsPayload.data
+      : [];
+
     opportunityState.saved = new Set(
-      Array.isArray(savedPayload?.data) ? savedPayload.data.map(Number) : []
+      Array.isArray(savedPayload?.data)
+        ? savedPayload.data.map(Number)
+        : []
     );
-    opportunityState.applications = Array.isArray(appsPayload?.data) ? appsPayload.data : [];
+
+    opportunityState.applications = Array.isArray(appsPayload?.data)
+      ? appsPayload.data
+      : [];
+
     opportunityState.loaded = true;
+
+    const failures = [
+      jobsResult.status === 'rejected' ? 'jobs' : null,
+      savedResult.status === 'rejected' ? 'saved jobs' : null,
+      appsResult.status === 'rejected' ? 'applications' : null
+    ].filter(Boolean);
+
+    opportunityState.failures = failures;
+
+    if (failures.length === 3) {
+      throw jobsResult.reason || savedResult.reason || appsResult.reason;
+    }
+
+    if (failures.length) {
+      console.warn(
+        `NurseLink Opportunity Center partially loaded. Unavailable: ${failures.join(', ')}`
+      );
+    }
 
     return opportunityState;
   }
@@ -4706,6 +5094,24 @@ import './nurselink-mobile.css';
 
     const jobs = opportunityState.jobs;
     const strong = jobs.filter(job => Number(job.match_score) >= 70).length;
+
+    let notice = root.querySelector('.nurselink-opportunity-partial-notice');
+
+    if (opportunityState.failures.length) {
+      if (!notice) {
+        notice = document.createElement('div');
+        notice.className = 'nurselink-opportunity-partial-notice';
+        root.querySelector('.nurselink-opportunity-summary')
+          ?.insertAdjacentElement('afterend', notice);
+      }
+
+      notice.textContent =
+        `Some career data is temporarily unavailable: ${opportunityState.failures.join(', ')}. ` +
+        'The rest of your Opportunity Center is still available.';
+      notice.hidden = false;
+    } else if (notice) {
+      notice.hidden = true;
+    }
     const tracked = opportunityState.applications.filter(app => app.status !== 'withdrawn').length;
 
     summary.innerHTML = `
@@ -4914,6 +5320,54 @@ import './nurselink-mobile.css';
     renderApplicationsPipeline(root);
   }
 
+  function applicationNextAction(status) {
+    const value = String(status || '').toLowerCase();
+
+    const guidance = {
+      submitted: {
+        title: 'Application tracked',
+        detail: 'Confirm that any required employer application was also submitted, then monitor this pipeline for updates.',
+        tone: 'active'
+      },
+      under_review: {
+        title: 'Employer review in progress',
+        detail: 'Keep your profile, credentials and contact details current while the employer reviews your application.',
+        tone: 'active'
+      },
+      shortlisted: {
+        title: 'Prepare for the next stage',
+        detail: 'You have progressed beyond initial review. Watch Employer Communication for interview or document requests.',
+        tone: 'attention'
+      },
+      interview: {
+        title: 'Interview action required',
+        detail: 'Review Employer Communication below for the interview schedule, location or meeting link, and respond to the invitation.',
+        tone: 'attention'
+      },
+      offer: {
+        title: 'Offer received',
+        detail: 'Review the employer communication and formal offer carefully before making any employment decision.',
+        tone: 'success'
+      },
+      declined: {
+        title: 'Application closed',
+        detail: 'This application is no longer active. Keep it as history and review new matched opportunities when ready.',
+        tone: 'closed'
+      },
+      withdrawn: {
+        title: 'Application withdrawn',
+        detail: 'This record remains in your NurseLink history and is no longer counted as an active application.',
+        tone: 'closed'
+      }
+    };
+
+    return guidance[value] || {
+      title: 'Application status updated',
+      detail: 'Review the latest application information and employer communication for any required action.',
+      tone: 'active'
+    };
+  }
+
   function renderApplicationsPipeline(root) {
     const rows = opportunityState.applications;
     const metrics = root.querySelector('.nurselink-app-pipeline-metrics');
@@ -4934,6 +5388,8 @@ import './nurselink-mobile.css';
 
     rows.forEach(app => {
       const card = document.createElement('article');
+      const nextAction = applicationNextAction(app.status);
+
       card.className = 'nurselink-app-pipeline-card';
       card.dataset.status = app.status;
 
@@ -4955,6 +5411,12 @@ import './nurselink-mobile.css';
         </div>
 
         ${app.cover_note ? `<p>${nlV200Escape(app.cover_note)}</p>` : ''}
+
+        <div class="nurselink-app-next-action" data-tone="${nextAction.tone}">
+          <span>NEXT STEP</span>
+          <strong>${nlV200Escape(nextAction.title)}</strong>
+          <small>${nlV200Escape(nextAction.detail)}</small>
+        </div>
 
         <div class="nurselink-app-pipeline-actions">
           <a href="/jobs">View Job Matches</a>
@@ -5080,7 +5542,40 @@ import './nurselink-mobile.css';
     `;
   }
 
-  function enhanceV220(page) {
+  async function enhanceV220(page) {
+    if (!page || !isApprovedMemberPortal()) return;
+
+    const complete = await memberOnboardingComplete520();
+
+    if (!complete) {
+      const slug = routeSlug();
+
+      if (['jobs', 'applications'].includes(slug)) {
+        if (!page.querySelector('.nurselink-onboarding-feature-locked-v560')) {
+          const locked = document.createElement('section');
+          locked.className = 'nurselink-onboarding-feature-locked-v560';
+
+          locked.innerHTML = `
+            <div>
+              <span>MEMBER ONBOARDING</span>
+              <strong>🔒 Complete onboarding to unlock Career & Jobs</strong>
+              <small>
+                Finish your NurseLink member onboarding before accessing
+                opportunity matching and application tools.
+              </small>
+            </div>
+            <a href="/dashboard#membership">Complete Onboarding →</a>
+          `;
+
+          const header = page.querySelector('.page-header');
+          if (header) header.insertAdjacentElement('afterend', locked);
+          else page.insertBefore(locked, page.firstChild);
+        }
+      }
+
+      return;
+    }
+
     enhanceOpportunityMatches(page);
     enhanceApplicationsPipeline(page);
     enhanceMemberHubV220(page);
@@ -6150,7 +6645,7 @@ import './nurselink-mobile.css';
             <div class="nurselink-member-id-status"
               data-standing="${nlV200Escape(standing)}">
               <span>${standingActive ? '✓' : '!'}</span>
-              <strong>
+              <strong class="nurselink-active-membership-title">
                 ${standingActive
                   ? 'Active NurseLink Membership'
                   : `${nlV200Escape(standingLabel)} Membership Standing`}
@@ -6447,7 +6942,7 @@ import './nurselink-mobile.css';
      */
     if (type.startsWith('credential.renewal.')) {
       return membershipStatus === 'approved'
-        ? '/nurselink-credential-renewal.html'
+        ? '/credential-renewal'
         : '/smart-registration?nlstep=3';
     }
 
@@ -6467,12 +6962,6 @@ import './nurselink-mobile.css';
       return membershipStatus === 'approved'
         ? '/nurselink-chapters.html'
         : '/application-status';
-    }
-
-    if (type.startsWith('credential.renewal.')) {
-      return membershipStatus === 'approved'
-        ? '/nurselink-credential-renewal.html'
-        : '/smart-registration?nlstep=3';
     }
 
     if (type.startsWith('credential.')) {
@@ -7708,18 +8197,32 @@ import './nurselink-mobile.css';
       else page.appendChild(root);
     }
 
+    const communicationApplications = [...opportunityState.applications]
+      .sort((a, b) => {
+        const closed = value => ['withdrawn', 'declined'].includes(String(value || '').toLowerCase());
+        const aClosed = closed(a.status);
+        const bClosed = closed(b.status);
+
+        if (aClosed !== bClosed) return aClosed ? 1 : -1;
+
+        const aTime = new Date(a.updated_at || a.created_at || 0).getTime() || 0;
+        const bTime = new Date(b.updated_at || b.created_at || 0).getTime() || 0;
+
+        return bTime - aTime;
+      });
+
     root.innerHTML = `
       <div class="nurselink-comm-selector">
         <div>
           <span>MESSAGES & INTERVIEWS</span>
           <strong>Employer Communication</strong>
-          <small>Select a tracked application to view its partner communication channel.</small>
+          <small>Active applications are shown first. Closed applications remain available for history.</small>
         </div>
 
         <select aria-label="Select application">
-          ${opportunityState.applications.map(app => `
+          ${communicationApplications.map(app => `
             <option value="${Number(app.id)}">
-              ${v280Escape(app.title || 'Application')} · ${v280Escape(app.employer_name || '')}
+              ${v280Escape(app.title || 'Application')} · ${v280Escape(app.employer_name || '')} · ${v280Escape(v280Label(app.status))}
             </option>
           `).join('')}
         </select>
@@ -7875,12 +8378,14 @@ import './nurselink-mobile.css';
     }
   }
 
-  function enhanceCareerIntelligenceLauncher(page) {
+  async function enhanceCareerIntelligenceLauncher(page) {
     if (!page || !isApprovedMemberPortal()) return;
+
+    const onboardingComplete = await memberOnboardingComplete520();
 
     const slug = routeSlug();
 
-    if (!['dashboard', 'jobs', 'learning', 'qualifications'].includes(slug)) {
+    if (!['jobs', 'learning', 'qualifications'].includes(slug)) {
       return;
     }
 
@@ -7897,8 +8402,14 @@ import './nurselink-mobile.css';
         <strong>Professional Growth & Mobility Insights</strong>
         <small>Readiness score, credential expiry forecast, learning priorities and explainable job-fit guidance.</small>
       </div>
-      <a href="/nurselink-career-intelligence.html">Open Career Intelligence →</a>
+      ${onboardingComplete
+        ? '<a href="/career-intelligence">Open Career Intelligence →</a>'
+        : '<a href="/dashboard#membership" class="nurselink-onboarding-locked-link">🔒 Complete onboarding to unlock</a>'}
     `;
+
+    if (!onboardingComplete) {
+      card.classList.add('nurselink-onboarding-feature-locked');
+    }
 
     if (slug === 'dashboard') {
       const hub = page.querySelector('.nurselink-member-hub');
@@ -7930,7 +8441,7 @@ import './nurselink-mobile.css';
 
     const slug = routeSlug();
 
-    if (!['dashboard', 'learning', 'qualifications', 'credentials'].includes(slug)) {
+    if (!['learning', 'qualifications', 'credentials'].includes(slug)) {
       return;
     }
 
@@ -7952,7 +8463,7 @@ import './nurselink-mobile.css';
           attention before they lapse.
         </small>
       </div>
-      <a href="/nurselink-credential-renewal.html">
+      <a href="/credential-renewal">
         Open Renewal Center →
       </a>
     `;
@@ -7993,7 +8504,7 @@ import './nurselink-mobile.css';
 
     const slug = routeSlug();
 
-    if (!['dashboard', 'profile'].includes(slug)) {
+    if (slug !== 'profile') {
       return;
     }
 
@@ -8036,7 +8547,7 @@ import './nurselink-mobile.css';
 
     const slug = routeSlug();
 
-    if (!['dashboard', 'profile'].includes(slug)) {
+    if (slug !== 'profile') {
       return;
     }
 
@@ -8079,7 +8590,7 @@ import './nurselink-mobile.css';
 
     const slug = routeSlug();
 
-    if (!['dashboard', 'profile'].includes(slug)) {
+    if (slug !== 'profile') {
       return;
     }
 
@@ -8117,12 +8628,14 @@ import './nurselink-mobile.css';
     }
   }
 
-  function enhanceMentoringLauncher(page) {
+  async function enhanceMentoringLauncher(page) {
     if (!page || !isApprovedMemberPortal()) return;
+
+    const onboardingComplete = await memberOnboardingComplete520();
 
     const slug = routeSlug();
 
-    if (!['dashboard', 'profile', 'learning'].includes(slug)) {
+    if (!['profile', 'learning'].includes(slug)) {
       return;
     }
 
@@ -8143,10 +8656,14 @@ import './nurselink-mobile.css';
           and manage professional mentoring requests.
         </small>
       </div>
-      <a href="/nurselink-mentoring.html">
-        Open Mentoring →
-      </a>
+      ${onboardingComplete
+        ? '<a href="/nurselink-mentoring.html">Open Mentoring →</a>'
+        : '<a href="/dashboard#membership" class="nurselink-onboarding-locked-link">🔒 Complete onboarding to unlock</a>'}
     `;
+
+    if (!onboardingComplete) {
+      card.classList.add('nurselink-onboarding-feature-locked');
+    }
 
     const anchorNode =
       page.querySelector('.nurselink-chapters-launcher')
@@ -8165,7 +8682,7 @@ import './nurselink-mobile.css';
 
     const slug = routeSlug();
 
-    if (!['dashboard', 'profile'].includes(slug)) {
+    if (slug !== 'profile') {
       return;
     }
 
@@ -8208,7 +8725,7 @@ import './nurselink-mobile.css';
 
     const slug = routeSlug();
 
-    if (!['dashboard', 'learning', 'profile'].includes(slug)) {
+    if (!['learning', 'profile'].includes(slug)) {
       return;
     }
 
@@ -8641,6 +9158,17 @@ import './nurselink-mobile.css';
   }
 
   async function loadSuperAdminTestModeState(force = false) {
+  /* NurseLink Members Test Mode Function Guard v1.0.17 */
+  if (!window.location.pathname.startsWith('/admin')) {
+    return {
+      active: false,
+      enabled: false,
+      available: false,
+      test_mode: false,
+      source: 'member_test_mode_function_guard_v1017'
+    };
+  }
+
     if (
       nurselinkSuperAdminTestModeState.loaded
       && !force
@@ -8731,7 +9259,7 @@ import './nurselink-mobile.css';
       : 'Applicant';
   }
 
-  function membershipStandingLabel(membership) {
+  function membershipRoleLabel(membership) {
     if (!membership) return 'Pending';
 
     if (membership.status === 'approved') return 'Approved';
@@ -8815,7 +9343,7 @@ import './nurselink-mobile.css';
     }
 
     const memberRole = membershipRoleFromData(membership);
-    const standing = membershipStandingLabel(membership);
+    const standing = membershipRoleLabel(membership);
     const memberNumber = membership?.member_number || 'Pending';
     const applicationStatus = membership?.status
       ? membershipStatusLabel(membership.status)
@@ -8960,31 +9488,13 @@ import './nurselink-mobile.css';
 
     const topbar = shell.querySelector('.topbar');
 
-    if (topbar && !topbar.querySelector('.nurselink-super-admin-badge')) {
-      const badge = document.createElement('div');
-      badge.className = 'nurselink-super-admin-badge';
-      badge.setAttribute('role', 'status');
-      badge.setAttribute(
-        'aria-label',
-        'Signed in as NurseLink Super Administrator'
-      );
-
-      badge.innerHTML = `
-        <span class="nurselink-super-admin-mark" aria-hidden="true">SA</span>
-        <span class="nurselink-super-admin-copy">
-          <strong>SUPER ADMINISTRATOR</strong>
-          <small>Privileged session</small>
-        </span>
-      `;
-
-      const userChip = topbar.querySelector('.user-chip');
-
-      if (userChip) {
-        topbar.insertBefore(badge, userChip);
-      } else {
-        topbar.appendChild(badge);
-      }
-    }
+    /*
+     * REACT-SAFE v1.0.8
+     *
+     * Do not inject a Super Administrator badge into the React topbar.
+     * The existing React user chip continues to receive the privileged
+     * session role decoration below.
+     */
 
     const userChip = shell.querySelector('.user-chip');
 
@@ -9497,47 +10007,21 @@ import './nurselink-mobile.css';
 
     shell.classList.add('nurselink-mobile-ready');
 
-    if (sidebar && topbar) {
-      if (!shell.querySelector('.mobile-nav-backdrop')) {
-        const backdrop = makeButton(
-          'mobile-nav-backdrop',
-          'Close navigation',
-          '',
-          () => closeNav(shell)
-        );
-        shell.insertBefore(backdrop, shell.firstChild);
-      }
-
-      if (!topbar.querySelector('.mobile-menu-button')) {
-        const menu = makeButton(
-          'mobile-menu-button',
-          'Open navigation',
-          '<span></span><span></span><span></span>',
-          () => openNav(shell)
-        );
-        topbar.insertBefore(menu, topbar.firstChild);
-      }
-
-      if (!sidebar.querySelector('.mobile-nav-close')) {
-        const close = makeButton(
-          'mobile-nav-close',
-          'Close navigation',
-          '<span aria-hidden="true">×</span>',
-          () => closeNav(shell)
-        );
-        sidebar.insertBefore(close, sidebar.firstChild);
-      }
-
-      if (!sidebar.dataset.nurselinkMobileBound) {
-        sidebar.dataset.nurselinkMobileBound = '1';
-        sidebar.addEventListener('click', e => {
-          const target = e.target instanceof Element ? e.target.closest('a,button') : null;
-          if (!target || target.classList.contains('mobile-nav-close')) return;
-          if (target.matches('a') || target.closest('nav')) closeNav(shell);
-        });
-      }
+    // React Router may reuse the same .page node during SPA navigation.
+    // Remove Dashboard-only DOM injected by earlier enhancement passes so
+    // those unmanaged nodes cannot leak onto member feature routes.
+    if (routeSlug() !== 'dashboard' && page) {
+      page.querySelectorAll(
+        '.nurselink-member-hub, .nurselink-member-portal-membership-v520'
+      ).forEach(node => node.remove());
     }
 
+    /*
+     * REACT-SAFE v1.0.8
+     *
+     * Mobile navigation controls are now rendered by React in AppLayout.
+     * Do not insert backdrop/menu/close controls into React-owned nodes here.
+     */
     markWideContent(page || shell);
     markLockedQualification(page || shell);
     enhanceProfessionalOnboarding(page || shell);
@@ -10401,8 +10885,11 @@ import './nurselink-mobile.css';
         enhanceAuthPage('register');
       } else if (detectLoginPage()) {
         document.documentElement.classList.add('nurselink-route-login');
-        enhanceAuthPage('login');
-        enhanceMemberLoginChoice520();
+
+        if (!document.querySelector('.nl713-login-shell')) {
+          enhanceAuthPage('login');
+          enhanceMemberLoginChoice520();
+        }
       }
 
       markWideContent(document.body);

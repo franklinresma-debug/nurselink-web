@@ -1,0 +1,97 @@
+/* NURSELINK_ADMIN_SETTINGS_EXACT_INNER_SURFACE_V6100 */
+
+[data-nl-theme="dark"] .nl553-admin-row,
+[data-nl-theme="dark"] .nl553-admin-row > .nl553-admin-summary,
+[data-nl-theme="dark"] .nl553-admin-summary {
+  background: #1b2834 !important;
+  background-color: #1b2834 !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl553-admin-summary > div,
+[data-nl-theme="dark"] .nl553-admin-summary .nl530-row-actions {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+[data-nl-theme="dark"] .nl553-admin-summary strong {
+  color: #f2f6f9 !important;
+}
+[data-nl-theme="dark"] .nl553-admin-summary small,
+[data-nl-theme="dark"] .nl553-admin-summary span {
+  color: #aebbc6 !important;
+}
+
+[data-nl-theme="dark"] label.nl553-role-option,
+[data-nl-theme="dark"] label.nl553-role-option.nl597-role-card,
+[data-nl-theme="dark"] .nl597-role-card {
+  background: #1b2834 !important;
+  background-color: #1b2834 !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl597-role-card.is-selected,
+[data-nl-theme="dark"] label.nl553-role-option.is-selected {
+  background: #20364a !important;
+  background-color: #20364a !important;
+  border-color: #3d6484 !important;
+}
+[data-nl-theme="dark"] .nl597-role-copy {
+  background: transparent !important;
+  color: #eef3f7 !important;
+}
+[data-nl-theme="dark"] .nl597-role-copy strong {
+  color: #f2f6f9 !important;
+}
+[data-nl-theme="dark"] .nl597-role-copy small {
+  color: #aebbc6 !important;
+}
+[data-nl-theme="dark"] .nl611-role-info {
+  color: #8fc7f3 !important;
+}
+
+[data-nl-theme="dark"] .nl554-governance-row {
+  background: #1b2834 !important;
+  background-color: #1b2834 !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl554-governance-head,
+[data-nl-theme="dark"] .nl554-governance-detail,
+[data-nl-theme="dark"] .nl554-governance-change {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+}
+[data-nl-theme="dark"] .nl554-governance-detail {
+  border-top-color: #344452 !important;
+}
+[data-nl-theme="dark"] .nl554-governance-change {
+  background: #14202a !important;
+  background-color: #14202a !important;
+  color: #aebbc6 !important;
+}
+[data-nl-theme="dark"] .nl554-governance-row strong,
+[data-nl-theme="dark"] .nl554-governance-head strong {
+  color: #f2f6f9 !important;
+}
+[data-nl-theme="dark"] .nl554-governance-row small,
+[data-nl-theme="dark"] .nl554-governance-row span,
+[data-nl-theme="dark"] .nl554-governance-detail,
+[data-nl-theme="dark"] .nl554-governance-change {
+  color: #aebbc6 !important;
+}
+
+[data-nl-theme="dark"] .nl542-support-toolbar > label {
+  background: #14202a !important;
+  background-color: #14202a !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl542-support-toolbar > label > span {
+  color: #eef3f7 !important;
+}

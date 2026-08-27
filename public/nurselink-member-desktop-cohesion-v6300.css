@@ -1,0 +1,155 @@
+/* NURSELINK_MEMBER_PORTAL_DESKTOP_COHESION_V6300 */
+
+@media (min-width: 1280px) {
+  html[data-nl-v63-member="1"] main,
+  html[data-nl-v63-member="1"] [role="main"],
+  html[data-nl-v63-member="1"] .nl63-main-region {
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  html[data-nl-v63-member="1"] .nl63-expand {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  html[data-nl-v63-member="1"] .nl63-grid-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+
+  html[data-nl-v63-member="1"] .nl63-grid-3 {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+
+  html[data-nl-v63-member="1"] .nl63-grid-4 {
+    display: grid !important;
+    grid-template-columns: repeat(4,minmax(0,1fr)) !important;
+    gap: 14px !important;
+    align-items: stretch !important;
+  }
+
+  html[data-nl-v63-member="1"] .nl63-grid-2 > *,
+  html[data-nl-v63-member="1"] .nl63-grid-3 > *,
+  html[data-nl-v63-member="1"] .nl63-grid-4 > * {
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  html[data-nl-v63-member="1"] .nl63-main-region {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+}
+
+html[data-nl-v63-member="1"][data-nl-v63-dark="1"] .nl63-dark-surface {
+  background: #182537 !important;
+  background-color: #182537 !important;
+  color: #eef3f7 !important;
+  border-color: #314257 !important;
+  box-shadow: none !important;
+}
+html[data-nl-v63-member="1"][data-nl-v63-dark="1"] .nl63-dark-surface strong,
+html[data-nl-v63-member="1"][data-nl-v63-dark="1"] .nl63-dark-surface h1,
+html[data-nl-v63-member="1"][data-nl-v63-dark="1"] .nl63-dark-surface h2,
+html[data-nl-v63-member="1"][data-nl-v63-dark="1"] .nl63-dark-surface h3 {
+  color: #f5f8fa !important;
+}
+html[data-nl-v63-member="1"][data-nl-v63-dark="1"] .nl63-dark-surface p,
+html[data-nl-v63-member="1"][data-nl-v63-dark="1"] .nl63-dark-surface small,
+html[data-nl-v63-member="1"][data-nl-v63-dark="1"] .nl63-dark-surface span {
+  color: #b6c3cf !important;
+}
+
+@media (min-width: 1100px) {
+  html[data-nl-v63-legacy="1"] body {
+    padding-left: 176px !important;
+  }
+
+  #nl63LegacyMemberSidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 176px;
+    z-index: 9999;
+    overflow-y: auto;
+    background: linear-gradient(180deg,#075699 0%,#0d5d9d 100%);
+    color: #fff;
+    border-right: 1px solid rgba(255,255,255,.14);
+    box-sizing: border-box;
+    padding: 16px 10px 18px;
+    font-family: inherit;
+  }
+
+  #nl63LegacyMemberSidebar .nl63-brand {
+    display:flex; gap:10px; align-items:center;
+    padding:6px 6px 18px;
+    border-bottom:1px solid rgba(255,255,255,.13);
+    margin-bottom:12px;
+  }
+
+  #nl63LegacyMemberSidebar .nl63-mark {
+    width:30px;height:30px;border-radius:8px;
+    background:#1683df;display:grid;place-items:center;
+    font-weight:800;font-size:13px;
+  }
+
+  #nl63LegacyMemberSidebar strong,
+  #nl63LegacyMemberSidebar small { display:block; }
+  #nl63LegacyMemberSidebar small { opacity:.72;font-size:11px;margin-top:2px; }
+
+  #nl63LegacyMemberSidebar nav {
+    display:grid;
+    gap:2px;
+  }
+
+  #nl63LegacyMemberSidebar nav a {
+    color:#eef7ff;
+    text-decoration:none;
+    border-radius:6px;
+    padding:7px 8px;
+    font-size:11px;
+    line-height:1.25;
+  }
+
+  #nl63LegacyMemberSidebar nav a:hover,
+  #nl63LegacyMemberSidebar nav a[aria-current="page"] {
+    background:rgba(255,255,255,.15);
+  }
+
+  #nl63LegacyMemberSidebar .nl63-admin-links {
+    margin-top:18px;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,.13);
+    display:grid;
+    gap:8px;
+  }
+
+  #nl63LegacyMemberSidebar .nl63-admin-links a {
+    border:1px solid rgba(255,255,255,.22);
+    background:rgba(18,34,73,.72);
+    color:#fff;
+    font-weight:700;
+  }
+
+  html[data-nl-v63-legacy="1"] body > header {
+    display:none !important;
+  }
+
+  html[data-nl-v63-legacy="1"] main,
+  html[data-nl-v63-legacy="1"] .main,
+  html[data-nl-v63-legacy="1"] .container,
+  html[data-nl-v63-legacy="1"] .shell {
+    max-width:none !important;
+    width:auto !important;
+  }
+}

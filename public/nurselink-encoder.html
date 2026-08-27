@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0c4a6e">
+  <title>NurseLink Temporary Encoder Workspace</title>
+  <link rel="stylesheet" href="/nurselink-encoder.css?v=708">
+  <link rel="stylesheet" href="/nurselink-typography.css?v=622">
+<link rel="stylesheet" href="/nurselink-encoder.csp-v4700.css?v=4700">
+</head>
+<body>
+<div class="nl-encoder-shell">
+  <aside class="nl-encoder-sidebar">
+    <div class="nl-sidebar-brand">
+      <div class="nl-encoder-mark">NL</div>
+      <div>
+        <strong>NurseLink</strong>
+        <small>Temporary Encoder</small>
+      </div>
+    </div>
+
+    <div id="encoderIdentity" class="nl-encoder-meta">
+      <strong>Checking session…</strong>
+    </div>
+
+    <nav class="nl-sidebar-nav">
+      <button class="active" type="button">Assigned Nurses</button>
+
+      <!-- NURSELINK_BULK_INTAKE_NAV_V121 -->
+      <a
+        class="nl-sidebar-link"
+        href="/nurselink-bulk-intake.html"
+        title="Bulk Nurse Intake"
+      >
+        <span aria-hidden="true">⇪</span>
+        <span>Bulk Nurse Intake</span>
+      </a>
+      <!-- NURSELINK_BULK_INTAKE_NAV_V121_END -->
+      <button type="button" disabled title="Restricted access">
+        Encoding Only
+      </button>
+    </nav>
+
+    <div class="nl-sidebar-bottom">
+      <button id="encoderLogout" class="nl-secondary" type="button">
+        Sign out
+      </button>
+    </div>
+  </aside>
+
+  <main class="nl-encoder-main">
+    <header class="nl-header">
+      <div>
+        <span class="nl-eyebrow">TEMPORARY ENCODER WORKSPACE</span>
+        <h1>Assigned Nurse Records</h1>
+        <p>
+          Encode information only for nurses assigned to this
+          temporary account.
+        </p>
+      </div>
+
+      <div id="encoderExpiry" class="nl-expiry">
+        Checking expiration…
+      </div>
+    </header>
+
+    <div
+      id="encoderNotice"
+      class="nl-notice"
+      hidden
+      aria-live="polite"
+    ></div>
+
+    
+<section class="nl-v707-workspace">
+  <aside class="nl-v707-assignment-panel">
+    <div class="nl-card-head">
+      <div>
+        <span class="nl-eyebrow">ASSIGNMENTS</span>
+        <h2>Nurses</h2>
+      </div>
+
+      <button
+        id="refreshAssignments"
+        class="nl-secondary"
+        type="button"
+      >
+        Refresh
+      </button>
+    </div>
+
+    <div class="nl-v707-search-wrap">
+      <input
+        id="assignmentSearch"
+        type="search"
+        placeholder="Search nurses..."
+        aria-label="Search assigned nurses"
+      >
+    </div>
+
+    <div id="assignmentList" class="nl-assignment-list">
+      <div class="nl-empty">Loading assignments…</div>
+    </div>
+  </aside>
+
+  <section class="nl-v707-record-panel">
+    <div id="emptyEditor" class="nl-empty">
+      Select an assigned nurse to begin encoding.
+    </div>
+
+    <div id="nurseEditor" class="nl-editor" hidden>
+
+      <section class="nl-v707-summary-card">
+        <div class="nl-v707-photo-shell">
+          <img
+            id="nursePhoto"
+            class="nl-v707-photo"
+            alt="Nurse profile photo"
+            hidden
+          >
+
+          <div
+            id="nursePhotoFallback"
+            class="nl-v707-photo-fallback"
+          >
+            NL
+          </div>
+        </div>
+
+        <div id="selectedNurse" class="nl-v707-person-summary"></div>
+
+        <div class="nl-v707-assignment-meta">
+          <strong>Assigned to you</strong>
+          <span id="selectedAssignmentStatus">Active assignment</span>
+          <span id="selectedAssignmentExpiry">Temporary access</span>
+        </div>
+      </section>
+
+      <div class="nl-restriction">
+        <strong>Temporary Membership Operator:</strong>
+        All actions are restricted to this assigned nurse and are
+        attributed to this Temporary Encoder account. Access ends
+        automatically when the account or assignment expires.
+      </div>
+
+      <nav class="nl-v707-tabs" aria-label="Nurse record sections">
+        <a href="#encoderOverview">Overview</a>
+        <a href="#personalSection">Personal Info</a>
+        <a href="#professionalSection">Professional Info</a>
+        <a href="#documentSection">Documents</a>
+        <a href="#licenseSection">Licenses & Credentials</a>
+        <a href="#educationSection">Education</a>
+        <a href="#employmentSection">Employment</a>
+        <a href="#activitySection">Activity Log</a>
+      </nav>
+
+      <section id="encoderOverview" class="nl-v707-overview-grid">
+        <article class="nl-v707-stat-card">
+          <span class="nl-eyebrow">MEMBERSHIP WORKFLOW</span>
+          <div id="workflowSummary" class="nl-v707-status-box">
+            Loading membership workflow…
+          </div>
+
+          <div
+            id="workflowActions"
+            class="nl-actions nl-csp-v4700-001"
+           
+          ></div>
+
+          <form
+            id="workflowDecisionForm"
+            class="nl-form-grid nl-csp-v4700-002"
+            hidden
+           
+          >
+            <label class="nl-span-2">
+              <span>Reviewer notes</span>
+              <textarea id="workflowReviewerNotes" rows="3"></textarea>
+            </label>
+
+            <label class="nl-span-2">
+              <span>Decision reason</span>
+              <textarea id="workflowDecisionReason" rows="3"></textarea>
+            </label>
+
+            <div class="nl-actions nl-span-2">
+              <button
+                id="workflowDecisionCancel"
+                class="nl-secondary"
+                type="button"
+              >
+                Cancel
+              </button>
+
+              <button
+                id="workflowDecisionSubmit"
+                class="nl-primary"
+                type="submit"
+              >
+                Save Workflow Action
+              </button>
+            </div>
+          </form>
+        </article>
+
+        <article class="nl-v707-completion-card">
+          <span class="nl-eyebrow">COMPLETION OVERVIEW</span>
+
+          <div class="nl-v707-completion-grid">
+            <div>
+              <small>Profile</small>
+              <strong id="profileCompletionValue">In progress</strong>
+            </div>
+
+            <div>
+              <small>Documents</small>
+              <strong id="documentCompletionValue">Add documents</strong>
+            </div>
+
+            <div>
+              <small>Licenses</small>
+              <strong id="licenseCompletionValue">Add licenses</strong>
+            </div>
+
+            <div>
+              <small>Certifications</small>
+              <strong id="certificationCompletionValue">Add records</strong>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section
+        id="standingSection"
+        class="nl-v707-section-card"
+        hidden
+      >
+        <div class="nl-card-head">
+          <div>
+            <span class="nl-eyebrow">MEMBERSHIP STANDING</span>
+            <h3>Professional Standing</h3>
+          </div>
+        </div>
+
+        <div id="standingSummary" class="nl-person-bar"></div>
+
+        <form id="standingForm" class="nl-form-grid">
+          <label>
+            <span>New standing</span>
+            <select id="standingTarget"></select>
+          </label>
+
+          <label class="nl-span-2">
+            <span>Reason</span>
+            <textarea id="standingReason" rows="3" required></textarea>
+          </label>
+
+          <div class="nl-actions nl-span-2">
+            <button class="nl-primary" type="submit">
+              Change Membership Standing
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section
+        id="personalSection"
+        class="nl-v707-section-card"
+      >
+        <div class="nl-card-head">
+          <div>
+            <span class="nl-eyebrow">PERSONAL INFORMATION</span>
+            <h3>Personal details</h3>
+          </div>
+        </div>
+
+        <form id="personalForm" class="nl-v707-form-grid">
+          <label>
+            <span>First name</span>
+            <input id="firstName">
+          </label>
+
+          <label>
+            <span>Middle name</span>
+            <input id="middleName">
+          </label>
+
+          <label>
+            <span>Last name</span>
+            <input id="lastName">
+          </label>
+
+          <label>
+            <span>Suffix</span>
+            <input id="suffix">
+          </label>
+
+          <label>
+            <span>Date of birth</span>
+            <input id="birthDate" type="date">
+          </label>
+
+          <label id="sexLabel">
+            <span>Sex</span>
+            <select id="sex">
+              <option value="">—</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="non_binary">Non-binary</option>
+              <option value="prefer_not_to_say">Prefer not to say</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Nationality</span>
+            <input id="nationality">
+          </label>
+
+          <label>
+            <span>Phone</span>
+            <input id="phone">
+          </label>
+
+          <label>
+            <span>City</span>
+            <input id="city">
+          </label>
+
+          <label>
+            <span>Province / Region</span>
+            <input id="region">
+          </label>
+
+          <label>
+            <span>Country</span>
+            <input id="country">
+          </label>
+
+          <label id="addressLabel" class="nl-v707-span-3">
+            <span>Address</span>
+            <input id="addressLine1">
+          </label>
+
+          <div class="nl-actions nl-v707-span-3">
+            <button class="nl-primary" type="submit">
+              Save Personal Information
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section
+        id="professionalSection"
+        class="nl-v707-section-card"
+      >
+        <div class="nl-card-head">
+          <div>
+            <span class="nl-eyebrow">PROFESSIONAL INFORMATION</span>
+            <h3>Professional details</h3>
+          </div>
+        </div>
+
+        <form id="professionalForm" class="nl-v707-form-grid">
+          <label>
+            <span>Professional title</span>
+            <input id="professionalTitle">
+          </label>
+
+          <label>
+            <span>Years experience</span>
+            <input id="yearsExperience" type="number" min="0" max="80">
+          </label>
+
+          <label>
+            <span>Current position</span>
+            <input id="currentPosition">
+          </label>
+
+          <label>
+            <span>Current employer</span>
+            <input id="currentEmployer">
+          </label>
+
+          <label id="specialtyLabel">
+            <span>Specialty</span>
+            <input id="specialty">
+          </label>
+
+          <label id="educationLabel">
+            <span>Highest nursing education</span>
+            <input id="highestEducation">
+          </label>
+
+          <label id="licenseNumberLabel">
+            <span>Primary license number</span>
+            <input id="primaryLicenseNumber">
+          </label>
+
+          <label id="licenseCountryLabel">
+            <span>License country</span>
+            <input id="primaryLicenseCountry">
+          </label>
+
+          <label id="licenseExpiryLabel">
+            <span>License expiry</span>
+            <input id="primaryLicenseExpiry" type="date">
+          </label>
+
+          <label id="graduationYearLabel">
+            <span>Graduation year</span>
+            <input id="graduationYear" type="number" min="1940">
+          </label>
+
+          <div class="nl-actions nl-v707-span-3">
+            <button class="nl-primary" type="submit">
+              Save Professional Information
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section
+        id="documentSection"
+        class="nl-v707-section-card"
+      >
+        <div class="nl-card-head">
+          <div>
+            <span class="nl-eyebrow">DOCUMENTS</span>
+            <h3>Supporting documents</h3>
+          </div>
+
+          <button
+            id="quickUploadDocument"
+            class="nl-primary"
+            type="button"
+          >
+            Upload Document
+          </button>
+        </div>
+
+        <input
+          id="encoderDocumentInput"
+          type="file"
+          accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+          hidden
+        >
+
+        <div class="nl-v708-doc-layout">
+          <div class="nl-v708-doc-library">
+            <div class="nl-v708-doc-toolbar">
+              <div>
+                <strong id="encoderDocumentCount">Documents</strong>
+                <small>
+                  Imported source files and new encoder uploads
+                </small>
+              </div>
+
+              <select
+                id="encoderDocumentType"
+                aria-label="Document type"
+              >
+                <option value="other">Other document</option>
+                <option value="cv">CV / Resume</option>
+                <option value="license">License</option>
+                <option value="registration">Registration</option>
+                <option value="certification">Certification</option>
+                <option value="training">Training certificate</option>
+                <option value="education">Education document</option>
+                <option value="employment">Employment document</option>
+                <option value="identification">Identification</option>
+              </select>
+            </div>
+
+            <div
+              id="encoderDocumentList"
+              class="nl-v708-doc-list"
+            >
+              <div class="nl-empty">
+                Loading attached documents…
+              </div>
+            </div>
+          </div>
+
+          <div class="nl-v708-viewer-card">
+            <div class="nl-v708-viewer-head">
+              <div>
+                <span class="nl-eyebrow">DOCUMENT PREVIEW</span>
+                <strong id="encoderPreviewName">
+                  Select a document
+                </strong>
+              </div>
+
+              <a
+                id="encoderPreviewOpen"
+                class="nl-secondary nl-v708-open-link"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                hidden
+              >
+                Open Full Size
+              </a>
+            </div>
+
+            <div
+              id="encoderDocumentViewport"
+              class="nl-v708-viewport"
+            >
+              <div id="encoderPreviewEmpty" class="nl-v708-preview-empty">
+                <strong>Document preview</strong>
+                <span>
+                  Select an attached PDF or image to preview it here.
+                </span>
+              </div>
+
+              <iframe
+                id="encoderPreviewFrame"
+                title="Document preview"
+                hidden
+              ></iframe>
+
+              <img
+                id="encoderPreviewImage"
+                alt="Attached document preview"
+                hidden
+              >
+
+              <div
+                id="encoderPreviewUnsupported"
+                class="nl-v708-preview-empty"
+                hidden
+              >
+                <strong>Preview unavailable</strong>
+                <span>
+                  This file type cannot be displayed directly in the browser.
+                  Use Open Full Size to access the file.
+                </span>
+              </div>
+            </div>
+
+            <div
+              id="encoderPreviewMeta"
+              class="nl-v708-preview-meta"
+              hidden
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="licenseSection"
+        class="nl-v707-section-card"
+      >
+        <div class="nl-card-head">
+          <div>
+            <span class="nl-eyebrow">LICENSES & CREDENTIALS</span>
+            <h3>Professional licenses and registrations</h3>
+          </div>
+
+          <button
+            id="addCredentialRecord"
+            class="nl-secondary"
+            type="button"
+          >
+            Add License / Credential
+          </button>
+        </div>
+
+        <div id="credentialSection">
+          <div id="credentialList"></div>
+        </div>
+      </section>
+
+      <section
+        id="educationSection"
+        class="nl-v707-section-card"
+      >
+        <div class="nl-card-head">
+          <div>
+            <span class="nl-eyebrow">EDUCATION</span>
+            <h3>Education history</h3>
+          </div>
+
+          <button
+            id="addEducationRecord"
+            class="nl-secondary"
+            type="button"
+          >
+            Add Education
+          </button>
+        </div>
+
+        <div id="encoderEducationList" class="nl-v707-placeholder-grid">
+          <div class="nl-v707-placeholder-card">
+            <strong>Education records</strong>
+            <span>
+              Add nursing degrees, institutions, dates, and supporting documents.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="employmentSection"
+        class="nl-v707-section-card"
+      >
+        <div class="nl-card-head">
+          <div>
+            <span class="nl-eyebrow">EMPLOYMENT</span>
+            <h3>Employment history</h3>
+          </div>
+
+          <button
+            id="addEmploymentRecord"
+            class="nl-secondary"
+            type="button"
+          >
+            Add Employment
+          </button>
+        </div>
+
+        <div id="encoderEmploymentList" class="nl-v707-placeholder-grid">
+          <div class="nl-v707-placeholder-card">
+            <strong>Employment records</strong>
+            <span>
+              Add current and previous healthcare employment history.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="activitySection"
+        class="nl-v707-section-card"
+      >
+        <div class="nl-card-head">
+          <div>
+            <span class="nl-eyebrow">ACTIVITY LOG</span>
+            <h3>Encoder activity</h3>
+          </div>
+        </div>
+
+        <div id="encoderActivityList" class="nl-v707-placeholder-grid">
+          <div class="nl-v707-placeholder-card">
+            <strong>Audit trail</strong>
+            <span>
+              Changes made in this workspace remain attributed to the
+              Temporary Encoder account.
+            </span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </section>
+</section>
+</section>
+  </main>
+</div>
+
+<script src="/nurselink-encoder.js?v=708" defer></script>
+</body>
+</html>

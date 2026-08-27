@@ -1,0 +1,11 @@
+/* NurseLink Demo Profile Tab Data v64.4.2 */
+html[data-nl6442-demo-profile-data="1"] .nl6441-inline-panel{
+  min-height:260px;
+}
+html[data-nl6442-demo-profile-data="1"] .nl6441-record-card{
+  transition:border-color .15s ease, transform .15s ease;
+}
+html[data-nl6442-demo-profile-data="1"] .nl6441-record-card:hover{
+  border-color:#35688d;
+  transform:translateY(-1px);
+}

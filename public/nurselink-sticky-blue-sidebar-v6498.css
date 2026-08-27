@@ -1,0 +1,144 @@
+/* NurseLink Sticky Blue Sidebar v64.9.8
+   Global sticky sidebar behavior for native + legacy member pages.
+*/
+
+:root{
+  --nlsb-sidebar-z:1200;
+  --nlsb-topbar-z:1000;
+  --nlsb-sidebar-light-a:#145a97;
+  --nlsb-sidebar-light-b:#0c477d;
+  --nlsb-sidebar-dark-a:#082b55;
+  --nlsb-sidebar-dark-b:#061f3d;
+}
+
+/* =========================
+   NATIVE MEMBER SHELL
+   ========================= */
+@media (min-width:768px){
+  .member-react-safe-shell-v108 :is(
+    .sidebar,
+    [class*="sidebar"],
+    aside[class*="nav"]
+  ){
+    position:sticky!important;
+    top:0!important;
+    align-self:flex-start!important;
+    height:100vh!important;
+    max-height:100vh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    z-index:var(--nlsb-sidebar-z)!important;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+  }
+
+  html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+    .sidebar,[class*="sidebar"],aside[class*="nav"]
+  ){
+    background:linear-gradient(
+      180deg,
+      var(--nlsb-sidebar-light-a) 0%,
+      var(--nlsb-sidebar-light-b) 100%
+    )!important;
+  }
+
+  html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+    .sidebar,[class*="sidebar"],aside[class*="nav"]
+  ),
+  html.dark .member-react-safe-shell-v108 :is(
+    .sidebar,[class*="sidebar"],aside[class*="nav"]
+  ){
+    background:linear-gradient(
+      180deg,
+      var(--nlsb-sidebar-dark-a) 0%,
+      var(--nlsb-sidebar-dark-b) 100%
+    )!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [data-nl-minimal-topbar="true"],
+    [data-nl-mobile-topbar="true"],
+    .topbar,.top-bar,.app-header,.member-header,.member-topbar
+  ){
+    z-index:var(--nlsb-topbar-z)!important;
+  }
+}
+
+/* =========================
+   LEGACY / STATIC SHELL
+   ========================= */
+html[data-nl-force-legacy-shell="true"] #nurselink-universal-sidebar{
+  position:fixed!important;
+  top:0!important;
+  bottom:0!important;
+  left:0!important;
+  height:100vh!important;
+  max-height:100vh!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  z-index:var(--nlsb-sidebar-z)!important;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+}
+
+html[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar{
+  z-index:var(--nlsb-topbar-z)!important;
+}
+
+/* =========================
+   SIDEBAR SCROLL POLISH
+   ========================= */
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+),
+#nurselink-universal-sidebar{
+  scrollbar-color:rgba(255,255,255,.35) transparent;
+}
+
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+)::-webkit-scrollbar,
+#nurselink-universal-sidebar::-webkit-scrollbar{
+  width:6px;
+}
+
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+)::-webkit-scrollbar-thumb,
+#nurselink-universal-sidebar::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.30);
+  border-radius:999px;
+}
+
+/* Keep admin/test-center controls reachable at bottom of viewport scroll */
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"]
+) :is(
+  [class*="admin-center"],[class*="test-center"],[class*="sign-out"]
+){
+  flex-shrink:0;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+@media (max-width:767px){
+  /* Native mobile sidebar stays off-canvas/fixed when present. */
+  .member-react-safe-shell-v108 :is(
+    .sidebar,[class*="sidebar"],aside[class*="nav"]
+  ){
+    position:fixed!important;
+    top:0!important;
+    bottom:0!important;
+    left:0!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow-y:auto!important;
+    z-index:var(--nlsb-sidebar-z)!important;
+  }
+
+  html[data-nl-force-legacy-shell="true"] #nurselink-universal-sidebar{
+    height:100dvh!important;
+    max-height:100dvh!important;
+  }
+}

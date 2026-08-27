@@ -1,0 +1,49 @@
+/* NURSELINK_DARK_SIDEBAR_BUTTONS_V5200 */
+/*
+  Dark-mode-only correction for the sidebar footer actions shown as
+  white buttons (Member Portal / Sign out). Light mode is untouched.
+*/
+:root[data-nl-theme="dark"] .nl530-sidebar-footer,
+:root[data-theme="dark"] .nl530-sidebar-footer,
+html.dark .nl530-sidebar-footer,
+body.dark .nl530-sidebar-footer,
+[data-nl-theme="dark"] .nl530-sidebar-footer,
+[data-theme="dark"] .nl530-sidebar-footer {
+  background: #17212b !important;
+  color: #f5f7fa !important;
+  border-color: #3a4652 !important;
+  box-shadow: none !important;
+}
+
+:root[data-nl-theme="dark"] .nl530-sidebar-footer:hover,
+:root[data-theme="dark"] .nl530-sidebar-footer:hover,
+html.dark .nl530-sidebar-footer:hover,
+body.dark .nl530-sidebar-footer:hover,
+[data-nl-theme="dark"] .nl530-sidebar-footer:hover,
+[data-theme="dark"] .nl530-sidebar-footer:hover {
+  background: #202c37 !important;
+  color: #ffffff !important;
+  border-color: #536170 !important;
+}
+
+:root[data-nl-theme="dark"] .nl530-sidebar-footer:focus-visible,
+:root[data-theme="dark"] .nl530-sidebar-footer:focus-visible,
+html.dark .nl530-sidebar-footer:focus-visible,
+body.dark .nl530-sidebar-footer:focus-visible,
+[data-nl-theme="dark"] .nl530-sidebar-footer:focus-visible,
+[data-theme="dark"] .nl530-sidebar-footer:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+:root[data-nl-theme="dark"] .nl530-sidebar-footer:disabled,
+:root[data-theme="dark"] .nl530-sidebar-footer:disabled,
+html.dark .nl530-sidebar-footer:disabled,
+body.dark .nl530-sidebar-footer:disabled,
+[data-nl-theme="dark"] .nl530-sidebar-footer:disabled,
+[data-theme="dark"] .nl530-sidebar-footer:disabled {
+  background: #141d26 !important;
+  color: #8f9aa5 !important;
+  border-color: #2e3944 !important;
+  opacity: .75;
+}

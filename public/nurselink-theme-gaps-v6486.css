@@ -1,0 +1,168 @@
+/* NurseLink Theme Toggle Visibility + Layout Gaps v64.8.6 */
+
+:root {
+  --nl6486-card-gap: 16px;
+  --nl6486-section-gap: 24px;
+  --nl6486-table-gap: 16px;
+}
+
+/* ============================================================
+   SINGLE THEME BUTTON - FORCE VISIBLE
+   ============================================================ */
+
+.nl6486-theme-button {
+  display: inline-grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  width: 48px !important;
+  min-width: 48px !important;
+  max-width: 48px !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+
+  place-items: center !important;
+  flex: 0 0 48px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 6 !important;
+
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nl6486-theme-button svg {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 21px !important;
+  height: 21px !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nl6486-theme-button[data-theme-state="light"] {
+  background: #ffffff !important;
+  border: 1px solid #d7e0e9 !important;
+  color: #26364d !important;
+}
+
+.nl6486-theme-button[data-theme-state="dark"] {
+  background: #172437 !important;
+  border: 1px solid #31445a !important;
+  color: #f7ca5e !important;
+}
+
+.nl6486-theme-button:hover {
+  border-color: #4b9ddd !important;
+}
+
+.nl6486-theme-button:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.20) !important;
+}
+
+/* Hide only old theme controls after the new independent button mounts. */
+html[data-nl6486-theme-mounted="1"] .nl6477-theme-toggle,
+html[data-nl6486-theme-mounted="1"] .nl6480-theme-button,
+html[data-nl6486-theme-mounted="1"] .nl6481-theme-button,
+html[data-nl6486-theme-mounted="1"] [data-nl6477-legacy-theme-control="1"],
+html[data-nl6486-theme-mounted="1"] [data-nl6479-system-theme-control="1"],
+html[data-nl6486-theme-mounted="1"] [data-nl6486-old-theme-control="1"] {
+  display: none !important;
+}
+
+/* New button can never be hidden by legacy theme selectors. */
+html[data-nl6486-theme-mounted="1"] .nl6486-theme-button {
+  display: inline-grid !important;
+}
+
+/* ============================================================
+   SPACING SYSTEM
+   ============================================================ */
+
+/* Page-level stacks */
+[data-nl6486-stack="1"] {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--nl6486-section-gap) !important;
+}
+
+/* Card rows / grid containers */
+[data-nl6486-card-group="1"] {
+  gap: var(--nl6486-card-gap) !important;
+  row-gap: var(--nl6486-card-gap) !important;
+  column-gap: var(--nl6486-card-gap) !important;
+}
+
+/* Sibling cards and panels that were touching */
+[data-nl6486-spaced-block="1"] {
+  margin-bottom: var(--nl6486-card-gap) !important;
+}
+
+[data-nl6486-spaced-block="1"]:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Table wrappers receive visual separation from cards above/below */
+[data-nl6486-table-block="1"] {
+  margin-top: var(--nl6486-table-gap) !important;
+  margin-bottom: var(--nl6486-table-gap) !important;
+}
+
+/* Avoid doubled spacing when a table is already inside a spaced section */
+[data-nl6486-spaced-block="1"] > [data-nl6486-table-block="1"]:first-child {
+  margin-top: 0 !important;
+}
+
+[data-nl6486-spaced-block="1"] > [data-nl6486-table-block="1"]:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Credentials route gets the attached/reference spacing specifically */
+html[data-nl6485-credentials="1"] [data-nl6485-credentials-root="1"] {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--nl6486-section-gap) !important;
+}
+
+html[data-nl6485-credentials="1"] [data-nl6485-credentials-root="1"] > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Main card grids */
+html[data-nl6485-credentials="1"] [data-nl6485-credentials-root="1"] [class*="grid"],
+html[data-nl6485-credentials="1"] [data-nl6485-credentials-root="1"] [class*="cards"],
+html[data-nl6485-credentials="1"] [data-nl6485-credentials-root="1"] [class*="stats"] {
+  gap: var(--nl6486-card-gap) !important;
+}
+
+/* Mobile / tablet */
+@media (max-width: 900px) {
+  :root {
+    --nl6486-card-gap: 14px;
+    --nl6486-section-gap: 18px;
+    --nl6486-table-gap: 14px;
+  }
+
+  .nl6486-theme-button {
+    width: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    flex-basis: 44px !important;
+    border-radius: 11px !important;
+  }
+}

@@ -1,0 +1,23 @@
+/* NurseLink Mobile Topbar Brand Label v64.9.2 */
+
+/* Mobile topbar should show NurseLink, not KAPIT-BISIG. */
+@media (max-width: 900px) {
+  [data-nl6492-mobile-topbar-brand="1"] {
+    color: #16263b !important;
+    -webkit-text-fill-color: #16263b !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    max-width: none !important;
+  }
+
+  html[data-theme="dark"] [data-nl6492-mobile-topbar-brand="1"],
+  html.dark [data-nl6492-mobile-topbar-brand="1"],
+  body.dark [data-nl6492-mobile-topbar-brand="1"] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+}

@@ -1,0 +1,7 @@
+/* NurseLink Demo Tab Data Display Fix v64.4.3 */
+html[data-nl6443-demo-data-ready="1"] .nl6443-demo-filled{
+  border-color:#2b587a;
+}
+html[data-nl6443-demo-data-ready="1"] .nl6443-demo-filled .nl6441-count{
+  border-color:#2f668c;
+}

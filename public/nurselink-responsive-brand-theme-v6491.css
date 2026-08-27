@@ -1,0 +1,138 @@
+/* NurseLink Responsive Brand + Theme Repair v64.9.1 */
+
+:root {
+  --nl6491-mobile-brand-gap: 10px;
+}
+
+/* ============================================================
+   DESKTOP: remove redundant topbar branding
+   Sidebar remains the primary brand area.
+   ============================================================ */
+@media (min-width: 901px) {
+  [data-nl6491-topbar-brand="1"] {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Let the action row use the freed topbar space. */
+  [data-nl6487-action-row="1"] {
+    margin-left: auto !important;
+  }
+}
+
+/* ============================================================
+   MOBILE/TABLET: brand must fit cleanly
+   ============================================================ */
+@media (max-width: 900px) {
+  [data-nl6491-mobile-brand="1"] {
+    display: flex !important;
+    align-items: center !important;
+    gap: var(--nl6491-mobile-brand-gap) !important;
+
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+  }
+
+  [data-nl6491-mobile-brand-icon="1"] {
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+  }
+
+  [data-nl6491-mobile-brand-text="1"] {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+
+    gap: 1px !important;
+    min-width: 0 !important;
+    max-width: 150px !important;
+
+    overflow: visible !important;
+  }
+
+  [data-nl6491-mobile-brand-title="1"] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-size: 17px !important;
+    line-height: 1.05 !important;
+    font-weight: 700 !important;
+
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  [data-nl6491-mobile-brand-subtitle="1"] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-size: 12px !important;
+    line-height: 1.05 !important;
+    font-weight: 500 !important;
+
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+
+    opacity: .90 !important;
+  }
+
+  /* Drawer brand area should not crop the subtitle. */
+  .nurselink-sidebar [class*="brand"],
+  .nl-sidebar [class*="brand"],
+  aside[class*="sidebar"] [class*="brand"],
+  [data-nl-sidebar] [class*="brand"] {
+    overflow: visible !important;
+    min-height: 58px !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  [data-nl6491-mobile-brand-text="1"] {
+    max-width: 126px !important;
+  }
+
+  [data-nl6491-mobile-brand-title="1"] {
+    font-size: 16px !important;
+  }
+
+  [data-nl6491-mobile-brand-subtitle="1"] {
+    font-size: 11px !important;
+  }
+}
+
+/* ============================================================
+   THEME BUTTON: ensure current-state visuals remain visible.
+   ============================================================ */
+.nl6486-theme-button[data-theme-state="light"] {
+  background: #ffffff !important;
+  color: #26364d !important;
+  border-color: #d7e0e9 !important;
+}
+
+.nl6486-theme-button[data-theme-state="dark"] {
+  background: #172437 !important;
+  color: #f7ca5e !important;
+  border-color: #31445a !important;
+}

@@ -1,0 +1,92 @@
+/* NurseLink Member Portal Theme Restore v3.3.7 */
+.member-theme-control-v337{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid #cbdced;border-radius:12px;background:#f8fbff;flex:none}
+.member-theme-control-v337 button{display:inline-flex;align-items:center;justify-content:center;width:34px;min-width:34px;height:34px;min-height:34px;padding:0;border:0;border-radius:9px;background:transparent;color:#58708b;cursor:pointer;line-height:1}
+.member-theme-control-v337 button:hover{background:#eaf3fc;color:#075fae}
+.member-theme-control-v337 button:focus-visible{outline:3px solid #0b73ce33;outline-offset:1px}
+.member-theme-control-v337 button[aria-pressed="true"]{background:#fff;color:#075fae;box-shadow:0 1px 5px #12375c24}
+.member-theme-control-v337 svg{width:17px;height:17px;display:block;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+html[data-theme="dark"]{color-scheme:dark}
+html[data-theme="dark"] body{background:#0b1220}
+html[data-theme="dark"] .member-react-safe-shell-v108,
+html[data-theme="dark"] .member-react-safe-shell-v108 .main-area,
+html[data-theme="dark"] .member-react-safe-shell-v108 .page{background:#0f1726!important;color:#e7edf5!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 .topbar{background:rgba(15,23,38,.97)!important;border-color:#2d3b4d!important;color:#edf3fa!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 .topbar strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 .topbar span,
+html[data-theme="dark"] .member-react-safe-shell-v108 .user-chip strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 .user-chip small{color:#edf3fa!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 .panel,
+html[data-theme="dark"] .member-react-safe-shell-v108 .card,
+html[data-theme="dark"] .member-react-safe-shell-v108 .stat-card,
+html[data-theme="dark"] .member-react-safe-shell-v108 section,
+html[data-theme="dark"] .member-react-safe-shell-v108 article,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="-card"],
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="-panel"]{background:#172234!important;border-color:#304055!important;color:#e7edf5!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 h1,
+html[data-theme="dark"] .member-react-safe-shell-v108 h2,
+html[data-theme="dark"] .member-react-safe-shell-v108 h3,
+html[data-theme="dark"] .member-react-safe-shell-v108 h4,
+html[data-theme="dark"] .member-react-safe-shell-v108 strong{color:#f4f7fb!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 p,
+html[data-theme="dark"] .member-react-safe-shell-v108 small,
+html[data-theme="dark"] .member-react-safe-shell-v108 .muted,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="description"],
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="subtitle"]{color:#aebed0!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 input,
+html[data-theme="dark"] .member-react-safe-shell-v108 select,
+html[data-theme="dark"] .member-react-safe-shell-v108 textarea{background:#101a29!important;border-color:#3a4a5f!important;color:#f1f5f9!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 th{background:#121d2d!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 table,
+html[data-theme="dark"] .member-react-safe-shell-v108 th,
+html[data-theme="dark"] .member-react-safe-shell-v108 td{border-color:#304055!important;color:#e7edf5!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 .secondary-button,
+html[data-theme="dark"] .member-react-safe-shell-v108 .navigation-help-button{background:#172234!important;border-color:#3b4d63!important;color:#dce8f6!important}
+html[data-theme="dark"] .member-react-safe-shell-v108 .member-theme-control-v337{background:#111c2c;border-color:#3b4d63}
+html[data-theme="dark"] .member-react-safe-shell-v108 .member-theme-control-v337 button{color:#9fb1c7}
+html[data-theme="dark"] .member-react-safe-shell-v108 .member-theme-control-v337 button[aria-pressed="true"]{background:#26384f;color:#fff;box-shadow:none}
+@media (prefers-color-scheme:dark){
+html[data-theme="system"]{color-scheme:dark}
+html[data-theme="system"] body{background:#0b1220}
+html[data-theme="system"] .member-react-safe-shell-v108,
+html[data-theme="system"] .member-react-safe-shell-v108 .main-area,
+html[data-theme="system"] .member-react-safe-shell-v108 .page{background:#0f1726!important;color:#e7edf5!important}
+html[data-theme="system"] .member-react-safe-shell-v108 .topbar{background:rgba(15,23,38,.97)!important;border-color:#2d3b4d!important;color:#edf3fa!important}
+html[data-theme="system"] .member-react-safe-shell-v108 .topbar strong,
+html[data-theme="system"] .member-react-safe-shell-v108 .topbar span,
+html[data-theme="system"] .member-react-safe-shell-v108 .user-chip strong,
+html[data-theme="system"] .member-react-safe-shell-v108 .user-chip small{color:#edf3fa!important}
+html[data-theme="system"] .member-react-safe-shell-v108 .panel,
+html[data-theme="system"] .member-react-safe-shell-v108 .card,
+html[data-theme="system"] .member-react-safe-shell-v108 .stat-card,
+html[data-theme="system"] .member-react-safe-shell-v108 section,
+html[data-theme="system"] .member-react-safe-shell-v108 article,
+html[data-theme="system"] .member-react-safe-shell-v108 [class*="-card"],
+html[data-theme="system"] .member-react-safe-shell-v108 [class*="-panel"]{background:#172234!important;border-color:#304055!important;color:#e7edf5!important}
+html[data-theme="system"] .member-react-safe-shell-v108 h1,
+html[data-theme="system"] .member-react-safe-shell-v108 h2,
+html[data-theme="system"] .member-react-safe-shell-v108 h3,
+html[data-theme="system"] .member-react-safe-shell-v108 h4,
+html[data-theme="system"] .member-react-safe-shell-v108 strong{color:#f4f7fb!important}
+html[data-theme="system"] .member-react-safe-shell-v108 p,
+html[data-theme="system"] .member-react-safe-shell-v108 small,
+html[data-theme="system"] .member-react-safe-shell-v108 .muted,
+html[data-theme="system"] .member-react-safe-shell-v108 [class*="description"],
+html[data-theme="system"] .member-react-safe-shell-v108 [class*="subtitle"]{color:#aebed0!important}
+html[data-theme="system"] .member-react-safe-shell-v108 input,
+html[data-theme="system"] .member-react-safe-shell-v108 select,
+html[data-theme="system"] .member-react-safe-shell-v108 textarea{background:#101a29!important;border-color:#3a4a5f!important;color:#f1f5f9!important}
+html[data-theme="system"] .member-react-safe-shell-v108 .secondary-button,
+html[data-theme="system"] .member-react-safe-shell-v108 .navigation-help-button{background:#172234!important;border-color:#3b4d63!important;color:#dce8f6!important}
+html[data-theme="system"] .member-react-safe-shell-v108 .member-theme-control-v337{background:#111c2c;border-color:#3b4d63}
+html[data-theme="system"] .member-react-safe-shell-v108 .member-theme-control-v337 button{color:#9fb1c7}
+html[data-theme="system"] .member-react-safe-shell-v108 .member-theme-control-v337 button[aria-pressed="true"]{background:#26384f;color:#fff}
+}
+@media (max-width:780px){
+.member-theme-control-v337{gap:1px;padding:2px;border-radius:11px}
+.member-theme-control-v337 button{width:40px;min-width:40px;height:40px;min-height:40px}
+.member-theme-control-v337 svg{width:18px;height:18px}
+.member-react-safe-shell-v108 .topbar-member-actions{min-width:0!important;gap:4px!important}
+}
+@media (max-width:520px){
+.member-theme-control-v337 button{width:36px;min-width:36px;height:36px;min-height:36px}
+}

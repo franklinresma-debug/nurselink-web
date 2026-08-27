@@ -1,0 +1,72 @@
+/* NURSELINK_BULK_IMPORT_DARK_V5600 */
+
+/*
+  Bulk Nurse Import is a separate static Admin page. The rules below activate
+  when its document receives the same nlTheme dark contract used by Admin.
+*/
+:root[data-nl-theme="dark"],
+html[data-nl-theme="dark"],
+body[data-nl-theme="dark"],
+[data-nl-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-nl-theme="dark"] body,
+body[data-nl-theme="dark"] {
+  background: #0f1821 !important;
+  color: #edf3f7 !important;
+}
+
+[data-nl-theme="dark"] .sidebar,
+[data-nl-theme="dark"] aside,
+[data-nl-theme="dark"] nav {
+  background: #111c26 !important;
+  color: #edf3f7 !important;
+  border-color: #2f3e4b !important;
+}
+
+[data-nl-theme="dark"] main,
+[data-nl-theme="dark"] .main,
+[data-nl-theme="dark"] .content,
+[data-nl-theme="dark"] .page,
+[data-nl-theme="dark"] .panel,
+[data-nl-theme="dark"] .card,
+[data-nl-theme="dark"] .metric,
+[data-nl-theme="dark"] .queue,
+[data-nl-theme="dark"] .candidate,
+[data-nl-theme="dark"] .candidate-detail {
+  background: #17232e !important;
+  color: #edf3f7 !important;
+  border-color: #344452 !important;
+  box-shadow: none !important;
+}
+
+[data-nl-theme="dark"] input,
+[data-nl-theme="dark"] select,
+[data-nl-theme="dark"] textarea,
+[data-nl-theme="dark"] button {
+  background: #14202a !important;
+  color: #edf3f7 !important;
+  border-color: #3a4a58 !important;
+}
+
+[data-nl-theme="dark"] .active,
+[data-nl-theme="dark"] .nav-active {
+  background: #20364a !important;
+  color: #eaf4fb !important;
+}
+
+[data-nl-theme="dark"] .governance,
+[data-nl-theme="dark"] .notice,
+[data-nl-theme="dark"] .warning {
+  background: #3a2e16 !important;
+  color: #f0d493 !important;
+  border-color: #6f5527 !important;
+}
+
+[data-nl-theme="dark"] .empty,
+[data-nl-theme="dark"] .empty-state {
+  background: #14202a !important;
+  color: #9eacb7 !important;
+  border-color: #344452 !important;
+}

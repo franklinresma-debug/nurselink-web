@@ -1,0 +1,94 @@
+/* NurseLink Qualifications Mobile Scroll Tabs v64.6.8 */
+
+/* Desktop behavior stays untouched. */
+@media (max-width: 900px) {
+  /* Works with both the current v6441 tab strip and the v6439 fallback strip. */
+  .nl6439-tabs,
+  .nl6441-tabs,
+  .member-profile-tabs-v6441,
+  [data-nl-profile-tabs],
+  .nl6439-page nav[aria-label*="profile" i],
+  .nl6439-page nav[aria-label*="qualification" i] {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(64, 150, 230, .75) rgba(255,255,255,.06);
+    padding-bottom: 5px !important;
+    touch-action: pan-x pan-y;
+  }
+
+  .nl6439-tabs::-webkit-scrollbar,
+  .nl6441-tabs::-webkit-scrollbar,
+  .member-profile-tabs-v6441::-webkit-scrollbar,
+  [data-nl-profile-tabs]::-webkit-scrollbar,
+  .nl6439-page nav[aria-label*="profile" i]::-webkit-scrollbar,
+  .nl6439-page nav[aria-label*="qualification" i]::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .nl6439-tabs::-webkit-scrollbar-track,
+  .nl6441-tabs::-webkit-scrollbar-track,
+  .member-profile-tabs-v6441::-webkit-scrollbar-track,
+  [data-nl-profile-tabs]::-webkit-scrollbar-track,
+  .nl6439-page nav[aria-label*="profile" i]::-webkit-scrollbar-track,
+  .nl6439-page nav[aria-label*="qualification" i]::-webkit-scrollbar-track {
+    background: rgba(255,255,255,.05);
+    border-radius: 999px;
+  }
+
+  .nl6439-tabs::-webkit-scrollbar-thumb,
+  .nl6441-tabs::-webkit-scrollbar-thumb,
+  .member-profile-tabs-v6441::-webkit-scrollbar-thumb,
+  [data-nl-profile-tabs]::-webkit-scrollbar-thumb,
+  .nl6439-page nav[aria-label*="profile" i]::-webkit-scrollbar-thumb,
+  .nl6439-page nav[aria-label*="qualification" i]::-webkit-scrollbar-thumb {
+    background: rgba(64,150,230,.78);
+    border-radius: 999px;
+  }
+
+  /* Tabs remain readable and never collapse into tiny labels. */
+  .nl6439-tabs > *,
+  .nl6441-tabs > *,
+  .member-profile-tabs-v6441 > *,
+  [data-nl-profile-tabs] > *,
+  .nl6439-page nav[aria-label*="profile" i] > *,
+  .nl6439-page nav[aria-label*="qualification" i] > * {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    scroll-snap-align: start;
+    min-width: max-content !important;
+  }
+
+  .nl6439-tabs a,
+  .nl6439-tabs button,
+  .nl6441-tabs a,
+  .nl6441-tabs button,
+  .member-profile-tabs-v6441 a,
+  .member-profile-tabs-v6441 button,
+  [data-nl-profile-tabs] a,
+  [data-nl-profile-tabs] button {
+    min-height: 40px;
+    padding-inline: 10px !important;
+  }
+}
+
+/* On very small phones give a little more breathing room around the scroll strip. */
+@media (max-width: 520px) {
+  .nl6439-tabs,
+  .nl6441-tabs,
+  .member-profile-tabs-v6441,
+  [data-nl-profile-tabs] {
+    gap: 4px !important;
+    margin-inline: -4px !important;
+    padding-inline: 4px !important;
+  }
+}

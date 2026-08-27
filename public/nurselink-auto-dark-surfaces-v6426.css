@@ -1,0 +1,31 @@
+/* NurseLink Stable Auto Dark Surface Runtime v64.2.6 */
+
+:root {
+  --nl6426-surface: #182335;
+  --nl6426-surface-2: #1d2a3d;
+  --nl6426-border: #31445f;
+  --nl6426-text: #f5f7fb;
+  --nl6426-muted: #aebcd0;
+}
+
+html[data-theme="dark"] .nurselink-auto-dark-surface-v6426,
+html.dark .nurselink-auto-dark-surface-v6426,
+body.dark .nurselink-auto-dark-surface-v6426 {
+  background: var(--nl6426-surface-2) !important;
+  background-color: var(--nl6426-surface-2) !important;
+  color: var(--nl6426-text) !important;
+  border-color: var(--nl6426-border) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.16) !important;
+}
+
+html[data-theme="dark"] .nurselink-auto-dark-surface-v6426 :is(h1,h2,h3,h4,h5,h6,strong,label),
+html.dark .nurselink-auto-dark-surface-v6426 :is(h1,h2,h3,h4,h5,h6,strong,label),
+body.dark .nurselink-auto-dark-surface-v6426 :is(h1,h2,h3,h4,h5,h6,strong,label) {
+  color: var(--nl6426-text) !important;
+}
+
+html[data-theme="dark"] .nurselink-auto-dark-surface-v6426 :is(p,small,.muted,.subtitle,.description),
+html.dark .nurselink-auto-dark-surface-v6426 :is(p,small,.muted,.subtitle,.description),
+body.dark .nurselink-auto-dark-surface-v6426 :is(p,small,.muted,.subtitle,.description) {
+  color: var(--nl6426-muted) !important;
+}

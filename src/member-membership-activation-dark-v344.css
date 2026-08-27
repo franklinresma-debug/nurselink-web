@@ -1,0 +1,82 @@
+/* NurseLink Phase 2 Final Membership Activation Dark Fix v3.4.4
+   Exact production selector confirmed by v3.4.3 diagnostic. */
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation{
+  background:#172234 !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation > div,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation > section,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation [class*="card"],
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation [class*="item"]{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation h2,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation h3{
+  color:#f4f7fb !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation p,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation small,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation span:not(.state):not([class*="badge"]){
+  color:#aebed0 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation a{
+  color:#74bfff !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation button,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation .primary-button{
+  color:#fff !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation [class*="state"]{
+  background:#223148 !important;
+  color:#9fb1c7 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation [data-status="complete"] [class*="state"],
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation [data-complete="true"] [class*="state"]{
+  background:#143c31 !important;
+  color:#7be0b9 !important;
+}
+
+@media (prefers-color-scheme:dark){
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation{
+    background:#172234 !important;
+    border-color:#34465c !important;
+    color:#e7edf5 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation > div,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation > section,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation [class*="card"],
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation [class*="item"]{
+    background:#111c2c !important;
+    border-color:#34465c !important;
+    color:#e7edf5 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation h2,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation h3{
+    color:#f4f7fb !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation p,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation span:not(.state):not([class*="badge"]){
+    color:#aebed0 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation a{
+    color:#74bfff !important;
+  }
+}

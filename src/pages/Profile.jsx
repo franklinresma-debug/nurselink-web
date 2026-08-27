@@ -1,5 +1,6 @@
 import {
-  useEffect,
+
+useEffect,
   useState,
 } from 'react'
 
@@ -12,6 +13,31 @@ import {
 } from '../lib/api'
 
 import { useAuth } from '../context/AuthContext'
+
+/* NURSELINK_PROFILE_DATE_ONLY_V6415 */
+function nurseLinkDateOnly(value) {
+  if (!value) return ''
+  const text = String(value).trim()
+  const exact = text.match(/^(\d{4}-\d{2}-\d{2})/)
+  if (exact) return exact[1]
+
+  const parsed = new Date(text)
+  if (Number.isNaN(parsed.getTime())) return ''
+
+  return [
+    parsed.getUTCFullYear(),
+    String(parsed.getUTCMonth() + 1).padStart(2, '0'),
+    String(parsed.getUTCDate()).padStart(2, '0'),
+  ].join('-')
+}
+
+function normalizeProfileDateFields(profile = {}) {
+  return {
+    ...profile,
+    date_of_birth: nurseLinkDateOnly(profile.date_of_birth),
+  }
+}
+
 
 const emptyForm = {
   first_name: '',
@@ -43,6 +69,9 @@ export default function Profile() {
 
   const [form, setForm] =
     useState(emptyForm)
+
+  const [identityFieldEditing, setIdentityFieldEditing] =
+    useState({})
 
   const [loading, setLoading] =
     useState(true)
@@ -93,7 +122,7 @@ export default function Profile() {
         if (app?.profile_data) {
           setForm({
             ...emptyForm,
-            ...app.profile_data,
+            ...normalizeProfileDateFields(app.profile_data),
 
             years_experience:
               app.profile_data
@@ -119,10 +148,19 @@ export default function Profile() {
       name,
       value,
     } = event.target
+    const field =
+      event.target.dataset.profileField || name
 
     setForm((current) => ({
       ...current,
-      [name]: value,
+      [field]: value,
+    }))
+  }
+
+  function beginIdentityFieldEdit(field) {
+    setIdentityFieldEditing((current) => ({
+      ...current,
+      [field]: true,
     }))
   }
 
@@ -232,6 +270,7 @@ export default function Profile() {
       <form
         className="panel profile-form"
         onSubmit={handleSubmit}
+        autoComplete="off"
       >
         {message && (
           <div className="form-success">
@@ -304,11 +343,13 @@ export default function Profile() {
 
             <input
               type="date"
-              name="date_of_birth"
-              value={
-                form.date_of_birth ||
-                ''
-              }
+              name="nurselink_member_birth_date"
+              data-profile-field="date_of_birth"
+              readOnly={!identityFieldEditing.date_of_birth}
+              onFocus={() => beginIdentityFieldEdit('date_of_birth')}
+              autoComplete="off"
+              data-form-type="other"
+              value={nurseLinkDateOnly(form.date_of_birth)}
               onChange={updateField}
             />
           </label>
@@ -328,13 +369,26 @@ export default function Profile() {
           <label>
             Mobile Number
 
-            <input
-              name="mobile_phone"
-              value={
-                form.mobile_phone
-              }
-              onChange={updateField}
-            />
+            {identityFieldEditing.mobile_phone ? (
+              <input
+                name="nurselink_member_mobile_phone"
+                data-profile-field="mobile_phone"
+                autoComplete="one-time-code"
+                data-form-type="other"
+                value={form.mobile_phone}
+                onChange={updateField}
+              />
+            ) : (
+              <span className="profile-readonly-value">
+                <strong>{form.mobile_phone || 'Not provided'}</strong>
+                <button
+                  type="button"
+                  onClick={() => beginIdentityFieldEdit('mobile_phone')}
+                >
+                  Change
+                </button>
+              </span>
+            )}
           </label>
         </div>
 

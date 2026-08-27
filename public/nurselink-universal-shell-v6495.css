@@ -1,0 +1,216 @@
+/* NurseLink Universal Shell Bridge v64.9.5
+   Ensures legacy/static member pages receive the same shell as React pages.
+*/
+
+:root{
+  --nlub-sidebar-w:232px;
+  --nlub-topbar-h:72px;
+  --nlub-sidebar-z:1100;
+  --nlub-topbar-z:1000;
+  --nlub-blue-a:#13518b;
+  --nlub-blue-b:#0d477f;
+  --nlub-dark-a:#082b55;
+  --nlub-dark-b:#061f3d;
+  --nlub-light-bg:#fff;
+  --nlub-light-border:#d8e1ec;
+  --nlub-light-text:#0b1730;
+  --nlub-dark-bg:#0a1625;
+  --nlub-dark-border:#22334a;
+  --nlub-dark-text:#f8fbff;
+}
+
+/* Fallback universal topbar */
+#nurselink-universal-topbar{
+  position:fixed;
+  top:0;
+  left:var(--nlub-sidebar-w);
+  right:0;
+  height:var(--nlub-topbar-h);
+  z-index:var(--nlub-topbar-z);
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  padding:0 20px;
+  box-sizing:border-box;
+  background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--nlub-light-border);
+  box-shadow:0 4px 16px rgba(31,48,78,.05);
+  backdrop-filter:saturate(130%) blur(10px);
+  -webkit-backdrop-filter:saturate(130%) blur(10px);
+}
+
+html[data-nl-effective-theme="dark"] #nurselink-universal-topbar,
+html[data-theme="dark"] #nurselink-universal-topbar,
+html.dark #nurselink-universal-topbar{
+  background:rgba(10,22,37,.97);
+  border-color:var(--nlub-dark-border);
+  box-shadow:0 6px 18px rgba(0,0,0,.24);
+}
+
+#nurselink-universal-topbar .nlub-action{
+  width:42px;
+  height:42px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--nlub-light-border);
+  border-radius:10px;
+  background:#fff;
+  color:var(--nlub-light-text);
+  text-decoration:none;
+  cursor:pointer;
+  font:inherit;
+}
+
+html[data-nl-effective-theme="dark"] #nurselink-universal-topbar .nlub-action,
+html.dark #nurselink-universal-topbar .nlub-action{
+  background:#0b1b31;
+  color:var(--nlub-dark-text);
+  border-color:var(--nlub-dark-border);
+}
+
+#nurselink-universal-topbar .nlub-profile{
+  width:auto;
+  min-width:42px;
+  gap:8px;
+  padding:0 12px;
+}
+
+#nurselink-universal-topbar .nlub-avatar{
+  width:28px;height:28px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#1769e0;color:#fff;font-size:12px;font-weight:800;
+}
+
+#nurselink-universal-topbar .nlub-label{
+  font-size:13px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+/* Fallback universal sidebar */
+#nurselink-universal-sidebar{
+  position:fixed;
+  inset:0 auto 0 0;
+  width:var(--nlub-sidebar-w);
+  z-index:var(--nlub-sidebar-z);
+  box-sizing:border-box;
+  overflow-y:auto;
+  padding:20px 14px;
+  background:linear-gradient(180deg,var(--nlub-blue-a) 0%,var(--nlub-blue-b) 100%);
+  color:#fff;
+}
+
+html[data-nl-effective-theme="dark"] #nurselink-universal-sidebar,
+html.dark #nurselink-universal-sidebar{
+  background:linear-gradient(180deg,var(--nlub-dark-a) 0%,var(--nlub-dark-b) 100%);
+}
+
+#nurselink-universal-sidebar .nlub-brand{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 8px 18px;
+  border-bottom:1px solid rgba(255,255,255,.16);
+  margin-bottom:14px;
+}
+#nurselink-universal-sidebar .nlub-logo{
+  width:40px;height:40px;border-radius:10px;
+  display:grid;place-items:center;
+  background:#2082e9;color:#fff;font-weight:800;
+}
+#nurselink-universal-sidebar .nlub-brand strong{display:block;color:#fff}
+#nurselink-universal-sidebar .nlub-brand small{display:block;color:#d9e8f7;font-size:11px}
+
+#nurselink-universal-sidebar nav{
+  display:flex;flex-direction:column;gap:3px;
+}
+#nurselink-universal-sidebar nav a{
+  display:block;
+  padding:8px 10px;
+  border-radius:7px;
+  color:#fff!important;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+}
+#nurselink-universal-sidebar nav a:hover,
+#nurselink-universal-sidebar nav a[aria-current="page"]{
+  background:rgba(255,255,255,.16);
+}
+
+/* Legacy page content offset only when bridge was injected */
+html[data-nl-legacy-shell="true"] body{
+  margin-left:var(--nlub-sidebar-w)!important;
+  padding-top:var(--nlub-topbar-h)!important;
+  box-sizing:border-box;
+}
+
+/* Hide legacy page-level horizontal navigation that duplicates sidebar */
+html[data-nl-legacy-shell="true"] body > :is(nav,[class*="top-nav"],[class*="site-nav"]){
+  display:none!important;
+}
+
+/* Native shell keeps existing global sticky topbar */
+.member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+.member-react-safe-shell-v108 [data-nl-mobile-topbar="true"],
+.member-react-safe-shell-v108 .topbar,
+.member-react-safe-shell-v108 .app-header,
+.member-react-safe-shell-v108 .member-header{
+  position:sticky!important;
+  top:0!important;
+  z-index:1000!important;
+}
+
+/* Tablet */
+@media(max-width:1199px) and (min-width:768px){
+  :root{
+    --nlub-sidebar-w:210px;
+    --nlub-topbar-h:64px;
+  }
+  #nurselink-universal-topbar{padding:0 14px}
+}
+
+/* Mobile: sidebar becomes off-canvas; topbar spans full width. */
+@media(max-width:767px){
+  :root{
+    --nlub-sidebar-w:260px;
+    --nlub-topbar-h:58px;
+  }
+
+  #nurselink-universal-topbar{
+    left:0;
+    height:var(--nlub-topbar-h);
+    padding:0 8px;
+    gap:5px;
+  }
+
+  #nurselink-universal-topbar .nlub-menu{
+    display:inline-flex!important;
+    margin-right:auto;
+  }
+
+  #nurselink-universal-topbar .nlub-profile{
+    padding:0 7px;
+  }
+  #nurselink-universal-topbar .nlub-label{
+    display:none;
+  }
+
+  #nurselink-universal-sidebar{
+    transform:translateX(-102%);
+    transition:transform .18s ease;
+    box-shadow:8px 0 28px rgba(0,0,0,.25);
+  }
+  html[data-nl-sidebar-open="true"] #nurselink-universal-sidebar{
+    transform:translateX(0);
+  }
+
+  html[data-nl-legacy-shell="true"] body{
+    margin-left:0!important;
+    padding-top:var(--nlub-topbar-h)!important;
+  }
+}
+
+@media(min-width:768px){
+  #nurselink-universal-topbar .nlub-menu{display:none!important}
+}

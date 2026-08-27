@@ -1,0 +1,92 @@
+/* NURSELINK_MEMBER_PORTAL_DARK_SURFACE_CLOSURE_V6500 */
+
+/* Exact Portfolio / Public Profile surfaces supplied by user */
+html[data-nl-v65-dark="1"] .nurselink-portfolio-empty,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-settings,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-share,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-editor-wrap,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-editor,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-privacy {
+  background: #182537 !important;
+  background-color: #182537 !important;
+  border-color: #314257 !important;
+  color: #eef3f7 !important;
+  box-shadow: none !important;
+}
+
+html[data-nl-v65-dark="1"] .nurselink-public-profile-grid,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-checks {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+html[data-nl-v65-dark="1"] .nurselink-public-profile-heading h2,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-heading strong,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-editor-head strong,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-share strong,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-grid legend,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-grid > label > span,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-checks label span,
+html[data-nl-v65-dark="1"] .nurselink-portfolio-empty strong {
+  color: #f5f8fa !important;
+}
+
+html[data-nl-v65-dark="1"] .nurselink-public-profile-heading p,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-editor-head p,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-share small,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-privacy,
+html[data-nl-v65-dark="1"] .nurselink-portfolio-empty p {
+  color: #b6c3cf !important;
+}
+
+/* Share/toggle/check containers should be dark cards, not white strips */
+html[data-nl-v65-dark="1"] .nurselink-public-profile-share > div,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-grid > .toggle,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-checks > label,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-grid fieldset {
+  background: #14202a !important;
+  background-color: #14202a !important;
+  border-color: #314257 !important;
+  color: #eef3f7 !important;
+}
+
+/* Form text controls intentionally remain dark in dark mode */
+html[data-nl-v65-dark="1"] .nurselink-public-profile-editor input[type="text"],
+html[data-nl-v65-dark="1"] .nurselink-public-profile-editor input:not([type]),
+html[data-nl-v65-dark="1"] .nurselink-public-profile-editor textarea,
+html[data-nl-v65-dark="1"] .nurselink-public-profile-editor select {
+  background: #0f1b2b !important;
+  background-color: #0f1b2b !important;
+  color: #eef3f7 !important;
+  border-color: #314257 !important;
+}
+
+/* Generic runtime-tagged component cards on dark member pages */
+html[data-nl-v65-dark="1"] .nl65-dark-component {
+  background: #182537 !important;
+  background-color: #182537 !important;
+  border-color: #314257 !important;
+  color: #eef3f7 !important;
+  box-shadow: none !important;
+}
+
+html[data-nl-v65-dark="1"] .nl65-dark-component h1,
+html[data-nl-v65-dark="1"] .nl65-dark-component h2,
+html[data-nl-v65-dark="1"] .nl65-dark-component h3,
+html[data-nl-v65-dark="1"] .nl65-dark-component strong,
+html[data-nl-v65-dark="1"] .nl65-dark-component legend,
+html[data-nl-v65-dark="1"] .nl65-dark-component label {
+  color: #f5f8fa !important;
+}
+
+html[data-nl-v65-dark="1"] .nl65-dark-component p,
+html[data-nl-v65-dark="1"] .nl65-dark-component small,
+html[data-nl-v65-dark="1"] .nl65-dark-component span {
+  color: #b6c3cf !important;
+}
+
+/* Keep ordinary buttons visually distinct rather than turning them into cards */
+html[data-nl-v65-dark="1"] button.nl65-dark-component,
+html[data-nl-v65-dark="1"] a.nl65-dark-component {
+  background: inherit !important;
+}

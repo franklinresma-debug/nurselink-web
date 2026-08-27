@@ -1,0 +1,169 @@
+/* NurseLink Global Blue Sidebar + Sticky Topbar v64.9.4
+   Universal shell rule for all member-facing pages.
+*/
+
+:root {
+  --nl-shell-topbar-z: 900;
+  --nl-shell-sidebar-z: 1000;
+  --nl-shell-topbar-height-desktop: 72px;
+  --nl-shell-topbar-height-tablet: 64px;
+  --nl-shell-topbar-height-mobile: 58px;
+  --nl-shell-sidebar-light-start: #13518b;
+  --nl-shell-sidebar-light-end: #0d477f;
+  --nl-shell-sidebar-dark-start: #082b55;
+  --nl-shell-sidebar-dark-end: #061f3d;
+  --nl-shell-topbar-light: rgba(255,255,255,.97);
+  --nl-shell-topbar-dark: rgba(10,22,37,.97);
+  --nl-shell-border-light: #d8e1ec;
+  --nl-shell-border-dark: #22334a;
+}
+
+/* ============================================================
+   GLOBAL BLUE SIDEBAR — ALL MEMBER PAGES
+   ============================================================ */
+.member-react-safe-shell-v108 .sidebar,
+.member-react-safe-shell-v108 [class*="sidebar"],
+.member-react-safe-shell-v108 aside[class*="nav"],
+.member-react-safe-shell-v108 nav[class*="sidebar"] {
+  position: relative;
+  z-index: var(--nl-shell-sidebar-z) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+/* Light mode still keeps blue sidebar */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 .sidebar,
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 [class*="sidebar"],
+html[data-theme="light"] .member-react-safe-shell-v108 .sidebar,
+html[data-theme="light"] .member-react-safe-shell-v108 [class*="sidebar"] {
+  background: linear-gradient(
+    180deg,
+    var(--nl-shell-sidebar-light-start) 0%,
+    var(--nl-shell-sidebar-light-end) 100%
+  ) !important;
+}
+
+/* Dark mode keeps deeper blue sidebar */
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 .sidebar,
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 [class*="sidebar"],
+html[data-theme="dark"] .member-react-safe-shell-v108 .sidebar,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="sidebar"],
+html.dark .member-react-safe-shell-v108 .sidebar,
+html.dark .member-react-safe-shell-v108 [class*="sidebar"] {
+  background: linear-gradient(
+    180deg,
+    var(--nl-shell-sidebar-dark-start) 0%,
+    var(--nl-shell-sidebar-dark-end) 100%
+  ) !important;
+}
+
+/* Keep sidebar text/icons readable in both themes */
+.member-react-safe-shell-v108 .sidebar :is(
+  a,button,[role="button"],[role="link"],span,p,strong,small,svg,i
+),
+.member-react-safe-shell-v108 [class*="sidebar"] :is(
+  a,button,[role="button"],[role="link"],span,p,strong,small,svg,i
+) {
+  color: inherit;
+}
+
+/* ============================================================
+   GLOBAL STICKY TOPBAR — ALL MEMBER PAGES
+   ============================================================ */
+.member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+.member-react-safe-shell-v108 [data-nl-mobile-topbar="true"],
+.member-react-safe-shell-v108 .topbar,
+.member-react-safe-shell-v108 .top-bar,
+.member-react-safe-shell-v108 .app-header,
+.member-react-safe-shell-v108 .member-header,
+.member-react-safe-shell-v108 .member-topbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: var(--nl-shell-topbar-z) !important;
+  width: 100% !important;
+  min-height: var(--nl-shell-topbar-height-desktop);
+  backdrop-filter: saturate(130%) blur(10px);
+  -webkit-backdrop-filter: saturate(130%) blur(10px);
+}
+
+/* Light sticky topbar */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 [data-nl-mobile-topbar="true"],
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 .topbar,
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 .app-header,
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 .member-header {
+  background: var(--nl-shell-topbar-light) !important;
+  border-bottom: 1px solid var(--nl-shell-border-light) !important;
+  box-shadow: 0 4px 16px rgba(31,48,78,.05) !important;
+}
+
+/* Dark sticky topbar */
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 [data-nl-mobile-topbar="true"],
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 .topbar,
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 .app-header,
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 .member-header,
+html.dark .member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+html.dark .member-react-safe-shell-v108 [data-nl-mobile-topbar="true"] {
+  background: var(--nl-shell-topbar-dark) !important;
+  border-bottom: 1px solid var(--nl-shell-border-dark) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.24) !important;
+}
+
+/* Preserve minimal actions */
+.member-react-safe-shell-v108 [data-nl-minimal-topbar="true"] [data-nl-topbar-actions="true"] {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+}
+
+/* Prevent clipping of sticky topbar */
+.member-react-safe-shell-v108,
+.member-react-safe-shell-v108 [class*="shell"],
+.member-react-safe-shell-v108 [class*="layout"] {
+  overflow-x: clip;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+  .member-react-safe-shell-v108 .topbar,
+  .member-react-safe-shell-v108 .app-header,
+  .member-react-safe-shell-v108 .member-header {
+    min-height: var(--nl-shell-topbar-height-desktop);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+  .member-react-safe-shell-v108 [data-nl-mobile-topbar="true"],
+  .member-react-safe-shell-v108 .topbar,
+  .member-react-safe-shell-v108 .app-header,
+  .member-react-safe-shell-v108 .member-header {
+    min-height: var(--nl-shell-topbar-height-tablet);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+  .member-react-safe-shell-v108 [data-nl-mobile-topbar="true"],
+  .member-react-safe-shell-v108 .topbar,
+  .member-react-safe-shell-v108 .app-header,
+  .member-react-safe-shell-v108 .member-header {
+    min-height: var(--nl-shell-topbar-height-mobile);
+    flex-wrap: nowrap !important;
+  }
+
+  .member-react-safe-shell-v108 [data-nl-topbar-actions="true"] {
+    gap: 5px !important;
+  }
+}

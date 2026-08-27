@@ -1,0 +1,129 @@
+/* NurseLink Simplified Theme Toggle v64.7.7 */
+
+.nl6477-theme-toggle {
+  --nl6477-w: 84px;
+  --nl6477-h: 40px;
+  --nl6477-knob: 34px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--nl6477-w);
+  height: var(--nl6477-h);
+  padding: 3px;
+  border: 1px solid rgba(148,163,184,.30);
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.06),
+    inset 0 -1px 2px rgba(0,0,0,.20);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.nl6477-theme-toggle:hover {
+  border-color: rgba(96,165,250,.55);
+}
+
+.nl6477-theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.22);
+}
+
+.nl6477-theme-icon {
+  position: relative;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #94a3b8;
+  transition: color .18s ease, opacity .18s ease;
+  pointer-events: none;
+}
+
+.nl6477-theme-icon svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.nl6477-theme-knob {
+  position: absolute;
+  z-index: 1;
+  top: 3px;
+  left: 3px;
+  width: var(--nl6477-knob);
+  height: var(--nl6477-knob);
+  border-radius: 50%;
+  background: linear-gradient(180deg,#ffffff 0%,#eef2f7 100%);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.20),
+    inset 0 0 0 1px rgba(15,23,42,.06);
+  transition: transform .20s ease, background-color .20s ease;
+}
+
+/* Light active: knob sits under sun. */
+.nl6477-theme-toggle[data-theme-state="light"] .nl6477-theme-knob {
+  transform: translateX(0);
+}
+
+.nl6477-theme-toggle[data-theme-state="light"] .nl6477-theme-sun {
+  color: #2563eb;
+}
+
+.nl6477-theme-toggle[data-theme-state="light"] .nl6477-theme-moon {
+  color: #94a3b8;
+}
+
+/* Dark active: knob slides under moon. */
+.nl6477-theme-toggle[data-theme-state="dark"] {
+  background: rgba(15,23,42,.82);
+  border-color: rgba(148,163,184,.22);
+}
+
+.nl6477-theme-toggle[data-theme-state="dark"] .nl6477-theme-knob {
+  transform: translateX(44px);
+  background: linear-gradient(180deg,#475569 0%,#334155 100%);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.38),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+.nl6477-theme-toggle[data-theme-state="dark"] .nl6477-theme-sun {
+  color: #64748b;
+}
+
+.nl6477-theme-toggle[data-theme-state="dark"] .nl6477-theme-moon {
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .nl6477-theme-toggle {
+    --nl6477-w: 76px;
+    --nl6477-h: 38px;
+    --nl6477-knob: 32px;
+  }
+
+  .nl6477-theme-toggle[data-theme-state="dark"] .nl6477-theme-knob {
+    transform: translateX(38px);
+  }
+
+  .nl6477-theme-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Hide the legacy split theme buttons only after the new toggle is mounted. */
+html[data-nl6477-theme-toggle="1"] [data-nl6477-legacy-theme-control="1"] {
+  display: none !important;
+}

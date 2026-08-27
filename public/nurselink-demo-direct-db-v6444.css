@@ -1,0 +1,8 @@
+/* NurseLink Demo Tab Direct DB Display v64.4.4 */
+html[data-nl6444-db-ready="1"] .nl6444-db-panel{
+  border-color:#2d658b!important;
+}
+html[data-nl6444-db-ready="1"] .nl6444-db-panel .nl6441-count{
+  background:#13283b!important;
+  border-color:#3478a4!important;
+}

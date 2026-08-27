@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+  <meta
+    name="robots"
+    content="noindex,nofollow"
+  >
+
+  <title>Bulk Nurse Import · NurseLink</title>
+
+  <link
+    rel="stylesheet"
+    href="/nurselink-admin-portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/nurselink-bulk-nurse-import-admin.css?v=1"
+  >
+<link rel="stylesheet" href="/nurselink-bulk-import-dark-v5600.css?v=5600">
+<script src="/nurselink-bulk-import-canonical-nav-v6200.js?v=6200" defer></script>
+</head>
+
+<body class="nl-admin-body">
+
+<div class="nl-admin-shell">
+
+  <aside class="nl-admin-sidebar">
+
+    <div class="nl-admin-sidebar-brand">
+      <div class="nl-admin-brand-mark">
+        NL
+      </div>
+
+      <div>
+        <strong>NurseLink</strong>
+        <small>Administrator Portal</small>
+      </div>
+    </div>
+
+    <nav>
+      <a href="/nurselink-admin-dashboard.html">
+        Dashboard
+      </a>
+
+      <a
+        class="active"
+        href="/nurselink-bulk-nurse-import-admin.html"
+      >
+        Bulk Nurse Import
+      </a>
+
+      <a href="/nurselink-temporary-encoders.html">
+        Temporary Encoders
+      </a>
+
+      <a href="/nurselink-admin-dashboard.html#applications">
+        Applications
+      </a>
+
+      <a href="/nurselink-admin-dashboard.html#members">
+        Members
+      </a>
+
+      <a href="/nurselink-admin-dashboard.html#settings">
+        Settings
+      </a>
+    </nav>
+
+    <button
+      id="adminSignOut"
+      type="button"
+    >
+      Sign out of Admin Portal
+    </button>
+
+  </aside>
+
+
+  <main class="nl-admin-main bnai-main">
+
+    <header class="nl-admin-header">
+
+      <div>
+        <span class="nl-admin-eyebrow">
+          SUPER ADMINISTRATOR
+        </span>
+
+        <h1>Bulk Nurse Import Queue</h1>
+
+        <p>
+          Review Temporary Encoder candidates that have completed
+          structured review and are awaiting controlled import into
+          NurseLink as unverified applicant accounts.
+        </p>
+      </div>
+
+      <div
+        id="adminIdentity"
+        class="nl-admin-identity"
+      >
+        Checking administrator session…
+      </div>
+
+    </header>
+
+
+    <div
+      id="bulkImportNotice"
+      class="nl-admin-notice"
+      hidden
+      aria-live="polite"
+    ></div>
+
+
+    <section
+      id="bulkImportSummary"
+      class="bnai-summary"
+    >
+      <div class="nl-admin-loading">
+        Loading import queue…
+      </div>
+    </section>
+
+
+    <section class="bnai-governance">
+
+      <strong>
+        Import governance
+      </strong>
+
+      <span>
+        Administrator Import creates an unverified NurseLink applicant
+        and draft application only. It does not approve membership,
+        create a Member record, verify credentials, or fabricate email
+        verification, Terms acceptance or Privacy acceptance.
+      </span>
+
+    </section>
+
+
+    <section class="bnai-layout">
+
+      <section class="bnai-panel">
+
+        <div class="bnai-panel-head">
+
+          <div>
+            <span>
+              READY FOR ADMINISTRATOR IMPORT
+            </span>
+
+            <h2>Queue</h2>
+          </div>
+
+          <button
+            id="refreshBulkImport"
+            type="button"
+          >
+            Refresh
+          </button>
+
+        </div>
+
+        <div
+          id="bulkImportQueue"
+          class="bnai-list"
+        >
+          <div class="nl-admin-loading">
+            Loading candidates…
+          </div>
+        </div>
+
+      </section>
+
+
+      <section
+        id="bulkImportDetailPanel"
+        class="bnai-panel"
+      >
+
+        <div class="bnai-panel-head">
+
+          <div>
+            <span>
+              CANDIDATE REVIEW
+            </span>
+
+            <h2>Candidate Detail</h2>
+          </div>
+
+        </div>
+
+        <div
+          id="bulkImportDetail"
+          class="bnai-detail"
+        >
+          <div class="bnai-empty">
+            Select a candidate from the queue.
+          </div>
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script
+  src="/nurselink-bulk-nurse-import-admin.js?v=3"
+  defer
+></script>
+
+</body>
+</html>

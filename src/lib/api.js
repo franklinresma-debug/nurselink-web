@@ -170,7 +170,7 @@ export async function register({
 }) {
   await csrf()
 
-  return request('/register', {
+  return request('/api/nurselink/register', {
     method: 'POST',
     body: JSON.stringify({
       name,

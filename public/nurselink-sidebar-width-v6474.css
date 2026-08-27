@@ -1,0 +1,131 @@
+/* NurseLink Sidebar Text + Dashboard Width Normalization v64.7.4 */
+
+:root {
+  --nl6474-dashboard-content: 980px;
+}
+
+/* ============================================================
+   SIDEBAR NAVIGATION TEXT
+   Blue NurseLink navigation surfaces always use white text.
+   ============================================================ */
+
+.nurselink-sidebar a,
+.nl-sidebar a,
+aside[class*="sidebar"] a,
+[data-nl-sidebar] a,
+.nurselink-sidebar button,
+.nl-sidebar button,
+aside[class*="sidebar"] button,
+[data-nl-sidebar] button {
+  color: rgba(255,255,255,.88) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.88) !important;
+}
+
+.nurselink-sidebar a *,
+.nl-sidebar a *,
+aside[class*="sidebar"] a *,
+[data-nl-sidebar] a *,
+.nurselink-sidebar button *,
+.nl-sidebar button *,
+aside[class*="sidebar"] button *,
+[data-nl-sidebar] button * {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+.nurselink-sidebar a:hover,
+.nl-sidebar a:hover,
+aside[class*="sidebar"] a:hover,
+[data-nl-sidebar] a:hover,
+.nurselink-sidebar a:focus-visible,
+.nl-sidebar a:focus-visible,
+aside[class*="sidebar"] a:focus-visible,
+[data-nl-sidebar] a:focus-visible {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.nurselink-sidebar a[aria-current="page"],
+.nl-sidebar a[aria-current="page"],
+aside[class*="sidebar"] a[aria-current="page"],
+[data-nl-sidebar] a[aria-current="page"],
+.nurselink-sidebar a.active,
+.nl-sidebar a.active,
+aside[class*="sidebar"] a.active,
+[data-nl-sidebar] a.active {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-weight: 650;
+}
+
+/* Preserve the two bottom admin/test switcher cards as designed. */
+.nurselink-sidebar [class*="admin"] *,
+.nurselink-sidebar [class*="test"] *,
+.nl-sidebar [class*="admin"] *,
+.nl-sidebar [class*="test"] * {
+  -webkit-text-fill-color: currentColor;
+}
+
+/* ============================================================
+   DASHBOARD-SIZED CONTENT
+   JS marks only blocks that are actually wider than the standard layout.
+   ============================================================ */
+
+[data-nl6474-dashboard-width="1"] {
+  width: min(100%, var(--nl6474-dashboard-content)) !important;
+  max-width: var(--nl6474-dashboard-content) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Tables remain inside the normalized width. */
+[data-nl6474-table-wrap="1"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+[data-nl6474-table-wrap="1"] > table {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Native table/card layouts may have large fixed min-width values. */
+[data-nl6474-dashboard-width="1"] table,
+[data-nl6474-dashboard-width="1"] [role="table"] {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Keep forms/cards from growing beyond the Dashboard content column. */
+[data-nl6474-dashboard-width="1"] input,
+[data-nl6474-dashboard-width="1"] select,
+[data-nl6474-dashboard-width="1"] textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --nl6474-dashboard-content: calc(100vw - 40px);
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --nl6474-dashboard-content: calc(100vw - 24px);
+  }
+
+  [data-nl6474-dashboard-width="1"] {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+  }
+
+  [data-nl6474-table-wrap="1"] > table {
+    min-width: 680px;
+  }
+}

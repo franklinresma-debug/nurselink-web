@@ -1,0 +1,96 @@
+/* NurseLink Sticky Topbar Target Pages v64.9.3
+   Sticky topbar for selected member-facing routes only.
+*/
+
+:root {
+  --nl-sticky-topbar-height: 72px;
+  --nl-sticky-topbar-z: 850;
+  --nl-sidebar-z: 950;
+}
+
+/* Sticky topbar only when runtime marks an approved route. */
+html[data-nl-sticky-topbar-page="true"] [data-nl-minimal-topbar="true"],
+html[data-nl-sticky-topbar-page="true"] header[data-nl-mobile-topbar="true"],
+html[data-nl-sticky-topbar-page="true"] .topbar,
+html[data-nl-sticky-topbar-page="true"] .top-bar,
+html[data-nl-sticky-topbar-page="true"] .app-header,
+html[data-nl-sticky-topbar-page="true"] .member-header,
+html[data-nl-sticky-topbar-page="true"] .member-topbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: var(--nl-sticky-topbar-z) !important;
+  width: 100% !important;
+  backdrop-filter: saturate(130%) blur(10px);
+  -webkit-backdrop-filter: saturate(130%) blur(10px);
+}
+
+/* Light theme sticky surface */
+html[data-nl-sticky-topbar-page="true"][data-nl-effective-theme="light"]
+[data-nl-minimal-topbar="true"],
+html[data-nl-sticky-topbar-page="true"][data-nl-effective-theme="light"]
+header[data-nl-mobile-topbar="true"] {
+  background: rgba(255,255,255,.96) !important;
+  border-bottom: 1px solid #d8e1ec !important;
+  box-shadow: 0 4px 16px rgba(31,48,78,.05) !important;
+}
+
+/* Dark theme sticky surface */
+html[data-nl-sticky-topbar-page="true"][data-nl-effective-theme="dark"]
+[data-nl-minimal-topbar="true"],
+html[data-nl-sticky-topbar-page="true"][data-nl-effective-theme="dark"]
+header[data-nl-mobile-topbar="true"] {
+  background: rgba(10,22,37,.96) !important;
+  border-bottom: 1px solid #22334a !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,.24) !important;
+}
+
+/* Sidebar remains above topbar, per approved shell hierarchy. */
+.member-react-safe-shell-v108 .sidebar,
+.member-react-safe-shell-v108 [class*="sidebar"],
+.sidebar,
+[class*="sidebar"] {
+  position: relative;
+  z-index: var(--nl-sidebar-z) !important;
+}
+
+/* Prevent sticky bar from being clipped by shell containers. */
+html[data-nl-sticky-topbar-page="true"] body,
+html[data-nl-sticky-topbar-page="true"] .member-react-safe-shell-v108,
+html[data-nl-sticky-topbar-page="true"] [class*="shell"],
+html[data-nl-sticky-topbar-page="true"] [class*="layout"] {
+  overflow-x: clip;
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+  :root {
+    --nl-sticky-topbar-height: 64px;
+  }
+
+  html[data-nl-sticky-topbar-page="true"] [data-nl-minimal-topbar="true"],
+  html[data-nl-sticky-topbar-page="true"] header[data-nl-mobile-topbar="true"] {
+    min-height: var(--nl-sticky-topbar-height);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root {
+    --nl-sticky-topbar-height: 58px;
+    --nl-sticky-topbar-z: 900;
+    --nl-sidebar-z: 1000;
+  }
+
+  html[data-nl-sticky-topbar-page="true"] [data-nl-minimal-topbar="true"],
+  html[data-nl-sticky-topbar-page="true"] header[data-nl-mobile-topbar="true"] {
+    position: sticky !important;
+    top: 0 !important;
+    min-height: var(--nl-sticky-topbar-height);
+    z-index: var(--nl-sticky-topbar-z) !important;
+  }
+
+  /* Preserve adaptive topbar one-row behavior. */
+  html[data-nl-sticky-topbar-page="true"] [data-nl-mobile-topbar="true"] {
+    flex-wrap: nowrap !important;
+  }
+}

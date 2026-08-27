@@ -1,0 +1,49 @@
+/* NurseLink Help Icon Center Fix v64.8.2 */
+
+[data-nl6481-control-type="help"] {
+  display: grid !important;
+  place-items: center !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  line-height: 1 !important;
+  text-align: center !important;
+
+  overflow: hidden !important;
+}
+
+/* Remove any old Help content from layout calculations. */
+[data-nl6481-control-type="help"] > * {
+  display: none !important;
+}
+
+/* Single centered question mark. */
+[data-nl6481-control-type="help"]::before {
+  content: "?" !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  position: static !important;
+  inset: auto !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+
+  transform: none !important;
+}
+
+@media (max-width: 900px) {
+  [data-nl6481-control-type="help"]::before {
+    font-size: 19px !important;
+  }
+}

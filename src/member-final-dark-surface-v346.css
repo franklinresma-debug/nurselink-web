@@ -1,0 +1,153 @@
+/* NurseLink Phase 2 Final Dark Surface Fix v3.4.6
+   Exact DOM selectors confirmed by read-only v3.4.5 diagnostic. */
+
+/* Six Membership & Activation action cards */
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-membership-v520{
+  background:#172234 !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-action{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-action:hover{
+  background:#1a293d !important;
+  border-color:#52749a !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-action > span{
+  background:#223148 !important;
+  color:#9fb1c7 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-action[data-done="1"] > span{
+  background:#143c31 !important;
+  color:#7be0b9 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-action strong{
+  color:#f4f7fb !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-action small{
+  color:#aebed0 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-action a{
+  color:#74bfff !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-score{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-score strong{
+  color:#f4f7fb !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-score small,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-head small,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-portal-footer{
+  color:#aebed0 !important;
+}
+
+/* Career Matching + Professional Learning dashboard strip */
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a:hover{
+  background:#1a293d !important;
+  border-color:#52749a !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a span{
+  color:#74bfff !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a strong{
+  color:#f4f7fb !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a small{
+  color:#aebed0 !important;
+}
+
+/* Top Opportunity Match + Application Pipeline dashboard strip */
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a:hover{
+  background:#1a293d !important;
+  border-color:#52749a !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a span{
+  color:#74bfff !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a strong{
+  color:#f4f7fb !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a small{
+  color:#aebed0 !important;
+}
+
+/* System mode mirrors the same surfaces only when the OS prefers dark. */
+@media (prefers-color-scheme:dark){
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-membership-v520{
+    background:#172234 !important;
+    border-color:#34465c !important;
+    color:#e7edf5 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-action,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-score{
+    background:#111c2c !important;
+    border-color:#34465c !important;
+    color:#e7edf5 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-action > span{
+    background:#223148 !important;
+    color:#9fb1c7 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-action[data-done="1"] > span{
+    background:#143c31 !important;
+    color:#7be0b9 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-action strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-score strong{
+    color:#f4f7fb !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-action small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-score small{
+    color:#aebed0 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-v200-strip > a span,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-v220-strip > a span,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-portal-action a{
+    color:#74bfff !important;
+  }
+}

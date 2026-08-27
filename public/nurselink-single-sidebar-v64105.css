@@ -1,0 +1,213 @@
+/* NurseLink Single Sidebar Ownership v64.10.5
+   One sidebar only:
+   - Native React pages: native sidebar owns navigation.
+   - Legacy/static pages: injected stable sidebar owns navigation.
+*/
+
+:root{
+  --nlsso-sidebar-w:232px;
+  --nlsso-topbar-h:72px;
+  --nlsso-sidebar-z:5000;
+  --nlsso-topbar-z:4900;
+  --nlsso-blue-a:#145a97;
+  --nlsso-blue-b:#0c477d;
+  --nlsso-dark-a:#082b55;
+  --nlsso-dark-b:#061f3d;
+}
+
+/* ============================================================
+   NATIVE SIDEBAR OWNER
+   ============================================================ */
+html[data-nls-sidebar-owner="native"] #nurselink-stable-sidebar{
+  display:none!important;
+}
+
+/* Undo prior collapse rules on the actual native sidebar. */
+html[data-nls-sidebar-owner="native"] [data-nls-native-sidebar="true"]{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  bottom:0!important;
+  width:var(--nlsso-sidebar-w)!important;
+  min-width:var(--nlsso-sidebar-w)!important;
+  max-width:var(--nlsso-sidebar-w)!important;
+  height:100vh!important;
+  min-height:100vh!important;
+  max-height:100vh!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  z-index:var(--nlsso-sidebar-z)!important;
+  box-sizing:border-box!important;
+  background:linear-gradient(180deg,var(--nlsso-blue-a),var(--nlsso-blue-b))!important;
+  color:#fff!important;
+}
+
+html[data-nl-effective-theme="dark"][data-nls-sidebar-owner="native"]
+[data-nls-native-sidebar="true"],
+html.dark[data-nls-sidebar-owner="native"]
+[data-nls-native-sidebar="true"]{
+  background:linear-gradient(180deg,var(--nlsso-dark-a),var(--nlsso-dark-b))!important;
+}
+
+/* Force every native sidebar state to remain readable. */
+html[data-nls-sidebar-owner="native"] [data-nls-native-sidebar="true"] :is(
+  a,a:link,a:visited,a:hover,a:focus,a:focus-visible,a:active,
+  button,span,strong,small,p,svg,i
+){
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+html[data-nls-sidebar-owner="native"] [data-nls-native-sidebar="true"] :is(
+  a:hover,a:focus-visible,a[aria-current="page"],.active,[class*="active"]
+){
+  background:rgba(255,255,255,.17)!important;
+}
+
+/* No extra body/sidebar offset on native pages because the app's own layout
+   already reserves the sidebar track. */
+html[data-nls-sidebar-owner="native"] body{
+  margin-left:0!important;
+  padding-left:0!important;
+}
+
+html[data-nls-sidebar-owner="native"] .member-react-safe-shell-v108{
+  margin-left:0!important;
+  padding-left:0!important;
+}
+
+/* Stable topbar starts after the one native sidebar. */
+html[data-nls-sidebar-owner="native"] #nurselink-stable-topbar{
+  left:var(--nlsso-sidebar-w)!important;
+  right:0!important;
+  width:auto!important;
+}
+
+/* ============================================================
+   INJECTED SIDEBAR OWNER (LEGACY / STATIC)
+   ============================================================ */
+html[data-nls-sidebar-owner="stable"] #nurselink-stable-sidebar{
+  display:block!important;
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  bottom:0!important;
+  width:var(--nlsso-sidebar-w)!important;
+  height:100vh!important;
+  max-height:100vh!important;
+  z-index:var(--nlsso-sidebar-z)!important;
+}
+
+html[data-nls-sidebar-owner="stable"] body{
+  margin-left:var(--nlsso-sidebar-w)!important;
+  padding-left:0!important;
+}
+
+html[data-nls-sidebar-owner="stable"] #nurselink-stable-topbar{
+  left:var(--nlsso-sidebar-w)!important;
+  right:0!important;
+  width:auto!important;
+}
+
+/* If a stale native sidebar exists on a legacy page, collapse it fully. */
+html[data-nls-sidebar-owner="stable"] [data-nls-native-sidebar="true"]{
+  position:absolute!important;
+  left:-100000px!important;
+  width:0!important;
+  min-width:0!important;
+  max-width:0!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+/* Native topbar stays collapsed; stable topbar remains the only visible topbar. */
+[data-nls-native-topbar="true"]{
+  position:absolute!important;
+  left:-100000px!important;
+  top:0!important;
+  width:0!important;
+  min-width:0!important;
+  max-width:0!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+[data-nls-native-topbar="true"] *{
+  display:none!important;
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+@media(min-width:768px) and (max-width:1199px){
+  :root{
+    --nlsso-sidebar-w:210px;
+    --nlsso-topbar-h:64px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media(max-width:767px){
+  :root{
+    --nlsso-sidebar-w:260px;
+    --nlsso-topbar-h:58px;
+  }
+
+  /* Use the existing stable off-canvas sidebar on mobile for both owners,
+     because the native desktop sidebar can be awkward when collapsed to mobile. */
+  html[data-nls-sidebar-owner="native"] [data-nls-native-sidebar="true"]{
+    display:none!important;
+  }
+
+  html[data-nls-sidebar-owner="native"] #nurselink-stable-sidebar,
+  html[data-nls-sidebar-owner="stable"] #nurselink-stable-sidebar{
+    display:block!important;
+    width:var(--nlsso-sidebar-w)!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    transform:translateX(-102%)!important;
+    transition:transform .18s ease!important;
+  }
+
+  html[data-nl-sidebar-open="true"] #nurselink-stable-sidebar{
+    transform:translateX(0)!important;
+  }
+
+  html[data-nls-sidebar-owner="native"] body,
+  html[data-nls-sidebar-owner="stable"] body{
+    margin-left:0!important;
+    padding-left:0!important;
+  }
+
+  #nurselink-stable-topbar{
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+  }
+}

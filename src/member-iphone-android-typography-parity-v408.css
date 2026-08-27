@@ -1,0 +1,123 @@
+/* NurseLink iPhone / Android Typography Parity v4.0.8
+   Corrects v4.0.7, which unintentionally reduced iPhone mobile text.
+   Mirrors NurseLink's established mobile typography scale.
+*/
+
+@supports (-webkit-touch-callout: none) {
+  @media (width <= 780px) {
+    html[data-nurselink-ios-first-tap="v4.0.6"] {
+      font-size: 18px !important;
+      -webkit-text-size-adjust: 100% !important;
+      text-size-adjust: 100% !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] body,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 {
+      font-size: 18px !important;
+      line-height: 1.6 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 p,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 li,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 dd,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 dt {
+      font-size: 18px !important;
+      line-height: 1.6 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 label {
+      font-size: 17px !important;
+      line-height: 1.5 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 input,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 select,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 textarea,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 button {
+      font-size: 17px !important;
+      line-height: 1.4 !important;
+      min-height: 48px;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .sidebar nav a,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .sidebar-bottom a,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .sidebar-logout,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 nav a,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 nav button {
+      font-size: 16px !important;
+      line-height: 1.4 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 small,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .muted,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .subtitle,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .description,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .helper,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .help-text,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .caption,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .meta,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="description"],
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="helper"],
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="caption"],
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="meta"] {
+      font-size: 15px !important;
+      line-height: 1.5 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .eyebrow,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="eyebrow"],
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="section-label"],
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="section-kicker"],
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="status-badge"],
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 [class*="status-pill"] {
+      font-size: 14px !important;
+      line-height: 1.4 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 h1 {
+      font-size: clamp(30px, 8vw, 38px) !important;
+      line-height: 1.16 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 h2 {
+      font-size: clamp(23px, 6vw, 30px) !important;
+      line-height: 1.22 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 h3 {
+      font-size: clamp(19px, 5vw, 23px) !important;
+      line-height: 1.3 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .topbar > div:first-child > strong {
+      font-size: 16px !important;
+      line-height: 1.35 !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .topbar > div:first-child > span,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .topbar > div:first-child > small,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 .user-chip small {
+      font-size: 14px !important;
+      line-height: 1.4 !important;
+    }
+  }
+
+  /* Keep very narrow iPhones readable without shrinking back to v4.0.7. */
+  @media (width <= 390px) {
+    html[data-nurselink-ios-first-tap="v4.0.6"] {
+      font-size: 17px !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] body,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 {
+      font-size: 17px !important;
+    }
+
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 p,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 li,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 dd,
+    html[data-nurselink-ios-first-tap="v4.0.6"] .member-react-safe-shell-v108 dt {
+      font-size: 17px !important;
+    }
+  }
+}

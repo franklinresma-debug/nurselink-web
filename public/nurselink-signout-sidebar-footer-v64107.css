@@ -1,0 +1,118 @@
+/* NurseLink Sign Out Sidebar Footer Fix v64.10.7
+   Keeps .sidebar-logout inside sidebar flow and prevents menu overlap.
+*/
+
+:root{
+  --nlso-sidebar-pad-x:14px;
+  --nlso-sidebar-gap:12px;
+}
+
+/* Exact offending control */
+.sidebar-logout[data-nl6489-signout="1"],
+.sidebar-logout[data-nl6490-signout="1"],
+button.sidebar-logout{
+  position:static!important;
+  inset:auto!important;
+  left:auto!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:auto!important;
+
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+
+  width:calc(100% - 0px)!important;
+  max-width:100%!important;
+  min-height:44px!important;
+  height:auto!important;
+
+  margin:14px 0 10px 0!important;
+  padding:10px 14px!important;
+  box-sizing:border-box!important;
+
+  border:1px solid rgba(255,255,255,.24)!important;
+  border-radius:10px!important;
+
+  background:rgba(0,0,0,.18)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+
+  font:inherit!important;
+  font-weight:700!important;
+  line-height:1.2!important;
+  text-align:center!important;
+
+  z-index:auto!important;
+  transform:none!important;
+  box-shadow:none!important;
+  cursor:pointer!important;
+}
+
+/* Keep readable in all interaction states */
+.sidebar-logout[data-nl6489-signout="1"]:hover,
+.sidebar-logout[data-nl6489-signout="1"]:focus,
+.sidebar-logout[data-nl6489-signout="1"]:focus-visible,
+.sidebar-logout[data-nl6489-signout="1"]:active,
+.sidebar-logout[data-nl6490-signout="1"]:hover,
+.sidebar-logout[data-nl6490-signout="1"]:focus,
+.sidebar-logout[data-nl6490-signout="1"]:focus-visible,
+.sidebar-logout[data-nl6490-signout="1"]:active,
+button.sidebar-logout:hover,
+button.sidebar-logout:focus,
+button.sidebar-logout:focus-visible,
+button.sidebar-logout:active{
+  background:rgba(255,255,255,.14)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:rgba(255,255,255,.38)!important;
+  outline:none!important;
+}
+
+/* Prevent any old theme-tone patch from turning it white and unreadable */
+.sidebar-logout[data-nl6473-button-tone="light"]{
+  background:rgba(0,0,0,.18)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+
+/* Make sidebar itself a vertical flow container when possible */
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+){
+  display:flex!important;
+  flex-direction:column!important;
+}
+
+/* Navigation gets normal flow; signout follows it instead of overlaying it */
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+) nav{
+  flex:0 0 auto!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+) .sidebar-logout{
+  flex:0 0 auto!important;
+}
+
+/* If admin/test-center cards exist, preserve their stacking above Sign Out */
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"]
+) :is(
+  [class*="admin-center"],
+  [class*="test-center"]
+){
+  flex:0 0 auto!important;
+}
+
+/* Mobile */
+@media(max-width:767px){
+  .sidebar-logout[data-nl6489-signout="1"],
+  .sidebar-logout[data-nl6490-signout="1"],
+  button.sidebar-logout{
+    width:100%!important;
+    margin:12px 0 8px 0!important;
+  }
+}

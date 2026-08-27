@@ -1,0 +1,43 @@
+/* NurseLink Digital Member ID One-Column Layout v64.3.5 */
+
+html[data-nl-digital-id-layout="v6435"] [data-nl-digital-id-stack="v6435"] {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+html[data-nl-digital-id-layout="v6435"] [data-nl-digital-id-stack="v6435"] > * {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+
+html[data-nl-digital-id-layout="v6435"] [data-nl-digital-id-panel="member-id"] {
+  order: 1 !important;
+}
+
+html[data-nl-digital-id-layout="v6435"] [data-nl-digital-id-panel="membership-identity"] {
+  order: 2 !important;
+}
+
+/* Preserve generous readable width while avoiding edge-to-edge stretching. */
+html[data-nl-digital-id-layout="v6435"] [data-nl-digital-id-stack="v6435"] {
+  max-width: 1320px !important;
+}
+
+/* The member ID card can remain visually prominent at the top. */
+html[data-nl-digital-id-layout="v6435"] [data-nl-digital-id-panel="member-id"] {
+  justify-self: stretch !important;
+}
+
+/* Membership identity becomes a full-width detail section underneath. */
+html[data-nl-digital-id-layout="v6435"] [data-nl-digital-id-panel="membership-identity"] {
+  justify-self: stretch !important;
+}
+
+@media (max-width: 760px) {
+  html[data-nl-digital-id-layout="v6435"] [data-nl-digital-id-stack="v6435"] {
+    gap: 14px !important;
+  }
+}

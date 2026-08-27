@@ -1,0 +1,130 @@
+/* NurseLink Sticky Member Topbar Fix v64.0.2
+   Keeps the member topbar visible while scrolling without changing functionality. */
+
+:root {
+  --nl6402-topbar-height: 72px;
+  --nl6402-topbar-z: 950;
+  --nl6402-topbar-bg: rgba(255, 255, 255, .94);
+  --nl6402-topbar-border: rgba(15, 23, 42, .10);
+  --nl6402-topbar-shadow: 0 8px 24px rgba(15, 23, 42, .07);
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+[data-theme="dark"] {
+  --nl6402-topbar-bg: rgba(17, 24, 39, .94);
+  --nl6402-topbar-border: rgba(255, 255, 255, .10);
+  --nl6402-topbar-shadow: 0 8px 24px rgba(0, 0, 0, .22);
+}
+
+/* Sticky member header */
+.topbar {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  top: 0 !important;
+  z-index: var(--nl6402-topbar-z) !important;
+
+  width: 100% !important;
+  min-height: var(--nl6402-topbar-height) !important;
+
+  background: var(--nl6402-topbar-bg) !important;
+  border-bottom: 1px solid var(--nl6402-topbar-border) !important;
+  box-shadow: var(--nl6402-topbar-shadow) !important;
+
+  -webkit-backdrop-filter: blur(14px) saturate(135%) !important;
+  backdrop-filter: blur(14px) saturate(135%) !important;
+
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+/* Prevent ancestors from breaking sticky positioning where possible */
+.main-area {
+  overflow: visible !important;
+}
+
+.main-area > .topbar {
+  align-self: stretch !important;
+}
+
+/* Keep the topbar controls aligned and usable when sticky */
+.topbar-member-actions {
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.topbar .user-chip {
+  min-width: 0 !important;
+}
+
+.topbar .user-chip > div:last-child {
+  min-width: 0 !important;
+}
+
+.topbar .user-chip strong,
+.topbar .user-chip small {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Notification stays above sticky surface */
+.topbar .nurselink-notification-button {
+  position: relative !important;
+  z-index: calc(var(--nl6402-topbar-z) + 1) !important;
+}
+
+/* Keep drawers / menus above topbar */
+.nurselink-notification-drawer,
+[role="dialog"],
+.member-mobile-navigation,
+.mobile-navigation-drawer,
+.mobile-sidebar,
+.sidebar.mobile-open {
+  z-index: calc(var(--nl6402-topbar-z) + 50) !important;
+}
+
+/* Avoid anchor targets hiding beneath sticky header */
+html {
+  scroll-padding-top: calc(var(--nl6402-topbar-height) + 16px) !important;
+}
+
+/* Tablet/mobile */
+@media (max-width: 900px) {
+  :root {
+    --nl6402-topbar-height: 64px;
+  }
+
+  .topbar {
+    min-height: var(--nl6402-topbar-height) !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
+  }
+
+  html {
+    scroll-padding-top: calc(var(--nl6402-topbar-height) + env(safe-area-inset-top, 0px) + 12px) !important;
+  }
+}
+
+/* Small phones: keep sticky, prevent wide action cluster from breaking layout */
+@media (max-width: 640px) {
+  .topbar {
+    gap: 8px !important;
+  }
+
+  .topbar-member-actions {
+    gap: 6px !important;
+  }
+
+  .topbar .navigation-help-button span,
+  .topbar .user-chip > div:last-child {
+    display: none !important;
+  }
+
+  .topbar .user-chip {
+    width: auto !important;
+    min-width: auto !important;
+  }
+}

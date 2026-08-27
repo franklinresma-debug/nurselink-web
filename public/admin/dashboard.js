@@ -40,6 +40,7 @@
   let applicationVisibleRows = [];
   let applicationCommandData = null;
   let applicationStaffRows = [];
+  let applicationViewMode = 'membership';
   let applicationActiveQuickView = 'all';
 
   const subtitles = {
@@ -335,23 +336,14 @@
       || 'Administrator';
 
     let actions = [
-      ['#dashboard', 'Dashboard', 'Operational overview'],
-      ['#applications', 'Applications', 'Membership review queue'],
-      ['#verification', 'Verification', 'Credential workflow']
+      ['#applications', 'Review applications', 'Membership review queue'],
+      ['#verification', 'Verify credentials', 'Credential workflow']
     ];
 
     if (['administrator', 'admin', 'super_administrator', 'super_admin'].includes(role)) {
       actions = actions.concat([
-        ['#members', 'Members', 'Standing and onboarding'],
-        ['#support', 'Support Cases', 'Assigned operational cases'],
-        ['#organizations', 'Organizations', 'Institutional verification']
-      ]);
-    }
-
-    if (['super_administrator', 'super_admin'].includes(role)) {
-      actions = actions.concat([
-        ['#settings', 'Staff Access', 'Privileged role controls'],
-        ['#health', 'System Health', 'Production readiness']
+        ['#members', 'Add / manage member', 'Standing and onboarding'],
+        ['#support', 'Open support cases', 'Assigned operational cases']
       ]);
     }
 
@@ -363,9 +355,9 @@
 
     roleWorkbenchEl.innerHTML = `
       <div class="nl542-role-copy">
-        <span>YOUR WORKBENCH</span>
+        <span>QUICK ACTIONS</span>
         <strong>${esc(labelText)}</strong>
-        <small>Quick access is tailored to the privileges confirmed by the server. Server authorization remains authoritative.</small>
+        <small>Common actions for your current Administrator permissions.</small>
       </div>
       <div class="nl542-role-actions">
         ${actions.map(([href, title, note]) => `
@@ -646,12 +638,7 @@
         metric('Members', m.approved_members ?? 0, 'Approved NurseLink members'),
         metric('Applications', m.pending_membership_applications ?? 0, `${counts.ready_for_approval ?? 0} ready for approval`, Number(m.pending_membership_applications || 0) ? 'attention' : 'good', ''),
         metric('Verification', m.pending_verifications ?? 0, 'Credentials awaiting review', Number(m.pending_verifications || 0) ? 'attention' : ''),
-        metric('Organizations', m.pending_organizations ?? 0, 'Pending organization verification', Number(m.pending_organizations || 0) ? 'attention' : ''),
-        metric('Support Cases', m.open_support_cases ?? 0, 'Open operational cases', Number(m.open_support_cases || 0) ? 'danger' : 'good'),
-        metric('Opportunities', m.active_opportunities ?? 0, `${m.job_applications ?? 0} job application(s)`),
-        metric('Training & Events', m.upcoming_events ?? 0, 'Upcoming NurseLink events'),
-        metric('Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), `${onboarding.overdue ?? 0} overdue`),
-        metric('Notifications', m.unread_member_notifications ?? 0, 'Unread in-app member notifications')
+        metric('Support Cases', m.open_support_cases ?? 0, 'Open operational cases', Number(m.open_support_cases || 0) ? 'danger' : 'good')
       ].join('');
 
       $('membershipProgress').innerHTML = [
@@ -659,10 +646,7 @@
         progressStage('Under Review', counts.under_review ?? 0, `${membership.unassigned_reviews ?? 0} unassigned`, Number(membership.unassigned_reviews || 0) ? 'attention' : '', 'under_review'),
         progressStage('Needs Information', counts.needs_information ?? 0, 'Applicant follow-up required', Number(counts.needs_information || 0) ? 'attention' : '', 'needs_information'),
         progressStage('Ready for Approval', counts.ready_for_approval ?? 0, 'Administrator decision queue', Number(counts.ready_for_approval || 0) ? 'good' : '', 'ready_for_approval'),
-        progressStage('Approved', counts.approved ?? 0, `${standing.active ?? 0} active standing`, 'good', 'approved'),
-        progressStage('Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), `${onboardingCounts.completed ?? 0} completed`, Number(onboarding.overdue || 0) ? 'attention' : ''),
-        progressStage('Review Aging 8+ Days', Number(aging['8_14_days'] || 0) + Number(aging['15_plus_days'] || 0), `${aging['15_plus_days'] ?? 0} at 15+ days`, Number(aging['15_plus_days'] || 0) ? 'danger' : ''),
-        progressStage('Inactive / Suspended', Number(standing.inactive || 0) + Number(standing.suspended || 0), `${standing.suspended ?? 0} suspended`, Number(standing.suspended || 0) ? 'danger' : '')
+        progressStage('Approved', counts.approved ?? 0, `${standing.active ?? 0} active standing`, 'good', 'approved')
       ].join('');
 
       $('dashboardQueues').innerHTML = [
@@ -1054,15 +1038,14 @@
       workbench.innerHTML = roleWorkbenchEl.innerHTML;
     }
 
+    const pendingReview = Number(metrics.pending_membership_applications || 0);
+    const agingEightPlus = Number(aging['8_14_days'] || 0) + Number(aging['15_plus_days'] || 0);
+
     $('applicationCommandMetrics').innerHTML = [
-      applicationMetricCard('members', 'Members', metrics.approved_members ?? 0, 'Approved members', 'blue', 'members'),
-      applicationMetricCard('applications', 'Applications', metrics.pending_membership_applications ?? 0, `${counts.ready_for_approval ?? 0} ready for approval`, 'amber', 'applications'),
-      applicationMetricCard('verification', 'Verification', metrics.pending_verifications ?? 0, 'Credentials waiting', 'blue', 'verification'),
-      applicationMetricCard('organizations', 'Organizations', metrics.pending_organizations ?? 0, 'Pending verification', 'blue', 'organizations'),
-      applicationMetricCard('support', 'Support Cases', metrics.open_support_cases ?? 0, 'Open cases', Number(metrics.open_support_cases || 0) ? 'green' : 'blue', 'support'),
-      applicationMetricCard('opportunities', 'Opportunities', metrics.active_opportunities ?? 0, 'Open opportunities', 'blue', 'employment'),
-      applicationMetricCard('events', 'Training & Events', metrics.upcoming_events ?? 0, 'Upcoming events', 'blue', 'training'),
-      applicationMetricCard('notifications', 'Notifications', metrics.unread_member_notifications ?? 0, 'Unread notifications', Number(metrics.unread_member_notifications || 0) ? 'amber' : 'blue', 'communications')
+      applicationMetricCard('applications', 'Pending Review', pendingReview, 'Membership applications requiring review', pendingReview ? 'amber' : 'blue', 'applications'),
+      applicationMetricCard('approval', 'Ready for Approval', counts.ready_for_approval ?? 0, 'Administrator decision queue', Number(counts.ready_for_approval || 0) ? 'green' : 'blue', 'applications'),
+      applicationMetricCard('question', 'Needs Information', counts.needs_information ?? 0, 'Applicant follow-up required', Number(counts.needs_information || 0) ? 'amber' : 'blue', 'applications'),
+      applicationMetricCard('clock', 'Review Aging 8+ Days', agingEightPlus, `${aging['15_plus_days'] ?? 0} at 15+ days`, agingEightPlus ? 'red' : 'blue', 'applications')
     ].join('');
 
     $('applicationProgress').innerHTML = [
@@ -1070,10 +1053,7 @@
       applicationProgressCard('clock', 'Under Review', counts.under_review ?? 0, `${membership.unassigned_reviews ?? 0} unassigned`, 'amber', 'under_review'),
       applicationProgressCard('question', 'Needs Information', counts.needs_information ?? 0, 'Applicant follow-up', 'orange', 'needs_information'),
       applicationProgressCard('approval', 'Ready for Approval', counts.ready_for_approval ?? 0, 'Admin decision queue', 'purple', 'ready_for_approval'),
-      applicationProgressCard('check', 'Approved', counts.approved ?? 0, `${standing.active ?? 0} active members`, 'green', 'approved'),
-      applicationProgressCard('onboarding', 'Onboarding', Number(onboardingCounts.pending || 0) + Number(onboardingCounts.in_progress || 0), 'Completing setup', 'cyan', '', 'members'),
-      applicationProgressCard('clock', 'Review Aging 8+ Days', Number(aging['8_14_days'] || 0) + Number(aging['15_plus_days'] || 0), `${aging['15_plus_days'] ?? 0} at 15+ days`, 'red', '', 'applications'),
-      applicationProgressCard('inactive', 'Inactive / Suspended', Number(standing.inactive || 0) + Number(standing.suspended || 0), `${standing.suspended ?? 0} suspended`, 'gray', '', 'members')
+      applicationProgressCard('check', 'Approved', counts.approved ?? 0, `${standing.active ?? 0} active members`, 'green', 'approved')
     ].join('');
   }
 
@@ -1203,7 +1183,12 @@
       .forEach(button => {
         button.addEventListener('click', () => {
           applicationPage = Number(button.dataset.page || 1);
-          renderApplicationTable();
+
+          if (applicationViewMode === 'all') {
+            renderAllApplicationTable();
+          } else {
+            renderApplicationTable();
+          }
         });
       });
   }
@@ -1712,7 +1697,767 @@
     );
   }
 
+
+  function setApplicationViewMode(mode = 'membership') {
+    applicationViewMode =
+      mode === 'all'
+        ? 'all'
+        : 'membership';
+
+    const button = $('viewAllApplications');
+    const heading = document.querySelector(
+      '.nl550-queue-heading h2'
+    );
+    const description = document.querySelector(
+      '.nl550-queue-heading p'
+    );
+    const triage = document.querySelector(
+      '.nl552-triagebar'
+    );
+
+    const membershipOnlyIds = [
+      'applicationStage',
+      'applicationAssignment',
+      'applicationFilterPriority',
+      'applicationOrganization',
+      'applicationOverdue'
+    ];
+
+    membershipOnlyIds.forEach(id => {
+      const field = $(id);
+      const wrapper = field?.closest('label');
+
+      if (wrapper) {
+        wrapper.hidden =
+          applicationViewMode === 'all';
+      }
+    });
+
+    if (triage) {
+      triage.hidden =
+        applicationViewMode === 'all';
+    }
+
+    if (button) {
+      button.textContent =
+        applicationViewMode === 'all'
+          ? 'Back to Membership Queue'
+          : 'View All Applications';
+    }
+
+    if (heading) {
+      heading.textContent =
+        applicationViewMode === 'all'
+          ? 'All Applications'
+          : 'Membership Applications';
+    }
+
+    if (description) {
+      description.textContent =
+        applicationViewMode === 'all'
+          ? 'View every NurseLink application, including draft and imported Temporary Encoder applications.'
+          : 'Review, assign and progress membership applications through governed NurseLink workflows.';
+    }
+
+    const status = $('applicationStatus');
+
+    if (status) {
+      const current =
+        applicationViewMode === 'all'
+          ? ''
+          : status.value;
+
+      status.innerHTML =
+        applicationViewMode === 'all'
+          ? `
+            <option value="">All Statuses</option>
+            <option value="draft">Draft</option>
+            <option value="ready">Ready</option>
+            <option value="submitted">Submitted</option>
+            <option value="under_review">Under Review</option>
+            <option value="returned_for_information">Returned for Information</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          `
+          : `
+            <option value="">Pending only</option>
+            <option value="submitted">Submitted</option>
+            <option value="under_review">Under Review</option>
+            <option value="needs_information">Needs Information</option>
+            <option value="ready_for_approval">Ready for Approval</option>
+            <option value="approved">Approved</option>
+            <option value="declined">Declined</option>
+          `;
+
+      if (
+        applicationViewMode === 'membership'
+        && Array.from(status.options).some(
+          option => option.value === current
+        )
+      ) {
+        status.value = current;
+      }
+    }
+  }
+
+  function allApplicationSource(row) {
+    const profile =
+      row?.profile_data
+      && typeof row.profile_data === 'object'
+        ? row.profile_data
+        : {};
+
+    const snapshot =
+      profile._bulk_professional_snapshot
+      && typeof profile._bulk_professional_snapshot === 'object'
+        ? profile._bulk_professional_snapshot
+        : null;
+
+    if (
+      snapshot?.source === 'bulk_nurse_intake'
+    ) {
+      return 'Temporary Encoder Import';
+    }
+
+    return 'Applicant';
+  }
+
+  function allApplicationRow(row) {
+    const user = row.user || {};
+    const reviewer = row.reviewer || {};
+    const initials = applicantInitials(
+      user.name,
+      user.email
+    );
+
+    return `
+      <tr data-all-application-row="${esc(row.id)}">
+        <td class="nl550-check-cell" data-label="Select">
+          <input
+            type="checkbox"
+            disabled
+            aria-label="Select application ${esc(row.application_no || row.id)}"
+          >
+        </td>
+
+        <td data-label="Applicant">
+          <button
+            type="button"
+            class="nl550-applicant-button"
+            data-all-application="${esc(row.id)}"
+          >
+            <span class="nl550-avatar">${esc(initials)}</span>
+            <span>
+              <strong>${esc(user.name || 'Applicant')}</strong>
+              <small>${esc(user.email || '')}</small>
+            </span>
+          </button>
+        </td>
+
+        <td data-label="Application ID">
+          <button
+            type="button"
+            class="nl550-reference"
+            data-all-application="${esc(row.id)}"
+          >
+            ${esc(row.application_no || row.id)}
+          </button>
+        </td>
+
+        <td data-label="Source">
+          <strong>${esc(allApplicationSource(row))}</strong>
+        </td>
+
+        <td data-label="Progress">
+          <strong>${esc(row.progress_percent ?? 0)}%</strong>
+        </td>
+
+        <td data-label="Created">
+          <div class="nl550-date-cell">
+            ${formatApplicationDate(row.created_at, true)}
+          </div>
+        </td>
+
+        <td data-label="Status">
+          <span
+            class="nl550-status"
+            data-tone="${esc(applicationTone(row.status))}"
+          >
+            ${esc(label(row.status))}
+          </span>
+        </td>
+
+        <td data-label="Reviewer">
+          <strong>${esc(reviewer.name || 'Unassigned')}</strong>
+        </td>
+
+        <td class="nl550-actions-cell" data-label="Actions">
+          <button
+            type="button"
+            class="nl550-row-menu"
+            data-all-application="${esc(row.id)}"
+            aria-label="Open ${esc(row.application_no || row.id)}"
+          >•••</button>
+        </td>
+      </tr>
+    `;
+  }
+
+  function renderAllApplicationTable() {
+    const el = $('applicationsArea');
+    const rows = applicationVisibleRows;
+    const pageSize = Math.max(
+      1,
+      Number(applicationPageSize || 10)
+    );
+
+    const start =
+      (applicationPage - 1) * pageSize;
+
+    const pageRows =
+      rows.slice(
+        start,
+        start + pageSize
+      );
+
+    if (!rows.length) {
+      el.innerHTML =
+        '<div class="nl530-empty nl550-empty-table">No applications match these filters.</div>';
+
+      renderApplicationPagination(0);
+      return;
+    }
+
+    el.innerHTML = `
+      <table class="nl550-applications-table">
+        <thead>
+          <tr>
+            <th class="nl550-check-cell">
+              <input
+                type="checkbox"
+                disabled
+                aria-label="Select all applications"
+              >
+            </th>
+            <th>Applicant</th>
+            <th>Application ID</th>
+            <th>Source</th>
+            <th>Progress</th>
+            <th>Created</th>
+            <th>Status</th>
+            <th>Reviewer</th>
+            <th class="nl550-actions-cell">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${pageRows.map(allApplicationRow).join('')}
+        </tbody>
+      </table>
+    `;
+
+    el
+      .querySelectorAll('[data-all-application]')
+      .forEach(button => {
+        button.addEventListener(
+          'click',
+          () => openAllApplication(
+            button.dataset.allApplication
+          )
+        );
+      });
+
+    renderApplicationPagination(
+      rows.length
+    );
+  }
+
+  async function openAllApplication(id) {
+    selectedApplicationId = id;
+
+    const drawer =
+      $('applicationDetailDrawer');
+
+    const el =
+      $('applicationDetail');
+
+    if (drawer) {
+      drawer.hidden = false;
+      document.body.classList.add(
+        'nl550-detail-open'
+      );
+    }
+
+    const queueRow =
+      applicationRows.find(
+        row => String(row.id) === String(id)
+      ) || {};
+
+    if ($('applicationDetailTitle')) {
+      $('applicationDetailTitle').textContent =
+        queueRow.application_no
+        || 'Application';
+    }
+
+    el.innerHTML =
+      '<div class="nl-admin-loading">Loading application…</div>';
+
+    try {
+      const payload =
+        await request(
+          `/api/admin/applications/${encodeURIComponent(id)}`
+        );
+
+      const data =
+        payload?.data || {};
+
+      const user =
+        data.user || {};
+
+      const reviewer =
+        data.reviewer || {};
+
+      const profile =
+        data.profile_data
+        && typeof data.profile_data === 'object'
+          ? data.profile_data
+          : {};
+
+      const snapshot =
+        profile._bulk_professional_snapshot
+        && typeof profile._bulk_professional_snapshot === 'object'
+          ? profile._bulk_professional_snapshot
+          : null;
+
+      const counts = {
+        education:
+          Array.isArray(snapshot?.education)
+            ? snapshot.education.length
+            : 0,
+
+        employment:
+          Array.isArray(snapshot?.employment)
+            ? snapshot.employment.length
+            : 0,
+
+        credentials:
+          Array.isArray(snapshot?.credentials)
+            ? snapshot.credentials.length
+            : 0,
+
+        competencies:
+          Array.isArray(snapshot?.competencies)
+            ? snapshot.competencies.length
+            : 0,
+
+        languages:
+          Array.isArray(snapshot?.languages)
+            ? snapshot.languages.length
+            : 0,
+
+        references:
+          Array.isArray(snapshot?.references)
+            ? snapshot.references.length
+            : 0
+      };
+
+      const imported =
+        snapshot?.source ===
+        'bulk_nurse_intake';
+
+      el.innerHTML = `
+        <div class="nl530-detail-head">
+          <div>
+            <span class="nl-admin-eyebrow">
+              ${esc(data.application_no || 'APPLICATION')}
+            </span>
+            <h2>${esc(user.name || user.email || 'Applicant')}</h2>
+            <p>${esc(user.email || '')}</p>
+          </div>
+
+          <span class="nl530-badge">
+            ${esc(label(data.status))}
+          </span>
+        </div>
+
+        <section class="nl530-subpanel">
+          <strong>Application status</strong>
+
+          <div class="nl557-smart-review-grid">
+            <div class="nl557-smart-review-item">
+              <span>Progress</span>
+              <strong>${esc(data.progress_percent ?? 0)}%</strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Source</span>
+              <strong>${esc(imported ? 'Temporary Encoder Import' : 'Applicant')}</strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Reviewer</span>
+              <strong>${esc(reviewer.name || 'Unassigned')}</strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Created</span>
+              <strong>${formatApplicationDate(data.created_at, false)}</strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Submitted</span>
+              <strong>${data.submitted_at ? formatApplicationDate(data.submitted_at, true) : 'Not submitted'}</strong>
+            </div>
+
+            <div class="nl557-smart-review-item">
+              <span>Application ID</span>
+              <strong>${esc(data.application_no || data.id)}</strong>
+            </div>
+          </div>
+        </section>
+
+        ${
+          imported
+            ? `
+              <section class="nl530-subpanel">
+                <strong>Imported professional snapshot</strong>
+                <p>
+                  This application was created from the governed
+                  Temporary Encoder / Bulk Nurse Import workflow.
+                </p>
+
+                <div class="nl557-smart-review-grid">
+                  <div class="nl557-smart-review-item">
+                    <span>Education</span>
+                    <strong>${esc(counts.education ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Employment</span>
+                    <strong>${esc(counts.employment ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Credentials</span>
+                    <strong>${esc(counts.credentials ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Competencies</span>
+                    <strong>${esc(counts.competencies ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Languages</span>
+                    <strong>${esc(counts.languages ?? 0)}</strong>
+                  </div>
+
+                  <div class="nl557-smart-review-item">
+                    <span>Private references</span>
+                    <strong>${esc(counts.references ?? 0)}</strong>
+                  </div>
+                </div>
+              </section>
+            `
+            : ''
+        }
+
+        <section class="nl530-subpanel">
+          <strong>Workflow position</strong>
+
+          ${
+            data.status === 'draft'
+              ? `
+                <div class="nl530-empty">
+                  Draft application. It has not yet been submitted
+                  into the membership review queue.
+                </div>
+
+                ${
+                  imported
+                    ? `
+                      <div
+                        id="importedActivationFeedback"
+                        class="nl558-drawer-feedback"
+                        role="status"
+                        aria-live="polite"
+                        hidden
+                      ></div>
+
+                      <div class="nl530-row-actions" style="margin-top:14px">
+                        <button
+                          id="sendImportedToTemporaryEncoder"
+                          type="button"
+                          class="primary"
+                        >
+                          Send to Temporary Encoder
+                        </button>
+                      </div>
+
+                      <p class="nl557-smart-review-boundary">
+                        This assigns the imported nurse record back to the
+                        originating Temporary Encoder for continued data completion.
+                        No nurse password or activation link is shared with the encoder.
+                      </p>
+                    `
+                    : ''
+                }
+              `
+              : `
+                <div class="nl530-empty">
+                  This application is in ${esc(label(data.status))}
+                  status. Membership review controls remain in the
+                  governed Membership Applications queue.
+                </div>
+              `
+          }
+        </section>
+      `;
+
+      const temporaryEncoderHandoffButton =
+        $('sendImportedToTemporaryEncoder');
+
+      if (temporaryEncoderHandoffButton) {
+        temporaryEncoderHandoffButton.addEventListener(
+          'click',
+          async () => {
+            if (
+              !confirm(
+                `Send ${user.name || user.email || 'this applicant'} back to the originating Temporary Encoder for continued data completion?`
+              )
+            ) {
+              return;
+            }
+
+            const feedback =
+              $('importedActivationFeedback');
+
+            temporaryEncoderHandoffButton.disabled = true;
+            temporaryEncoderHandoffButton.textContent = 'Assigning…';
+
+            if (feedback) {
+              feedback.hidden = false;
+              feedback.textContent =
+                'Assigning the application to the Temporary Encoder…';
+            }
+
+            try {
+              const result =
+                await request(
+                  `/api/admin/applications/${encodeURIComponent(id)}/temporary-encoder-handoff`,
+                  {
+                    method: 'POST',
+                    body: '{}'
+                  }
+                );
+
+              notice(
+                result?.message || 'Application assigned to Temporary Encoder.',
+                'success'
+              );
+
+              if (feedback) {
+                feedback.textContent =
+                  result?.message || 'Application assigned to Temporary Encoder.';
+              }
+
+            } catch (error) {
+              notice(
+                error.message || 'Unable to assign the application to the Temporary Encoder.',
+                'error'
+              );
+
+              if (feedback) {
+                feedback.textContent =
+                  error.message || 'Unable to assign the application to the Temporary Encoder.';
+              }
+
+            } finally {
+              if (temporaryEncoderHandoffButton.isConnected) {
+                temporaryEncoderHandoffButton.disabled = false;
+                temporaryEncoderHandoffButton.textContent =
+                  'Send to Temporary Encoder';
+              }
+            }
+          }
+        );
+      }
+
+    } catch (error) {
+      if (needsLogin(error)) {
+        redirectToLogin();
+        return;
+      }
+
+      el.innerHTML =
+        `<div class="nl530-empty">${esc(error.message)}</div>`;
+    }
+  }
+
+  async function loadAllApplications() {
+    const el =
+      $('applicationsArea');
+
+    el.innerHTML =
+      '<div class="nl-admin-loading">Loading all NurseLink applications…</div>';
+
+    const search =
+      $('applicationSearch')?.value.trim()
+      || '';
+
+    const status =
+      $('applicationStatus')?.value
+      || '';
+
+    const params =
+      new URLSearchParams();
+
+    if (search) {
+      params.set(
+        'search',
+        search
+      );
+    }
+
+    if (status) {
+      params.set(
+        'status',
+        status
+      );
+    }
+
+    try {
+      const first =
+        await request(
+          `/api/admin/applications?${params.toString()}`
+        );
+
+      let rows =
+        Array.isArray(first?.data)
+          ? first.data
+          : [];
+
+      const lastPage =
+        Math.max(
+          1,
+          Number(first?.last_page || 1)
+        );
+
+      if (lastPage > 1) {
+        const pages = [];
+
+        for (
+          let page = 2;
+          page <= lastPage;
+          page += 1
+        ) {
+          const pageParams =
+            new URLSearchParams(
+              params
+            );
+
+          pageParams.set(
+            'page',
+            String(page)
+          );
+
+          pages.push(
+            request(
+              `/api/admin/applications?${pageParams.toString()}`
+            )
+          );
+        }
+
+        const payloads =
+          await Promise.all(pages);
+
+        payloads.forEach(payload => {
+          if (Array.isArray(payload?.data)) {
+            rows = rows.concat(
+              payload.data
+            );
+          }
+        });
+      }
+
+      applicationRows = rows;
+      applicationVisibleRows = rows;
+      applicationPage = 1;
+
+      renderAllApplicationTable();
+
+    } catch (error) {
+      if (needsLogin(error)) {
+        redirectToLogin();
+        return;
+      }
+
+      el.innerHTML =
+        `<div class="nl530-empty">${esc(error.message)}</div>`;
+    }
+  }
+
+  function viewAllApplications() {
+    if (
+      applicationViewMode === 'all'
+    ) {
+      setApplicationViewMode(
+        'membership'
+      );
+
+      clearApplicationFilters();
+      return;
+    }
+
+    setApplicationViewMode(
+      'all'
+    );
+
+    markApplicationQuickView('');
+
+    if ($('applicationSearch')) {
+      $('applicationSearch').value = '';
+    }
+
+    if ($('applicationStatus')) {
+      $('applicationStatus').value = '';
+    }
+
+    applicationPage = 1;
+    loadAllApplications();
+  }
+
+
+  function bindViewAllApplicationsHard() {
+    const button = $('viewAllApplications');
+
+    if (!button || button.dataset.v702Bound === '1') {
+      return;
+    }
+
+    button.dataset.v702Bound = '1';
+
+    button.addEventListener(
+      'click',
+      event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.info(
+          '[NurseLink V702] View All Applications clicked'
+        );
+
+        viewAllApplications();
+      },
+      true
+    );
+  }
+
   async function loadApplications() {
+    if (applicationViewMode === 'all') {
+      return loadAllApplications();
+    }
+
     const el = $('applicationsArea');
     el.innerHTML =
       '<div class="nl-admin-loading">Loading professional applications command center…</div>';
@@ -1904,9 +2649,10 @@
     el.innerHTML = '<div class="nl-admin-loading">Loading application…</div>';
 
     try {
-      const [detailPayload, historyPayload] = await Promise.all([
+      const [detailPayload, historyPayload, healthPayload] = await Promise.all([
         request(`/api/nurselink/admin/membership-command/${id}`),
         request(`/api/nurselink/admin/membership-command/${id}/history`),
+        request(`/api/nurselink/admin/membership-cycle-health/${id}`),
         privilegedUsers.length ? Promise.resolve(null) : loadPrivilegedUsers().catch(() => null)
       ]);
 
@@ -1918,6 +2664,10 @@
       const smartApplication = data.smart_application || null;
       const allowed = Array.isArray(review.allowed_actions) ? review.allowed_actions : [];
       const history = Array.isArray(historyPayload?.data) ? historyPayload.data : [];
+      const cycleHealth = healthPayload?.data || {};
+      const cycleChecks = cycleHealth.checks || {};
+      const artifactChecks = cycleHealth.registration_artifacts || {};
+      const cycleWarnings = Array.isArray(cycleHealth.warnings) ? cycleHealth.warnings : [];
       const queueRow = applicationRows.find(row => Number(row.membership_id) === Number(id)) || {};
 
       el.innerHTML = `
@@ -1930,6 +2680,20 @@
           <div><strong>Profile readiness</strong><span>Photo ${profile.profile_photo_uploaded ? 'uploaded' : 'missing'} · Employment ${esc(profile.employment_records ?? 0)} · Credentials ${esc(profile.credentials?.verified ?? 0)}/${esc(profile.credentials?.total ?? 0)} verified</span></div>
         </div>
         ${smartApplicationReviewHtml(smartApplication)}
+        <section class="nl530-subpanel nl559-cycle-health" data-status="${esc(cycleHealth.status || 'unknown')}">
+          <div class="nl559-cycle-health-head">
+            <div>
+              <span class="nl-admin-eyebrow">MEMBERSHIP CYCLE HEALTH</span>
+              <strong>${esc(label(cycleHealth.status || 'unknown'))}</strong>
+            </div>
+            <span class="nl530-badge ${cycleHealth.status === 'healthy' ? 'good' : cycleHealth.repairable ? 'attention' : 'danger'}">${esc(label(cycleHealth.status || 'unknown'))}</span>
+          </div>
+          <div class="nl530-health-table">
+            ${Object.entries(cycleChecks).map(([name, passed]) => `<div class="nl530-health-row"><span>${esc(label(name))}</span><b class="${passed ? 'good' : 'danger'}">${passed ? 'Healthy' : 'Needs attention'}</b></div>`).join('')}
+          </div>
+          ${Object.keys(artifactChecks).length ? `<div class="nl559-artifact-note"><strong>Registration artifacts</strong><span>${Object.entries(artifactChecks).map(([name, present]) => `${esc(label(name))}: ${present ? 'present' : 'not provided'}`).join(' · ')}</span>${cycleWarnings.length ? `<small>These are informational warnings and do not indicate broken lifecycle state.</small>` : ''}</div>` : ''}
+          ${cycleHealth.repairable ? '<button id="reconcileMembershipCycle" type="button" class="nl530-action primary">Reconcile derived state</button>' : ''}
+        </section>
         ${queueRow.can_assign ? `
         <section class="nl530-subpanel">
           <strong>Review assignment</strong>
@@ -1961,6 +2725,34 @@
       `;
 
       const assignmentForm = $('applicationAssignmentForm');
+
+      $('reconcileMembershipCycle')?.addEventListener('click', async event => {
+        const reason = prompt('Enter the audited reason for reconciling this approved membership (minimum 8 characters):');
+        if (reason === null) return;
+        if (reason.trim().length < 8) {
+          applicationDrawerFeedback('Enter a reconciliation reason of at least 8 characters.', 'error');
+          return;
+        }
+
+        const button = event.currentTarget;
+        button.disabled = true;
+        button.textContent = 'Reconciling…';
+        applicationDrawerFeedback('Reconciling approved membership derived state…', 'working');
+
+        try {
+          const result = await request(
+            `/api/nurselink/admin/membership-cycle-health/${id}/reconcile`,
+            {method: 'POST', body: JSON.stringify({reason: reason.trim()})}
+          );
+          applicationDrawerFeedback(result?.message || 'Membership cycle reconciled.', 'success');
+          await openApplication(id);
+        } catch (error) {
+          applicationDrawerFeedback(error.message || 'Unable to reconcile membership cycle.', 'error');
+          button.disabled = false;
+          button.textContent = 'Reconcile derived state';
+        }
+      });
+
       if (assignmentForm) {
         $('applicationReviewer').value = queueRow.assigned_reviewer_user_id || '';
         $('applicationPriority').value = queueRow.review_priority || 'normal';
@@ -3136,7 +3928,6 @@
 
     renderApplicationSavedViews();
 
-    $('viewAllApplications')?.addEventListener('click', clearApplicationFilters);
     $('resetApplicationFilters')?.addEventListener('click', clearApplicationFilters);
     $('closeApplicationDetail')?.addEventListener('click', closeApplicationDetail);
     $('applicationDrawerBackdrop')?.addEventListener('click', closeApplicationDetail);
@@ -3162,8 +3953,31 @@
     $('adminGovernanceSearch')?.addEventListener('input', debounce(loadAdminGovernanceHistory, 300));
   }
 
-  mobileMenuToggleEl?.addEventListener('click', () => {
-    setMobileNavigation(!document.body.classList.contains('nl555-nav-open'));
+  // NurseLink v712 — reliable mobile menu activation on iOS/WebKit.
+  // pointerup responds immediately to a completed touch. The click handler
+  // remains as keyboard/mouse fallback and is suppressed after pointer use.
+  let mobileMenuPointerHandledAt = 0;
+
+  mobileMenuToggleEl?.addEventListener('pointerup', event => {
+    if (event.pointerType === 'touch' || event.pointerType === 'pen') {
+      event.preventDefault();
+      mobileMenuPointerHandledAt = Date.now();
+
+      setMobileNavigation(
+        !document.body.classList.contains('nl555-nav-open')
+      );
+    }
+  });
+
+  mobileMenuToggleEl?.addEventListener('click', event => {
+    if (Date.now() - mobileMenuPointerHandledAt < 700) {
+      event.preventDefault();
+      return;
+    }
+
+    setMobileNavigation(
+      !document.body.classList.contains('nl555-nav-open')
+    );
   });
   mobileMenuCloseEl?.addEventListener('click', () => {
     setMobileNavigation(false);
@@ -3239,6 +4053,8 @@
       });
     });
   });
+
+  bindViewAllApplicationsHard();
 
   async function boot() {
     document.body.classList.add('nl-admin-session-pending');

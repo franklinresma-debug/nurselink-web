@@ -1,0 +1,246 @@
+/* NurseLink Legacy Blue Shell v64.9.7
+   Force full blue sidebar + blue sticky topbar on legacy/static member pages.
+*/
+
+:root{
+  --nlls-sidebar-w:232px;
+  --nlls-topbar-h:72px;
+  --nlls-sidebar-z:1100;
+  --nlls-topbar-z:1000;
+  --nlls-blue-a:#145a97;
+  --nlls-blue-b:#0c477d;
+  --nlls-dark-a:#082b55;
+  --nlls-dark-b:#061f3d;
+  --nlls-border:rgba(255,255,255,.16);
+}
+
+/* -------- FORCED LEGACY SHELL -------- */
+html[data-nl-force-legacy-shell="true"] #nurselink-universal-sidebar{
+  display:block!important;
+  position:fixed!important;
+  inset:0 auto 0 0!important;
+  width:var(--nlls-sidebar-w)!important;
+  z-index:var(--nlls-sidebar-z)!important;
+  overflow-y:auto!important;
+  box-sizing:border-box!important;
+  padding:20px 14px!important;
+  color:#fff!important;
+  background:linear-gradient(180deg,var(--nlls-blue-a) 0%,var(--nlls-blue-b) 100%)!important;
+}
+
+html[data-nl-force-legacy-shell="true"][data-nl-effective-theme="dark"]
+#nurselink-universal-sidebar,
+html.dark[data-nl-force-legacy-shell="true"]
+#nurselink-universal-sidebar{
+  background:linear-gradient(180deg,var(--nlls-dark-a) 0%,var(--nlls-dark-b) 100%)!important;
+}
+
+html[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar{
+  display:flex!important;
+  position:fixed!important;
+  top:0!important;
+  left:var(--nlls-sidebar-w)!important;
+  right:0!important;
+  height:var(--nlls-topbar-h)!important;
+  z-index:var(--nlls-topbar-z)!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  padding:0 18px!important;
+  box-sizing:border-box!important;
+  color:#fff!important;
+  background:linear-gradient(90deg,var(--nlls-blue-a) 0%,var(--nlls-blue-b) 100%)!important;
+  border-bottom:1px solid var(--nlls-border)!important;
+  box-shadow:0 5px 18px rgba(14,53,90,.18)!important;
+  backdrop-filter:saturate(125%) blur(8px);
+  -webkit-backdrop-filter:saturate(125%) blur(8px);
+}
+
+html[data-nl-force-legacy-shell="true"][data-nl-effective-theme="dark"]
+#nurselink-universal-topbar,
+html.dark[data-nl-force-legacy-shell="true"]
+#nurselink-universal-topbar{
+  background:linear-gradient(90deg,var(--nlls-dark-a) 0%,var(--nlls-dark-b) 100%)!important;
+  box-shadow:0 6px 20px rgba(0,0,0,.3)!important;
+}
+
+/* Force page content into shell frame */
+html[data-nl-force-legacy-shell="true"] body{
+  margin-left:var(--nlls-sidebar-w)!important;
+  padding-top:var(--nlls-topbar-h)!important;
+  box-sizing:border-box!important;
+  min-height:100vh;
+}
+
+/* Remove original legacy horizontal/top navigation */
+html[data-nl-force-legacy-shell="true"] body > :is(
+  nav,
+  header:not(#nurselink-universal-topbar),
+  [class*="top-nav"],
+  [class*="site-nav"],
+  [class*="member-nav"],
+  [class*="legacy-nav"]
+){
+  display:none!important;
+}
+
+/* Topbar actions */
+#nurselink-universal-topbar .nlub-action{
+  min-width:42px!important;
+  height:42px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.10)!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  box-shadow:none!important;
+}
+#nurselink-universal-topbar .nlub-action:hover{
+  background:rgba(255,255,255,.18)!important;
+}
+#nurselink-universal-topbar .nlub-profile{
+  width:auto!important;
+  padding:0 12px!important;
+  gap:8px!important;
+}
+#nurselink-universal-topbar .nlub-avatar{
+  width:28px!important;
+  height:28px!important;
+  border-radius:50%!important;
+  display:grid!important;
+  place-items:center!important;
+  background:#fff!important;
+  color:#145a97!important;
+  font-size:12px!important;
+  font-weight:800!important;
+}
+#nurselink-universal-topbar .nlub-label{
+  color:#fff!important;
+  font-size:13px!important;
+  font-weight:700!important;
+}
+
+/* Sidebar branding/nav */
+#nurselink-universal-sidebar .nlub-brand{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding:8px 8px 18px!important;
+  margin-bottom:14px!important;
+  border-bottom:1px solid var(--nlls-border)!important;
+}
+#nurselink-universal-sidebar .nlub-logo{
+  width:40px!important;
+  height:40px!important;
+  border-radius:10px!important;
+  display:grid!important;
+  place-items:center!important;
+  background:#2082e9!important;
+  color:#fff!important;
+  font-weight:800!important;
+}
+#nurselink-universal-sidebar .nlub-brand strong{
+  display:block!important;
+  color:#fff!important;
+}
+#nurselink-universal-sidebar .nlub-brand small{
+  display:block!important;
+  color:#d9e8f7!important;
+  font-size:11px!important;
+}
+#nurselink-universal-sidebar nav{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:3px!important;
+}
+#nurselink-universal-sidebar nav a{
+  display:block!important;
+  padding:8px 10px!important;
+  border-radius:7px!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  font-size:13px!important;
+  font-weight:600!important;
+}
+#nurselink-universal-sidebar nav a:hover,
+#nurselink-universal-sidebar nav a[aria-current="page"]{
+  background:rgba(255,255,255,.17)!important;
+}
+
+/* -------- NATIVE REACT SHELL -------- */
+html:not([data-nl-force-legacy-shell="true"])
+.member-react-safe-shell-v108 :is(
+  [data-nl-minimal-topbar="true"],
+  [data-nl-mobile-topbar="true"],
+  .topbar,.top-bar,.app-header,.member-header,.member-topbar
+){
+  position:sticky!important;
+  top:0!important;
+}
+
+html:not([data-nl-force-legacy-shell="true"])
+.member-react-safe-shell-v108 :is(.sidebar,[class*="sidebar"]){
+  position:relative;
+}
+
+/* Tablet */
+@media(max-width:1199px) and (min-width:768px){
+  :root{
+    --nlls-sidebar-w:210px;
+    --nlls-topbar-h:64px;
+  }
+}
+
+/* Mobile */
+@media(max-width:767px){
+  :root{
+    --nlls-sidebar-w:260px;
+    --nlls-topbar-h:58px;
+  }
+
+  html[data-nl-force-legacy-shell="true"] body{
+    margin-left:0!important;
+    padding-top:var(--nlls-topbar-h)!important;
+  }
+
+  html[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar{
+    left:0!important;
+    height:var(--nlls-topbar-h)!important;
+    padding:0 8px!important;
+    gap:5px!important;
+  }
+
+  #nurselink-universal-topbar .nlub-menu{
+    display:inline-flex!important;
+    margin-right:auto!important;
+  }
+
+  #nurselink-universal-topbar .nlub-profile{
+    padding:0 7px!important;
+  }
+
+  #nurselink-universal-topbar .nlub-label{
+    display:none!important;
+  }
+
+  html[data-nl-force-legacy-shell="true"] #nurselink-universal-sidebar{
+    transform:translateX(-102%)!important;
+    transition:transform .18s ease!important;
+    box-shadow:8px 0 28px rgba(0,0,0,.28)!important;
+  }
+
+  html[data-nl-force-legacy-shell="true"][data-nl-sidebar-open="true"]
+  #nurselink-universal-sidebar{
+    transform:translateX(0)!important;
+  }
+}
+
+@media(min-width:768px){
+  #nurselink-universal-topbar .nlub-menu{
+    display:none!important;
+  }
+}

@@ -1,0 +1,266 @@
+/* NurseLink Light Layout System v64.8.0
+   Target: approved clean Light Mode layout.
+   Global tokens + Qualifications layout refinement + readable icon system.
+*/
+
+:root {
+  --nll-page:#f5f7fb;
+  --nll-card:#ffffff;
+  --nll-soft:#f8fafc;
+  --nll-soft-blue:#f1f6ff;
+  --nll-text:#14213d;
+  --nll-strong:#0f172a;
+  --nll-muted:#60708a;
+  --nll-label:#7487a5;
+  --nll-line:#d8e1ec;
+  --nll-line-strong:#c5d1df;
+  --nll-blue:#1769e0;
+  --nll-blue-soft:#edf4ff;
+  --nll-green:#16804f;
+  --nll-green-soft:#edf8f1;
+  --nll-purple:#6b35b3;
+  --nll-purple-soft:#f5effc;
+  --nll-amber:#a66b10;
+  --nll-amber-soft:#fff8e9;
+  --nll-icon-bg:#f2f6fc;
+  --nll-icon-border:#cddbf0;
+  --nll-icon:#2563d9;
+  --nll-shadow:0 6px 18px rgba(31,48,78,.055);
+  color-scheme:light;
+}
+
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark {
+  --nll-page:#0d1423;
+  --nll-card:#141d2d;
+  --nll-soft:#192436;
+  --nll-soft-blue:#172d4f;
+  --nll-text:#eaf0f8;
+  --nll-strong:#ffffff;
+  --nll-muted:#aab7c9;
+  --nll-label:#92a3bb;
+  --nll-line:#2c3a50;
+  --nll-line-strong:#3b4a62;
+  --nll-blue:#68a5ff;
+  --nll-blue-soft:#172d4f;
+  --nll-green:#66d4a7;
+  --nll-green-soft:#17352e;
+  --nll-purple:#aa97ff;
+  --nll-purple-soft:#29234c;
+  --nll-amber:#f2c46e;
+  --nll-amber-soft:#332b19;
+  --nll-icon-bg:#20304a;
+  --nll-icon-border:#314561;
+  --nll-icon:#dce9f8;
+  --nll-shadow:0 12px 34px rgba(0,0,0,.26);
+  color-scheme:dark;
+}
+
+/* ---------- GLOBAL MEMBER LIGHT SYSTEM ---------- */
+.member-react-safe-shell-v108,
+.member-react-safe-shell-v108 main,
+.member-react-safe-shell-v108 .main,
+.member-react-safe-shell-v108 .content,
+.member-react-safe-shell-v108 [class*="workspace"],
+.member-react-safe-shell-v108 [class*="page"] {
+  background:var(--nll-page)!important;
+  color:var(--nll-text)!important;
+}
+
+.member-react-safe-shell-v108 :is(h1,h2,h3,h4,h5,h6,strong,b,dt,th,[class*="title"],[class*="heading"],[class*="name"],[class*="value"]) {
+  color:var(--nll-strong)!important;
+}
+.member-react-safe-shell-v108 :is(p,small,dd,td,label,[class*="muted"],[class*="meta"],[class*="subtitle"],[class*="description"],[class*="caption"],[class*="helper"]) {
+  color:var(--nll-muted)!important;
+}
+.member-react-safe-shell-v108 :is([class*="label"],[class*="eyebrow"],[class*="kicker"],dt,small) {
+  color:var(--nll-label)!important;
+}
+.member-react-safe-shell-v108 a { color:var(--nll-blue); }
+
+/* cards */
+.member-react-safe-shell-v108 :is(.card,.panel,[class*="-card"],[class*="-panel"],[class*="tile"],[class*="summary"],[class*="widget"])
+:not(.sidebar):not([class*="sidebar"]):not([class*="topbar"]):not([class*="header"]) {
+  background:var(--nll-card)!important;
+  border-color:var(--nll-line)!important;
+  color:var(--nll-text)!important;
+  box-shadow:var(--nll-shadow);
+}
+
+/* readable light icon tiles */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+  [class*="icon-wrap"],[class*="icon-circle"],[class*="icon-badge"],
+  [class*="status-icon"],[class*="summary-icon"],[class*="meta-icon"],
+  [class*="info-icon"],[class*="row-icon"],[class*="item-icon"]
+) {
+  background:var(--nll-icon-bg)!important;
+  border:1px solid var(--nll-icon-border)!important;
+  color:var(--nll-icon)!important;
+  box-shadow:none!important;
+}
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+  [class*="icon-wrap"],[class*="icon-circle"],[class*="icon-badge"],
+  [class*="status-icon"],[class*="summary-icon"],[class*="meta-icon"],
+  [class*="info-icon"],[class*="row-icon"],[class*="item-icon"]
+) :is(svg,i) {
+  color:inherit!important;
+  stroke:currentColor!important;
+}
+
+/* semantic icons */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is([class*="success-icon"],[class*="verified-icon"],[class*="current-icon"]) {
+  background:var(--nll-green-soft)!important;
+  border-color:#bfe3cc!important;
+  color:var(--nll-green)!important;
+}
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is([class*="qualification-icon"],[class*="pqf-icon"]) {
+  background:var(--nll-purple-soft)!important;
+  border-color:#d8c0f0!important;
+  color:var(--nll-purple)!important;
+}
+
+/* forms/tabs/tables */
+.member-react-safe-shell-v108 :is(input,select,textarea) {
+  background:var(--nll-soft)!important;
+  color:var(--nll-strong)!important;
+  border-color:var(--nll-line)!important;
+}
+.member-react-safe-shell-v108 :is([role="tab"],.tab,[class*="tab"]) {
+  border-color:var(--nll-line)!important;
+}
+.member-react-safe-shell-v108 :is([role="tab"][aria-selected="true"],.tab.active,[class*="tab"].active) {
+  color:var(--nll-blue)!important;
+  background:var(--nll-card)!important;
+  border-color:#a9c8f7!important;
+}
+.member-react-safe-shell-v108 table,
+.member-react-safe-shell-v108 :is(tr,td,th) {
+  border-color:var(--nll-line)!important;
+}
+
+/* ---------- QUALIFICATIONS APPROVED LIGHT LAYOUT ---------- */
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 {
+  --nll-q-gap:16px;
+}
+
+/* framework outer container */
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="framework-reference"],[class*="qualification-framework"]
+) {
+  background:var(--nll-card)!important;
+  border:1px solid var(--nll-line)!important;
+  border-radius:12px!important;
+  box-shadow:var(--nll-shadow)!important;
+}
+
+/* inner framework and qualification panels */
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="framework-card"],[class*="framework-main"],
+  [class*="your-qualification"],[class*="qualification-card"]
+) {
+  background:var(--nll-card)!important;
+  border:1px solid var(--nll-line)!important;
+  border-radius:10px!important;
+  box-shadow:none!important;
+}
+
+/* qualification identity accent */
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="your-qualification"],[class*="qualification-card"]
+) :is([class*="icon"],[class*="badge-icon"]) {
+  background:var(--nll-purple-soft)!important;
+  border:1px solid #d8c0f0!important;
+  color:var(--nll-purple)!important;
+}
+
+/* provenance/source grid */
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],[class*="framework-meta"],[class*="metadata-grid"]
+) {
+  background:var(--nll-card)!important;
+  border:1px solid var(--nll-line)!important;
+  border-radius:10px!important;
+  overflow:hidden;
+  box-shadow:none!important;
+}
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],[class*="framework-meta"],[class*="metadata-grid"]
+) > * {
+  border-color:var(--nll-line)!important;
+  background:var(--nll-card)!important;
+}
+
+/* standing / snapshot: clean white card + light icon tile */
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="standing"],[class*="snapshot"]
+) {
+  background:var(--nll-card)!important;
+  border-color:var(--nll-line)!important;
+  box-shadow:var(--nll-shadow)!important;
+}
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="standing"],[class*="snapshot"]
+) :is(
+  [class*="icon"],[class*="marker"]
+) {
+  background:var(--nll-icon-bg)!important;
+  border:1px solid var(--nll-icon-border)!important;
+  color:var(--nll-icon)!important;
+  box-shadow:none!important;
+}
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="standing"],[class*="snapshot"]
+) :is([class*="icon"],[class*="marker"]) :is(svg,i,span) {
+  color:inherit!important;
+  stroke:currentColor!important;
+}
+
+/* green active license */
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="license"],[class*="active"],[class*="verified"],[class*="success"]
+) :is([class*="icon"],[class*="marker"]) {
+  background:var(--nll-green-soft)!important;
+  border-color:#bfe3cc!important;
+  color:var(--nll-green)!important;
+}
+
+/* badges */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is([class*="current"],[class*="verified"],[class*="success"]) {
+  color:var(--nll-green)!important;
+}
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is([class*="advanced"],[class*="postgraduate"],[class*="qualification-level"],[class*="reference-band"]) {
+  color:var(--nll-purple)!important;
+}
+
+/* info footer and disclaimer */
+html[data-nl-effective-theme="light"][data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="framework-info"],[class*="source-note"],[class*="info-note"]
+) {
+  background:var(--nll-soft)!important;
+  border-color:var(--nll-line)!important;
+  color:var(--nll-label)!important;
+}
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is([class*="disclaimer"],[class*="important"],[class*="notice"]) {
+  background:var(--nll-amber-soft)!important;
+  border-color:#e8cf9c!important;
+  color:var(--nll-text)!important;
+}
+
+/* preserve blue sidebar */
+.member-react-safe-shell-v108 .sidebar,
+.member-react-safe-shell-v108 [class*="sidebar"] {
+  box-shadow:none!important;
+}
+
+/* mobile remains compatible with adaptive topbar */
+@media(max-width:767px) {
+  .member-react-safe-shell-v108 :is(.card,.panel,[class*="-card"],[class*="-panel"]) {
+    box-shadow:none!important;
+  }
+  html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+    [class*="framework-reference"],[class*="qualification-framework"]
+  ) {
+    border-radius:10px!important;
+  }
+}

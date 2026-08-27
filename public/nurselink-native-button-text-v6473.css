@@ -1,0 +1,39 @@
+/* NurseLink Native Button Text Contrast v64.7.3 */
+
+/*
+ * TEXT ONLY.
+ * No background, border, radius, box-shadow, transform, opacity or transition
+ * is defined here, so NurseLink's original button component states remain intact.
+ */
+
+[data-nl6473-button-tone="light"] {
+  color: #172033 !important;
+  -webkit-text-fill-color: #172033 !important;
+  text-shadow: none !important;
+}
+
+[data-nl6473-button-tone="light"] *,
+[data-nl6473-button-tone="light"] span,
+[data-nl6473-button-tone="light"] strong,
+[data-nl6473-button-tone="light"] small,
+[data-nl6473-button-tone="light"] svg {
+  color: #172033 !important;
+  -webkit-text-fill-color: #172033 !important;
+  text-shadow: none !important;
+}
+
+[data-nl6473-button-tone="dark"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+[data-nl6473-button-tone="dark"] *,
+[data-nl6473-button-tone="dark"] span,
+[data-nl6473-button-tone="dark"] strong,
+[data-nl6473-button-tone="dark"] small,
+[data-nl6473-button-tone="dark"] svg {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: none !important;
+}

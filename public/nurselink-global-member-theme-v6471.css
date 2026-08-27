@@ -1,0 +1,217 @@
+/* NurseLink Global Member Light/Dark Theme v64.7.1
+   Shared visual tokens for all member-facing pages.
+   Light mode normalized globally; dark mode preserved.
+*/
+
+:root {
+  --nl-page: #f4f7fb;
+  --nl-page-soft: #eef3f8;
+  --nl-surface: #ffffff;
+  --nl-surface-alt: #f8fafc;
+  --nl-surface-strong: #edf2f7;
+  --nl-text: #172033;
+  --nl-text-strong: #0f172a;
+  --nl-muted: #64748b;
+  --nl-subtle: #8b98aa;
+  --nl-border: #dbe3ec;
+  --nl-border-strong: #cbd5e1;
+  --nl-blue: #1769e0;
+  --nl-blue-soft: #eaf2ff;
+  --nl-green: #15805f;
+  --nl-green-soft: #e8f7f0;
+  --nl-purple: #7257e7;
+  --nl-purple-soft: #f0edff;
+  --nl-gold: #a46712;
+  --nl-gold-soft: #fff6df;
+  --nl-red: #c2413b;
+  --nl-shadow: 0 10px 28px rgba(37, 52, 82, .08);
+  color-scheme: light;
+}
+
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark {
+  --nl-page: #0d1423;
+  --nl-page-soft: #101a2a;
+  --nl-surface: #141d2d;
+  --nl-surface-alt: #192436;
+  --nl-surface-strong: #202d42;
+  --nl-text: #eaf0f8;
+  --nl-text-strong: #ffffff;
+  --nl-muted: #aab7c9;
+  --nl-subtle: #8795a9;
+  --nl-border: #2c3a50;
+  --nl-border-strong: #3b4a62;
+  --nl-blue: #68a5ff;
+  --nl-blue-soft: #172d4f;
+  --nl-green: #66d4a7;
+  --nl-green-soft: #17352e;
+  --nl-purple: #aa97ff;
+  --nl-purple-soft: #29234c;
+  --nl-gold: #f2c46e;
+  --nl-gold-soft: #332b19;
+  --nl-red: #ff918a;
+  --nl-shadow: 0 12px 34px rgba(0,0,0,.26);
+  color-scheme: dark;
+}
+
+/* Global member shell/page */
+.member-react-safe-shell-v108,
+.member-react-safe-shell-v108 main,
+.member-react-safe-shell-v108 .main,
+.member-react-safe-shell-v108 .content,
+.member-react-safe-shell-v108 [class*="workspace"],
+.member-react-safe-shell-v108 [class*="page"] {
+  background-color: var(--nl-page);
+  color: var(--nl-text);
+}
+
+/* Typography */
+.member-react-safe-shell-v108 :is(
+  h1,h2,h3,h4,h5,h6,strong,b,dt,th,
+  [class*="title"],[class*="heading"],[class*="name"],[class*="value"]
+) {
+  color: var(--nl-text-strong) !important;
+}
+
+.member-react-safe-shell-v108 :is(
+  p,small,dd,td,label,
+  [class*="muted"],[class*="meta"],[class*="subtitle"],
+  [class*="description"],[class*="caption"],[class*="helper"]
+) {
+  color: var(--nl-muted) !important;
+}
+
+.member-react-safe-shell-v108 a {
+  color: var(--nl-blue);
+}
+
+/* Cards / panels / tiles */
+.member-react-safe-shell-v108 :is(
+  .card,.panel,[class*="-card"],[class*="-panel"],
+  [class*="tile"],[class*="summary"],[class*="widget"]
+):not(.sidebar):not([class*="sidebar"]):not([class*="topbar"]):not([class*="header"]) {
+  background: var(--nl-surface) !important;
+  border-color: var(--nl-border) !important;
+  color: var(--nl-text) !important;
+  box-shadow: var(--nl-shadow);
+}
+
+/* Nested sub-surfaces */
+.member-react-safe-shell-v108 :is(
+  [class*="detail"],[class*="metadata"],[class*="source"],
+  [class*="policy"],[class*="verification"],[class*="mapping"],
+  [class*="section-inner"],[class*="subcard"]
+) {
+  border-color: var(--nl-border) !important;
+}
+
+/* Tabs */
+.member-react-safe-shell-v108 :is([role="tab"],.tab,[class*="tab"]) {
+  color: var(--nl-muted) !important;
+  border-color: var(--nl-border) !important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [role="tab"][aria-selected="true"],.tab.active,[class*="tab"].active
+) {
+  color: var(--nl-blue) !important;
+  border-color: var(--nl-blue) !important;
+  background: transparent !important;
+}
+
+/* Inputs */
+.member-react-safe-shell-v108 :is(input,select,textarea) {
+  background: var(--nl-surface-alt) !important;
+  color: var(--nl-text-strong) !important;
+  border-color: var(--nl-border) !important;
+}
+.member-react-safe-shell-v108 :is(input,textarea)::placeholder {
+  color: var(--nl-subtle) !important;
+}
+
+/* Secondary buttons */
+.member-react-safe-shell-v108 :is(button,[role="button"],.button,.btn)
+:not([class*="primary"]):not([class*="accent"]):not([class*="danger"]) {
+  background: var(--nl-surface) !important;
+  color: var(--nl-text-strong) !important;
+  border-color: var(--nl-border) !important;
+}
+
+/* Tables */
+.member-react-safe-shell-v108 table {
+  background: var(--nl-surface) !important;
+  color: var(--nl-text);
+  border-color: var(--nl-border);
+}
+.member-react-safe-shell-v108 :is(tr,td,th) {
+  border-color: var(--nl-border) !important;
+}
+
+/* Status / semantic color normalization */
+.member-react-safe-shell-v108 :is(
+  [class*="verified"],[class*="current"],[class*="success"],[class*="approved"]
+) {
+  color: var(--nl-green) !important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="warning"],[class*="notice"],[class*="important"],[class*="disclaimer"]
+) {
+  background: var(--nl-gold-soft) !important;
+  border-color: color-mix(in srgb, var(--nl-gold) 35%, var(--nl-border)) !important;
+  color: var(--nl-text) !important;
+}
+
+/* Light-mode anti-leak */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+  [style*="background: rgb(1"],
+  [style*="background-color: rgb(1"],
+  [style*="background:#0"],
+  [style*="background-color:#0"]
+) {
+  background-color: var(--nl-surface) !important;
+}
+
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+  [style*="color: white"],
+  [style*="color:#fff"],
+  [style*="color: #fff"]
+) {
+  color: var(--nl-text-strong) !important;
+}
+
+/* Dark-mode anti-leak */
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+  [style*="background: white"],
+  [style*="background-color: white"],
+  [style*="background:#fff"],
+  [style*="background-color:#fff"]
+) {
+  background-color: var(--nl-surface) !important;
+}
+
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+  [style*="color: black"],
+  [style*="color:#000"],
+  [style*="color: #000"]
+) {
+  color: var(--nl-text-strong) !important;
+}
+
+/* Preserve blue sidebar/nav anchor */
+.member-react-safe-shell-v108 .sidebar,
+.member-react-safe-shell-v108 [class*="sidebar"] {
+  color: inherit;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .member-react-safe-shell-v108 :is(
+    .card,.panel,[class*="-card"],[class*="-panel"]
+  ) {
+    box-shadow: none;
+  }
+}

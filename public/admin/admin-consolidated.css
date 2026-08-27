@@ -832,6 +832,14 @@
 .nl550-detail-body{flex:1;overflow:auto;padding:16px}
 body.nl550-detail-open{overflow:hidden}
 .nl550-detail-body .nl530-subpanel{margin-top:10px;border-color:#d9e7f2;background:#fff}
+.nl559-cycle-health{display:grid;gap:10px}
+.nl559-cycle-health-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nl559-cycle-health-head>div>strong{display:block;margin-top:3px;font-size:16px;color:#173253}
+.nl559-artifact-note{padding:10px;border:1px solid #dfe7ef;border-radius:8px;background:#f7fafc}
+.nl559-artifact-note strong,.nl559-artifact-note span,.nl559-artifact-note small{display:block}
+.nl559-artifact-note strong{font-size:12px;color:#173253}
+.nl559-artifact-note span,.nl559-artifact-note small{margin-top:4px;color:#64748b;font-size:12px;line-height:1.45}
+.nl559-cycle-health>.nl530-action{justify-self:start}
 @media(max-width:1450px){
   .nl550-kpi-strip,.nl550-progress-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   .nl550-filterbar{grid-template-columns:minmax(200px,1.5fr) repeat(3,minmax(110px,1fr))}
@@ -1490,3 +1498,137 @@ body.nl-admin-body,
 .nl558-drawer-feedback[data-tone="success"]{border-color:#a9dbc3;background:#edf9f3;color:#176b49}
 .nl558-drawer-feedback[data-tone="error"]{border-color:#efb8bd;background:#fff1f2;color:#9b2f3b}
 .nl558-drawer-feedback[data-tone="working"]{border-color:#b9d8f4;background:#eef7ff;color:#165a91}
+
+/* =========================================================
+   NurseLink v710 — Mobile Admin Drawer Performance
+   ========================================================= */
+@media (max-width: 950px) {
+
+  /* Avoid expensive live background blur while opening drawer */
+  .nl555-mobile-backdrop {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(9,32,55,.43) !important;
+  }
+
+  /* Avoid expensive backdrop repaint on sticky mobile header */
+  .nl555-mobile-bar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(249,253,255,.98) !important;
+  }
+
+  /* Keep drawer animation exclusively on compositor */
+  .nl530-sidebar.nl-admin-sidebar {
+    transform: translate3d(-104%,0,0) !important;
+    transition: transform .18s cubic-bezier(.2,.8,.2,1) !important;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    contain: layout paint;
+  }
+
+  body.nl555-nav-open .nl530-sidebar.nl-admin-sidebar {
+    transform: translate3d(0,0,0) !important;
+  }
+
+  /* Backdrop itself does not need an animation */
+  .nl555-mobile-backdrop {
+    will-change: opacity;
+    transform: translateZ(0);
+  }
+}
+
+/* Respect reduced-motion preference */
+@media (max-width: 950px) and (prefers-reduced-motion: reduce) {
+  .nl530-sidebar.nl-admin-sidebar {
+    transition: none !important;
+  }
+}
+
+
+/* =========================================================
+   NurseLink v711 — Persistent Mobile Menu Toggle
+   ========================================================= */
+@media (max-width:950px) {
+
+  /* Keep hamburger/toggle reachable while drawer is open */
+  .nl555-mobile-bar {
+    z-index:1010 !important;
+  }
+
+  .nl555-mobile-menu-button {
+    position:relative;
+    z-index:1020 !important;
+  }
+
+  /* Transform hamburger into X when drawer is open */
+  .nl555-mobile-menu-button span {
+    transition:
+      transform .16s ease,
+      opacity .12s ease;
+    transform-origin:center;
+  }
+
+  body.nl555-nav-open .nl555-mobile-menu-button span:nth-child(1) {
+    transform:translateY(6px) rotate(45deg);
+  }
+
+  body.nl555-nav-open .nl555-mobile-menu-button span:nth-child(2) {
+    opacity:0;
+  }
+
+  body.nl555-nav-open .nl555-mobile-menu-button span:nth-child(3) {
+    transform:translateY(-6px) rotate(-45deg);
+  }
+}
+
+/* =========================================================
+   NurseLink v712 — iOS Mobile Navigation Touch Reliability
+   ========================================================= */
+@media (max-width:950px) {
+
+  .nl555-mobile-menu-button,
+  .nl555-mobile-close,
+  .nl555-mobile-backdrop,
+  #operationsMenu a {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nl555-mobile-menu-button,
+  .nl555-mobile-close {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .nl555-mobile-menu-button {
+    position: relative;
+    z-index: 1030 !important;
+
+    min-width: 48px !important;
+    width: 48px !important;
+    min-height: 48px !important;
+    height: 48px !important;
+
+    cursor: pointer;
+    pointer-events: auto !important;
+  }
+
+  .nl555-mobile-menu-button > span {
+    pointer-events: none;
+  }
+
+  .nl555-mobile-bar {
+    pointer-events: auto;
+  }
+
+  body.nl555-nav-open .nl555-mobile-menu-button {
+    pointer-events: auto !important;
+  }
+
+  .nl530-sidebar.nl-admin-sidebar {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+}

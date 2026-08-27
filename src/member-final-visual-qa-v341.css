@@ -1,0 +1,139 @@
+/* NurseLink Phase 2 Final Visual QA v3.4.1
+   Targeted Member Dashboard dark contrast only. */
+
+/* Professional Hub hero */
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-welcome{
+  background:
+    radial-gradient(circle at 91% 14%,rgba(58,164,255,.12),transparent 28%),
+    radial-gradient(circle at 8% 92%,rgba(9,114,213,.09),transparent 30%),
+    linear-gradient(135deg,#172234,#142033) !important;
+  border-color:#34465c !important;
+  box-shadow:0 15px 42px rgba(0,0,0,.20) !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-welcome h2{
+  color:#f4f7fb !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-welcome p,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-readiness-mini>small{
+  color:#aebed0 !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-readiness-ring>div{
+  background:#111c2c !important;
+  box-shadow:0 4px 15px rgba(0,0,0,.25) !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-readiness-ring strong{
+  color:#f4f7fb !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-welcome-actions .secondary-button{
+  color:#e6eef7 !important;
+  background:#111c2c !important;
+  border-color:#42566f !important;
+}
+
+/* Dashboard status/KPI row */
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-status-row>div{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-status-row span,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-status-row small{
+  color:#aebed0 !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-status-row strong{
+  color:#f4f7fb !important;
+}
+
+/* Membership & Activation / member module cards */
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-module-card{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-module-card:hover{
+  background:#1a293d !important;
+  border-color:#52749a !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.22) !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-module-icon{
+  color:#74bfff !important;
+  background:linear-gradient(145deg,#18314b,#1c3957) !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-module-copy strong{
+  color:#f4f7fb !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-module-copy small{
+  color:#aebed0 !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-module-arrow{
+  color:#79b8ef !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-section-head strong{
+  color:#f4f7fb !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-member-note{
+  color:#b5c5d6 !important;
+  background:#111c2c !important;
+  border-color:#34465c !important;
+}
+
+/* A few dashboard role/status tiles carry generic stat-card styling. */
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-approved-member-dashboard .stat-card{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-approved-member-dashboard .stat-card span,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-approved-member-dashboard .stat-card small{
+  color:#aebed0 !important;
+}
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-approved-member-dashboard .stat-card strong{
+  color:#f4f7fb !important;
+}
+
+/* System theme receives identical polish only while OS prefers dark. */
+@media (prefers-color-scheme:dark){
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-welcome{
+    background:
+      radial-gradient(circle at 91% 14%,rgba(58,164,255,.12),transparent 28%),
+      radial-gradient(circle at 8% 92%,rgba(9,114,213,.09),transparent 30%),
+      linear-gradient(135deg,#172234,#142033) !important;
+    border-color:#34465c !important;
+  }
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-welcome h2,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-readiness-ring strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-status-row strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-module-copy strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-section-head strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-approved-member-dashboard .stat-card strong{
+    color:#f4f7fb !important;
+  }
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-welcome p,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-readiness-mini>small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-status-row span,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-status-row small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-module-copy small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-approved-member-dashboard .stat-card span,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-approved-member-dashboard .stat-card small{
+    color:#aebed0 !important;
+  }
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-readiness-ring>div,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-status-row>div,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-module-card,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-approved-member-dashboard .stat-card{
+    background:#111c2c !important;
+    border-color:#34465c !important;
+  }
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-member-module-icon{
+    color:#74bfff !important;
+    background:linear-gradient(145deg,#18314b,#1c3957) !important;
+  }
+}
+
+/* The app already defines the same semantic class in mobile CSS.
+   Keep this reinforcement adjacent to the final QA patch. */
+@media (max-width:780px){
+  html.nurselink-nav-lock,
+  html.nurselink-nav-lock body{
+    overflow:hidden !important;
+    overscroll-behavior:none !important;
+  }
+}

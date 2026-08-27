@@ -1,0 +1,72 @@
+/* NurseLink Qualifications Buttons + Profile Photo v64.4.0 */
+.nl6439-tabs .nl6440-tab{
+  display:inline-flex;
+  align-items:center;
+  min-height:39px;
+  padding:11px 2px;
+  color:#b8c4d4;
+  text-decoration:none;
+  white-space:nowrap;
+  font-size:12px;
+  font-weight:600;
+  border-bottom:2px solid transparent;
+  transition:color .15s ease,border-color .15s ease,background .15s ease;
+}
+.nl6439-tabs .nl6440-tab:hover,
+.nl6439-tabs .nl6440-tab:focus-visible{
+  color:#48c2ff!important;
+  border-bottom-color:#2bb8ff;
+  outline:none;
+}
+.nl6439-tabs .nl6440-tab.active{
+  color:#2bb8ff!important;
+  border-bottom-color:#2bb8ff;
+  font-weight:800;
+}
+.nl6439-page-head button,
+.nl6439-readiness a,
+.nl6439-member-number button,
+.nl6439-framework-card a,
+.nl6439-provenance a{
+  cursor:pointer!important;
+}
+.nl6439-page-head button:hover,
+.nl6439-page-head button:focus-visible{
+  border-color:#3e9fd7!important;
+  background:#18304b!important;
+  outline:none;
+}
+.nl6439-readiness a:hover,
+.nl6439-framework-card a:hover,
+.nl6439-provenance a:hover{
+  text-decoration:underline!important;
+}
+.nl6440-profile-photo,
+.nl6439-avatar{
+  object-position:center center!important;
+}
+#nl6439-framework{
+  scroll-margin-top:90px;
+}
+
+@media print{
+  .sidebar,
+  .topbar,
+  header.topbar,
+  .nl6439-page-head button,
+  .nl6439-tabs{
+    display:none!important;
+  }
+  .nl6439-page{
+    max-width:none!important;
+    color:#111!important;
+  }
+  .nl6439-member-card,
+  .nl6439-framework-section,
+  .nl6439-side-card,
+  .nl6439-framework-card,
+  .nl6439-qualification-card{
+    break-inside:avoid;
+    box-shadow:none!important;
+  }
+}

@@ -1,0 +1,284 @@
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f4f8fb;
+  color:#193444;
+}
+.nlbi-shell{max-width:1450px;margin:auto;padding:24px}
+.nlbi-head{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+  margin-bottom:22px
+}
+.nlbi-head h1{margin:5px 0 6px;font-size:2rem}
+.nlbi-head p{margin:0;color:#607585;max-width:800px}
+.nlbi-eyebrow{
+  color:#0369a1;
+  font-size:.76rem;
+  letter-spacing:.09em;
+  font-weight:850
+}
+.nlbi-card{
+  background:#fff;
+  border:1px solid #dbe6ed;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 2px 8px rgba(30,60,80,.04)
+}
+.nlbi-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px
+}
+.nlbi-grid.three{
+  grid-template-columns:repeat(3,minmax(0,1fr))
+}
+.nlbi-card h2,.nlbi-card h3{margin-top:0}
+label{display:grid;gap:6px;font-weight:700;font-size:.86rem}
+input,select,textarea{
+  width:100%;
+  min-width:0;
+  padding:10px 11px;
+  border:1px solid #cbd9e2;
+  border-radius:9px;
+  background:#fff;
+  font:inherit
+}
+textarea{resize:vertical}
+button,.nlbi-button{
+  border:1px solid #b9ccd7;
+  border-radius:9px;
+  padding:10px 13px;
+  background:#fff;
+  cursor:pointer;
+  font-weight:800;
+  text-decoration:none;
+  color:#193444
+}
+button.primary,.nlbi-button.primary{
+  background:#075985;
+  border-color:#075985;
+  color:#fff
+}
+button:disabled{opacity:.45;cursor:not-allowed}
+.nlbi-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.nlbi-drop{
+  border:2px dashed #9fc3d5;
+  border-radius:15px;
+  padding:28px;
+  text-align:center;
+  background:#f8fcfe
+}
+.nlbi-drop strong{display:block;font-size:1.05rem;margin-bottom:6px}
+.nlbi-drop small{display:block;color:#607585;margin-bottom:14px}
+.nlbi-files{display:grid;gap:8px;margin-top:14px}
+.nlbi-file{
+  display:flex;justify-content:space-between;gap:15px;
+  padding:10px 12px;border:1px solid #dce7ed;border-radius:10px
+}
+.nlbi-file small{display:block;color:#607585}
+.nlbi-progress{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px
+}
+.nlbi-stat{
+  border:1px solid #dce7ed;border-radius:11px;padding:12px;background:#f9fbfc
+}
+.nlbi-stat strong{display:block;font-size:1.3rem}
+.nlbi-stat small{color:#607585}
+.nlbi-notice{
+  border:1px solid #b9ccd7;
+  border-radius:10px;
+  padding:11px 13px;
+  margin-bottom:16px
+}
+.nlbi-notice[data-tone=success]{background:#ecfdf3;border-color:#6ce9a6;color:#067647}
+.nlbi-notice[data-tone=error]{background:#fff5f5;border-color:#fda29b;color:#b42318}
+.nlbi-candidates{display:grid;gap:15px}
+.nlbi-candidate{
+  border:1px solid #dbe6ed;
+  border-radius:14px;
+  overflow:hidden
+}
+.nlbi-candidate-head{
+  display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+  padding:15px;background:#f8fbfd
+}
+.nlbi-candidate-head strong{display:block;font-size:1.05rem}
+.nlbi-candidate-head small{display:block;color:#607585;margin-top:4px}
+.nlbi-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.nlbi-badge{
+  display:inline-flex;padding:4px 8px;border-radius:999px;
+  background:#eaf5fa;color:#075985;font-size:.73rem;font-weight:850
+}
+.nlbi-badge.warn{background:#fffaeb;color:#b54708}
+.nlbi-badge.danger{background:#fff1f0;color:#b42318}
+.nlbi-badge.ok{background:#ecfdf3;color:#067647}
+.nlbi-candidate-body{padding:16px}
+.nlbi-confidence{
+  font-weight:850;font-variant-numeric:tabular-nums
+}
+.nlbi-docs,.nlbi-creds{display:grid;gap:7px;margin-top:10px}
+.nlbi-doc,.nlbi-cred{
+  padding:9px 10px;border:1px solid #e0e8ed;border-radius:9px;background:#fafcfd
+}
+.nlbi-doc small,.nlbi-cred small{display:block;color:#607585;margin-top:3px}
+.nlbi-hidden{display:none!important}
+@media(max-width:900px){
+ .nlbi-grid,.nlbi-grid.three{grid-template-columns:1fr}
+ .nlbi-progress{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .nlbi-head{display:block}
+}
+
+/* NurseLink Bulk Intake Profile Photo v1.3 */
+.nlbi-photo-review{
+  display:grid;
+  grid-template-columns:180px minmax(0,1fr);
+  gap:18px;
+  align-items:start;
+  margin:0 0 22px;
+  padding:16px;
+  border:1px solid #d6e2eb;
+  border-radius:12px;
+  background:#f8fbfd;
+}
+
+.nlbi-photo-preview{
+  width:180px;
+  aspect-ratio:1 / 1;
+  overflow:hidden;
+  border-radius:12px;
+  background:#e8eef3;
+}
+
+.nlbi-photo-preview img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+}
+
+.nlbi-photo-review strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.nlbi-photo-review small{
+  display:block;
+  color:#607585;
+  margin-bottom:12px;
+  line-height:1.45;
+}
+
+.nlbi-photo-review label{
+  display:grid;
+  gap:6px;
+  margin-bottom:10px;
+}
+
+@media(max-width:700px){
+  .nlbi-photo-review{
+    grid-template-columns:1fr;
+  }
+
+  .nlbi-photo-preview{
+    width:min(220px,100%);
+  }
+}
+
+/* NurseLink Structured Bulk Review v6.4 */
+
+.nlbi-section-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:24px;
+}
+
+.nlbi-section-heading h3{
+  margin:0;
+}
+
+.nlbi-section-actions{
+  display:flex;
+  gap:8px;
+}
+
+.nlbi-section-actions button{
+  padding:7px 10px;
+  font-size:.78rem;
+}
+
+.nlbi-review-record{
+  display:grid;
+  gap:6px;
+}
+
+.nlbi-record-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.nlbi-record-head strong{
+  min-width:0;
+}
+
+.nlbi-record-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:7px;
+}
+
+.nlbi-record-actions button{
+  padding:6px 9px;
+  font-size:.76rem;
+}
+
+.nlbi-review-warning{
+  margin-top:20px;
+  padding:11px 13px;
+  border:1px solid #f5c26b;
+  border-radius:10px;
+  background:#fffaeb;
+  color:#8b4513;
+}
+
+.nlbi-review-warning strong,
+.nlbi-review-warning small{
+  display:block;
+}
+
+.nlbi-review-warning small{
+  margin-top:4px;
+}
+
+.nlbi-review-complete{
+  margin-top:20px;
+  padding:11px 13px;
+  border:1px solid #6ce9a6;
+  border-radius:10px;
+  background:#ecfdf3;
+  color:#067647;
+  font-weight:800;
+}
+
+@media(max-width:700px){
+  .nlbi-section-heading{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .nlbi-record-head{
+    flex-direction:column;
+  }
+}

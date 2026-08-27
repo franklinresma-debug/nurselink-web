@@ -1,0 +1,82 @@
+/* NURSELINK_ADMIN_REMINDER_EXACT_DOM_V5500 */
+
+/* Exact Administrator Follow-up cards */
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder,
+body[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  background: #1a2631 !important;
+  background-color: #1a2631 !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344350 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+/* Tone/state variants */
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder[data-tone],
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder[data-tone],
+body[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder[data-tone],
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder[data-tone] {
+  background: #1a2631 !important;
+  background-color: #1a2631 !important;
+  color: #eef3f7 !important;
+  border-color: #344350 !important;
+}
+
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder > div,
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder strong,
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder small,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder > div,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder strong,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder small,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder > div,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder strong,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder small {
+  background: transparent !important;
+}
+
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder strong,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder strong,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder strong {
+  color: #f2f6f9 !important;
+}
+
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder small,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder small,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder small {
+  color: #aebbc6 !important;
+}
+
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder > b,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder > b,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder > b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  min-height: 28px;
+  border-radius: 999px;
+  background: #20364a !important;
+  color: #8fc7f3 !important;
+  border: 1px solid #365775 !important;
+}
+
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder:hover,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder:hover,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder:hover {
+  background: #202e3a !important;
+  background-color: #202e3a !important;
+  border-color: #485968 !important;
+}
+
+:root[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder:focus-visible,
+html[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder:focus-visible,
+[data-nl-theme="dark"] #dashboardReminders > a.nl540-reminder:focus-visible {
+  outline: 2px solid #d7e2ea !important;
+  outline-offset: 2px !important;
+}

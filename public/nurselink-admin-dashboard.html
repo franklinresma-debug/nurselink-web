@@ -6,12 +6,24 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#f7fbff">
   <title>NurseLink Administration Operations Center</title>
-  <link rel="stylesheet" href="/nurselink-admin-portal.css?nlv=558">
-  <link rel="stylesheet" href="/nurselink-admin-consolidated.css?nlv=558">
-  <style id="nurselink-admin-session-gate-v541">
-    body.nl-admin-session-pending .nl-admin-shell{display:none!important}
-    body.nl-admin-session-ready #adminSessionGate{display:none!important}
-  </style>
+  <link rel="stylesheet" href="/nurselink-admin-portal.css?nlv=614">
+  <link rel="stylesheet" href="/nurselink-admin-consolidated.css?nlv=615">
+  
+  <link rel="stylesheet" href="/nurselink-typography.css?v=622">
+  <link rel="stylesheet" href="/nurselink-temporary-encoder-admin.css?v=590">
+  <link rel="stylesheet" href="/nurselink-admin-modern.css?nlv=630">
+<link rel="stylesheet" href="/nurselink-admin-dashboard.csp-v4700.css?v=4700">
+<link rel="stylesheet" href="/nurselink-admin-dark-exact-v5300.css?v=5300">
+<link rel="stylesheet" href="/nurselink-admin-reminders-dark-v5400.css?v=5400">
+<link rel="stylesheet" href="/nurselink-admin-reminders-exact-v5500.css?v=5500">
+<link rel="stylesheet" href="/nurselink-admin-dark-surfaces-v5600.css?v=5600">
+<link rel="stylesheet" href="/nurselink-admin-dark-final-v5700.css?v=5700">
+<link rel="stylesheet" href="/nurselink-admin-dark-remaining-v5800.css?v=5800">
+<link rel="stylesheet" href="/nurselink-admin-dark-exact-selector-v5900.css?v=5900">
+<link rel="stylesheet" href="/nurselink-admin-dark-settings-support-v6000.css?v=6000">
+<link rel="stylesheet" href="/nurselink-admin-settings-inner-dark-v6100.css?v=6100">
+<script src="/nurselink-admin-canonical-entry-v6200.js?v=6200" defer></script>
+<script src="/nurselink-admin-session-watchdog-v6200.js?v=6200" defer></script>
 </head>
 <body class="nl-admin-body nl-admin-session-pending">
 <div id="adminSessionGate" class="nl541-session-gate" role="status" aria-live="polite">
@@ -43,20 +55,30 @@
     </div>
 
     <nav id="operationsMenu" class="nl530-menu" aria-label="Administration Operations Center">
-      <a href="#dashboard" data-tab="dashboard"><b>⌂</b><span>Dashboard</span></a>
-      <a href="#members" data-tab="members"><b>◎</b><span>Members</span></a>
-      <a href="#applications" data-tab="applications"><b>▤</b><span>Applications</span></a>
-      <a href="#verification" data-tab="verification"><b>✓</b><span>Verification</span></a>
-      <a href="#organizations" data-tab="organizations"><b>▦</b><span>Organizations</span></a>
-      <a href="#programs" data-tab="programs"><b>◇</b><span>Programs</span></a>
-      <a href="#employment" data-tab="employment"><b>↗</b><span>Employment &amp; Opportunities</span></a>
-      <a href="#training" data-tab="training"><b>▣</b><span>Training &amp; Events</span></a>
-      <a href="#communications" data-tab="communications"><b>✉</b><span>Communications</span></a>
-      <a href="#reports" data-tab="reports"><b>▥</b><span>Reports &amp; Analytics</span></a>
-      <a href="#support" data-tab="support"><b>?</b><span>Support Cases</span></a>
-      <a href="#audit" data-tab="audit"><b>≡</b><span>Audit Logs</span></a>
-      <a href="#health" data-tab="health"><b>●</b><span>System Health</span></a>
-      <a href="#settings" data-tab="settings"><b>⚙</b><span>Administrators</span></a>
+      <span class="nl630-nav-group">OVERVIEW</span>
+      <a href="#dashboard" data-tab="dashboard"><b class="nl579-menu-icon" aria-hidden="true">📊</b><span>Dashboard</span></a>
+      <span class="nl630-nav-group">MEMBERSHIP</span>
+      <a href="#members" data-tab="members"><b class="nl579-menu-icon" aria-hidden="true">👥</b><span>Members</span></a>
+      <a href="#applications" data-tab="applications"><b class="nl579-menu-icon" aria-hidden="true">📝</b><span>Applications</span></a>
+      <a
+        href="/nurselink-bulk-nurse-import-admin.html"
+        data-super-admin-bulk-import
+      ><b class="nl579-menu-icon" aria-hidden="true">📥</b><span>Bulk Nurse Import</span></a>
+      <a href="#verification" data-tab="verification"><b class="nl579-menu-icon" aria-hidden="true">✅</b><span>Verification</span></a>
+      <a href="#organizations" data-tab="organizations"><b class="nl579-menu-icon" aria-hidden="true">🏥</b><span>Organizations</span></a>
+      <span class="nl630-nav-group">PROGRAMS</span>
+      <a href="#programs" data-tab="programs"><b class="nl579-menu-icon" aria-hidden="true">🧩</b><span>Programs</span></a>
+      <a href="#employment" data-tab="employment"><b class="nl579-menu-icon" aria-hidden="true">💼</b><span>Employment &amp; Opportunities</span></a>
+      <a href="#training" data-tab="training"><b class="nl579-menu-icon" aria-hidden="true">🎓</b><span>Training &amp; Events</span></a>
+      <span class="nl630-nav-group">OPERATIONS</span>
+      <a href="#communications" data-tab="communications"><b class="nl579-menu-icon" aria-hidden="true">📣</b><span>Communications</span></a>
+      <a href="#reports" data-tab="reports"><b class="nl579-menu-icon" aria-hidden="true">📈</b><span>Reports &amp; Analytics</span></a>
+      <a href="#support" data-tab="support"><b class="nl579-menu-icon" aria-hidden="true">🛟</b><span>Support Cases</span></a>
+      <span class="nl630-nav-group">SYSTEM</span>
+      <a href="#audit" data-tab="audit"><b class="nl579-menu-icon" aria-hidden="true">🧾</b><span>Audit Logs</span></a>
+      <a href="#health" data-tab="health"><b class="nl579-menu-icon" aria-hidden="true">🩺</b><span>System Health</span></a>
+      <a href="#settings" data-tab="settings"><b class="nl579-menu-icon" aria-hidden="true">⚙️</b><span>Administrators</span></a>
+      <a href="#qat" data-tab="qat"><b class="nl579-menu-icon" aria-hidden="true">☑️</b><span>QAT Checklist</span></a>
     </nav>
 
     <div class="nl530-sidebar-footer">
@@ -79,6 +101,14 @@
           <span class="nl542-search-icon" aria-hidden="true">⌕</span>
           <input id="adminGlobalSearch" type="search" autocomplete="off" placeholder="Search members, applications, support cases…" aria-controls="adminGlobalSearchPanel">
           <kbd>Ctrl K</kbd>
+        </div>
+        <div class="nl630-theme-control">
+          <label for="adminThemePreference">Appearance</label>
+          <select id="adminThemePreference" aria-label="Administrator appearance">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
         </div>
         <div id="adminIdentity" class="nl-admin-identity">Checking Administrator session…</div>
       </div>
@@ -202,7 +232,23 @@
             <h2>Membership Applications</h2>
             <p>Review, assign and progress membership applications through governed NurseLink workflows.</p>
           </div>
-          <button id="viewAllApplications" class="nl550-primary-action" type="button">View All Applications</button>
+          <div class="nl530-row-actions">
+            <a
+              href="/nurselink-bulk-nurse-import-admin.html"
+              class="nl550-primary-action"
+              data-super-admin-bulk-import
+            >
+              Open Bulk Nurse Import
+            </a>
+
+            <button
+              id="viewAllApplications"
+              class="nl550-primary-action"
+              type="button"
+            >
+              View All Applications
+            </button>
+          </div>
         </div>
 
         <div class="nl552-triagebar">
@@ -210,6 +256,7 @@
             <span>Quick views</span>
             <button type="button" data-application-quick="all" class="active">All Pending</button>
             <button type="button" data-application-quick="ready">Ready for Approval</button>
+            <button type="button" data-application-quick="approved">Approved</button>
             <button type="button" data-application-quick="overdue">Overdue</button>
             <button type="button" data-application-quick="unassigned">Unassigned</button>
             <button type="button" data-application-quick="urgent">Urgent</button>
@@ -404,8 +451,432 @@
       <div id="healthModules" class="nl530-module-grid nl530-module-spaced"></div>
     </section>
 
-    <section class="nl530-panel" data-panel="settings" hidden>
+
+    <section class="nl530-panel nlqat-panel" data-panel="qat" hidden>
+
+      <section class="nl530-card nlqat-hero">
+        <div class="nl530-card-head nlqat-heading">
+          <div>
+            <span>QUALITY ASSURANCE TESTING</span>
+            <h2>QAT Checklist</h2>
+            <p>
+              Validate NurseLink across registration, professional data,
+              migration and reintegration information, privacy, security,
+              administration and reporting before wider deployment.
+            </p>
+          </div>
+
+          <div class="nlqat-actions">
+            <button id="qatExportCsv" type="button">Export CSV</button>
+            <button id="qatReset" type="button" class="nlqat-danger-outline">
+              Reset Checklist
+            </button>
+          </div>
+        </div>
+
+        <div class="nlqat-summary" id="qatSummary">
+          <div>
+            <span>Total Tests</span>
+            <strong id="qatTotalCount">18</strong>
+          </div>
+          <div>
+            <span>Critical</span>
+            <strong id="qatCriticalCount">0</strong>
+          </div>
+          <div>
+            <span>Passed</span>
+            <strong id="qatPassedCount">0</strong>
+          </div>
+          <div>
+            <span>Issues</span>
+            <strong id="qatIssueCount">0</strong>
+          </div>
+          <div>
+            <span>Completion</span>
+            <strong id="qatCompletionCount">0%</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="nl530-card nlqat-table-card">
+        <div class="nl530-card-head">
+          <div>
+            <span>TEST REGISTER</span>
+            <h2>Quality Assurance Areas</h2>
+            <p>
+              Record the result and findings for each controlled QAT area.
+              Results are retained in this browser during the current testing cycle.
+            </p>
+          </div>
+        </div>
+
+        <div class="nlqat-table-wrap">
+          <table class="nlqat-table">
+            <thead>
+              <tr>
+                <th>QAT Area</th>
+                <th>What should be tested</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Notes / Findings</th>
+              </tr>
+            </thead>
+
+            <tbody id="qatChecklistBody">
+
+              <tr data-qat-id="registration" data-priority="Critical">
+                <td><strong>Registration</strong></td>
+                <td>Complete new-member registration end-to-end</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="required_fields" data-priority="Critical">
+                <td><strong>Required fields</strong></td>
+                <td>Blank, incomplete and invalid submissions</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="email_mobile" data-priority="Critical">
+                <td><strong>Email / mobile</strong></td>
+                <td>Format validation, duplicates, verification</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="personal_profile" data-priority="High">
+                <td><strong>Personal profile</strong></td>
+                <td>Names, DOB, sex, address, contact information</td>
+                <td><span class="nlqat-priority high">High</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="nursing_credentials" data-priority="Critical">
+                <td><strong>Nursing credentials</strong></td>
+                <td>PRC/license data, specialization, qualifications</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="ofw_history" data-priority="Critical">
+                <td><strong>OFW history</strong></td>
+                <td>Country, employer, hospital, position, dates</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="migration_status" data-priority="Critical">
+                <td><strong>Migration status</strong></td>
+                <td>Returned, returning, currently overseas</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="reintegration" data-priority="High">
+                <td><strong>Reintegration</strong></td>
+                <td>Current employment/business/reintegration pathway</td>
+                <td><span class="nlqat-priority high">High</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="skills_profile" data-priority="High">
+                <td><strong>Skills profile</strong></td>
+                <td>Specialty, competencies, certifications</td>
+                <td><span class="nlqat-priority high">High</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="spinb_readiness" data-priority="Critical">
+                <td><strong>SPINB readiness</strong></td>
+                <td>Availability/interest in Philippine healthcare employment</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="data_privacy" data-priority="Critical">
+                <td><strong>Data Privacy</strong></td>
+                <td>Consent, purpose, data-sharing authorization</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="security" data-priority="Critical">
+                <td><strong>Security</strong></td>
+                <td>Authentication, passwords, session handling</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="ux_ui" data-priority="High">
+                <td><strong>UX / UI</strong></td>
+                <td>Mobile usability, navigation, instructions</td>
+                <td><span class="nlqat-priority high">High</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="database_integrity" data-priority="Critical">
+                <td><strong>Database integrity</strong></td>
+                <td>Duplicate records and conflicting information</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="admin_system" data-priority="Critical">
+                <td><strong>Admin system</strong></td>
+                <td>Search, review, validation and record management</td>
+                <td><span class="nlqat-priority critical">Critical</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="reporting" data-priority="High">
+                <td><strong>Reporting</strong></td>
+                <td>Aggregated statistics/dashboard</td>
+                <td><span class="nlqat-priority high">High</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="accessibility" data-priority="Medium">
+                <td><strong>Accessibility</strong></td>
+                <td>Readability and usability for older nurses/users</td>
+                <td><span class="nlqat-priority medium">Medium</span></td>
+                <td></td><td></td>
+              </tr>
+
+              <tr data-qat-id="performance" data-priority="High">
+                <td><strong>Performance</strong></td>
+                <td>Loading, saving and submission speed</td>
+                <td><span class="nlqat-priority high">High</span></td>
+                <td></td><td></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+
+      <section class="nl530-card nlqat-strategy-card">
+        <div class="nl530-card-head">
+          <div>
+            <span>STRATEGIC QAT</span>
+            <h2>Professional Information Architecture</h2>
+            <p>
+              NurseLink should be tested as more than a membership-registration
+              portal if it is expected to support the future Professional
+              Information System for Returned and Returning OFW Nurses (PIS-RON).
+            </p>
+          </div>
+        </div>
+
+        <div class="nlqat-architecture-flow">
+          <span>Professional Identity</span>
+          <b>→</b>
+          <span>Nursing / Healthcare Qualifications</span>
+          <b>→</b>
+          <span>Overseas Employment History</span>
+          <b>→</b>
+          <span>Current Migration Status</span>
+          <b>→</b>
+          <span>Reintegration Status</span>
+          <b>→</b>
+          <span>Current Employment</span>
+          <b>→</b>
+          <span>Skills &amp; Specialization</span>
+          <b>→</b>
+          <span>SPINB / Philippine Employment Interest</span>
+          <b>→</b>
+          <span>Kapatiran Membership</span>
+          <b>→</b>
+          <span>Consent / Data Governance</span>
+        </div>
+
+        <div class="nlqat-alert">
+          <strong>Important architecture check</strong>
+          <p>
+            A system designed primarily around membership registration may work
+            correctly as a registration portal while still being structurally
+            inadequate as a future professional information and workforce
+            planning system.
+          </p>
+        </div>
+      </section>
+
+
+      <section class="nl530-card nlqat-classification-card">
+        <div class="nl530-card-head">
+          <div>
+            <span>MIGRATION CLASSIFICATION</span>
+            <h2>Do Not Reduce OFW Status to a Binary Field</h2>
+            <p>
+              The data model should distinguish meaningful workforce and
+              reintegration states rather than simply OFW / Former OFW.
+            </p>
+          </div>
+        </div>
+
+        <div class="nlqat-classifications">
+          <span>Currently Overseas</span>
+          <span>Returning Soon</span>
+          <span>Recently Returned</span>
+          <span>Permanently Returned</span>
+          <span>Re-employed in Philippine Healthcare</span>
+          <span>Working Outside Healthcare</span>
+          <span>Entrepreneur / Self-employed</span>
+          <span>Retired</span>
+          <span>Seeking Employment</span>
+          <span>Interested in SPINB</span>
+        </div>
+
+        <p class="nlqat-governance-note">
+          These classifications can support future workforce planning and
+          collaboration with KNMONP, DMW-NRCO, DOH and other authorized
+          stakeholders, subject to appropriate consent, purpose limitation and
+          data-sharing governance.
+        </p>
+      </section>
+
+
+      <section class="nl530-card nlqat-review-card">
+        <div class="nl530-card-head">
+          <div>
+            <span>RECOMMENDED QAT WORKFLOW</span>
+            <h2>Screen-by-Screen Registration Review</h2>
+          </div>
+        </div>
+
+        <div class="nlqat-review-grid">
+          <div>
+            <strong>1. Capture</strong>
+            <span>Review every registration page or step from first screen to final submission.</span>
+          </div>
+
+          <div>
+            <strong>2. Classify</strong>
+            <span>Record each finding as Critical, Major, Moderate or Minor.</span>
+          </div>
+
+          <div>
+            <strong>3. Specify</strong>
+            <span>Document the problem, expected behavior and recommended correction.</span>
+          </div>
+
+          <div>
+            <strong>4. Improve data</strong>
+            <span>Identify missing fields, classification gaps and future PIS-RON requirements.</span>
+          </div>
+
+          <div>
+            <strong>5. Review UX</strong>
+            <span>Assess instructions, mobile usability, accessibility and workflow clarity.</span>
+          </div>
+
+          <div>
+            <strong>6. Re-test</strong>
+            <span>Verify corrected behavior before closing the QAT finding.</span>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="nl530-card nlqat-legend-card">
+        <div class="nlqat-legend">
+          <strong>Priority:</strong>
+          <span><i class="critical"></i> Critical — Must fix</span>
+          <span><i class="high"></i> High — Important</span>
+          <span><i class="medium"></i> Medium — Should fix</span>
+        </div>
+
+        <small id="qatLastUpdated">Checklist has not yet been updated.</small>
+      </section>
+
+    </section>
+
+    <section class="nl530-panel nl585-admin-panel" data-panel="settings" hidden>
+
+      
       <div class="nl553-admin-layout">
+
+        
+
+        <section class="nl530-card">
+          <div class="nl530-card-head">
+            <div>
+              <span>EXISTING MEMBER</span>
+              <h2>Assign Administrator Access</h2>
+              <p>Select an existing active, verified NurseLink member and grant one or more Administrator roles without changing their membership status.</p>
+            </div>
+          </div>
+
+          <form id="adminMemberAssignForm" class="nl530-form" hidden>
+            <label>
+              <span>Search member</span>
+              <input
+                id="adminMemberSearch"
+                type="search"
+                placeholder="Name, email, or member number"
+                maxlength="190"
+              >
+            </label>
+
+            <div>
+              <button id="adminMemberSearchButton" type="button">Search Members</button>
+            </div>
+
+            <label>
+              <span>Select member</span>
+              <select id="adminMemberCandidate" required>
+                <option value="">Search for an active verified member first</option>
+              </select>
+            </label>
+
+            <div id="adminMemberStatus" class="nl530-empty" hidden></div>
+
+            <label>
+              <span>Department / Unit</span>
+              <input
+                id="adminMemberDepartment"
+                type="text"
+                placeholder="Membership, Verification, Finance…"
+                maxlength="190"
+              >
+            </label>
+
+            <label>
+              <span>Access reason</span>
+              <textarea
+                id="adminMemberReason"
+                placeholder="Why is Administrator access required?"
+                required
+                minlength="10"
+                maxlength="500"
+              ></textarea>
+            </label>
+
+            <label>
+              <span>Approval notes</span>
+              <textarea
+                id="adminMemberApprovalNotes"
+                placeholder="Optional approval reference, approver name, ticket, or governance note"
+                maxlength="1000"
+              ></textarea>
+            </label>
+
+            <div>
+              <span class="nl553-field-label">Roles</span>
+              <div id="adminMemberRoles" class="nl553-role-grid"></div>
+            </div>
+
+            <button type="submit">Assign Administrator Access</button>
+          </form>
+
+          <div id="adminMemberAssignLocked" class="nl530-empty">
+            Super Administrator access is required to assign Administrator roles.
+          </div>
+
+          <div id="adminMemberAssignResult" class="nl553-invite-result" hidden></div>
+        </section>
+
         <section class="nl530-card">
           <div class="nl530-card-head"><div><span>ADMINISTRATOR MANAGEMENT</span><h2>Add Administrator</h2><p>Invite by email, assign one or more operational roles, and activate access only after acceptance by the verified email owner.</p></div></div>
           <form id="adminInviteForm" class="nl530-form" hidden>
@@ -435,18 +906,417 @@
         <div id="settingsAccessArea" class="nl530-list"><div class="nl-admin-loading">Loading administrators…</div></div>
       </section>
 
+      <!-- NURSELINK_TEMPORARY_ENCODER_ADMIN_V590 -->
+      <section
+        id="temporaryEncoderAdminCard"
+        class="nl530-card nl590-encoder-card nl585-admin-full"
+      >
+        <div class="nl530-card-head">
+          <div>
+            <span>TEMPORARY STAFF ACCESS</span>
+            <h2>Temporary Encoders</h2>
+            <p>
+              Create username/password-only temporary encoding accounts,
+              set automatic expiration, and restrict each account to
+              specifically assigned nurse records.
+            </p>
+          </div>
+
+          <div>
+            <button
+              id="temporaryEncoderRefresh"
+              type="button"
+            >
+              Refresh
+            </button>
+          </div>
+        </div>
+
+        <div id="temporaryEncoderLocked" class="nl530-empty">
+          Super Administrator access is required to manage Temporary Encoders.
+        </div>
+
+        <div id="temporaryEncoderCreateArea" hidden>
+          <div class="nl590-encoder-layout">
+
+            <section>
+              <h3>Create Temporary Encoder</h3>
+
+              <form
+                id="temporaryEncoderCreateForm"
+                class="nl590-encoder-form"
+              >
+                <label>
+                  <span>Username</span>
+                  <input
+                    id="temporaryEncoderUsername"
+                    type="text"
+                    autocomplete="off"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    placeholder="encoder01"
+                    minlength="3"
+                    maxlength="80"
+                    pattern="[A-Za-z0-9._-]+"
+                    required
+                  >
+                </label>
+
+                <label>
+                  <span>Display name</span>
+                  <input
+                    id="temporaryEncoderDisplayName"
+                    type="text"
+                    placeholder="Temporary Encoder 01"
+                    maxlength="160"
+                    required
+                  >
+                </label>
+
+                <label>
+                  <span>Temporary password</span>
+                  <input
+                    id="temporaryEncoderPassword"
+                    type="password"
+                    autocomplete="new-password"
+                    required
+                  >
+                </label>
+
+                <label>
+                  <span>Access expires</span>
+                  <input
+                    id="temporaryEncoderExpiresAt"
+                    type="datetime-local"
+                    required
+                  >
+                </label>
+
+                <button type="submit">
+                  Create Temporary Encoder
+                </button>
+              </form>
+
+              <p class="nl-csp-v4700-001">
+                <a
+                  class="nl590-login-link"
+                  href="/nurselink-encoder-login.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Open Temporary Encoder Login →
+                </a>
+              </p>
+            </section>
+
+            <section id="temporaryEncoderRosterArea" hidden>
+              <h3>Encoder Accounts</h3>
+
+              <div
+                id="temporaryEncoderList"
+                class="nl590-encoder-list"
+              >
+                <div class="nl590-encoder-empty">
+                  Loading Temporary Encoders…
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <div
+            id="temporaryEncoderNotice"
+            class="nl590-encoder-notice"
+            hidden
+            aria-live="polite"
+          ></div>
+
+          <section
+            id="temporaryEncoderManager"
+            class="nl590-encoder-manager"
+            hidden
+          >
+            <div class="nl590-manager-header">
+              <div>
+                <span class="nl553-field-label">
+                  MANAGE TEMPORARY ENCODER
+                </span>
+
+                <strong id="temporaryEncoderSelectedName">
+                  Temporary Encoder
+                </strong>
+
+                <small id="temporaryEncoderSelectedMeta"></small>
+              </div>
+
+              <button
+                id="temporaryEncoderToggleSelected"
+                type="button"
+              >
+                Disable Account
+              </button>
+            </div>
+
+            <div class="nl590-manager-grid">
+
+              <section class="nl590-manager-box">
+                <h4>Access Expiration</h4>
+
+                <div class="nl590-encoder-form">
+                  <label>
+                    <span>New expiration</span>
+                    <input
+                      id="temporaryEncoderExpiryUpdate"
+                      type="datetime-local"
+                    >
+                  </label>
+
+                  <button
+                    id="temporaryEncoderUpdateExpiry"
+                    type="button"
+                  >
+                    Update Expiration
+                  </button>
+                </div>
+              </section>
+
+              <section class="nl590-manager-box">
+                <h4>Reset Password</h4>
+
+                <div class="nl590-encoder-form">
+                  <label>
+                    <span>New temporary password</span>
+                    <input
+                      id="temporaryEncoderNewPassword"
+                      type="password"
+                      autocomplete="new-password"
+                    >
+                  </label>
+
+                  <button
+                    id="temporaryEncoderResetPassword"
+                    type="button"
+                  >
+                    Reset Password
+                  </button>
+                </div>
+              </section>
+
+              <section class="nl590-manager-box">
+                <h4>Assign Nurse</h4>
+
+                <form
+                  id="temporaryEncoderAssignmentForm"
+                  class="nl590-encoder-form"
+                >
+                  <label>
+                    <span>Nurse identifier</span>
+                    <input
+                      id="temporaryEncoderNurseIdentifier"
+                      type="text"
+                      placeholder="Email, member number, or NurseLink user ID"
+                      maxlength="255"
+                      required
+                    >
+                  </label>
+
+                  <label>
+                    <span>Assignment expires</span>
+                    <input
+                      id="temporaryEncoderAssignmentExpiresAt"
+                      type="datetime-local"
+                    >
+                    <small>
+                      Leave blank to use the encoder account expiration.
+                    </small>
+                  </label>
+
+                  <label>
+                    <span>Assignment reason</span>
+                    <textarea
+                      id="temporaryEncoderAssignmentReason"
+                      maxlength="2000"
+                      placeholder="Temporary encoding assistance, data migration, event registration encoding…"
+                    ></textarea>
+                  </label>
+
+                  <button type="submit">
+                    Assign Nurse
+                  </button>
+                </form>
+              </section>
+
+              <section class="nl590-manager-box">
+                <h4>Assigned Nurses</h4>
+
+                <div
+                  id="temporaryEncoderAssignmentList"
+                  class="nl590-assignment-list"
+                >
+                  <div class="nl590-encoder-empty">
+                    Select a Temporary Encoder.
+                  </div>
+                </div>
+              </section>
+
+            </div>
+          </section>
+        </div>
+      </section>
+      <!-- NURSELINK_TEMPORARY_ENCODER_ADMIN_V590_END -->
+
+
       <section id="adminGovernanceCard" class="nl530-card nl554-governance-card" hidden>
         <div class="nl530-card-head"><div><span>GOVERNANCE HISTORY</span><h2>Administrator Access Audit</h2><p>Append-only history of invitations, permission changes and revocations, including the recorded reason and approval notes.</p></div><button id="refreshAdminGovernance" type="button">Refresh</button></div>
         <div class="nl530-toolbar nl554-governance-toolbar"><div><label><span>Search</span><input id="adminGovernanceSearch" type="search" placeholder="Email, action, reason…" maxlength="190"></label><label><span>Action</span><select id="adminGovernanceAction"><option value="">All actions</option></select></label></div><small>Immutable governance records · newest first</small></div>
         <div id="adminGovernanceArea" class="nl530-list"><div class="nl-admin-loading">Loading Administrator governance history…</div></div>
       </section>
-    </section>
+    
+
+      <section class="nl530-card nl581-policy-management nl585-admin-full">
+        <div class="nl530-card-head">
+          <div>
+            <span>🔐 TERMS & PRIVACY CONSENT</span>
+            <h2><span class="nl585-admin-icon">🔐</span>Terms & Privacy Consent Management</h2>
+            <p>
+              Manage the organization identity, contact details, Terms of Use,
+              Privacy Notice, policy versions and publication lifecycle.
+            </p>
+          </div>
+        </div>
+
+        <div id="policyManagementNotice" class="nl-admin-notice" hidden></div>
+
+        <form id="policyManagementForm" class="nl581-policy-form">
+          <div class="nl581-policy-grid">
+            <label>
+              <span>Organization / Company Name <button type="button" class="nl586-tip" data-tooltip="The official organization or company name displayed in NurseLink policy documents and consent records." aria-label="About Organization or Company Name">ⓘ</button></span>
+              <input id="policyOrganizationName" maxlength="190" required>
+            </label>
+
+            <label>
+              <span>General Contact Email <button type="button" class="nl586-tip" data-tooltip="The main email address members can use for general NurseLink inquiries." aria-label="About General Contact Email">ⓘ</button></span>
+              <input id="policyContactEmail" type="email" maxlength="190">
+            </label>
+
+            <label>
+              <span>Privacy Contact Email <button type="button" class="nl586-tip" data-tooltip="The contact address members should use for privacy, personal-data, and consent-related concerns." aria-label="About Privacy Contact Email">ⓘ</button></span>
+              <input id="policyPrivacyEmail" type="email" maxlength="190">
+            </label>
+          </div>
+
+          <section class="nl581-policy-editor">
+            <div class="nl581-policy-editor-head">
+              <div>
+                <span>📜 TERMS OF USE</span>
+                <h3>Terms & Conditions</h3>
+              </div>
+            </div>
+
+            <div class="nl581-policy-grid">
+              <label>
+                <span>Version <button type="button" class="nl586-tip" data-tooltip="Identifies this policy revision. Publishing a new version can require members who accepted an older version to provide updated consent." aria-label="About Policy Version">ⓘ</button></span>
+                <input id="policyTermsVersion" maxlength="40" required>
+              </label>
+
+              <label>
+                <span>Effective Date <button type="button" class="nl586-tip" data-tooltip="The date from which this published policy version is intended to take effect." aria-label="About Effective Date">ⓘ</button></span>
+                <input id="policyTermsEffectiveDate" type="date">
+              </label>
+            </div>
+
+            <label>
+              <span>Terms Content <button type="button" class="nl586-tip" data-tooltip="The full Terms of Use that members review and accept when providing current consent." aria-label="About Terms Content">ⓘ</button></span>
+              <textarea id="policyTermsContent" rows="12"></textarea>
+            </label>
+          </section>
+
+          <section class="nl581-policy-editor">
+            <div class="nl581-policy-editor-head">
+              <div>
+                <span>🛡️ PRIVACY NOTICE</span>
+                <h3>Privacy Notice</h3>
+              </div>
+            </div>
+
+            <div class="nl581-policy-grid">
+              <label>
+                <span>Version</span>
+                <input id="policyPrivacyVersion" maxlength="40" required>
+              </label>
+
+              <label>
+                <span>Effective Date</span>
+                <input id="policyPrivacyEffectiveDate" type="date">
+              </label>
+            </div>
+
+            <label>
+              <span>Privacy Content <button type="button" class="nl586-tip" data-tooltip="The full Privacy Notice explaining how NurseLink collects, uses, protects, and manages member information." aria-label="About Privacy Content">ⓘ</button></span>
+              <textarea id="policyPrivacyContent" rows="12"></textarea>
+            </label>
+          </section>
+
+          <div class="nl581-policy-actions">
+            <button id="policySaveDraft" type="submit" class="nl586-tip-action" data-tooltip="Save your current changes without changing the policy members are currently required to accept.">
+              Save Draft
+            </button>
+
+            <button id="policyPublishTerms" type="button" class="nl586-tip-action" data-tooltip="Publish the current Terms draft. A changed version will become the required Terms version for consent.">
+              Publish Terms
+            </button>
+
+            <button id="policyPublishPrivacy" type="button" class="nl586-tip-action" data-tooltip="Publish the current Privacy Notice draft. A changed version will become the required Privacy version for consent.">
+              Publish Privacy
+            </button>
+
+            <button id="policyPublishBoth" type="button" class="nl586-tip-action" data-tooltip="Publish both Terms and Privacy Notice drafts together and make their versions current.">
+              Publish Both
+            </button>
+          </div>
+        </form>
+
+        <div class="nl581-policy-status-grid">
+          <div>
+            <span>Published Terms</span>
+            <strong id="policyPublishedTerms">—</strong>
+          </div>
+          <div>
+            <span>Published Privacy</span>
+            <strong id="policyPublishedPrivacy">—</strong>
+          </div>
+          <div>
+            <span>Published At</span>
+            <strong id="policyPublishedAt">—</strong>
+          </div>
+          <div>
+            <span>Draft Status</span>
+            <strong id="policyDraftStatus">No draft</strong>
+          </div>
+        </div>
+
+        <section class="nl581-policy-history-section">
+          <div class="nl530-card-head">
+            <div>
+              <span>🧾 VERSION HISTORY</span>
+              <h3>Published Policy History</h3>
+            </div>
+            <button id="policyRefreshHistory" type="button" class="nl586-tip-action" data-tooltip="Reload the immutable history of previously published Terms and Privacy versions.">Refresh</button>
+          </div>
+
+          <div id="policyVersionHistory" class="nl530-list">
+            <div class="nl-admin-loading">Loading policy history…</div>
+          </div>
+        </section>
+      </section>
+</section>
 
     <footer class="nl530-footer"><strong>Administration principle:</strong><span>Manage NurseLink through operational workflows and governed services—not direct raw database editing.</span></footer>
   </main>
 </div>
-<script src="/nurselink-portal-config.js?nlv=558"></script>
-<script src="/nurselink-admin-dashboard.js?nlv=558" defer></script>
+<script src="/nurselink-portal-config.js?nlv=614"></script>
+<script src="/nurselink-admin-modern.js?nlv=630" defer></script>
+<script src="/nurselink-admin-dashboard.js?nlv=628" defer></script>
 
 <!-- v5.2.0 historical panel markers retained for cumulative regression validation:
 data-panel="membership"
@@ -457,5 +1327,6 @@ data-panel="programs"
 data-panel="enterprise"
 data-panel="operations"
 -->
+  <script src="/nurselink-temporary-encoder-admin.js?v=590" defer></script>
 </body>
 </html>

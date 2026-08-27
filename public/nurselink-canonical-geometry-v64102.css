@@ -1,0 +1,199 @@
+/* NurseLink Canonical Shell Geometry Fix v64.10.2
+   One fixed sidebar + one fixed topbar, without double-offsetting app content.
+*/
+
+:root{
+  --nlcg-sidebar-w:232px;
+  --nlcg-topbar-h:72px;
+  --nlcg-sidebar-z:5000;
+  --nlcg-topbar-z:4900;
+  --nlcg-blue-a:#145a97;
+  --nlcg-blue-b:#0c477d;
+  --nlcg-dark-a:#082b55;
+  --nlcg-dark-b:#061f3d;
+}
+
+/* ------------------------------------------------------------
+   Remove ALL competing native shell chrome.
+   ------------------------------------------------------------ */
+html[data-nl-canonical-shell="true"] :is(
+  .member-react-safe-shell-v108 .sidebar,
+  .member-react-safe-shell-v108 [class*="sidebar"],
+  .member-react-safe-shell-v108 [data-nl-minimal-topbar="true"],
+  .member-react-safe-shell-v108 [data-nl-mobile-topbar="true"],
+  .member-react-safe-shell-v108 .topbar,
+  .member-react-safe-shell-v108 .top-bar,
+  .member-react-safe-shell-v108 .app-header,
+  .member-react-safe-shell-v108 .member-header,
+  .member-react-safe-shell-v108 .member-topbar,
+  #nurselink-universal-sidebar,
+  #nurselink-universal-topbar
+){
+  display:none!important;
+}
+
+/* Native top-level header/nav fragments outside React shell */
+html[data-nl-canonical-shell="true"] body > header:not(#nurselink-canonical-topbar),
+html[data-nl-canonical-shell="true"] body > nav:not(#nurselink-canonical-sidebar),
+html[data-nl-canonical-shell="true"] body > [class*="topbar"]:not(#nurselink-canonical-topbar),
+html[data-nl-canonical-shell="true"] body > [class*="top-bar"]:not(#nurselink-canonical-topbar),
+html[data-nl-canonical-shell="true"] body > [class*="app-header"]:not(#nurselink-canonical-topbar){
+  display:none!important;
+}
+
+/* ------------------------------------------------------------
+   Canonical sidebar.
+   ------------------------------------------------------------ */
+#nurselink-canonical-sidebar{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  bottom:0!important;
+  width:var(--nlcg-sidebar-w)!important;
+  height:100vh!important;
+  max-height:100vh!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  z-index:var(--nlcg-sidebar-z)!important;
+  box-sizing:border-box!important;
+  padding:18px 14px!important;
+  color:#fff!important;
+  background:linear-gradient(180deg,var(--nlcg-blue-a),var(--nlcg-blue-b))!important;
+}
+
+html[data-nl-effective-theme="dark"] #nurselink-canonical-sidebar,
+html.dark #nurselink-canonical-sidebar{
+  background:linear-gradient(180deg,var(--nlcg-dark-a),var(--nlcg-dark-b))!important;
+}
+
+/* ------------------------------------------------------------
+   Canonical topbar.
+   ------------------------------------------------------------ */
+#nurselink-canonical-topbar{
+  position:fixed!important;
+  top:0!important;
+  left:var(--nlcg-sidebar-w)!important;
+  right:0!important;
+  width:auto!important;
+  height:var(--nlcg-topbar-h)!important;
+  min-height:var(--nlcg-topbar-h)!important;
+  margin:0!important;
+  z-index:var(--nlcg-topbar-z)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important;
+  padding:0 18px!important;
+  box-sizing:border-box!important;
+  background:rgba(255,255,255,.98)!important;
+  border-bottom:1px solid #d8e1ec!important;
+  box-shadow:0 4px 16px rgba(31,48,78,.05)!important;
+}
+
+html[data-nl-effective-theme="dark"] #nurselink-canonical-topbar,
+html.dark #nurselink-canonical-topbar{
+  background:rgba(10,22,37,.98)!important;
+  border-bottom-color:#22334a!important;
+  box-shadow:0 6px 18px rgba(0,0,0,.24)!important;
+}
+
+/* ------------------------------------------------------------
+   IMPORTANT: NO BODY LEFT OFFSET.
+   The original app layout already owns its content column.
+   Only compensate for the fixed topbar vertically.
+   ------------------------------------------------------------ */
+html[data-nl-canonical-shell="true"] body{
+  margin-left:0!important;
+  padding-left:0!important;
+  padding-top:var(--nlcg-topbar-h)!important;
+  min-height:100vh!important;
+  box-sizing:border-box!important;
+}
+
+/* Undo previous canonical double-offsets. */
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108{
+  padding-left:0!important;
+  margin-left:0!important;
+  padding-top:0!important;
+  margin-top:0!important;
+  box-sizing:border-box!important;
+}
+
+/* Let the application's own layout keep the correct sidebar/content track. */
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 main,
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 .main,
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 .content,
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 [class*="workspace"],
+html[data-nl-canonical-shell="true"] .member-react-safe-shell-v108 [class*="page"]{
+  padding-top:0!important;
+  margin-top:0!important;
+}
+
+/* If hiding the native sidebar collapses the original grid column,
+   restore exactly one sidebar-width content offset — never two. */
+html[data-nl-canonical-shell="true"][data-nl-content-needs-offset="true"]
+.member-react-safe-shell-v108{
+  padding-left:var(--nlcg-sidebar-w)!important;
+}
+
+/* Topbar controls */
+.nlc-action{
+  min-width:42px!important;
+  height:42px!important;
+}
+.nlc-profile{
+  min-width:106px!important;
+}
+
+/* Tablet */
+@media(min-width:768px) and (max-width:1199px){
+  :root{
+    --nlcg-sidebar-w:210px;
+    --nlcg-topbar-h:64px;
+  }
+}
+
+/* Mobile */
+@media(max-width:767px){
+  :root{
+    --nlcg-sidebar-w:260px;
+    --nlcg-topbar-h:58px;
+  }
+
+  #nurselink-canonical-topbar{
+    left:0!important;
+    width:100%!important;
+    height:var(--nlcg-topbar-h)!important;
+    padding:0 8px!important;
+  }
+
+  #nurselink-canonical-sidebar{
+    width:var(--nlcg-sidebar-w)!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    transform:translateX(-102%)!important;
+    transition:transform .18s ease!important;
+  }
+
+  html[data-nl-sidebar-open="true"] #nurselink-canonical-sidebar{
+    transform:translateX(0)!important;
+  }
+
+  html[data-nl-canonical-shell="true"] body{
+    padding-top:var(--nlcg-topbar-h)!important;
+  }
+
+  html[data-nl-canonical-shell="true"][data-nl-content-needs-offset="true"]
+  .member-react-safe-shell-v108{
+    padding-left:0!important;
+  }
+
+  .nlc-menu{
+    display:inline-flex!important;
+    margin-right:auto!important;
+  }
+
+  .nlc-profile{
+    min-width:42px!important;
+  }
+}

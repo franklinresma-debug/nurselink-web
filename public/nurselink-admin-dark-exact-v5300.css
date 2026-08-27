@@ -1,0 +1,77 @@
+/* NURSELINK_ADMIN_DARK_EXACT_V5300 */
+
+/* Sidebar footer controls */
+:root[data-nl-theme="dark"] .nl530-sidebar-footer a,
+:root[data-nl-theme="dark"] .nl530-sidebar-footer button,
+html[data-nl-theme="dark"] .nl530-sidebar-footer a,
+html[data-nl-theme="dark"] .nl530-sidebar-footer button,
+body[data-nl-theme="dark"] .nl530-sidebar-footer a,
+body[data-nl-theme="dark"] .nl530-sidebar-footer button,
+[data-nl-theme="dark"] .nl530-sidebar-footer a,
+[data-nl-theme="dark"] .nl530-sidebar-footer button {
+  background: #17222d !important;
+  color: #edf3f7 !important;
+  border: 1px solid #3b4855 !important;
+  box-shadow: none !important;
+}
+:root[data-nl-theme="dark"] .nl530-sidebar-footer a:hover,
+:root[data-nl-theme="dark"] .nl530-sidebar-footer button:hover,
+[data-nl-theme="dark"] .nl530-sidebar-footer a:hover,
+[data-nl-theme="dark"] .nl530-sidebar-footer button:hover {
+  background: #22303c !important;
+  color: #ffffff !important;
+  border-color: #536271 !important;
+}
+:root[data-nl-theme="dark"] .nl530-sidebar-footer button:disabled,
+[data-nl-theme="dark"] .nl530-sidebar-footer button:disabled {
+  background: #111a23 !important;
+  color: #87939f !important;
+  border-color: #2b3641 !important;
+  opacity: .72 !important;
+}
+
+/* Administrator Follow-up rows */
+:root[data-nl-theme="dark"] #dashboardReminders .nl530-row,
+html[data-nl-theme="dark"] #dashboardReminders .nl530-row,
+body[data-nl-theme="dark"] #dashboardReminders .nl530-row,
+[data-nl-theme="dark"] #dashboardReminders .nl530-row {
+  background: #1a2631 !important;
+  color: #eef3f7 !important;
+  border-color: #344350 !important;
+  box-shadow: none !important;
+}
+:root[data-nl-theme="dark"] #dashboardReminders .nl530-row strong,
+:root[data-nl-theme="dark"] #dashboardReminders .nl530-row small,
+:root[data-nl-theme="dark"] #dashboardReminders .nl530-row span,
+[data-nl-theme="dark"] #dashboardReminders .nl530-row strong,
+[data-nl-theme="dark"] #dashboardReminders .nl530-row small,
+[data-nl-theme="dark"] #dashboardReminders .nl530-row span {
+  color: inherit !important;
+}
+:root[data-nl-theme="dark"] #dashboardReminders .nl530-row:hover,
+[data-nl-theme="dark"] #dashboardReminders .nl530-row:hover {
+  background: #202e3a !important;
+  border-color: #485968 !important;
+}
+:root[data-nl-theme="dark"] #dashboardReminders .nl530-row > strong,
+[data-nl-theme="dark"] #dashboardReminders .nl530-row > strong {
+  background: #20364a !important;
+  color: #8fc7f3 !important;
+  border-color: #365775 !important;
+}
+
+/* Bottom Administration principle bar */
+:root[data-nl-theme="dark"] .nl530-footer,
+html[data-nl-theme="dark"] .nl530-footer,
+body[data-nl-theme="dark"] .nl530-footer,
+[data-nl-theme="dark"] .nl530-footer {
+  background: #16212b !important;
+  color: #dce6ed !important;
+  border-color: #34424f !important;
+}
+:root[data-nl-theme="dark"] .nl530-footer strong,
+:root[data-nl-theme="dark"] .nl530-footer span,
+[data-nl-theme="dark"] .nl530-footer strong,
+[data-nl-theme="dark"] .nl530-footer span {
+  color: inherit !important;
+}

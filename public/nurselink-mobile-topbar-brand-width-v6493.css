@@ -1,0 +1,58 @@
+/* NurseLink Mobile Topbar Brand Width v64.9.3 */
+
+@media (max-width: 900px) {
+  [data-nl6491-mobile-brand="1"],
+  [data-nl6492-mobile-topbar-brand="1"] {
+    min-width: 0 !important;
+  }
+
+  /* Let the mobile brand text use the available middle space. */
+  [data-nl6491-mobile-brand-text="1"] {
+    flex: 1 1 auto !important;
+    min-width: 112px !important;
+    max-width: none !important;
+    width: auto !important;
+
+    overflow: visible !important;
+  }
+
+  [data-nl6492-mobile-topbar-brand="1"] {
+    display: block !important;
+
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: none !important;
+
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  /* Keep the whole topbar action line stable while freeing brand space. */
+  [data-nl6487-action-row="1"] {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+  }
+}
+
+/* Extra room on common phone widths. */
+@media (min-width: 421px) and (max-width: 900px) {
+  [data-nl6491-mobile-brand-text="1"] {
+    min-width: 128px !important;
+  }
+}
+
+/* Narrow phones: still allow full NurseLink by reducing only the gap. */
+@media (max-width: 420px) {
+  [data-nl6491-mobile-brand="1"] {
+    gap: 8px !important;
+  }
+
+  [data-nl6491-mobile-brand-text="1"] {
+    min-width: 106px !important;
+  }
+
+  [data-nl6492-mobile-topbar-brand="1"] {
+    font-size: 16px !important;
+  }
+}

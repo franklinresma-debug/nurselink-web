@@ -6,12 +6,22 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#f7fbff">
   <title>NurseLink Administration Operations Center</title>
-  <link rel="stylesheet" href="./admin-portal.css?nlv=558">
-  <link rel="stylesheet" href="./admin-consolidated.css?nlv=558">
-  <style id="nurselink-admin-session-gate-v541">
-    body.nl-admin-session-pending .nl-admin-shell{display:none!important}
-    body.nl-admin-session-ready #adminSessionGate{display:none!important}
-  </style>
+  <link rel="stylesheet" href="./admin-portal.css?nlv=631">
+  <link rel="stylesheet" href="./admin-consolidated.css?nlv=631">
+  <link rel="stylesheet" href="./admin-modern.css?nlv=695">
+  
+  <link rel="icon" type="image/svg+xml" data-nl-favicon="690" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%231677e8%27/%3E%3Ctext x=%2732%27 y=%2741%27 text-anchor=%27middle%27 font-family=%27Arial,sans-serif%27 font-size=%2727%27 font-weight=%27700%27 fill=%27white%27%3ENL%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/admin/index.csp-v4700.css?v=4700">
+<link rel="stylesheet" href="/nurselink-admin-dark-exact-v5300.css?v=5300">
+<link rel="stylesheet" href="/nurselink-admin-reminders-dark-v5400.css?v=5400">
+<link rel="stylesheet" href="/nurselink-admin-reminders-exact-v5500.css?v=5500">
+<link rel="stylesheet" href="/nurselink-admin-dark-surfaces-v5600.css?v=5600">
+<link rel="stylesheet" href="/nurselink-admin-dark-final-v5700.css?v=5700">
+<link rel="stylesheet" href="/nurselink-admin-dark-remaining-v5800.css?v=5800">
+<link rel="stylesheet" href="/nurselink-admin-dark-exact-selector-v5900.css?v=5900">
+<link rel="stylesheet" href="/nurselink-admin-dark-settings-support-v6000.css?v=6000">
+<link rel="stylesheet" href="/nurselink-admin-settings-inner-dark-v6100.css?v=6100">
+<script src="/nurselink-admin-session-watchdog-v6200.js?v=6200" defer></script>
 </head>
 <body class="nl-admin-body nl-admin-session-pending">
 <div id="adminSessionGate" class="nl541-session-gate" role="status" aria-live="polite">
@@ -46,6 +56,7 @@
       <a href="#dashboard" data-tab="dashboard"><b>⌂</b><span>Dashboard</span></a>
       <a href="#members" data-tab="members"><b>◎</b><span>Members</span></a>
       <a href="#applications" data-tab="applications"><b>▤</b><span>Applications</span></a>
+      <a href="/nurselink-bulk-nurse-import-admin.html"><b class="nl579-menu-icon" aria-hidden="true">📥</b><span>Bulk Nurse Import</span></a>
       <a href="#verification" data-tab="verification"><b>✓</b><span>Verification</span></a>
       <a href="#organizations" data-tab="organizations"><b>▦</b><span>Organizations</span></a>
       <a href="#programs" data-tab="programs"><b>◇</b><span>Programs</span></a>
@@ -197,7 +208,14 @@
             <h2>Membership Applications</h2>
             <p>Review, assign and progress membership applications through governed NurseLink workflows.</p>
           </div>
-          <button id="viewAllApplications" class="nl550-primary-action" type="button">View All Applications</button>
+          <a
+              href="/nurselink-bulk-nurse-import-admin.html"
+              class="nl550-primary-action"
+            >
+              Open Bulk Nurse Import
+            </a>
+
+            <button id="viewAllApplications" class="nl550-primary-action" type="button">View All Applications</button>
         </div>
 
         <div class="nl552-triagebar">
@@ -440,8 +458,9 @@
     <footer class="nl530-footer"><strong>Administration principle:</strong><span>Manage NurseLink through operational workflows and governed services—not direct raw database editing.</span></footer>
   </main>
 </div>
-<script src="./portal-config.js?nlv=558"></script>
-<script src="./dashboard.js?nlv=558" defer></script>
+<script src="./portal-config.js?nlv=631"></script>
+<script src="./dashboard.js?nlv=640" defer></script>
+<script src="./admin-modern.js?nlv=690" defer></script>
 
 <!-- v5.2.0 historical panel markers retained for cumulative regression validation:
 data-panel="membership"

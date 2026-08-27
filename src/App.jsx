@@ -1,3 +1,56 @@
+import './nurselink-dark-sidebar-buttons-v5200.css'
+import './nurselink-dark-mode-contrast-v5200.css'
+/* NurseLink Phase 2 Final Cumulative Full-Stack v3.0.0 */
+import './nurselink-phase2-final.css';
+import * as NurseLinkPhase2Final from './nurselink-phase2-final.js';
+import Phase6WelfareCrisisPage from './pages/Phase6WelfareCrisis.jsx'
+import { Phase7InitiativesPage, Phase7PoliciesPage } from './pages/Phase7MemberWorkspaces.jsx'
+import PoliciesAdvocacyIntelligencePage from './PoliciesAdvocacyIntelligencePage'
+import AdminAppearanceStudio from './pages/AdminAppearanceStudio'
+import { installNurseLinkDesignRuntime } from './nurselink-design-runtime.js'
+/* NURSELINK_DESIGN_RUNTIME_V6322 */
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => installNurseLinkDesignRuntime(), { once: true })
+  } else {
+    installNurseLinkDesignRuntime()
+  }
+}
+window.NurseLinkPhase2Final = NurseLinkPhase2Final;
+
+/* NurseLink Phase 2 Cumulative Workflows v2.5.0 */
+import './nurselink-phase2-workflows.css';
+import * as NurseLinkPhase2 from './nurselink-phase2-workflows.js';
+window.NURSELINK_PHASE2_ROUTES = {};
+window.NurseLinkPhase2 = NurseLinkPhase2;
+
+// NurseLink Smart Registration Application Workflow v2.0.0
+const NL_APPLICATION_STAGES_V200 = [
+  'Submitted',
+  'Under Review',
+  'Needs Information',
+  'Ready for Approval',
+  'Approved',
+];
+
+function nlNormalizeApplicationStageV200(value) {
+  const raw = String(value || '').trim().toLowerCase().replace(/[_-]+/g, ' ');
+  const map = {
+    'submitted': 'Submitted',
+    'under review': 'Under Review',
+    'review': 'Under Review',
+    'needs information': 'Needs Information',
+    'needs info': 'Needs Information',
+    'ready for approval': 'Ready for Approval',
+    'approved': 'Approved',
+  };
+  return map[raw] || 'Submitted';
+}
+
+function nlApplicationStageIndexV200(value) {
+  return Math.max(0, NL_APPLICATION_STAGES_V200.indexOf(nlNormalizeApplicationStageV200(value)));
+}
+
 import {
   BrowserRouter,
   Routes,
@@ -19,6 +72,35 @@ import Profile from './pages/Profile'
 import SmartRegistration from './pages/SmartRegistration'
 import ApplicationStatus from './pages/ApplicationStatus'
 import Credentials from './pages/Credentials'
+/* NurseLink Phase 2 Final One Deploy v3.2.0 */
+import { Phase2JobsPage, Phase2ApplicationsPage, Phase2QualificationsPage, Phase2DocumentsPage, Phase2LearningPage, Phase2MessagesPage, Phase2EventsPage } from './pages/Phase2LivePages'
+import './phase2-live-pages.css'
+/* NurseLink Phase 2 QA Correction v3.3.2 */
+import Phase2CredentialsReconciledPage from './pages/Phase2CredentialsReconciledPage'
+/* NurseLink Phase 3 Real Inbox + Professional Learning v4.1.0 */
+import { Phase3MessagesPage, Phase3LearningPage } from './pages/Phase3CommunicationsLearning'
+import './phase3-real-inbox-learning-v410.css'
+import './phase2-qa-v330.css'
+/* NurseLink Member Portal Theme Restore Resume v3.3.9 */
+import './member-theme-v339.css'
+/* NurseLink Member Theme Dark Contrast Polish v3.4.0 */
+import './member-dark-contrast-v340.css'
+/* NurseLink Phase 2 Final Visual QA v3.4.1 */
+import './member-final-visual-qa-v341.css'
+/* NurseLink Phase 2 Final Dark Checklist Polish v3.4.2 */
+import './member-final-dark-checklist-v342.css'
+/* NurseLink Phase 2 Final Membership Activation Dark Fix v3.4.4 */
+import './member-membership-activation-dark-v344.css'
+/* NurseLink Phase 2 Final Dark Surface Fix v3.4.6 */
+import './member-final-dark-surface-v346.css'
+/* NurseLink Theme Runtime Repair v4.0.1 */
+import './member-theme-runtime-repair-v401.css'
+import './member-ios-theme-compat-v404.css'
+import './member-iphone-tap-reliability-v405.css'
+import './member-iphone-typography-v407.css'
+import './member-iphone-android-typography-parity-v408.css'
+import './member-drawer-brand-white-text-v433.css'
+import { installNurseLinkIOSFirstTapBridge } from './nurselink-ios-first-tap-v406.js'
 import ResetPassword from './pages/ResetPassword'
 import {
   getRegistrationStatus,
@@ -28,26 +110,75 @@ import {
   resendEmailVerification,
 } from './lib/api'
 
+// NurseLink Members Portal Icon Harmonization v1.0.0
+// NurseLink Members Portal Admin-Style Icons v1.0.3
 const menu = [
-  ['Dashboard', '/dashboard'],
-  ['My Profile', '/profile'],
-  ['Smart Registration', '/smart-registration'],
-  ['Application Status', '/application-status'],
-  ['Portfolio', '/portfolio'],
-  ['Credentials', '/credentials'],
-  ['Qualifications', '/qualifications'],
-  ['Documents', '/documents'],
-  ['Digital Member ID', '/digital-member-id'],
-  ['Messages', '/messages'],
-  ['Events', '/events'],
-  ['Programs & Initiatives', '/initiatives'],
-  ['Policies & Advocacy', '/policies'],
-  ['Welfare & Crisis', '/welfare'],
-  ['Policy & Privacy', '/policy-center'],
+  ['Dashboard', '/dashboard', 'dashboard'],
+  ['My Profile', '/profile', 'profile'],
+  ['Smart Registration', '/smart-registration', 'scan'],
+  ['Application Status', '/application-status', 'status'],
+  ['Portfolio', '/portfolio', 'portfolio'],
+  ['Jobs', '/jobs', 'jobs'],
+  ['Applications', '/applications', 'applications'],
+  ['Mentoring', '/mentoring', 'mentoring'],
+  ['Engagement Hub', '/engagement', 'engagement'],
+  ['Learning', '/learning', 'learning'],
+  ['Credentials', '/credentials', 'credentials'],
+  ['Qualifications', '/qualifications', 'qualifications'],
+  ['Documents', '/documents', 'documents'],
+  ['Digital Member ID', '/digital-member-id', 'member-id'],
+  ['Messages', '/messages', 'messages'],
+  ['Events', '/events', 'events'],
+  ['Programs & Initiatives', '/initiatives', 'programs'],
+  ['Policies & Advocacy', '/policies', 'advocacy'],
+  ['Welfare & Crisis', '/welfare', 'welfare'],
+  ['Policy & Privacy', '/policy-center', 'privacy'],
 ]
+
+const memberNavIconPaths = {
+  dashboard: ['M3 11.5 12 4l9 7.5', 'M5 10.5V20h14v-9.5', 'M9 20v-6h6v6'],
+  profile: ['M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z', 'M4 21a8 8 0 0 1 16 0'],
+  scan: ['M4 7V4h3', 'M17 4h3v3', 'M20 17v3h-3', 'M7 20H4v-3', 'M8 12h8', 'M12 8v8'],
+  status: ['M6 3h12v18H6z', 'M9 8h6', 'M9 12h6', 'm9 16 2 2 4-4'],
+  portfolio: ['M4 7h16v13H4z', 'M8 7V4h8v3', 'M4 12h16'],
+  jobs: ['M4 7h16v12H4z', 'M9 7V4h6v3', 'M4 12h16'],
+  applications: ['M6 3h9l3 3v15H6z', 'M15 3v4h4', 'M9 12h6', 'M9 16h6'],
+  mentoring: ['M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z', 'M16 13a3 3 0 1 0 0-6', 'M3 21a5 5 0 0 1 10 0', 'M13 21a5 5 0 0 1 8-4'],
+  engagement: ['M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z'],
+  learning: ['M3 6.5 12 3l9 3.5-9 3.5z', 'M6 8.5V15c3 2 9 2 12 0V8.5', 'M21 7v7'],
+  credentials: ['M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6z', 'm9 12 2 2 4-4'],
+  qualifications: ['M12 3l3 5 6 1-4 4 .8 6-5.8-2.5L6.2 19 7 13 3 9l6-1z'],
+  documents: ['M6 3h9l3 3v15H6z', 'M15 3v4h4', 'M9 12h6', 'M9 16h5'],
+  'member-id': ['M3 6h18v12H3z', 'M7 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M5 16c.5-2 3.5-2 4 0', 'M13 10h5', 'M13 14h4'],
+  messages: ['M4 5h16v12H8l-4 4z', 'M8 9h8', 'M8 13h5'],
+  events: ['M5 5h14v15H5z', 'M8 3v4', 'M16 3v4', 'M5 9h14'],
+  programs: ['M4 4h6v6H4z', 'M14 4h6v6h-6z', 'M4 14h6v6H4z', 'M14 14h6v6h-6z'],
+  advocacy: ['M4 13V8l11-4v13L4 13Z', 'M15 8h3a3 3 0 0 1 0 6h-3', 'M6 13l2 7h4l-2-6'],
+  welfare: ['M12 21s-7-4-7-10a4 4 0 0 1 7-3 4 4 0 0 1 7 3c0 6-7 10-7 10Z', 'M12 9v6', 'M9 12h6'],
+  privacy: ['M6 10V7a6 6 0 0 1 12 0v3', 'M5 10h14v11H5z', 'M12 14v3'],
+}
+
+function MemberNavIcon({ name }) {
+  const paths = memberNavIconPaths[name] || memberNavIconPaths.dashboard
+
+  return (
+    <span className="member-admin-nav-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        {paths.map((d, index) => (
+          <path key={`${name}-${index}`} d={d} />
+        ))}
+      </svg>
+    </span>
+  )
+}
 
 const memberOnlyPaths = [
   '/portfolio',
+  '/jobs',
+  '/applications',
+  '/mentoring',
+  '/engagement',
+  '/learning',
   '/credentials',
   '/qualifications',
   '/documents',
@@ -145,7 +276,10 @@ function Login() {
     verificationUrl
   ) {
     return (
-      <div className="auth-screen" role="main">
+      <div
+        className="nl713-login-verifying"
+        role="main"
+      >
         Completing email verification...
       </div>
     )
@@ -201,107 +335,233 @@ function Login() {
   }
 
   return (
-    <div className="auth-screen" role="main">
-      <div className="auth-brand">
-        <div className="brand-mark">
-          NL
+    <main className="nl713-login-shell">
+      <section
+        className="nl713-login-hero"
+        aria-label="NurseLink member community"
+      >
+        <div
+          className="nl713-login-hero-media"
+          aria-hidden="true"
+        >
+          <picture>
+            <source
+              media="(max-width: 680px)"
+              srcSet="/images/registration-hero/nurselink-hero-global-hospital-01-mob.png"
+            />
+
+            <img
+              src="/images/registration-hero/nurselink-hero-global-hospital-01.png"
+              alt=""
+            />
+          </picture>
         </div>
 
-        <h1 aria-hidden="true">NurseLink</h1>
+        <div className="nl713-login-hero-content">
+          <div className="nl713-login-brand">
+            <div className="nl713-login-logo">
+              NL
+            </div>
 
-        <p>
-          Professional network and support
-          system for returning OFW nurses.
-        </p>
-      </div>
-
-      <div className="auth-card">
-        <div className="eyebrow">
-          Member Access
-        </div>
-
-        <h2>
-          {verificationUrl
-            ? 'Sign in to verify your email'
-            : 'Sign in'}
-        </h2>
-
-        <p>
-          {verificationUrl
-            ? 'Sign in using the account associated with this verification email.'
-            : 'Enter your NurseLink account details.'}
-        </p>
-
-        {error && (
-          <div className="form-error">
-            {error}
+            <div className="nl713-login-brand-copy">
+              <strong>NurseLink</strong>
+              <span>KAPIT-BISIG</span>
+            </div>
           </div>
-        )}
 
-        <form onSubmit={handleSubmit}>
-          <label>
-            Email address
+          <div className="nl713-login-message">
+            <span className="nl713-login-kicker">
+              MEMBER ACCESS
+            </span>
 
-            <input
-              type="email"
-              value={email}
-              onChange={(event) =>
-                setEmail(
-                  event.target.value
-                )
-              }
-              autoComplete="email"
-              required
-            />
-          </label>
+            <h1>
+              Welcome back to NurseLink
+            </h1>
 
-          <label>
-            Password
+            <p>
+              Access your profile, credentials,
+              learning, opportunities, and
+              professional network.
+            </p>
+          </div>
 
-            <input
-              type="password"
-              value={password}
-              onChange={(event) =>
-                setPassword(
-                  event.target.value
-                )
-              }
-              autoComplete="current-password"
-              required
-            />
-          </label>
+          <div className="nl713-login-benefits">
+            <div className="nl713-login-benefit">
+              <div className="nl713-login-benefit-icon">
+                +
+              </div>
 
-          <p className="auth-footer">
-            <NavLink to="/forgot-password">
-              Forgot password?
+              <div>
+                <strong>Built for Nurses</strong>
+                <span>
+                  A professional community designed
+                  around nurses and their careers.
+                </span>
+              </div>
+            </div>
+
+            <div className="nl713-login-benefit">
+              <div className="nl713-login-benefit-icon">
+                ✓
+              </div>
+
+              <div>
+                <strong>Secure & Trusted</strong>
+                <span>
+                  Your information and professional
+                  records are handled securely.
+                </span>
+              </div>
+            </div>
+
+            <div className="nl713-login-benefit">
+              <div className="nl713-login-benefit-icon">
+                ↗
+              </div>
+
+              <div>
+                <strong>Grow Your Future</strong>
+                <span>
+                  Build credentials, access learning,
+                  and discover opportunities.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="nl713-login-hero-foot">
+            <strong>
+              Connecting Filipino nurses.
+            </strong>
+
+            <span>
+              Together, we elevate care.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section className="nl713-login-panel">
+        <div className="nl713-login-card">
+          <div className="nl713-login-card-kicker">
+            Member Access
+          </div>
+
+          <h2>
+            {verificationUrl
+              ? 'Sign in to verify your email'
+              : 'Welcome back'}
+          </h2>
+
+          <p className="nl713-login-card-intro">
+            {verificationUrl
+              ? 'Sign in using the NurseLink account associated with this verification email.'
+              : 'Enter your NurseLink account details to continue.'}
+          </p>
+
+          {error && (
+            <div
+              className="nl713-login-error"
+              role="alert"
+            >
+              {error}
+            </div>
+          )}
+
+          <form
+            className="nl713-login-form"
+            onSubmit={handleSubmit}
+          >
+            <label className="nl713-login-field">
+              <span>Email address</span>
+
+              <input
+                type="email"
+                value={email}
+                onChange={(event) =>
+                  setEmail(
+                    event.target.value
+                  )
+                }
+                autoComplete="email"
+                required
+              />
+            </label>
+
+            <label className="nl713-login-field">
+              <span>Password</span>
+
+              <input
+                type="password"
+                value={password}
+                onChange={(event) =>
+                  setPassword(
+                    event.target.value
+                  )
+                }
+                autoComplete="current-password"
+                required
+              />
+            </label>
+
+            <p className="nl713-login-forgot">
+              <NavLink to="/forgot-password">
+                Forgot password?
+              </NavLink>
+            </p>
+
+            <button
+              type="submit"
+              className="nl713-login-submit"
+              disabled={submitting}
+            >
+              {submitting
+                ? 'Signing in...'
+                : verificationUrl
+                  ? 'Sign In & Verify Email'
+                  : 'Sign in'}
+            </button>
+          </form>
+
+          <p className="nl713-login-register">
+            New to NurseLink?{' '}
+
+            <NavLink to="/register">
+              Create an account
             </NavLink>
           </p>
 
-          <button
-            type="submit"
-            className="primary-button full"
-            disabled={submitting}
+          <div
+            className="nl713-login-trust"
+            aria-label="NurseLink benefits"
           >
-            {submitting
-              ? 'Signing in...'
-              : verificationUrl
-                ? 'Sign In & Verify Email'
-                : 'Sign in'}
-          </button>
-        </form>
+            <div className="nl713-login-trust-item">
+              <strong>Secure & Private</strong>
+              <span>Your data is protected.</span>
+            </div>
 
-        <p className="auth-footer">
-          New to NurseLink?{' '}
+            <div className="nl713-login-trust-item">
+              <strong>Trusted Community</strong>
+              <span>Connect with nurses.</span>
+            </div>
 
-          <NavLink to="/register">
-            Create an account
-          </NavLink>
-        </p>
-      </div>
-    </div>
+            <div className="nl713-login-trust-item">
+              <strong>Career Growth</strong>
+              <span>Access opportunities.</span>
+            </div>
+          </div>
+
+          <a
+            className="nl713-login-admin"
+            href="/admin/login.html"
+          >
+            Administrator sign in
+          </a>
+        </div>
+      </section>
+    </main>
   )
 }
-
 function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [notice, setNotice] = useState('')
@@ -716,8 +976,8 @@ function PublicPolicy({ type }) {
           <h2>Questions or requests</h2>
           <p>
             Use the NurseLink Support Cases service for policy questions and account concerns.
-            Privacy requests may also be sent to the designated NurseLink privacy contact,
-            Franklin Resma, at <a href="mailto:franklin.resma@gmail.com">franklin.resma@gmail.com</a>.
+            Privacy requests may also be sent to the KAPIT-BISIG privacy contact at{' '}
+            <a href="mailto:nurselink@amsertech.com">nurselink@amsertech.com</a>.
             Urgent security concerns should be reported as soon as possible.
           </p>
         </section>
@@ -804,7 +1064,7 @@ function PolicyCenter({ onAccepted }) {
             <h2>Questions or privacy requests</h2>
             <p>
               Use NurseLink Support Cases for questions, correction requests, or account concerns.
-              You may also contact Franklin Resma at <a href="mailto:franklin.resma@gmail.com">franklin.resma@gmail.com</a> for privacy requests.
+              You may also contact KAPIT-BISIG at <a href="mailto:nurselink@amsertech.com">nurselink@amsertech.com</a> for privacy requests.
               Policy acceptance does not waive rights available under applicable law.
             </p>
           </section>
@@ -901,9 +1161,80 @@ function VerifyEmail() {
   )
 }
 
+function CredentialRenewalRedirect() {
+  useEffect(() => {
+    window.location.replace('/nurselink-credential-renewal.html')
+  }, [])
+
+  return (
+    <Placeholder
+      title="Credential Renewal"
+      description="Opening your NurseLink credential renewal workspace."
+      hidePanel
+    />
+  )
+}
+
+function CareerIntelligenceRedirect() {
+  useEffect(() => {
+    window.location.replace('/nurselink-career-intelligence.html')
+  }, [])
+
+  return (
+    <Placeholder
+      title="Career Intelligence"
+      description="Opening your NurseLink career intelligence workspace."
+      hidePanel
+    />
+  )
+}
+
+function NotificationsRedirect() {
+  useEffect(() => {
+    window.location.replace('/nurselink-notifications.html')
+  }, [])
+
+  return (
+    <Placeholder
+      title="Notification Center"
+      description="Opening your NurseLink notifications."
+      hidePanel
+    />
+  )
+}
+
+function EngagementRedirect() {
+  useEffect(() => {
+    window.location.replace('/nurselink-engagement.html')
+  }, [])
+
+  return (
+    <Placeholder
+      title="Member Engagement Hub"
+      description="Opening your NurseLink community, chapters, events and member activities."
+      hidePanel
+    />
+  )
+}
+
+function MentoringRedirect() {
+  useEffect(() => {
+    window.location.replace('/nurselink-mentoring.html')
+  }, [])
+
+  return (
+    <Placeholder
+      title="Mentoring & Peer Support"
+      description="Opening your NurseLink mentoring workspace."
+      hidePanel
+    />
+  )
+}
+
 function Placeholder({
   title,
   description,
+  hidePanel = false,
 }) {
   return (
     <div className="page">
@@ -919,14 +1250,16 @@ function Placeholder({
         </div>
       </div>
 
-      <div className="panel">
-        <h2>{title}</h2>
+      {!hidePanel && (
+        <div className="panel">
+          <h2>{title}</h2>
 
-        <p>
-          This module is ready for
-          API integration.
-        </p>
-      </div>
+          <p>
+            This module is ready for
+            API integration.
+          </p>
+        </div>
+      )}
     </div>
   )
 }
@@ -1032,7 +1365,9 @@ function Dashboard() {
         )}
       </div>
 
-      <div className="stats-grid">
+      {!isMember && (
+        <>
+          <div className="stats-grid">
         <div className="stat-card">
           <span>
             Application Progress
@@ -1181,6 +1516,8 @@ function Dashboard() {
           </div>
         </div>
       </div>
+        </>
+      )}
     </div>
   )
 }
@@ -1379,9 +1716,17 @@ function NavigationTour({
   )
 }
 
+// NurseLink Members Portal React-Safe Shell v1.0.8
 function AppLayout() {
+  installNurseLinkIOSFirstTapBridge()
+  document.documentElement.setAttribute('data-nurselink-iphone-typography', 'v4.0.7')
+  document.documentElement.setAttribute('data-nurselink-iphone-typography-parity', 'v4.0.8')
+  document.documentElement.setAttribute('data-nurselink-drawer-brand-fix', 'v4.3.3')
+
   const navigate =
     useNavigate()
+
+  const memberShellLocation = useLocation()
 
   const {
     user,
@@ -1394,9 +1739,60 @@ function AppLayout() {
   ] = useState(false)
 
   const [
+    memberMobileNavOpen,
+    setMemberMobileNavOpen,
+  ] = useState(false)
+
+  // NurseLink mobile drawer body scroll lock v3.3.2
+  useEffect(() => {
+    if (!memberMobileNavOpen) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    const previousOverscroll = document.body.style.overscrollBehavior
+
+    document.documentElement.classList.add('nurselink-nav-lock')
+    document.body.style.overflow = 'hidden'
+    document.body.style.overscrollBehavior = 'none'
+
+    return () => {
+      document.documentElement.classList.remove('nurselink-nav-lock')
+      document.body.style.overflow = previousOverflow
+      document.body.style.overscrollBehavior = previousOverscroll
+    }
+  }, [memberMobileNavOpen])
+
+  const [
     navigationTourOpen,
     setNavigationTourOpen,
   ] = useState(false)
+
+  const [memberTheme, setMemberTheme] = useState(() => {
+    const saved = window.localStorage.getItem('nurselink-member-theme')
+    return ['light', 'dark', 'system'].includes(saved) ? saved : 'system'
+  })
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = memberTheme
+      document.documentElement.setAttribute('data-nurselink-ios-theme-fix', 'v4.0.4')
+      document.documentElement.setAttribute('data-nurselink-iphone-tap-fix', 'v4.0.5')
+    window.localStorage.setItem('nurselink-member-theme', memberTheme)
+  
+    /* NurseLink Theme Runtime Repair v4.0.1 */
+    const rootTheme = document.documentElement
+    rootTheme.setAttribute('data-theme', memberTheme)
+    rootTheme.setAttribute('data-nurselink-theme-runtime', 'v4.0.1')
+
+    if (memberTheme === 'light') {
+      rootTheme.style.colorScheme = 'light'
+    } else if (memberTheme === 'dark') {
+      rootTheme.style.colorScheme = 'dark'
+    } else {
+      rootTheme.style.colorScheme = ''
+    }
+
+    document.body?.setAttribute('data-theme', memberTheme)
+}, [memberTheme])
+
 
   const [policyConsent, setPolicyConsent] = useState(null)
   const [policyConsentSaving, setPolicyConsentSaving] = useState(false)
@@ -1415,6 +1811,10 @@ function AppLayout() {
     )
 
   const tourStorageKey = `nurselink-navigation-tour-v1:${user?.id || user?.email || 'member'}`
+
+  useEffect(() => {
+    setMemberMobileNavOpen(false)
+  }, [memberShellLocation.pathname])
 
   useEffect(() => {
     if (window.localStorage.getItem(tourStorageKey)) {
@@ -1459,17 +1859,18 @@ function AppLayout() {
   }
 
   async function handleLogout() {
+    /* NURSELINK_INSTANT_SIGNOUT_V404 */
     setSigningOut(true)
 
-    try {
-      await logout()
+    navigate('/login', { replace: true })
 
-      navigate(
-        '/login',
-        {
-          replace: true,
-        }
-      )
+    try {
+      await Promise.race([
+        logout(),
+        new Promise((resolve) => window.setTimeout(resolve, 2500)),
+      ])
+    } catch (error) {
+      console.warn('NurseLink sign-out request completed with a client-side error.', error)
     } finally {
       setSigningOut(false)
     }
@@ -1491,8 +1892,35 @@ function AppLayout() {
   }
 
   return (
-    <div className="app-shell">
+    <div
+      className={[
+        'app-shell',
+        'member-react-safe-shell-v108',
+        'member-shell-v636',
+        memberMobileNavOpen
+          ? 'mobile-nav-open'
+          : '',
+      ].filter(Boolean).join(' ')}
+    >
+
+      <button
+        type="button"
+        className="mobile-nav-backdrop"
+        aria-label="Close navigation"
+        onClick={() => setMemberMobileNavOpen(false)}
+      />
+
+
       <aside className="sidebar">
+        <button
+          type="button"
+          className="mobile-nav-close"
+          aria-label="Close navigation"
+          onClick={() => setMemberMobileNavOpen(false)}
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+
         <div className="logo">
           <div className="brand-mark small">
             NL
@@ -1511,7 +1939,7 @@ function AppLayout() {
 
         <nav>
           {menu.map(
-            ([label, path]) => {
+            ([label, path, icon]) => {
               const locked =
                 memberOnlyPaths.includes(
                   path
@@ -1520,6 +1948,7 @@ function AppLayout() {
 
               return (
                 <NavLink
+                  onClick={() => setMemberMobileNavOpen(false)}
                   key={path}
                   to={path}
                   data-tour-path={path}
@@ -1538,7 +1967,9 @@ function AppLayout() {
                       .join(' ')
                   }
                 >
-                  <span>
+                  <MemberNavIcon name={icon} />
+
+                  <span className="member-admin-nav-label">
                     {label}
                   </span>
 
@@ -1574,16 +2005,21 @@ function AppLayout() {
 
       <main className="main-area">
         <header className="topbar">
-          <div>
-            <strong>
-              KAPIT-BISIG NurseLink
-            </strong>
+          <button
+            type="button"
+            className="mobile-menu-button"
+            aria-label="Open navigation"
+            aria-expanded={memberMobileNavOpen}
+            onClick={() => setMemberMobileNavOpen((open) => !open)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
 
-            <span>
-              {isMember
-                ? 'Member Portal'
-                : 'Applicant Portal'}
-            </span>
+          <div className="topbar-brand">
+            <strong>NurseLink</strong>
+            <span>by Kapit-Bisig</span>
           </div>
 
           <div className="topbar-member-actions">
@@ -1595,6 +2031,48 @@ function AppLayout() {
             >
               ? <span>Help</span>
             </button>
+
+          <div
+            className="member-theme-control-v337"
+            role="group"
+            aria-label="Appearance"
+          >
+            <button
+              type="button"
+              aria-label="Use light mode"
+              title="Light"
+              aria-pressed={memberTheme === 'light'}
+              onClick={() => setMemberTheme('light')}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Use dark mode"
+              title="Dark"
+              aria-pressed={memberTheme === 'dark'}
+              onClick={() => setMemberTheme('dark')}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5 8.5 8.5 0 1 0 20.5 14.1Z" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Follow system appearance"
+              title="System"
+              aria-pressed={memberTheme === 'system'}
+              onClick={() => setMemberTheme('system')}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="13" rx="2" />
+                <path d="M8 21h8M12 17v4" />
+              </svg>
+            </button>
+          </div>
 
           <div className="user-chip">
             <div className="avatar">
@@ -1692,10 +2170,71 @@ function AppLayout() {
           />
 
           <Route
+            path="/jobs"
+            element={routeForMemberFeature(
+              'Career & Jobs',
+              <Phase2JobsPage />
+            )}
+          />
+
+          <Route
+            path="/applications"
+            element={routeForMemberFeature(
+              'Applications',
+              <Phase2ApplicationsPage />
+            )}
+          />
+
+          <Route
+            path="/credential-renewal"
+            element={routeForMemberFeature(
+              'Credential Renewal',
+              <CredentialRenewalRedirect />
+            )}
+          />
+
+          <Route
+            path="/career-intelligence"
+            element={routeForMemberFeature(
+              'Career Intelligence',
+              <CareerIntelligenceRedirect />
+            )}
+          />
+
+          <Route
+            path="/notifications"
+            element={<NotificationsRedirect />}
+          />
+
+          <Route
+            path="/mentoring"
+            element={routeForMemberFeature(
+              'Mentoring & Peer Support',
+              <MentoringRedirect />
+            )}
+          />
+
+          <Route
+            path="/engagement"
+            element={routeForMemberFeature(
+              'Member Engagement Hub',
+              <EngagementRedirect />
+            )}
+          />
+
+          <Route
+            path="/learning"
+            element={routeForMemberFeature(
+              'Professional Learning',
+              <Phase3LearningPage />
+            )}
+          />
+
+          <Route
             path="/credentials"
             element={routeForMemberFeature(
               'Credentials',
-              <Credentials />
+              <Phase2CredentialsReconciledPage><Credentials /></Phase2CredentialsReconciledPage>
             )}
           />
 
@@ -1703,10 +2242,7 @@ function AppLayout() {
             path="/qualifications"
             element={routeForMemberFeature(
               'Qualification Framework',
-              <Placeholder
-                title="Qualification Framework"
-                description="Review qualification assessments and professional pathways."
-              />
+              <Phase2QualificationsPage />
             )}
           />
 
@@ -1714,10 +2250,7 @@ function AppLayout() {
             path="/documents"
             element={routeForMemberFeature(
               'Documents',
-              <Placeholder
-                title="Documents"
-                description="Securely manage your professional documents."
-              />
+              <Phase2DocumentsPage />
             )}
           />
 
@@ -1732,65 +2265,54 @@ function AppLayout() {
           <Route
             path="/messages"
             element={
-              <Placeholder
-                title="Messages"
-                description="Receive organization notices and communications."
-              />
+              <Phase3MessagesPage />
             }
           />
 
           <Route
             path="/events"
             element={
-              <Placeholder
-                title="Events"
-                description="View training activities and organization events."
-              />
+              <Phase2EventsPage />
             }
           />
 
           <Route
             path="/initiatives"
             element={
-              <Placeholder
-                title="Programs & Initiatives"
-                description="Track NurseLink programs and organizational initiatives."
-              />
+              routeForMemberFeature(
+                'Programs & Initiatives',
+                <Phase7InitiativesPage />
+              )
             }
           />
 
           <Route
             path="/policies"
             element={
-              <Placeholder
-                title="Policies & Advocacy"
-                description="Follow policies and advocacy initiatives affecting Filipino nurses."
-              />
+              routeForMemberFeature(
+                'Policies & Advocacy',
+                <PoliciesAdvocacyIntelligencePage />
+              )
             }
           />
 
           <Route
             path="/welfare"
             element={
-              <Placeholder
-                title="Welfare & Crisis Support"
-                description="Access welfare information and crisis support."
-              />
+              routeForMemberFeature(
+                'Welfare & Crisis Support',
+                <Phase6WelfareCrisisPage />
+              )
             }
           />
 
           <Route path="/policy-center" element={<PolicyCenter onAccepted={setPolicyConsent} />} />
 
           {isAdministrator && (
-            <Route
-              path="/admin"
-              element={
-                <Placeholder
-                  title="Administration"
-                  description="Administrative management and monitoring console."
-                />
-              }
-            />
+            <>
+              <Route path="/admin" element={<AdminAppearanceStudio />} />
+              <Route path="/admin/appearance" element={<AdminAppearanceStudio />} />
+            </>
           )}
 
           <Route

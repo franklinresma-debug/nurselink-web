@@ -1,0 +1,118 @@
+/* NurseLink Dynamic Member Profile Tabs v64.4.1 */
+.nl6439-tabs .nl6441-tab{
+  appearance:none;
+  border:0;
+  border-bottom:2px solid transparent;
+  background:transparent;
+  color:#b8c4d4;
+  min-height:40px;
+  padding:11px 2px;
+  font:inherit;
+  font-size:12px;
+  font-weight:650;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.nl6439-tabs .nl6441-tab:hover,
+.nl6439-tabs .nl6441-tab:focus-visible{
+  color:#42c0ff;
+  outline:none;
+}
+.nl6439-tabs .nl6441-tab.active{
+  color:#2bb8ff;
+  border-bottom-color:#2bb8ff;
+  font-weight:850;
+}
+.nl6441-tab-host[hidden]{display:none!important}
+.nl6441-inline-panel{
+  border:1px solid #26384f;
+  border-radius:11px;
+  background:#0f1928;
+  padding:16px;
+  margin-bottom:13px;
+}
+.nl6441-inline-head{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  padding-bottom:14px;
+  border-bottom:1px solid #213249;
+}
+.nl6441-inline-head h2{margin:4px 0!important;color:#f6f9fd!important;font-size:20px!important}
+.nl6441-inline-head p{margin:0;color:#9fb0c5;max-width:720px}
+.nl6441-count{
+  min-width:82px;
+  padding:9px 12px;
+  border:1px solid #26384f;
+  border-radius:10px;
+  background:#142135;
+  text-align:center;
+}
+.nl6441-count strong{display:block;color:#fff;font-size:22px}.nl6441-count span{font-size:10px;color:#8fa0b5}
+.nl6441-record-list{display:grid;gap:10px;margin-top:13px}
+.nl6441-record-card{
+  display:flex;
+  gap:13px;
+  padding:14px;
+  border:1px solid #26384f;
+  border-radius:10px;
+  background:#111d2d;
+}
+.nl6441-record-icon{
+  display:grid;place-items:center;
+  flex:0 0 42px;width:42px;height:42px;
+  border-radius:10px;background:#202f46;color:#68c8ff;font-size:18px
+}
+.nl6441-record-copy{min-width:0;flex:1}
+.nl6441-record-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.nl6441-record-head h3{margin:0!important;color:#f4f8fd!important;font-size:15px!important}
+.nl6441-record-copy>p{margin:7px 0 0;color:#aab9cb;font-size:12px;line-height:1.55}
+.nl6441-record-copy .nl6441-sub{margin:3px 0 0;color:#7f92a9;font-size:11px}
+.nl6441-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;color:#8fa0b5;font-size:10px}
+.nl6441-status{display:inline-flex;padding:4px 8px;border-radius:7px;background:#26354c;color:#ced8e5;font-size:10px;font-weight:800}
+.nl6441-status.good{background:#0f4935;color:#71e5aa}
+.nl6441-empty{
+  display:grid;place-items:center;
+  min-height:230px;text-align:center;
+  border:1px dashed #334860;border-radius:10px;background:#101b2a;
+  padding:28px
+}
+.nl6441-empty>div{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#1a2b40;color:#4cbfff;font-size:22px}
+.nl6441-empty h3{margin:10px 0 3px!important;color:#f2f7fc!important}.nl6441-empty p{margin:0;color:#8fa0b5;max-width:470px}
+.nl6441-loading{padding:38px;text-align:center;border:1px solid #26384f;border-radius:11px;background:#0f1928;color:#9fb0c5}
+.nl6441-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.nl6441-overview-grid button{
+  display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;
+  gap:2px 10px;text-align:left;
+  padding:15px;border:1px solid #26384f;border-radius:10px;background:#111d2d;color:#fff;cursor:pointer
+}
+.nl6441-overview-grid button:hover{border-color:#2b8cc7;background:#142338}
+.nl6441-overview-grid button>span{grid-row:1/3;display:grid;place-items:center;width:38px;height:38px;border-radius:9px;background:#202f46;color:#4dc2ff}
+.nl6441-overview-grid button>strong{font-size:19px}.nl6441-overview-grid button>small{color:#8fa0b5}
+
+html[data-theme="light"] .nl6441-inline-panel,
+body:not(.dark) .nl6441-inline-panel{
+  background:#fff;border-color:#d8e2ed;color:#132238
+}
+html[data-theme="light"] .nl6441-record-card,
+html[data-theme="light"] .nl6441-empty,
+html[data-theme="light"] .nl6441-overview-grid button,
+body:not(.dark) .nl6441-record-card,
+body:not(.dark) .nl6441-empty,
+body:not(.dark) .nl6441-overview-grid button{
+  background:#f8fafc;border-color:#d8e2ed
+}
+html[data-theme="light"] .nl6441-inline-panel :is(h2,h3,strong),
+body:not(.dark) .nl6441-inline-panel :is(h2,h3,strong){color:#132238!important}
+html[data-theme="light"] .nl6441-inline-panel :is(p,small,span),
+body:not(.dark) .nl6441-inline-panel :is(p,small,span){color:#52657c}
+
+@media(max-width:800px){
+  .nl6441-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nl6441-inline-head{flex-direction:column}.nl6441-count{text-align:left}
+}
+@media(max-width:520px){
+  .nl6441-overview-grid{grid-template-columns:1fr}
+  .nl6441-record-head{flex-direction:column}
+}

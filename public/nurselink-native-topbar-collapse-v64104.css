@@ -1,0 +1,123 @@
+/* NurseLink Native Topbar Collapse Fix v64.10.4
+   Narrow geometry repair:
+   - collapse hidden native topbar to zero height
+   - remove leftover native controls
+   - exactly one sidebar-width content offset
+*/
+
+:root{
+  --nlf-sidebar-w:232px;
+  --nlf-topbar-h:72px;
+}
+
+/* Native sidebar keeps zero visual presence and zero pointer interaction. */
+[data-nls-native-sidebar="true"]{
+  position:absolute!important;
+  left:-100000px!important;
+  top:0!important;
+  width:0!important;
+  min-width:0!important;
+  max-width:0!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+
+/* CRITICAL FIX: native topbar no longer reserves any vertical space. */
+[data-nls-native-topbar="true"]{
+  position:absolute!important;
+  left:-100000px!important;
+  top:0!important;
+  width:0!important;
+  min-width:0!important;
+  max-width:0!important;
+  height:0!important;
+  min-height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+
+/* Remove any leftover children/controls from the native topbar. */
+[data-nls-native-topbar="true"] *{
+  display:none!important;
+}
+
+/* One and only one desktop/tablet sidebar offset. */
+@media(min-width:768px){
+  html body{
+    margin-left:var(--nlf-sidebar-w)!important;
+    padding-left:0!important;
+  }
+
+  .member-react-safe-shell-v108{
+    margin-left:0!important;
+    padding-left:0!important;
+    width:auto!important;
+    max-width:none!important;
+  }
+
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content,
+  .member-react-safe-shell-v108 [class*="workspace"],
+  .member-react-safe-shell-v108 [class*="page"]{
+    margin-left:0!important;
+    padding-left:0!important;
+    max-width:none!important;
+  }
+
+  #nurselink-stable-sidebar{
+    width:var(--nlf-sidebar-w)!important;
+  }
+
+  #nurselink-stable-topbar{
+    left:var(--nlf-sidebar-w)!important;
+    right:0!important;
+    width:auto!important;
+  }
+}
+
+/* Native top-level chrome fragments that escape the shell are removed. */
+body > [data-nl-competing-chrome="true"]{
+  display:none!important;
+}
+
+/* Tablet */
+@media(min-width:768px) and (max-width:1199px){
+  :root{
+    --nlf-sidebar-w:210px;
+    --nlf-topbar-h:64px;
+  }
+}
+
+/* Mobile: no permanent left offset. */
+@media(max-width:767px){
+  :root{
+    --nlf-sidebar-w:260px;
+    --nlf-topbar-h:58px;
+  }
+
+  html body{
+    margin-left:0!important;
+    padding-left:0!important;
+  }
+
+  #nurselink-stable-topbar{
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+  }
+}

@@ -1,0 +1,163 @@
+/* NurseLink Member Theme Dark Contrast Polish v3.4.0
+   Additive CSS only. No React/API/workflow changes. */
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-access-membership-summary,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-membership-activation,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-professional-hub,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-hero{
+  background:#172234 !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+  box-shadow:0 10px 28px rgba(0,0,0,.18) !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid>div,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-metrics>div,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-item,
+html[data-theme="dark"] .member-react-safe-shell-v108 .stat-card{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid>div[data-kind="system"]{
+  background:#292619 !important;
+  border-color:#726334 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-head strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-copy h2,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-metrics strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-item strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 .stat-card strong{
+  color:#f4f7fb !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid>div[data-kind="system"] strong{
+  color:#f6e9a8 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid span,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid small,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-copy p,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-metrics span,
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-item small,
+html[data-theme="dark"] .member-react-safe-shell-v108 .stat-card small{
+  color:#aebed0 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-ring>div{
+  background:#111c2c !important;
+  box-shadow:0 4px 16px rgba(0,0,0,.24) !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-ring strong{
+  color:#f4f7fb !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-item:hover{
+  background:#1c2a3e !important;
+  border-color:#4f7095 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-item-state{
+  background:#223148 !important;
+  color:#b6c8da !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-readiness-item[data-state="complete"] .nurselink-readiness-item-state{
+  background:#143c31 !important;
+  color:#7be0b9 !important;
+}
+
+/* Dashboard activation/checklist surfaces that do not expose a dedicated
+   semantic class use constrained descendants of the known membership panels. */
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="membership"] [class*="item"],
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="activation"] [class*="item"],
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="membership"] [class*="row"],
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="activation"] [class*="row"]{
+  background:#111c2c !important;
+  border-color:#34465c !important;
+  color:#e7edf5 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="membership"] [class*="item"] strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="activation"] [class*="item"] strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="membership"] [class*="row"] strong,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="activation"] [class*="row"] strong{
+  color:#f4f7fb !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="membership"] [class*="item"] p,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="activation"] [class*="item"] p,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="membership"] [class*="row"] p,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="activation"] [class*="row"] p,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="membership"] [class*="item"] small,
+html[data-theme="dark"] .member-react-safe-shell-v108 [class*="activation"] [class*="item"] small{
+  color:#aebed0 !important;
+}
+
+/* Preserve primary/action emphasis. */
+html[data-theme="dark"] .member-react-safe-shell-v108 .primary-button,
+html[data-theme="dark"] .member-react-safe-shell-v108 a.primary-button{
+  color:#fff !important;
+}
+
+/* System mode: same contrast polish only while OS/browser prefers dark. */
+@media (prefers-color-scheme:dark){
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-access-membership-summary,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-membership-activation,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-professional-hub,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-hero{
+    background:#172234 !important;
+    border-color:#34465c !important;
+    color:#e7edf5 !important;
+    box-shadow:0 10px 28px rgba(0,0,0,.18) !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid>div,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-metrics>div,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-item,
+  html[data-theme="system"] .member-react-safe-shell-v108 .stat-card{
+    background:#111c2c !important;
+    border-color:#34465c !important;
+    color:#e7edf5 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid>div[data-kind="system"]{
+    background:#292619 !important;
+    border-color:#726334 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-head strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-copy h2,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-metrics strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-item strong,
+  html[data-theme="system"] .member-react-safe-shell-v108 .stat-card strong{
+    color:#f4f7fb !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid span,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-access-membership-summary-grid small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-copy p,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-metrics span,
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-item small,
+  html[data-theme="system"] .member-react-safe-shell-v108 .stat-card small{
+    color:#aebed0 !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 .nurselink-readiness-ring>div{
+    background:#111c2c !important;
+  }
+
+  html[data-theme="system"] .member-react-safe-shell-v108 [class*="membership"] [class*="item"],
+  html[data-theme="system"] .member-react-safe-shell-v108 [class*="activation"] [class*="item"],
+  html[data-theme="system"] .member-react-safe-shell-v108 [class*="membership"] [class*="row"],
+  html[data-theme="system"] .member-react-safe-shell-v108 [class*="activation"] [class*="row"]{
+    background:#111c2c !important;
+    border-color:#34465c !important;
+    color:#e7edf5 !important;
+  }
+}

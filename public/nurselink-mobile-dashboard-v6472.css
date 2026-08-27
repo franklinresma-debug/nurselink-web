@@ -1,0 +1,300 @@
+/* NurseLink Mobile Dashboard Menu + Theme Text Reset v64.7.2 */
+
+:root {
+  --nl6472-drawer-width: min(84vw, 420px);
+  --nl6472-drawer-bg-1: #24568f;
+  --nl6472-drawer-bg-2: #183f73;
+  --nl6472-drawer-active-bg: rgba(255,255,255,.13);
+  --nl6472-drawer-active-accent: #7fc5ff;
+  --nl6472-overlay: rgba(4,14,28,.42);
+}
+
+/* ============================================================
+   THEME TEXT CONTRAST ONLY
+   Buttons are intentionally excluded so native component states win.
+   ============================================================ */
+
+html[data-theme="light"],
+html.light,
+body.light {
+  --nl6472-page-text: #172033;
+  --nl6472-muted-text: #617086;
+  --nl6472-heading-text: #101827;
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark {
+  --nl6472-page-text: #eef4fb;
+  --nl6472-muted-text: #a9b8ca;
+  --nl6472-heading-text: #ffffff;
+}
+
+/* Fallback when NurseLink theme uses the current dark shell without explicit class. */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]):not(.light) {
+    --nl6472-page-text: #eef4fb;
+    --nl6472-muted-text: #a9b8ca;
+    --nl6472-heading-text: #ffffff;
+  }
+}
+
+main,
+[role="main"],
+.main-area,
+.page-content,
+.member-main,
+.nl-member-shell-main {
+  color: var(--nl6472-page-text, inherit);
+}
+
+main h1, main h2, main h3, main h4, main h5, main h6,
+[role="main"] h1, [role="main"] h2, [role="main"] h3,
+.main-area h1, .main-area h2, .main-area h3 {
+  color: var(--nl6472-heading-text, inherit);
+}
+
+main p,
+main small,
+main .muted,
+main [class*="muted"],
+main [class*="subtitle"],
+[role="main"] p,
+.main-area p {
+  color: var(--nl6472-muted-text, inherit);
+}
+
+/* Never override buttons/links-as-buttons here. */
+main button,
+main [role="button"],
+main a[class*="btn"],
+main a[class*="button"],
+[role="main"] button,
+[role="main"] [role="button"] {
+  color: revert-layer;
+}
+
+/* ============================================================
+   MOBILE DRAWER
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  /* backdrop */
+  body.nl6472-drawer-open::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--nl6472-overlay);
+    z-index: 9997;
+    pointer-events: auto;
+  }
+
+  body.nl6472-drawer-open {
+    overflow: hidden !important;
+    touch-action: none;
+  }
+
+  /* support common NurseLink sidebar selectors */
+  .nurselink-sidebar,
+  .nl-sidebar,
+  aside[class*="sidebar"],
+  [class*="sidebar"][class*="member"],
+  [data-nl-sidebar] {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: var(--nl6472-drawer-width) !important;
+    min-width: var(--nl6472-drawer-width) !important;
+    max-width: var(--nl6472-drawer-width) !important;
+    height: 100dvh !important;
+    z-index: 9998 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    background:
+      linear-gradient(180deg, var(--nl6472-drawer-bg-1) 0%, var(--nl6472-drawer-bg-2) 100%) !important;
+    box-shadow: 16px 0 38px rgba(3,15,32,.24);
+    transform: translateX(-102%);
+    transition: transform .22s ease;
+    border-right: 1px solid rgba(255,255,255,.08);
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
+  }
+
+  body.nl6472-drawer-open .nurselink-sidebar,
+  body.nl6472-drawer-open .nl-sidebar,
+  body.nl6472-drawer-open aside[class*="sidebar"],
+  body.nl6472-drawer-open [class*="sidebar"][class*="member"],
+  body.nl6472-drawer-open [data-nl-sidebar] {
+    transform: translateX(0);
+  }
+
+  /* brand area */
+  .nl6472-mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 28px 22px 24px;
+    min-height: 118px;
+    border-bottom: 1px solid rgba(255,255,255,.14);
+  }
+
+  .nl6472-mobile-logo {
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg,#4c98f5,#2b72cf);
+    color: #fff;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: -.02em;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+  }
+
+  .nl6472-mobile-brand-copy {
+    min-width: 0;
+  }
+
+  .nl6472-mobile-brand-title {
+    color: #fff;
+    font-size: 27px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -.02em;
+  }
+
+  .nl6472-mobile-brand-subtitle {
+    margin-top: 5px;
+    color: rgba(255,255,255,.35);
+    font-size: 16px;
+    letter-spacing: .08em;
+  }
+
+  .nl6472-mobile-close {
+    margin-left: auto;
+    width: 54px;
+    height: 54px;
+    flex: 0 0 54px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.04);
+    color: #d9e7f7;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+
+  .nl6472-mobile-close:hover,
+  .nl6472-mobile-close:focus-visible {
+    background: rgba(255,255,255,.10);
+    color: #fff;
+    border-color: rgba(255,255,255,.38);
+  }
+
+  /* menu group */
+  .nl6472-mobile-nav {
+    padding: 20px 18px 30px;
+  }
+
+  .nl6472-mobile-nav a,
+  .nl6472-mobile-nav button {
+    display: flex !important;
+    align-items: center;
+    min-height: 64px;
+    width: 100%;
+    padding: 13px 20px !important;
+    margin: 3px 0 !important;
+    border-radius: 14px !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: rgba(255,255,255,.82) !important;
+    -webkit-text-fill-color: rgba(255,255,255,.82) !important;
+    font-size: 21px !important;
+    line-height: 1.2 !important;
+    font-weight: 450 !important;
+    text-decoration: none !important;
+    white-space: normal;
+  }
+
+  .nl6472-mobile-nav a:hover,
+  .nl6472-mobile-nav a:focus-visible,
+  .nl6472-mobile-nav button:hover,
+  .nl6472-mobile-nav button:focus-visible {
+    background: rgba(255,255,255,.07) !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    outline: none;
+  }
+
+  .nl6472-mobile-nav a[aria-current="page"],
+  .nl6472-mobile-nav a.active,
+  .nl6472-mobile-nav .active > a,
+  .nl6472-mobile-nav button.active {
+    background: var(--nl6472-drawer-active-bg) !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    font-weight: 750 !important;
+    box-shadow: inset 5px 0 0 var(--nl6472-drawer-active-accent);
+  }
+
+  /* The mobile top menu trigger */
+  .nl6472-mobile-menu-trigger {
+    display: inline-grid !important;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    border: 1px solid #d7e0e9;
+    background: #fff;
+    color: #16263b;
+    cursor: pointer;
+  }
+
+  html[data-theme="dark"] .nl6472-mobile-menu-trigger,
+  html.dark .nl6472-mobile-menu-trigger,
+  body.dark .nl6472-mobile-menu-trigger {
+    background: #172437;
+    color: #f4f8fc;
+    border-color: #31445a;
+  }
+
+  .nl6472-mobile-menu-trigger span,
+  .nl6472-mobile-menu-trigger::before,
+  .nl6472-mobile-menu-trigger::after {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 999px;
+  }
+
+  .nl6472-mobile-menu-trigger {
+    gap: 5px;
+  }
+
+  /* desktop shell should not reserve sidebar width on mobile */
+  .nl-member-shell-main,
+  .nurselink-member-main,
+  .member-main,
+  body > main,
+  body > [role="main"] {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .nl6472-mobile-menu-trigger,
+  .nl6472-mobile-brand {
+    display: none !important;
+  }
+}

@@ -1,0 +1,85 @@
+/* NurseLink iPhone Tap Reliability Fix v4.0.5
+   Goal: prevent invisible/fixed mobile layers from intercepting taps on iOS Safari.
+*/
+
+/* Inactive mobile backdrop must be completely non-interactive. */
+.member-react-safe-shell-v108 .mobile-nav-backdrop {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  touch-action: none !important;
+}
+
+/* Backdrop becomes interactive only while the mobile nav is actually open. */
+.member-react-safe-shell-v108.mobile-nav-open .mobile-nav-backdrop {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+/* Closed sidebar must not intercept taps off-canvas. */
+@media (width <= 780px) {
+  .member-react-safe-shell-v108:not(.mobile-nav-open) .sidebar {
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
+  .member-react-safe-shell-v108.mobile-nav-open .sidebar {
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+
+  /* First-tap reliability for all common controls. */
+  .member-react-safe-shell-v108 button,
+  .member-react-safe-shell-v108 a,
+  .member-react-safe-shell-v108 [role="button"],
+  .member-react-safe-shell-v108 input[type="button"],
+  .member-react-safe-shell-v108 input[type="submit"],
+  .member-react-safe-shell-v108 .member-theme-control-v337 button,
+  .member-react-safe-shell-v108 .sidebar-logout,
+  .member-react-safe-shell-v108 .mobile-menu-button,
+  .member-react-safe-shell-v108 .mobile-nav-close {
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent decorative pseudo-elements from becoming hit targets. */
+  .member-react-safe-shell-v108 *::before,
+  .member-react-safe-shell-v108 *::after {
+    pointer-events: none;
+  }
+
+  /* Re-enable interaction on controls themselves and their descendants. */
+  .member-react-safe-shell-v108 button,
+  .member-react-safe-shell-v108 button *,
+  .member-react-safe-shell-v108 a,
+  .member-react-safe-shell-v108 a *,
+  .member-react-safe-shell-v108 [role="button"],
+  .member-react-safe-shell-v108 [role="button"] * {
+    pointer-events: auto;
+  }
+
+  /* Tour layer is only interactive when visibly active. */
+  .member-react-safe-shell-v108 .navigation-tour-layer[hidden],
+  .member-react-safe-shell-v108 .navigation-tour-layer[aria-hidden="true"],
+  .member-react-safe-shell-v108 .navigation-tour-layer:not(.is-open):not(.active) {
+    pointer-events: none !important;
+  }
+
+  .member-react-safe-shell-v108 .navigation-tour-layer[hidden] *,
+  .member-react-safe-shell-v108 .navigation-tour-layer[aria-hidden="true"] *,
+  .member-react-safe-shell-v108 .navigation-tour-layer:not(.is-open):not(.active) * {
+    pointer-events: none !important;
+  }
+
+  /* Avoid iOS ghost-tap delays around fixed header controls. */
+  .member-react-safe-shell-v108 .topbar,
+  .member-react-safe-shell-v108 .topbar-member-actions,
+  .member-react-safe-shell-v108 .member-theme-control-v337 {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}

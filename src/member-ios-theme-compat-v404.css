@@ -1,0 +1,52 @@
+/* NurseLink iOS / Safari Theme Compatibility v4.0.4 */
+
+html[data-theme="light"],
+html[data-theme="light"] body,
+html[data-theme="light"] #root {
+  color-scheme: light !important;
+  background-color: #f7f8fa !important;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+html[data-theme="dark"] #root {
+  color-scheme: dark !important;
+}
+
+html[data-theme="light"] .member-react-safe-shell-v108,
+html[data-theme="light"] .member-react-safe-shell-v108 .main-area,
+html[data-theme="light"] .member-react-safe-shell-v108 .page,
+html[data-theme="light"] .member-react-safe-shell-v108 .topbar,
+html[data-theme="light"] .member-react-safe-shell-v108 .panel,
+html[data-theme="light"] .member-react-safe-shell-v108 .card,
+html[data-theme="light"] .member-react-safe-shell-v108 .nl-phase2-panel,
+html[data-theme="light"] .member-react-safe-shell-v108 .nurselink-member-welcome,
+html[data-theme="light"] .member-react-safe-shell-v108 .nurselink-access-membership-summary,
+html[data-theme="light"] .member-react-safe-shell-v108 .nl-v200-stage,
+html[data-theme="light"] .member-react-safe-shell-v108 .nl-live-card {
+  background-color: var(--nl-surface, #ffffff) !important;
+  color: var(--nl-text, #172033) !important;
+}
+
+html[data-theme="light"] input,
+html[data-theme="light"] select,
+html[data-theme="light"] textarea,
+html[data-theme="light"] button {
+  color-scheme: light !important;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] button {
+  color-scheme: dark !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="light"],
+  html[data-theme="light"] body,
+  html[data-theme="light"] #root {
+    color-scheme: light !important;
+    background-color: #f7f8fa !important;
+  }
+}

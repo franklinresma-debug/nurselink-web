@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f4f8fb">
+  <title>NurseLink Temporary Encoder Sign In</title>
+  <link rel="stylesheet" href="/nurselink-encoder.css?v=590">
+  <link rel="stylesheet" href="/nurselink-typography.css?v=622">
+<link rel="stylesheet" href="/nurselink-encoder-login.csp-v4700.css?v=4700">
+</head>
+<body>
+  <main class="nl-encoder-auth">
+    <section class="nl-encoder-auth-shell">
+      <section class="nl-encoder-brand">
+        <div class="nl-encoder-mark">NL</div>
+        <span class="nl-eyebrow nl-csp-v4700-001">KAPIT-BISIG</span>
+        <h1>NurseLink Temporary Encoder</h1>
+        <p>
+          Restricted temporary access for encoding information for
+          specifically assigned nurses.
+        </p>
+
+        <div class="nl-encoder-security">
+          <strong>Restricted staff access</strong>
+          <small>
+            Temporary Encoders cannot approve memberships, verify
+            credentials, change membership standing, manage
+            administrators, access finance, or submit applications.
+          </small>
+        </div>
+      </section>
+
+      <section class="nl-encoder-login-card">
+        <span class="nl-eyebrow">TEMPORARY ENCODER ACCESS</span>
+        <h2>Sign in with your email or username</h2>
+        <p>
+          Access automatically ends at the expiration date set by a
+          NurseLink Super Administrator.
+        </p>
+
+        <form id="encoderLoginForm" class="nl-form">
+          <label>
+            <span>Email or Username</span>
+            <input
+              id="encoderUsername"
+              type="text"
+              autocomplete="username"
+              autocapitalize="none"
+              spellcheck="false"
+              required
+            >
+          </label>
+
+          <label>
+            <span>Password</span>
+            <input
+              id="encoderPassword"
+              type="password"
+              autocomplete="current-password"
+              required
+            >
+          </label>
+
+          <div
+            id="encoderLoginStatus"
+            class="nl-status"
+            aria-live="polite"
+          ></div>
+
+          <button
+            id="encoderLoginButton"
+            class="nl-primary"
+            type="submit"
+          >
+            Sign in to Encoder Workspace
+          </button>
+        </form>
+
+        <div class="nl-auth-links">
+          <a href="/login">Member / Applicant Sign In</a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/nurselink-encoder-login.js?v=699" defer></script>
+</body>
+</html>

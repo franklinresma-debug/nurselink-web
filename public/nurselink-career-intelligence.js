@@ -75,15 +75,20 @@
   }
 
   function renderAccess(error) {
-    const pending=error?.status===403;
+    const onboardingLocked=error?.status===403;
+
     root.innerHTML=`
       <div class="access-card">
-        <span class="eyebrow">${pending ? 'APPROVED MEMBERSHIP REQUIRED' : 'AUTHENTICATION REQUIRED'}</span>
-        <h2>${pending ? 'Career Intelligence unlocks after membership approval' : 'Sign in to NurseLink'}</h2>
-        <p>${pending
-          ? 'Career Intelligence uses member-only career, credential, learning and employment data. Complete the membership process to unlock this feature.'
+        <span class="eyebrow">${onboardingLocked ? 'MEMBER ONBOARDING' : 'AUTHENTICATION REQUIRED'}</span>
+        <h2>${onboardingLocked ? '🔒 Complete onboarding to unlock Career Intelligence' : 'Sign in to NurseLink'}</h2>
+        <p>${onboardingLocked
+          ? 'Finish your NurseLink member onboarding before accessing career readiness, opportunity insights and Career Intelligence tools.'
           : 'Sign in to your NurseLink account, then return to Career Intelligence.'}</p>
-        <a href="/login?return=/nurselink-career-intelligence.html">Open NurseLink Sign In</a>
+        <a href="${onboardingLocked
+          ? '/dashboard#membership'
+          : '/login?return=/nurselink-career-intelligence.html'}">${onboardingLocked
+          ? 'Complete Onboarding →'
+          : 'Open NurseLink Sign In'}</a>
       </div>`;
   }
 
@@ -230,7 +235,12 @@
       message('Snapshot saved.');
       await load();
     } catch (error) {
-      message(error.message);
+      if ([401,403,419].includes(error.status)) {
+        renderAccess(error);
+        message('');
+      } else {
+        message(error.message);
+      }
     } finally {
       snapshotButton.disabled=false;
     }

@@ -1,0 +1,309 @@
+/* NurseLink Global Dynamic Theme Synchronization v64.9.2
+   Global runtime-aware Light/Dark component normalization for all member pages.
+*/
+
+:root {
+  --nldyn-page:#f5f7fb;
+  --nldyn-card:#ffffff;
+  --nldyn-card-soft:#f8fafc;
+  --nldyn-text:#20304b;
+  --nldyn-strong:#0b1730;
+  --nldyn-muted:#617393;
+  --nldyn-label:#7386a8;
+  --nldyn-border:#d8e1ec;
+  --nldyn-border-strong:#c5d1df;
+  --nldyn-blue:#1769e0;
+  --nldyn-blue-soft:#edf4ff;
+  --nldyn-green:#0aa83f;
+  --nldyn-green-bright:#00b934;
+  --nldyn-green-soft:#ebfaef;
+  --nldyn-purple:#6b35b3;
+  --nldyn-purple-soft:#f5effc;
+  --nldyn-amber:#a66b10;
+  --nldyn-amber-soft:#fff8e9;
+  --nldyn-danger:#c43d47;
+  --nldyn-danger-soft:#fff0f1;
+  --nldyn-icon-bg:#f2f6fc;
+  --nldyn-icon-border:#cddbf0;
+  --nldyn-icon:#1769e0;
+  --nldyn-shadow:0 6px 18px rgba(31,48,78,.055);
+  color-scheme:light;
+}
+
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark {
+  --nldyn-page:#06111f;
+  --nldyn-card:#0a1625;
+  --nldyn-card-soft:#0d1b2d;
+  --nldyn-text:#dce6f3;
+  --nldyn-strong:#f8fbff;
+  --nldyn-muted:#b0c0d3;
+  --nldyn-label:#91a4be;
+  --nldyn-border:#22334a;
+  --nldyn-border-strong:#30445f;
+  --nldyn-blue:#3c8cff;
+  --nldyn-blue-soft:#0c2241;
+  --nldyn-green:#49e47f;
+  --nldyn-green-bright:#25ef65;
+  --nldyn-green-soft:#0b301f;
+  --nldyn-purple:#a35cff;
+  --nldyn-purple-soft:#211337;
+  --nldyn-amber:#ffb52e;
+  --nldyn-amber-soft:#2c210c;
+  --nldyn-danger:#ff747d;
+  --nldyn-danger-soft:#36151a;
+  --nldyn-icon-bg:#0b1b31;
+  --nldyn-icon-border:#1f4d87;
+  --nldyn-icon:#4a92ff;
+  --nldyn-shadow:0 12px 30px rgba(0,0,0,.34);
+  color-scheme:dark;
+}
+
+/* Global shell */
+.member-react-safe-shell-v108,
+.member-react-safe-shell-v108 main,
+.member-react-safe-shell-v108 .main,
+.member-react-safe-shell-v108 .content,
+.member-react-safe-shell-v108 [class*="workspace"],
+.member-react-safe-shell-v108 [class*="page"],
+.member-react-safe-shell-v108 [class*="canvas"] {
+  background:var(--nldyn-page)!important;
+  color:var(--nldyn-text)!important;
+}
+
+/* Dynamic component marker support */
+.member-react-safe-shell-v108 [data-nl-dynamic-theme="true"] {
+  color:var(--nldyn-text)!important;
+  border-color:var(--nldyn-border)!important;
+}
+
+/* Cards / panels / widgets / tiles */
+.member-react-safe-shell-v108 :is(
+  .card,.panel,[class*="-card"],[class*="-panel"],[class*="tile"],
+  [class*="summary"],[class*="widget"],[class*="module"],[class*="section-card"]
+):not(.sidebar):not([class*="sidebar"]):not([class*="topbar"]):not([class*="header"]) {
+  background:var(--nldyn-card)!important;
+  color:var(--nldyn-text)!important;
+  border-color:var(--nldyn-border)!important;
+  box-shadow:var(--nldyn-shadow)!important;
+}
+
+/* Nested/dynamic surfaces */
+.member-react-safe-shell-v108 :is(
+  [class*="subcard"],[class*="section-inner"],[class*="detail"],[class*="metadata"],
+  [class*="source"],[class*="policy"],[class*="verification"],[class*="mapping"],
+  [class*="row"],[class*="item"]
+)[data-nl-dynamic-theme="true"] {
+  background:var(--nldyn-card-soft)!important;
+  color:var(--nldyn-text)!important;
+  border-color:var(--nldyn-border)!important;
+}
+
+/* Typography */
+.member-react-safe-shell-v108 :is(
+  h1,h2,h3,h4,h5,h6,strong,b,dt,th,
+  [class*="title"],[class*="heading"],[class*="name"],[class*="value"]
+) {
+  color:var(--nldyn-strong)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  p,small,dd,td,label,[class*="muted"],[class*="meta"],
+  [class*="subtitle"],[class*="description"],[class*="caption"],[class*="helper"]
+) {
+  color:var(--nldyn-muted)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="label"],[class*="eyebrow"],[class*="kicker"],dt,small
+) {
+  color:var(--nldyn-label)!important;
+}
+
+/* Links */
+.member-react-safe-shell-v108 a {
+  color:var(--nldyn-blue)!important;
+}
+
+/* Buttons */
+.member-react-safe-shell-v108 :is(button,[role="button"],.button,.btn) {
+  border-color:var(--nldyn-border)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  button,[role="button"],.button,.btn
+):not([class*="primary"]):not([class*="accent"]):not([class*="danger"]) {
+  background:var(--nldyn-card)!important;
+  color:var(--nldyn-strong)!important;
+}
+
+.member-react-safe-shell-v108 :is(button,[role="button"],.button,.btn):hover {
+  border-color:var(--nldyn-border-strong)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="primary"],[class*="accent"]
+) {
+  background:var(--nldyn-blue)!important;
+  color:#fff!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="danger"],[class*="error"]
+)[role="button"],
+.member-react-safe-shell-v108 button[class*="danger"] {
+  background:var(--nldyn-danger)!important;
+  color:#fff!important;
+}
+
+/* Inputs / selects */
+.member-react-safe-shell-v108 :is(input,select,textarea) {
+  background:var(--nldyn-card-soft)!important;
+  color:var(--nldyn-strong)!important;
+  border-color:var(--nldyn-border)!important;
+}
+
+.member-react-safe-shell-v108 :is(input,textarea)::placeholder {
+  color:var(--nldyn-label)!important;
+}
+
+/* Tables */
+.member-react-safe-shell-v108 table,
+.member-react-safe-shell-v108 :is(tr,td,th) {
+  border-color:var(--nldyn-border)!important;
+}
+
+.member-react-safe-shell-v108 table {
+  background:var(--nldyn-card)!important;
+  color:var(--nldyn-text)!important;
+}
+
+.member-react-safe-shell-v108 tbody tr:nth-child(even) {
+  background:color-mix(in srgb,var(--nldyn-card-soft) 75%,transparent)!important;
+}
+
+/* Tabs */
+.member-react-safe-shell-v108 :is([role="tab"],.tab,[class*="tab"]) {
+  background:var(--nldyn-card)!important;
+  color:var(--nldyn-muted)!important;
+  border-color:var(--nldyn-border)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [role="tab"][aria-selected="true"],.tab.active,[class*="tab"].active
+) {
+  color:var(--nldyn-blue)!important;
+  border-color:color-mix(in srgb,var(--nldyn-blue) 55%,var(--nldyn-border))!important;
+}
+
+/* Badges/status */
+.member-react-safe-shell-v108 :is([class*="current"],[class*="high"]) {
+  background:var(--nldyn-green-bright)!important;
+  border-color:var(--nldyn-green-bright)!important;
+  color:#fff!important;
+  font-weight:800!important;
+}
+
+.member-react-safe-shell-v108 :is([class*="verified"],[class*="success"],[class*="approved"]) {
+  color:var(--nldyn-green)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="advanced"],[class*="postgraduate"],[class*="qualification-level"],[class*="reference-band"]
+) {
+  color:var(--nldyn-purple)!important;
+}
+
+/* Icon system */
+.member-react-safe-shell-v108 :is(
+  [class*="icon-wrap"],[class*="icon-circle"],[class*="icon-badge"],
+  [class*="status-icon"],[class*="summary-icon"],[class*="meta-icon"],
+  [class*="info-icon"],[class*="row-icon"],[class*="item-icon"]
+) {
+  background:var(--nldyn-icon-bg)!important;
+  border:1px solid var(--nldyn-icon-border)!important;
+  color:var(--nldyn-icon)!important;
+  box-shadow:none!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="icon-wrap"],[class*="icon-circle"],[class*="icon-badge"],
+  [class*="status-icon"],[class*="summary-icon"],[class*="meta-icon"],
+  [class*="info-icon"],[class*="row-icon"],[class*="item-icon"]
+) :is(svg,i) {
+  color:inherit!important;
+  stroke:currentColor!important;
+}
+
+/* Notices */
+.member-react-safe-shell-v108 :is(
+  [class*="disclaimer"],[class*="important"],[class*="notice"],[class*="warning"]
+) {
+  background:var(--nldyn-amber-soft)!important;
+  border-color:color-mix(in srgb,var(--nldyn-amber) 45%,var(--nldyn-border))!important;
+  color:var(--nldyn-text)!important;
+}
+
+/* Theme-transition polish: only colors/borders, not layout */
+.member-react-safe-shell-v108 :is(
+  .card,.panel,[class*="-card"],[class*="-panel"],
+  button,input,select,textarea,table,tr,td,th,
+  [role="tab"],[class*="badge"],[class*="icon"]
+) {
+  transition:
+    background-color .16s ease,
+    color .16s ease,
+    border-color .16s ease,
+    box-shadow .16s ease;
+}
+
+/* Global responsive behavior */
+@media (min-width:1200px) {
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content {
+    padding:24px!important;
+  }
+}
+
+@media (min-width:768px) and (max-width:1199px) {
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content {
+    padding:16px!important;
+  }
+
+  .member-react-safe-shell-v108 :is([class*="three-column"],[class*="four-column"]) {
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+@media (max-width:767px) {
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content {
+    padding:12px!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [class*="grid"],[class*="cards-grid"],[class*="summary-grid"],
+    [class*="two-column"],[class*="three-column"],[class*="four-column"]
+  ) {
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+
+  .member-react-safe-shell-v108 :is(table,[class*="table-wrap"],[class*="data-grid"]) {
+    max-width:100%!important;
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .member-react-safe-shell-v108 :is([role="tablist"],[class*="tabs"]) {
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch;
+  }
+}

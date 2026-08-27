@@ -1,0 +1,8 @@
+/* NurseLink Demo Tabs Resilient Installer v64.4.5 */
+html[data-nl6445-ready="1"] .nl6445-db-panel{
+  border-color:#2f6e98!important;
+}
+html[data-nl6445-ready="1"] .nl6445-db-panel .nl6441-count{
+  border-color:#377da9!important;
+  background:#13283b!important;
+}

@@ -1,0 +1,60 @@
+/* NURSELINK_ADMIN_DARK_MODE_REMAINING_SURFACE_V5800 */
+
+/* Applications: exact Overdue only strip */
+[data-nl-theme="dark"] .nl550-check-filter {
+  background: #14202a !important;
+  background-color: #14202a !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl550-check-filter span {
+  color: #eef3f7 !important;
+}
+[data-nl-theme="dark"] .nl550-check-filter input {
+  background: #0f1821 !important;
+  accent-color: #2684d8;
+}
+
+/* Support Cases: exact source-scoped filter/search surface */
+[data-nl-theme="dark"] .nl542-global-search {
+  background: #17232e !important;
+  background-color: #17232e !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl542-global-search input,
+[data-nl-theme="dark"] .nl542-global-search select,
+[data-nl-theme="dark"] .nl542-global-search textarea {
+  background: #14202a !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+}
+[data-nl-theme="dark"] .nl542-global-search label,
+[data-nl-theme="dark"] .nl542-global-search span,
+[data-nl-theme="dark"] .nl542-global-search small {
+  color: inherit;
+}
+
+/* Dashboard: Global Search result/panel */
+[data-nl-theme="dark"] .nl542-global-search {
+  background: #17232e !important;
+  background-color: #17232e !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,.28) !important;
+}
+[data-nl-theme="dark"] .nl542-global-search *,
+[data-nl-theme="dark"] .nl542-global-search strong,
+[data-nl-theme="dark"] .nl542-global-search span,
+[data-nl-theme="dark"] .nl542-global-search small,
+[data-nl-theme="dark"] .nl542-global-search p {
+  color: inherit;
+}
+[data-nl-theme="dark"] .nl542-global-search input,
+[data-nl-theme="dark"] .nl542-global-search select {
+  background: #14202a !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+}

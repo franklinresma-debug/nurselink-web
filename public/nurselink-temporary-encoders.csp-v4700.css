@@ -1,0 +1,116 @@
+/* NURSELINK_STATIC_INLINE_STYLE_EXTERNAL_V4700 */
+body{
+      margin:0;
+      background:#f3f7fb;
+      color:#173253;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    .nte-topbar{
+      min-height:72px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      padding:12px clamp(18px,4vw,52px);
+      border-bottom:1px solid #d9e4ee;
+      background:#fff;
+    }
+
+    .nte-brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+    }
+
+    .nte-mark{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:11px;
+      background:#0b72d5;
+      color:#fff;
+      font-weight:900;
+    }
+
+    .nte-brand strong,
+    .nte-brand small{
+      display:block;
+    }
+
+    .nte-brand small{
+      margin-top:2px;
+      color:#738198;
+    }
+
+    .nte-nav{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .nte-nav a{
+      min-height:40px;
+      display:inline-flex;
+      align-items:center;
+      padding:0 13px;
+      border:1px solid #cbd9e5;
+      border-radius:9px;
+      background:#fff;
+      color:#075985;
+      text-decoration:none;
+      font-weight:800;
+    }
+
+    .nte-shell{
+      width:min(1320px,calc(100% - 30px));
+      margin:24px auto 50px;
+    }
+
+    .nte-hero{
+      margin-bottom:18px;
+    }
+
+    .nte-hero span{
+      color:#0b72d5;
+      font-size:.75rem;
+      font-weight:900;
+      letter-spacing:.09em;
+    }
+
+    .nte-hero h1{
+      margin:5px 0 6px;
+      font-size:2rem;
+    }
+
+    .nte-hero p{
+      margin:0;
+      max-width:850px;
+      color:#687b90;
+      line-height:1.55;
+    }
+
+    #temporaryEncoderAdminCard{
+      display:block !important;
+      visibility:visible !important;
+      opacity:1 !important;
+      height:auto !important;
+    }
+
+    @media(max-width:700px){
+      .nte-topbar{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .nte-nav{
+        width:100%;
+      }
+
+      .nte-nav a{
+        flex:1;
+        justify-content:center;
+      }
+    }
+.nl-csp-v4700-001{margin-top:12px}

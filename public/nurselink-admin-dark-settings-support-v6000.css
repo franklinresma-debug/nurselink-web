@@ -1,0 +1,84 @@
+/* NURSELINK_ADMIN_DARK_MODE_SETTINGS_SUPPORT_V6000 */
+
+/* Support Cases: toolbar labels are the remaining white surfaces */
+[data-nl-theme="dark"] .nl542-support-toolbar > label {
+  background: #14202a !important;
+  background-color: #14202a !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl542-support-toolbar > label > span {
+  color: #eef3f7 !important;
+}
+[data-nl-theme="dark"] .nl542-support-toolbar > label input,
+[data-nl-theme="dark"] .nl542-support-toolbar > label select {
+  background: #14202a !important;
+  background-color: #14202a !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+}
+
+/* Settings: Administrator rows */
+[data-nl-theme="dark"] .nl553-admin-row {
+  background: #1b2834 !important;
+  background-color: #1b2834 !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl553-admin-row strong {
+  color: #f2f6f9 !important;
+}
+[data-nl-theme="dark"] .nl553-admin-row small,
+[data-nl-theme="dark"] .nl553-admin-row p,
+[data-nl-theme="dark"] .nl553-admin-row span {
+  color: #aebbc6 !important;
+}
+
+/* Settings: role option cards */
+[data-nl-theme="dark"] .nl553-role-option {
+  background: #1b2834 !important;
+  background-color: #1b2834 !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl553-role-option strong {
+  color: #f2f6f9 !important;
+}
+[data-nl-theme="dark"] .nl553-role-option small,
+[data-nl-theme="dark"] .nl553-role-option span {
+  color: #aebbc6 !important;
+}
+
+/* Settings: Administrator Access Audit entries */
+[data-nl-theme="dark"] .nl554-governance-detail {
+  background: #1b2834 !important;
+  background-color: #1b2834 !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl554-governance-detail strong {
+  color: #f2f6f9 !important;
+}
+[data-nl-theme="dark"] .nl554-governance-detail small,
+[data-nl-theme="dark"] .nl554-governance-detail p,
+[data-nl-theme="dark"] .nl554-governance-detail span {
+  color: #aebbc6 !important;
+}
+[data-nl-theme="dark"] .nl554-governance-detail > div,
+[data-nl-theme="dark"] .nl554-governance-detail section {
+  background: transparent !important;
+  color: inherit;
+}
+
+/* Any audit before/after state strip nested in the exact audit row */
+[data-nl-theme="dark"] .nl554-governance-detail [class*="state"],
+[data-nl-theme="dark"] .nl554-governance-detail [class*="before"],
+[data-nl-theme="dark"] .nl554-governance-detail [class*="after"] {
+  background: #14202a !important;
+  color: #aebbc6 !important;
+  border-color: #344452 !important;
+}

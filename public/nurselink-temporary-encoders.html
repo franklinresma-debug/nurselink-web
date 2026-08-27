@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+
+  <title>Temporary Encoders · NurseLink</title>
+
+  <link
+    rel="stylesheet"
+    href="/nurselink-admin-portal.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="/nurselink-temporary-encoder-admin.css?v=593"
+  >
+
+  
+<link rel="stylesheet" href="/nurselink-temporary-encoders.csp-v4700.css?v=4700">
+</head>
+
+<body>
+
+<header class="nte-topbar">
+
+  <div class="nte-brand">
+    <div class="nte-mark">NL</div>
+
+    <div>
+      <strong>NurseLink</strong>
+      <small>Temporary Staff Administration</small>
+    </div>
+  </div>
+
+  <nav class="nte-nav">
+    <a href="/nurselink-admin-dashboard.html#settings">
+      ← Administrator Settings
+    </a>
+
+    <a
+      href="/nurselink-encoder-login.html"
+      target="_blank"
+      rel="noopener"
+    >
+      Encoder Login
+    </a>
+  </nav>
+
+</header>
+
+
+<main class="nte-shell">
+
+  <div class="nte-hero">
+    <span>SUPER ADMINISTRATOR</span>
+
+    <h1>Temporary Encoders</h1>
+
+    <p>
+      Create temporary username/email/password accounts, define access expiry,
+      assign nurse records, reset passwords, disable accounts and manage
+      restricted Temporary Membership Operator access.
+    </p>
+  </div>
+
+
+  <section
+    id="temporaryEncoderAdminCard"
+    class="nl530-card nl590-encoder-card"
+  >
+
+    <div class="nl530-card-head">
+      <div>
+        <span>TEMPORARY STAFF ACCESS</span>
+
+        <h2>Temporary Encoders</h2>
+
+        <p>
+          Temporary accounts expire automatically and remain separate
+          from normal NurseLink Administrator accounts.
+        </p>
+      </div>
+
+      <div>
+        <button
+          id="temporaryEncoderRefresh"
+          type="button"
+        >
+          Refresh
+        </button>
+      </div>
+    </div>
+
+
+    <div
+      id="temporaryEncoderLocked"
+      class="nl530-empty"
+    >
+      Checking Super Administrator access…
+    </div>
+
+
+    <div
+      id="temporaryEncoderCreateArea"
+      hidden
+    >
+
+      <div class="nl590-encoder-layout">
+
+        <section>
+
+          <h3>Create Temporary Encoder</h3>
+
+          <form
+            id="temporaryEncoderCreateForm"
+            class="nl590-encoder-form"
+          >
+
+            <label>
+              <span>Username</span>
+
+              <input
+                id="temporaryEncoderUsername"
+                type="text"
+                autocomplete="off"
+                autocapitalize="none"
+                spellcheck="false"
+                placeholder="encoder01"
+                minlength="3"
+                maxlength="80"
+                pattern="[A-Za-z0-9._-]+"
+                required
+              >
+            </label>
+
+
+            <label>
+              <span>Email address</span>
+
+              <input
+                id="temporaryEncoderEmail"
+                type="email"
+                autocomplete="off"
+                autocapitalize="none"
+                spellcheck="false"
+                placeholder="encoder@example.com"
+                maxlength="255"
+                required
+              >
+            </label>
+
+
+            <label>
+              <span>Display name</span>
+
+              <input
+                id="temporaryEncoderDisplayName"
+                type="text"
+                placeholder="Temporary Encoder 01"
+                maxlength="160"
+                required
+              >
+            </label>
+
+
+            <label>
+              <span>Temporary password</span>
+
+              <input
+                id="temporaryEncoderPassword"
+                type="password"
+                autocomplete="new-password"
+                required
+              >
+            </label>
+
+
+            <label>
+              <span>Access expires</span>
+
+              <input
+                id="temporaryEncoderExpiresAt"
+                type="datetime-local"
+                required
+              >
+            </label>
+
+
+            <button type="submit">
+              Create Temporary Encoder
+            </button>
+
+          </form>
+
+
+          <p class="nl-csp-v4700-001">
+            <a
+              class="nl590-login-link"
+              href="/nurselink-encoder-login.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Open Temporary Encoder Login →
+            </a>
+          </p>
+
+        </section>
+
+
+        <section
+          id="temporaryEncoderRosterArea"
+          hidden
+        >
+
+          <h3>Encoder Accounts</h3>
+
+          <div
+            id="temporaryEncoderList"
+            class="nl590-encoder-list"
+          >
+            <div class="nl590-encoder-empty">
+              Loading Temporary Encoders…
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <div
+        id="temporaryEncoderNotice"
+        class="nl590-encoder-notice"
+        hidden
+        aria-live="polite"
+      ></div>
+
+
+      <section
+        id="temporaryEncoderManager"
+        class="nl590-encoder-manager"
+        hidden
+      >
+
+        <div class="nl590-manager-header">
+
+          <div>
+            <span class="nl553-field-label">
+              MANAGE TEMPORARY ENCODER
+            </span>
+
+            <strong id="temporaryEncoderSelectedName">
+              Temporary Encoder
+            </strong>
+
+            <small id="temporaryEncoderSelectedMeta"></small>
+          </div>
+
+
+          <button
+            id="temporaryEncoderToggleSelected"
+            type="button"
+          >
+            Disable Account
+          </button>
+
+        </div>
+
+
+        <div class="nl590-manager-grid">
+
+          <section class="nl590-manager-box">
+
+            <h4>Login Email</h4>
+
+            <div class="nl590-encoder-form">
+
+              <label>
+                <span>Email address</span>
+
+                <input
+                  id="temporaryEncoderEmailUpdate"
+                  type="email"
+                  autocomplete="off"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  maxlength="255"
+                >
+              </label>
+
+              <button
+                id="temporaryEncoderUpdateEmail"
+                type="button"
+              >
+                Update Email
+              </button>
+
+            </div>
+
+          </section>
+
+
+          <section class="nl590-manager-box">
+
+            <h4>Access Expiration</h4>
+
+            <div class="nl590-encoder-form">
+
+              <label>
+                <span>New expiration</span>
+
+                <input
+                  id="temporaryEncoderExpiryUpdate"
+                  type="datetime-local"
+                >
+              </label>
+
+              <button
+                id="temporaryEncoderUpdateExpiry"
+                type="button"
+              >
+                Update Expiration
+              </button>
+
+            </div>
+
+          </section>
+
+
+          <section class="nl590-manager-box">
+
+            <h4>Reset Password</h4>
+
+            <div class="nl590-encoder-form">
+
+              <label>
+                <span>New temporary password</span>
+
+                <input
+                  id="temporaryEncoderNewPassword"
+                  type="password"
+                  autocomplete="new-password"
+                >
+              </label>
+
+              <button
+                id="temporaryEncoderResetPassword"
+                type="button"
+              >
+                Reset Password
+              </button>
+
+            </div>
+
+          </section>
+
+
+          <section class="nl590-manager-box">
+
+            <h4>Assign Nurse</h4>
+
+            <form
+              id="temporaryEncoderAssignmentForm"
+              class="nl590-encoder-form"
+            >
+
+              <label>
+                <span>Nurse identifier</span>
+
+                <input
+                  id="temporaryEncoderNurseIdentifier"
+                  type="text"
+                  placeholder="Email, member number, or NurseLink user ID"
+                  maxlength="255"
+                  required
+                >
+              </label>
+
+
+              <label>
+                <span>Assignment expires</span>
+
+                <input
+                  id="temporaryEncoderAssignmentExpiresAt"
+                  type="datetime-local"
+                >
+
+                <small>
+                  Leave blank to use the encoder account expiration.
+                </small>
+              </label>
+
+
+              <label>
+                <span>Assignment reason</span>
+
+                <textarea
+                  id="temporaryEncoderAssignmentReason"
+                  maxlength="2000"
+                  placeholder="Temporary encoding assistance, migration, registration encoding…"
+                ></textarea>
+              </label>
+
+
+              <button type="submit">
+                Assign Nurse
+              </button>
+
+            </form>
+
+          </section>
+
+
+          <section class="nl590-manager-box">
+
+            <h4>Assigned Nurses</h4>
+
+            <div
+              id="temporaryEncoderAssignmentList"
+              class="nl590-assignment-list"
+            >
+              <div class="nl590-encoder-empty">
+                Select a Temporary Encoder.
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<script
+  src="/nurselink-temporary-encoder-admin.js?v=699"
+  defer
+></script>
+
+</body>
+</html>

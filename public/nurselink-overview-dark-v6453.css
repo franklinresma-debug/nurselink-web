@@ -1,0 +1,108 @@
+/* NurseLink Overview Cards Dark Mode Fix v64.5.3 */
+
+/* Known overview-card classes from the profile-tab builds */
+html[data-theme="dark"] .nl6441-overview-card,
+html[data-theme="dark"] .nl6448-overview-card,
+html[data-theme="dark"] .nl6449-overview-card,
+html[data-theme="dark"] .nl6450-overview-card,
+html[data-theme="dark"] .nl6451-card,
+body.dark .nl6441-overview-card,
+body.dark .nl6448-overview-card,
+body.dark .nl6449-overview-card,
+body.dark .nl6450-overview-card,
+body.dark .nl6451-card {
+  background: #111d2d !important;
+  border-color: #26384f !important;
+  color: #eef5fd !important;
+  box-shadow: none !important;
+}
+
+/* Current v64.4.1 Overview fallback: only inside the Overview panel */
+html[data-theme="dark"] .nl6441-inline-panel [data-nl6441-overview-card],
+html[data-theme="dark"] .nl6441-inline-panel .nl6441-overview-grid > *,
+body.dark .nl6441-inline-panel [data-nl6441-overview-card],
+body.dark .nl6441-inline-panel .nl6441-overview-grid > * {
+  background: #111d2d !important;
+  border-color: #26384f !important;
+  color: #eef5fd !important;
+}
+
+/* Defensive scope for the six clickable Overview cards used by the compatibility build */
+html[data-theme="dark"] .nl6441-inline-panel button[data-nl6448-open],
+html[data-theme="dark"] .nl6441-inline-panel button[data-nl6449-open],
+html[data-theme="dark"] .nl6441-inline-panel button[data-nl6450-open],
+html[data-theme="dark"] .nl6441-inline-panel button[data-nl6451-open],
+body.dark .nl6441-inline-panel button[data-nl6448-open],
+body.dark .nl6441-inline-panel button[data-nl6449-open],
+body.dark .nl6441-inline-panel button[data-nl6450-open],
+body.dark .nl6441-inline-panel button[data-nl6451-open] {
+  background: #111d2d !important;
+  border-color: #26384f !important;
+  color: #eef5fd !important;
+}
+
+/* Text */
+html[data-theme="dark"] .nl6441-overview-card strong,
+html[data-theme="dark"] .nl6448-overview-card strong,
+html[data-theme="dark"] .nl6449-overview-card strong,
+html[data-theme="dark"] .nl6450-overview-card strong,
+html[data-theme="dark"] .nl6451-card strong,
+body.dark .nl6441-overview-card strong,
+body.dark .nl6448-overview-card strong,
+body.dark .nl6449-overview-card strong,
+body.dark .nl6450-overview-card strong,
+body.dark .nl6451-card strong {
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] .nl6441-overview-card small,
+html[data-theme="dark"] .nl6448-overview-card small,
+html[data-theme="dark"] .nl6449-overview-card small,
+html[data-theme="dark"] .nl6450-overview-card small,
+html[data-theme="dark"] .nl6451-card small,
+body.dark .nl6441-overview-card small,
+body.dark .nl6448-overview-card small,
+body.dark .nl6449-overview-card small,
+body.dark .nl6450-overview-card small,
+body.dark .nl6451-card small {
+  color: #a6b4c7 !important;
+}
+
+/* Icon tile */
+html[data-theme="dark"] .nl6441-overview-card > span,
+html[data-theme="dark"] .nl6448-overview-card > span,
+html[data-theme="dark"] .nl6449-overview-card > span,
+html[data-theme="dark"] .nl6450-overview-card > span,
+html[data-theme="dark"] .nl6451-card > span,
+body.dark .nl6441-overview-card > span,
+body.dark .nl6448-overview-card > span,
+body.dark .nl6449-overview-card > span,
+body.dark .nl6450-overview-card > span,
+body.dark .nl6451-card > span {
+  background: #202f46 !important;
+  color: #4fc3ff !important;
+}
+
+/* Hover/focus */
+html[data-theme="dark"] .nl6441-overview-card:hover,
+html[data-theme="dark"] .nl6448-overview-card:hover,
+html[data-theme="dark"] .nl6449-overview-card:hover,
+html[data-theme="dark"] .nl6450-overview-card:hover,
+html[data-theme="dark"] .nl6451-card:hover,
+body.dark .nl6441-overview-card:hover,
+body.dark .nl6448-overview-card:hover,
+body.dark .nl6449-overview-card:hover,
+body.dark .nl6450-overview-card:hover,
+body.dark .nl6451-card:hover {
+  background: #14263a !important;
+  border-color: #2b9bd8 !important;
+}
+
+/* Keep light mode unchanged */
+html[data-theme="light"] .nl6441-overview-card,
+html[data-theme="light"] .nl6448-overview-card,
+html[data-theme="light"] .nl6449-overview-card,
+html[data-theme="light"] .nl6450-overview-card,
+html[data-theme="light"] .nl6451-card {
+  background: #ffffff;
+}

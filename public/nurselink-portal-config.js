@@ -20,7 +20,8 @@ window.NurseLinkPortalConfig = Object.freeze({
     ['support', 'Support Cases'],
     ['audit', 'Audit Logs'],
     ['health', 'System Health'],
-    ['settings', 'Settings']
+    ['settings', 'Settings'],
+    ['qat', 'QAT Checklist']
   ]),
   compatibilityRedirects: Object.freeze({
     '/nurselink-membership-command-center.html': '/admin/#applications',

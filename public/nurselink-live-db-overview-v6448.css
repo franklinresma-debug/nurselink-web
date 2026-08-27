@@ -1,0 +1,65 @@
+/* NurseLink Live DB Overview + Inline Tabs v64.4.8 */
+.nl6448-overview-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+.nl6448-overview-card{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  grid-template-rows:auto auto;
+  gap:2px 11px;
+  align-items:center;
+  padding:15px;
+  border:1px solid #26384f;
+  border-radius:10px;
+  background:#111d2d;
+  color:#eef5fd;
+  text-align:left;
+  cursor:pointer;
+}
+.nl6448-overview-card:hover,
+.nl6448-overview-card:focus-visible{
+  border-color:#2b97d2;
+  background:#14253a;
+  outline:none;
+}
+.nl6448-overview-card>span{
+  grid-row:1/3;
+  display:grid;
+  place-items:center;
+  width:40px;height:40px;
+  border-radius:9px;
+  background:#202f46;
+  color:#49c1ff;
+  font-size:17px;
+}
+.nl6448-overview-card>strong{font-size:20px;color:#fff}
+.nl6448-overview-card>small{color:#9babc0;font-size:11px}
+.nl6448-live-note{
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid #203148;
+  color:#70849c;
+  font-size:10px;
+}
+html[data-nl6448-live-db="1"] .nl6448-live-panel{
+  border-color:#2e6e97!important;
+}
+
+html[data-theme="light"] .nl6448-overview-card,
+body:not(.dark) .nl6448-overview-card{
+  background:#f8fafc;
+  border-color:#d8e2ed;
+  color:#172235;
+}
+html[data-theme="light"] .nl6448-overview-card>strong,
+body:not(.dark) .nl6448-overview-card>strong{color:#172235}
+
+@media(max-width:800px){
+  .nl6448-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:520px){
+  .nl6448-overview-grid{grid-template-columns:1fr}
+}

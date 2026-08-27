@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Bulk Nurse Intake · NurseLink</title>
+  <link rel="stylesheet" href="/nurselink-bulk-intake.css?v=120">
+<link rel="stylesheet" href="/nurselink-bulk-intake.csp-v4700.css?v=4700">
+<link rel="stylesheet" href="/nurselink-bulk-import-dark-v5600.css?v=5600">
+</head>
+<body>
+<div class="nlbi-shell">
+
+  <header class="nlbi-head">
+    <div>
+      <span class="nlbi-eyebrow">NURSELINK TEMPORARY OPERATOR</span>
+      <h1>Bulk Nurse Intake</h1>
+      <p>
+        Securely upload PDF, Word and image documents, automatically
+        extract nurse information and credentials, detect duplicates,
+        and review every candidate before import.
+      </p>
+    </div>
+
+    <div class="nlbi-actions">
+      <a class="nlbi-button" href="/nurselink-encoder.html">
+        ← Encoder Workspace
+      </a>
+      <button id="logoutButton" type="button">Sign Out</button>
+    </div>
+  </header>
+
+  <div id="notice" class="nlbi-notice nlbi-hidden"></div>
+
+  <section class="nlbi-card">
+    <h2>1. Create Intake Batch</h2>
+
+    <div class="nlbi-grid">
+      <label>
+        Batch name
+        <input
+          id="batchName"
+          maxlength="190"
+          placeholder="August 2026 Nurse Records"
+        >
+      </label>
+
+      <div class="nl-csp-v4700-001">
+        <button
+          id="createBatch"
+          class="primary"
+          type="button"
+        >
+          Create Batch
+        </button>
+      </div>
+    </div>
+
+    <div class="nl-csp-v4700-002">
+      <label>
+        Existing batch
+        <select id="batchSelect">
+          <option value="">Select a batch</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section id="uploadCard" class="nlbi-card nlbi-hidden">
+    <h2>2. Upload Documents</h2>
+
+    <div class="nlbi-drop">
+      <strong>Select all nurse documents</strong>
+      <small>
+        PDF · DOC · DOCX · JPG · PNG · up to 15 MB per file.
+        Each file is uploaded and malware-scanned individually.
+      </small>
+
+      <input
+        id="fileInput"
+        type="file"
+        multiple
+        accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+      >
+    </div>
+
+    <div class="nlbi-actions nl-csp-v4700-003">
+      <button
+        id="uploadFiles"
+        class="primary"
+        type="button"
+      >
+        Upload Selected Files
+      </button>
+
+      <button
+        id="refreshBatch"
+        type="button"
+      >
+        Refresh Processing
+      </button>
+    </div>
+
+    <div id="selectedFiles" class="nlbi-files"></div>
+  </section>
+
+  <section id="progressCard" class="nlbi-card nlbi-hidden">
+    <h2>3. Processing Status</h2>
+
+    <div class="nlbi-progress">
+      <div class="nlbi-stat">
+        <strong id="statFiles">0</strong>
+        <small>Files</small>
+      </div>
+      <div class="nlbi-stat">
+        <strong id="statProcessed">0</strong>
+        <small>Processed</small>
+      </div>
+      <div class="nlbi-stat">
+        <strong id="statFailed">0</strong>
+        <small>Failed/blocked</small>
+      </div>
+      <div class="nlbi-stat">
+        <strong id="statCandidates">0</strong>
+        <small>Candidates</small>
+      </div>
+      <div class="nlbi-stat">
+        <strong id="statReady">0</strong>
+        <small>High confidence</small>
+      </div>
+      <div class="nlbi-stat">
+        <strong id="statReview">0</strong>
+        <small>Review required</small>
+      </div>
+    </div>
+
+    <div id="batchFiles" class="nlbi-files"></div>
+
+    <div class="nlbi-actions nl-csp-v4700-004">
+      <button
+        id="buildCandidates"
+        class="primary"
+        type="button"
+      >
+        Build Nurse Candidates
+      </button>
+    </div>
+  </section>
+
+  <section id="reviewCard" class="nlbi-card nlbi-hidden">
+    <div class="nlbi-head nl-csp-v4700-005">
+      <div>
+        <span class="nlbi-eyebrow">HUMAN REVIEW REQUIRED</span>
+        <h2>4. Review Extracted Nurses</h2>
+        <p>
+          Correct OCR values before import. Saving here does not create
+          a NurseLink member and does not verify a credential.
+        </p>
+      </div>
+    </div>
+
+    <div id="candidateList" class="nlbi-candidates"></div>
+  </section>
+
+</div>
+
+<script src="/nurselink-bulk-intake.js?v=155" defer></script>
+</body>
+</html>

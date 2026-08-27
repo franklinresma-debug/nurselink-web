@@ -1,0 +1,138 @@
+/* NurseLink Shell Runtime Cleanup v64.10.0
+   Final fixed-shell geometry after obsolete topbar activator removal.
+*/
+
+:root{
+  --nlc-sidebar-w:232px;
+  --nlc-topbar-h:72px;
+  --nlc-sidebar-z:1400;
+  --nlc-topbar-z:1300;
+}
+
+/* Native shell sidebar */
+@media(min-width:768px){
+  .member-react-safe-shell-v108 :is(
+    .sidebar,[class*="sidebar"],aside[class*="nav"]
+  ){
+    position:fixed!important;
+    top:0!important;
+    left:0!important;
+    bottom:0!important;
+    width:var(--nlc-sidebar-w)!important;
+    height:100vh!important;
+    max-height:100vh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    z-index:var(--nlc-sidebar-z)!important;
+  }
+
+  /* Native shell topbar */
+  .member-react-safe-shell-v108 :is(
+    [data-nl-minimal-topbar="true"],
+    [data-nl-mobile-topbar="true"],
+    .topbar,.top-bar,.app-header,.member-header,.member-topbar
+  ){
+    position:fixed!important;
+    top:0!important;
+    left:var(--nlc-sidebar-w)!important;
+    right:0!important;
+    width:auto!important;
+    height:var(--nlc-topbar-h)!important;
+    min-height:var(--nlc-topbar-h)!important;
+    z-index:var(--nlc-topbar-z)!important;
+    margin:0!important;
+  }
+
+  /* Content frame */
+  .member-react-safe-shell-v108{
+    padding-left:var(--nlc-sidebar-w)!important;
+    box-sizing:border-box!important;
+  }
+
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content,
+  .member-react-safe-shell-v108 [class*="workspace"]{
+    padding-top:var(--nlc-topbar-h)!important;
+    box-sizing:border-box!important;
+  }
+}
+
+/* Remove stale/empty placeholder shells created by old topbar scripts. */
+.member-react-safe-shell-v108 :is(
+  [data-nl-obsolete-topbar-placeholder="true"],
+  [class*="topbar-placeholder"],
+  [class*="header-placeholder"]
+){
+  display:none!important;
+}
+
+/* Prevent giant empty header blocks */
+.member-react-safe-shell-v108 header:empty,
+.member-react-safe-shell-v108 [class*="topbar"]:empty,
+.member-react-safe-shell-v108 [class*="header"]:empty{
+  display:none!important;
+}
+
+/* Sidebar must not contain topbar ghost blocks */
+.member-react-safe-shell-v108 :is(.sidebar,[class*="sidebar"]) > :is(
+  header,
+  [class*="topbar"],
+  [class*="app-header"]
+){
+  display:none!important;
+}
+
+/* Tablet */
+@media(min-width:768px) and (max-width:1199px){
+  :root{
+    --nlc-sidebar-w:210px;
+    --nlc-topbar-h:64px;
+  }
+}
+
+/* Mobile */
+@media(max-width:767px){
+  :root{
+    --nlc-sidebar-w:260px;
+    --nlc-topbar-h:58px;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [data-nl-minimal-topbar="true"],
+    [data-nl-mobile-topbar="true"],
+    .topbar,.top-bar,.app-header,.member-header,.member-topbar
+  ),
+  #nurselink-universal-topbar{
+    position:fixed!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    height:var(--nlc-topbar-h)!important;
+    min-height:var(--nlc-topbar-h)!important;
+    z-index:var(--nlc-topbar-z)!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    .sidebar,[class*="sidebar"],aside[class*="nav"]
+  ),
+  #nurselink-universal-sidebar{
+    position:fixed!important;
+    top:0!important;
+    bottom:0!important;
+    left:0!important;
+    width:var(--nlc-sidebar-w)!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow-y:auto!important;
+    z-index:var(--nlc-sidebar-z)!important;
+  }
+
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content,
+  .member-react-safe-shell-v108 [class*="workspace"]{
+    padding-top:var(--nlc-topbar-h)!important;
+  }
+}

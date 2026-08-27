@@ -1,0 +1,25 @@
+/* NurseLink Mobile Topbar Help Removal v64.8.3 */
+
+/* Mobile only: remove Help from the topbar to reduce crowding. */
+@media (max-width: 900px) {
+  [data-nl6481-control-type="help"],
+  [data-nl6483-mobile-help="1"] {
+    display: none !important;
+  }
+
+  /* Keep remaining topbar controls aligned and evenly spaced. */
+  .nurselink-topbar,
+  .nl-topbar,
+  .member-topbar,
+  header[class*="topbar"],
+  [class*="topbar"][class*="member"],
+  [data-nl-topbar] {
+    gap: 8px !important;
+  }
+
+  .nl6480-theme-button,
+  .nl6481-theme-button,
+  [data-nl6481-control-type="notification"] {
+    flex: 0 0 auto !important;
+  }
+}

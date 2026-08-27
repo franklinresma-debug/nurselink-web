@@ -1,0 +1,11 @@
+/* NurseLink Qualifications Loop-Free SPA v64.6.7 */
+
+html[data-nl6467-qual-active="1"] [data-nl6467-legacy-hidden="1"] {
+  display: none !important;
+}
+
+html[data-nl6467-modern-qualifications="1"] .nl6439-page {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}

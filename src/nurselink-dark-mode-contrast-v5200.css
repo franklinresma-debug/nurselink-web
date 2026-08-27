@@ -1,0 +1,112 @@
+/* NURSELINK_DARK_MODE_CONTRAST_FIX_V5200 */
+
+/* Sidebar footer: Member Portal / Sign out */
+:root[data-nl-theme="dark"] .nl-admin-sidebar,
+:root[data-theme="dark"] .nl-admin-sidebar,
+html.dark .nl-admin-sidebar,
+body.dark .nl-admin-sidebar,
+[data-nl-theme="dark"] .nl-admin-sidebar,
+[data-theme="dark"] .nl-admin-sidebar {
+  background: #18232e !important;
+  color: #eef3f7 !important;
+  border-color: #3b4855 !important;
+  box-shadow: none !important;
+}
+:root[data-nl-theme="dark"] .nl-admin-sidebar:hover,
+:root[data-theme="dark"] .nl-admin-sidebar:hover,
+html.dark .nl-admin-sidebar:hover,
+body.dark .nl-admin-sidebar:hover,
+[data-nl-theme="dark"] .nl-admin-sidebar:hover,
+[data-theme="dark"] .nl-admin-sidebar:hover {
+  background: #22303c !important;
+  color: #ffffff !important;
+  border-color: #536271 !important;
+}
+:root[data-nl-theme="dark"] .nl-admin-sidebar:focus-visible,
+:root[data-theme="dark"] .nl-admin-sidebar:focus-visible,
+html.dark .nl-admin-sidebar:focus-visible,
+body.dark .nl-admin-sidebar:focus-visible,
+[data-nl-theme="dark"] .nl-admin-sidebar:focus-visible,
+[data-theme="dark"] .nl-admin-sidebar:focus-visible {
+  outline: 2px solid #d7e2ea !important;
+  outline-offset: 2px !important;
+}
+:root[data-nl-theme="dark"] .nl-admin-sidebar:disabled,
+:root[data-theme="dark"] .nl-admin-sidebar:disabled,
+html.dark .nl-admin-sidebar:disabled,
+body.dark .nl-admin-sidebar:disabled,
+[data-nl-theme="dark"] .nl-admin-sidebar:disabled,
+[data-theme="dark"] .nl-admin-sidebar:disabled {
+  background: #131c25 !important;
+  color: #83909c !important;
+  border-color: #2a3540 !important;
+  opacity: .72 !important;
+}
+
+/* Administrator Follow-up rows */
+:root[data-nl-theme="dark"] .nl530-card,
+:root[data-theme="dark"] .nl530-card,
+html.dark .nl530-card,
+body.dark .nl530-card,
+[data-nl-theme="dark"] .nl530-card,
+[data-theme="dark"] .nl530-card {
+  background: #1a2631 !important;
+  color: #eef3f7 !important;
+  border-color: #344350 !important;
+  box-shadow: none !important;
+}
+:root[data-nl-theme="dark"] .nl530-card,
+:root[data-theme="dark"] .nl530-card,
+html.dark .nl530-card,
+body.dark .nl530-card,
+[data-nl-theme="dark"] .nl530-card,
+[data-theme="dark"] .nl530-card *,
+:root[data-nl-theme="dark"] .nl530-card,
+:root[data-theme="dark"] .nl530-card,
+html.dark .nl530-card,
+body.dark .nl530-card,
+[data-nl-theme="dark"] .nl530-card,
+[data-theme="dark"] .nl530-card p,
+:root[data-nl-theme="dark"] .nl530-card,
+:root[data-theme="dark"] .nl530-card,
+html.dark .nl530-card,
+body.dark .nl530-card,
+[data-nl-theme="dark"] .nl530-card,
+[data-theme="dark"] .nl530-card span,
+:root[data-nl-theme="dark"] .nl530-card,
+:root[data-theme="dark"] .nl530-card,
+html.dark .nl530-card,
+body.dark .nl530-card,
+[data-nl-theme="dark"] .nl530-card,
+[data-theme="dark"] .nl530-card small {
+  color: inherit;
+}
+:root[data-nl-theme="dark"] .nl530-card:hover,
+:root[data-theme="dark"] .nl530-card:hover,
+html.dark .nl530-card:hover,
+body.dark .nl530-card:hover,
+[data-nl-theme="dark"] .nl530-card:hover,
+[data-theme="dark"] .nl530-card:hover {
+  background: #202e3a !important;
+  border-color: #485968 !important;
+}
+
+/* Bottom Administration principle bar */
+:root[data-nl-theme="dark"] .nl530-footer,
+:root[data-theme="dark"] .nl530-footer,
+html.dark .nl530-footer,
+body.dark .nl530-footer,
+[data-nl-theme="dark"] .nl530-footer,
+[data-theme="dark"] .nl530-footer {
+  background: #16212b !important;
+  color: #dbe5ec !important;
+  border-color: #34424f !important;
+}
+:root[data-nl-theme="dark"] .nl530-footer,
+:root[data-theme="dark"] .nl530-footer,
+html.dark .nl530-footer,
+body.dark .nl530-footer,
+[data-nl-theme="dark"] .nl530-footer,
+[data-theme="dark"] .nl530-footer * {
+  color: inherit;
+}

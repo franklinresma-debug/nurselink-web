@@ -1,0 +1,257 @@
+/* NurseLink Qualifications Theme + Adaptive Mobile Topbar v64.6.8
+   Adaptive width modes: normal -> compact -> tight -> micro.
+   External stylesheet only.
+*/
+:root {
+  --nlq-page: #f6f8fc;
+  --nlq-surface: #ffffff;
+  --nlq-surface-2: #f8fafc;
+  --nlq-surface-3: #eef3f9;
+  --nlq-text: #14213d;
+  --nlq-muted: #68758a;
+  --nlq-border: #dbe3ee;
+  --nlq-accent: #1769e0;
+  --nlq-accent-soft: #eaf2ff;
+  --nlq-success: #11845b;
+  --nlq-success-soft: #e9f8f1;
+  --nlq-purple: #7457e8;
+  --nlq-purple-soft: #f0edff;
+  --nlq-warning-bg: #fff8e8;
+  --nlq-warning-border: #ead7a1;
+  color-scheme: light;
+}
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark {
+  --nlq-page: #0d1423;
+  --nlq-surface: #141d2d;
+  --nlq-surface-2: #192436;
+  --nlq-surface-3: #202d42;
+  --nlq-text: #f4f7fb;
+  --nlq-muted: #a8b5c8;
+  --nlq-border: #2c3a50;
+  --nlq-accent: #5ea0ff;
+  --nlq-accent-soft: #172d4f;
+  --nlq-success: #63d6a6;
+  --nlq-success-soft: #17352e;
+  --nlq-purple: #a894ff;
+  --nlq-purple-soft: #29234c;
+  --nlq-warning-bg: #332b19;
+  --nlq-warning-border: #5c4e2c;
+  color-scheme: dark;
+}
+html[data-nl-route="qualifications"] body,
+body[data-nl-route="qualifications"] {
+  background: var(--nlq-page) !important;
+  color: var(--nlq-text) !important;
+}
+html[data-nl-route="qualifications"] :is(
+  main,.main,.content,[class*="qualification"]
+) { color: var(--nlq-text); }
+html[data-nl-route="qualifications"] :is(
+  .card,.panel,[class*="-card"],[class*="-panel"],
+  [class*="framework"],[class*="readiness"],[class*="standing"],
+  [class*="snapshot"],[class*="provenance"],[class*="disclaimer"]
+) { border-color: var(--nlq-border); }
+html[data-nl-route="qualifications"] :is(
+  .card,.panel,[class*="-card"],[class*="-panel"]
+):not(.sidebar):not([class*="sidebar"]) {
+  background-color: var(--nlq-surface);
+  color: var(--nlq-text);
+}
+html[data-nl-route="qualifications"] :is(
+  h1,h2,h3,h4,h5,h6,strong,b,dt,th,[class*="title"],[class*="heading"],[class*="value"]
+) { color: var(--nlq-text); }
+html[data-nl-route="qualifications"] :is(
+  p,small,dd,td,label,[class*="muted"],[class*="meta"],[class*="subtitle"],
+  [class*="description"],[class*="caption"]
+) { color: var(--nlq-muted); }
+html[data-nl-route="qualifications"] a { color: var(--nlq-accent); }
+html[data-nl-route="qualifications"] :is([role="tab"],.tab,[class*="tab"]) {
+  border-color: var(--nlq-border);
+}
+html[data-nl-route="qualifications"] :is(
+  [aria-selected="true"],.active,[class*="active"]
+)[role="tab"],
+html[data-nl-route="qualifications"] .tab.active {
+  color: var(--nlq-accent);
+  border-color: var(--nlq-accent);
+}
+html[data-nl-route="qualifications"] :is(
+  [class*="qualification"][class*="level"],
+  [class*="pqf"][class*="level"],
+  [class*="reference-band"]
+) { color: var(--nlq-purple); }
+html[data-nl-route="qualifications"] :is(
+  [class*="verified"],[class*="current"],[class*="success"]
+) { color: var(--nlq-success); }
+html[data-nl-route="qualifications"] :is(
+  [class*="disclaimer"],[class*="notice"],[class*="important"]
+) {
+  background-color: var(--nlq-warning-bg);
+  border-color: var(--nlq-warning-border);
+}
+
+/* ------------------------------------------------------------
+   MOBILE TOPBAR
+   The JS identifies elements semantically and assigns density.
+   ------------------------------------------------------------ */
+@media (max-width: 767px) {
+  [data-nl-mobile-topbar="true"] {
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    column-gap: 8px !important;
+    padding-left: max(8px, env(safe-area-inset-left)) !important;
+    padding-right: max(8px, env(safe-area-inset-right)) !important;
+    overflow: visible !important;
+  }
+
+  [data-nl-topbar-left="true"] {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+    overflow: hidden !important;
+  }
+
+  [data-nl-topbar-brand="true"] {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 138px !important;
+    line-height: 1.02 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+
+  [data-nl-topbar-brand="true"] * {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+  }
+
+  [data-nl-topbar-actions="true"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex-wrap: nowrap !important;
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    gap: 5px !important;
+    margin-left: auto !important;
+  }
+
+  [data-nl-topbar-profile="true"],
+  [data-nl-topbar-theme="true"],
+  [data-nl-topbar-notifications="true"],
+  [data-nl-topbar-menu="true"] {
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Approved normal spacing: Profile -> Theme = 30px effective */
+  [data-nl-topbar-profile="true"] {
+    margin-right: 25px !important;
+  }
+
+  [data-nl-mobile-topbar="true"] :is(button,a,[role="button"]) {
+    touch-action: manipulation;
+  }
+
+  /* COMPACT: topbar is beginning to crowd. */
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="compact"] {
+    column-gap: 6px !important;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="compact"]
+  [data-nl-topbar-left="true"] {
+    gap: 6px !important;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="compact"]
+  [data-nl-topbar-profile="true"] {
+    margin-right: 17px !important; /* 22px effective */
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="compact"]
+  [data-nl-topbar-brand="true"] {
+    max-width: 118px !important;
+    transform: scale(.96);
+    transform-origin: left center;
+  }
+
+  /* TIGHT: preserve all controls and one row first. */
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="tight"] {
+    column-gap: 4px !important;
+    padding-left: max(6px, env(safe-area-inset-left)) !important;
+    padding-right: max(6px, env(safe-area-inset-right)) !important;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="tight"]
+  [data-nl-topbar-left="true"] {
+    gap: 4px !important;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="tight"]
+  [data-nl-topbar-actions="true"] {
+    gap: 4px !important;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="tight"]
+  [data-nl-topbar-profile="true"] {
+    margin-right: 10px !important; /* 14px effective */
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="tight"]
+  [data-nl-topbar-brand="true"] {
+    max-width: 102px !important;
+    transform: scale(.92);
+    transform-origin: left center;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="tight"]
+  [data-nl-topbar-profile-label="true"] {
+    display: none !important;
+  }
+
+  /* MICRO: only for genuinely narrow/large-text situations. */
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="micro"] {
+    column-gap: 3px !important;
+    padding-left: max(4px, env(safe-area-inset-left)) !important;
+    padding-right: max(4px, env(safe-area-inset-right)) !important;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="micro"]
+  [data-nl-topbar-left="true"] {
+    gap: 3px !important;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="micro"]
+  [data-nl-topbar-actions="true"] {
+    gap: 3px !important;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="micro"]
+  [data-nl-topbar-profile="true"] {
+    margin-right: 5px !important; /* 8px effective */
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="micro"]
+  [data-nl-topbar-brand="true"] {
+    max-width: 88px !important;
+    transform: scale(.88);
+    transform-origin: left center;
+  }
+  [data-nl-mobile-topbar="true"][data-nl-topbar-density="micro"]
+  [data-nl-topbar-profile-label="true"] {
+    display: none !important;
+  }
+}
+
+/* Landscape phones can use compact action spacing while keeping brand readable. */
+@media (max-width: 900px) and (orientation: landscape) {
+  [data-nl-mobile-topbar="true"] [data-nl-topbar-profile="true"] {
+    margin-right: 17px !important;
+  }
+}

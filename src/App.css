@@ -2123,3 +2123,1485 @@ td {
     width: 100%;
   }
 }
+
+/* NurseLink Registration Consent Alignment v615 */
+
+.registration-consent-row,
+.policy-consent-row,
+.consent-row,
+label:has(input[type="checkbox"][name*="terms"]),
+label:has(input[type="checkbox"][name*="privacy"]) {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+}
+
+.registration-consent-row input[type="checkbox"],
+.policy-consent-row input[type="checkbox"],
+.consent-row input[type="checkbox"],
+label:has(input[type="checkbox"][name*="terms"]) input[type="checkbox"],
+label:has(input[type="checkbox"][name*="privacy"]) input[type="checkbox"] {
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+
+  margin: 2px 0 0 0 !important;
+  padding: 0 !important;
+
+  align-self: flex-start !important;
+}
+
+.registration-consent-row > span,
+.policy-consent-row > span,
+.consent-row > span,
+label:has(input[type="checkbox"][name*="terms"]) > span,
+label:has(input[type="checkbox"][name*="privacy"]) > span {
+  flex: 1 1 auto;
+  min-width: 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 680px) {
+  .registration-consent-row,
+  .policy-consent-row,
+  .consent-row,
+  label:has(input[type="checkbox"][name*="terms"]),
+  label:has(input[type="checkbox"][name*="privacy"]) {
+    align-items: flex-start !important;
+  }
+
+  .registration-consent-row input[type="checkbox"],
+  .policy-consent-row input[type="checkbox"],
+  .consent-row input[type="checkbox"],
+  label:has(input[type="checkbox"][name*="terms"]) input[type="checkbox"],
+  label:has(input[type="checkbox"][name*="privacy"]) input[type="checkbox"] {
+    margin-top: 2px !important;
+  }
+}
+
+/* NurseLink Mobile Checkbox Reset v616 */
+@media (max-width: 680px) {
+
+  input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+    appearance: checkbox !important;
+
+    width: 20px !important;
+    height: 20px !important;
+
+    min-width: 20px !important;
+    min-height: 20px !important;
+
+    max-width: 20px !important;
+    max-height: 20px !important;
+
+    padding: 0 !important;
+    margin: 2px 0 0 0 !important;
+
+    border-radius: 3px !important;
+
+    flex: 0 0 20px !important;
+
+    box-shadow: none !important;
+    outline-offset: 2px;
+
+    accent-color: #0b72d5;
+  }
+
+  input[type="checkbox"]:checked {
+    -webkit-appearance: checkbox !important;
+    appearance: checkbox !important;
+  }
+
+  label:has(input[type="checkbox"]) {
+    align-items: flex-start !important;
+  }
+}
+
+/* NurseLink Mobile Readability v617 */
+@media (max-width: 680px) {
+  body {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+  }
+
+  label,
+  label span,
+  .registration-consent-row,
+  .policy-consent-row,
+  .consent-row {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 17px !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    font-size: 16px !important;
+  }
+
+  .registration-consent-row,
+  .policy-consent-row,
+  .consent-row,
+  label:has(input[type="checkbox"]) {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+  }
+
+  a {
+    font-size: inherit;
+  }
+
+  button {
+    font-weight: 700;
+  }
+}
+
+/* NurseLink Responsive Typography v618 */
+
+/* Desktop defaults */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Headings scale smoothly */
+h1 {
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+}
+
+/* Form readability */
+label,
+input,
+select,
+textarea,
+button {
+  font-size: 1rem;
+}
+
+input,
+select,
+textarea {
+  line-height: 1.4;
+}
+
+/* Registration consent */
+.registration-consent {
+  font-size: 1rem;
+}
+
+.consent-option {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  line-height: 1.5 !important;
+}
+
+.consent-option > span {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.consent-option input[type="checkbox"] {
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  margin: 2px 0 0 !important;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  body {
+    font-size: 16px;
+  }
+
+  label,
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 680px) {
+  html {
+    font-size: 17px;
+  }
+
+  body {
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .auth-card {
+    font-size: 1rem;
+  }
+
+  .auth-card label,
+  .auth-card input,
+  .auth-card select,
+  .auth-card textarea {
+    font-size: 1rem !important;
+  }
+
+  .auth-card input,
+  .auth-card select,
+  .auth-card textarea {
+    min-height: 48px;
+  }
+
+  .auth-card button {
+    font-size: 1rem !important;
+    min-height: 48px;
+  }
+
+  .registration-consent,
+  .consent-option,
+  .consent-option span {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .auth-footer,
+  .policy-version {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 390px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* NurseLink Responsive Typography v618 */
+
+/* Desktop */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  line-height: 1.25;
+}
+
+label,
+input,
+select,
+textarea,
+button {
+  font-size: 1rem;
+}
+
+/* Consent rows */
+.consent-option {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  line-height: 1.5 !important;
+}
+
+.consent-option > span {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.consent-option input[type="checkbox"] {
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+  margin: 2px 0 0 !important;
+}
+
+/* Mobile */
+@media (max-width: 680px) {
+  html {
+    font-size: 17px;
+  }
+
+  body {
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .auth-card label,
+  .auth-card input,
+  .auth-card select,
+  .auth-card textarea,
+  .auth-card button {
+    font-size: 1rem !important;
+  }
+
+  .auth-card input,
+  .auth-card select,
+  .auth-card textarea,
+  .auth-card button {
+    min-height: 48px;
+  }
+
+  .registration-consent,
+  .consent-option,
+  .consent-option span {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 390px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* NurseLink Global Responsive Typography v621 */
+
+:root {
+  --nl-text-xs: clamp(0.78rem, 0.74rem + 0.15vw, 0.86rem);
+  --nl-text-sm: clamp(0.88rem, 0.84rem + 0.15vw, 0.96rem);
+  --nl-text-md: clamp(1rem, 0.96rem + 0.15vw, 1.08rem);
+  --nl-text-lg: clamp(1.12rem, 1.04rem + 0.28vw, 1.28rem);
+  --nl-text-xl: clamp(1.35rem, 1.20rem + 0.55vw, 1.75rem);
+  --nl-text-2xl: clamp(1.65rem, 1.35rem + 0.95vw, 2.35rem);
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-size: var(--nl-text-md) !important;
+  line-height: 1.5 !important;
+}
+
+p,
+li,
+label,
+input,
+select,
+textarea,
+button {
+  font-size: var(--nl-text-md) !important;
+}
+
+small,
+.muted,
+.helper,
+.help-text,
+.description,
+.subtitle,
+[class*="description"],
+[class*="helper"],
+[class*="muted"] {
+  font-size: var(--nl-text-sm) !important;
+  line-height: 1.45 !important;
+}
+
+h1 {
+  font-size: var(--nl-text-2xl) !important;
+  line-height: 1.15 !important;
+}
+
+h2 {
+  font-size: var(--nl-text-xl) !important;
+  line-height: 1.22 !important;
+}
+
+h3 {
+  font-size: var(--nl-text-lg) !important;
+  line-height: 1.3 !important;
+}
+
+.eyebrow,
+[class*="eyebrow"],
+.badge,
+[class*="badge"] {
+  font-size: var(--nl-text-sm) !important;
+}
+
+button,
+input,
+select,
+textarea {
+  min-height: 42px;
+}
+
+@media (max-width: 680px) {
+  html {
+    font-size: 17px;
+  }
+
+  body {
+    line-height: 1.55 !important;
+  }
+
+  p,
+  li,
+  label,
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 1rem !important;
+  }
+
+  small,
+  .muted,
+  .helper,
+  .help-text,
+  .description,
+  .subtitle,
+  [class*="description"],
+  [class*="helper"],
+  [class*="muted"] {
+    font-size: 0.9rem !important;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 390px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* NurseLink Global Responsive Typography v621 */
+
+:root {
+  --nl-text-xs: clamp(0.78rem, 0.74rem + 0.15vw, 0.86rem);
+  --nl-text-sm: clamp(0.88rem, 0.84rem + 0.15vw, 0.96rem);
+  --nl-text-md: clamp(1rem, 0.96rem + 0.15vw, 1.08rem);
+  --nl-text-lg: clamp(1.12rem, 1.04rem + 0.28vw, 1.28rem);
+  --nl-text-xl: clamp(1.35rem, 1.20rem + 0.55vw, 1.75rem);
+  --nl-text-2xl: clamp(1.65rem, 1.35rem + 0.95vw, 2.35rem);
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-size: var(--nl-text-md) !important;
+  line-height: 1.5 !important;
+}
+
+p,
+li,
+label,
+input,
+select,
+textarea,
+button {
+  font-size: var(--nl-text-md) !important;
+}
+
+small,
+.muted,
+.helper,
+.help-text,
+.description,
+.subtitle,
+[class*="description"],
+[class*="helper"],
+[class*="muted"] {
+  font-size: var(--nl-text-sm) !important;
+  line-height: 1.45 !important;
+}
+
+h1 {
+  font-size: var(--nl-text-2xl) !important;
+  line-height: 1.15 !important;
+}
+
+h2 {
+  font-size: var(--nl-text-xl) !important;
+  line-height: 1.22 !important;
+}
+
+h3 {
+  font-size: var(--nl-text-lg) !important;
+  line-height: 1.3 !important;
+}
+
+.eyebrow,
+[class*="eyebrow"],
+.badge,
+[class*="badge"] {
+  font-size: var(--nl-text-sm) !important;
+}
+
+button,
+input,
+select,
+textarea {
+  min-height: 42px;
+}
+
+@media (max-width: 680px) {
+  html {
+    font-size: 17px;
+  }
+
+  body {
+    line-height: 1.55 !important;
+  }
+
+  p,
+  li,
+  label,
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 1rem !important;
+  }
+
+  small,
+  .muted,
+  .helper,
+  .help-text,
+  .description,
+  .subtitle,
+  [class*="description"],
+  [class*="helper"],
+  [class*="muted"] {
+    font-size: 0.9rem !important;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 390px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* NURSELINK_UNIFIED_TYPOGRAPHY_V622_START */
+
+/* ==========================================================
+   NurseLink Unified Responsive Typography v622
+   Desktop + Mobile + Senior-Friendly Readability
+   ========================================================== */
+
+:root {
+  --nl-font-base: 17px;
+  --nl-font-mobile: 18px;
+
+  --nl-text-small: 15px;
+  --nl-text-secondary: 15px;
+  --nl-text-body: 17px;
+  --nl-text-control: 16px;
+
+  --nl-heading-1: clamp(30px, 2.1vw, 38px);
+  --nl-heading-2: clamp(23px, 1.6vw, 30px);
+  --nl-heading-3: clamp(19px, 1.2vw, 23px);
+
+  --nl-line-body: 1.55;
+  --nl-line-compact: 1.4;
+
+  --nl-control-height: 44px;
+  --nl-control-mobile-height: 48px;
+}
+
+/* ----------------------------------------------------------
+   BASE
+   ---------------------------------------------------------- */
+
+html {
+  font-size: var(--nl-font-base);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-size: var(--nl-text-body) !important;
+  line-height: var(--nl-line-body) !important;
+}
+
+/*
+   Do not globally size every DIV or SPAN.
+   Text inherits naturally so icons/layout elements remain intact.
+*/
+
+p,
+li,
+dd,
+dt {
+  font-size: inherit;
+  line-height: var(--nl-line-body);
+}
+
+/* ----------------------------------------------------------
+   HEADINGS
+   ---------------------------------------------------------- */
+
+h1 {
+  font-size: var(--nl-heading-1) !important;
+  line-height: 1.16 !important;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--nl-heading-2) !important;
+  line-height: 1.22 !important;
+}
+
+h3 {
+  font-size: var(--nl-heading-3) !important;
+  line-height: 1.3 !important;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1rem !important;
+  line-height: 1.35 !important;
+}
+
+/* ----------------------------------------------------------
+   FORMS
+   ---------------------------------------------------------- */
+
+label {
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  min-height: var(--nl-control-height);
+}
+
+button {
+  font-size: 16px !important;
+  line-height: 1.3 !important;
+  min-height: var(--nl-control-height);
+}
+
+/* ----------------------------------------------------------
+   NAVIGATION
+   ---------------------------------------------------------- */
+
+nav a,
+nav button,
+aside a,
+aside button,
+.sidebar a,
+.sidebar button,
+[role="navigation"] a,
+[role="navigation"] button {
+  font-size: 16px !important;
+  line-height: 1.35 !important;
+}
+
+/* ----------------------------------------------------------
+   TABLES / DASHBOARDS
+   ---------------------------------------------------------- */
+
+table {
+  font-size: 16px !important;
+}
+
+th {
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+}
+
+td {
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+}
+
+/* ----------------------------------------------------------
+   SECONDARY TEXT
+   Never allow useful information to become microscopic.
+   ---------------------------------------------------------- */
+
+small,
+.muted,
+.subtitle,
+.description,
+.helper,
+.help-text,
+.caption,
+.meta,
+[class*="muted"],
+[class*="subtitle"],
+[class*="description"],
+[class*="helper"],
+[class*="help-text"],
+[class*="caption"],
+[class*="meta"] {
+  font-size: var(--nl-text-secondary) !important;
+  line-height: 1.45 !important;
+}
+
+/* ----------------------------------------------------------
+   EYEBROWS / STATUS / BADGES
+   ---------------------------------------------------------- */
+
+.eyebrow,
+[class*="eyebrow"],
+[class*="section-label"],
+[class*="section-kicker"] {
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.07em;
+}
+
+.badge,
+[class*="status-badge"],
+[class*="status-pill"] {
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+}
+
+/* ----------------------------------------------------------
+   COMMON CARDS / PANELS
+   ---------------------------------------------------------- */
+
+.card p,
+.panel p,
+[class*="card"] p,
+[class*="panel"] p {
+  line-height: 1.5 !important;
+}
+
+.card strong,
+.panel strong,
+[class*="card"] strong,
+[class*="panel"] strong {
+  line-height: 1.35;
+}
+
+/* ----------------------------------------------------------
+   LINKS
+   ---------------------------------------------------------- */
+
+a {
+  text-underline-offset: 2px;
+}
+
+/* ----------------------------------------------------------
+   MOBILE / TABLET
+   Senior-friendly touch and reading sizes
+   ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  html {
+    font-size: 17px;
+  }
+
+  body {
+    line-height: 1.55 !important;
+  }
+
+  nav a,
+  nav button,
+  aside a,
+  aside button,
+  .sidebar a,
+  .sidebar button {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 680px) {
+
+  html {
+    font-size: var(--nl-font-mobile);
+  }
+
+  body {
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+  }
+
+  p,
+  li,
+  dd,
+  dt {
+    line-height: 1.6 !important;
+  }
+
+  label {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 17px !important;
+    min-height: var(--nl-control-mobile-height);
+  }
+
+  nav a,
+  nav button,
+  aside a,
+  aside button,
+  .sidebar a,
+  .sidebar button,
+  [role="navigation"] a,
+  [role="navigation"] button {
+    font-size: 17px !important;
+    line-height: 1.4 !important;
+  }
+
+  table {
+    font-size: 16px !important;
+  }
+
+  th,
+  td {
+    font-size: 16px !important;
+  }
+
+  small,
+  .muted,
+  .subtitle,
+  .description,
+  .helper,
+  .help-text,
+  .caption,
+  .meta,
+  [class*="muted"],
+  [class*="subtitle"],
+  [class*="description"],
+  [class*="helper"],
+  [class*="help-text"],
+  [class*="caption"],
+  [class*="meta"] {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+
+  .eyebrow,
+  [class*="eyebrow"],
+  [class*="section-label"],
+  [class*="section-kicker"] {
+    font-size: 14px !important;
+  }
+
+  .badge,
+  [class*="status-badge"],
+  [class*="status-pill"] {
+    font-size: 14px !important;
+  }
+}
+
+/* ----------------------------------------------------------
+   VERY SMALL PHONES
+   Maintain readability without excessive wrapping
+   ---------------------------------------------------------- */
+
+@media (max-width: 390px) {
+  html {
+    font-size: 17px;
+  }
+
+  body {
+    font-size: 17px !important;
+  }
+
+  label,
+  input,
+  select,
+  textarea,
+  button,
+  nav a,
+  nav button {
+    font-size: 16px !important;
+  }
+}
+
+/* NURSELINK_UNIFIED_TYPOGRAPHY_V622_END */
+
+
+/* ============================================================
+   NurseLink Members Portal Icon Harmonization v1.0.0
+   ============================================================ */
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 46px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.sidebar nav a .member-nav-icon {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  color: #56728d;
+  background: rgba(22, 119, 232, .065);
+  border: 1px solid rgba(22, 119, 232, .06);
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+}
+
+.sidebar nav a .member-nav-icon svg {
+  width: 17px;
+  height: 17px;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sidebar nav a .member-nav-label {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.sidebar nav a:hover .member-nav-icon,
+.sidebar nav a:focus-visible .member-nav-icon {
+  color: #1677e8;
+  background: rgba(22, 119, 232, .11);
+  border-color: rgba(22, 119, 232, .12);
+}
+
+.sidebar nav a.active .member-nav-icon {
+  color: #ffffff;
+  background: #1677e8;
+  border-color: #1677e8;
+  box-shadow: 0 4px 12px rgba(22, 119, 232, .2);
+}
+
+.sidebar nav a.locked-nav .member-nav-icon {
+  opacity: .58;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sidebar nav a .member-nav-icon {
+    color: #b9c8d8;
+    background: rgba(88, 166, 255, .09);
+    border-color: rgba(88, 166, 255, .08);
+  }
+
+  .sidebar nav a:hover .member-nav-icon,
+  .sidebar nav a:focus-visible .member-nav-icon {
+    color: #8bc1ff;
+    background: rgba(88, 166, 255, .14);
+  }
+
+  .sidebar nav a.active .member-nav-icon {
+    color: #ffffff;
+    background: #1677e8;
+    border-color: #1677e8;
+  }
+}
+
+@media (max-width: 760px) {
+  .sidebar nav a {
+    min-height: 54px;
+    gap: 12px;
+  }
+
+  .sidebar nav a .member-nav-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .sidebar nav a .member-nav-icon svg {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+
+/* ============================================================
+   NurseLink Members Portal Admin-Style Icons v1.0.3
+   ============================================================ */
+.sidebar nav a{display:flex!important;align-items:center!important;gap:9px!important;min-height:42px;padding:6px 9px!important}
+.sidebar nav a .member-admin-nav-icon{width:26px;height:26px;flex:0 0 26px;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;color:#1d75c8;background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.55);box-shadow:0 1px 3px rgba(3,35,66,.10)}
+.sidebar nav a .member-admin-nav-icon svg{width:15px;height:15px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sidebar nav a .member-admin-nav-label{flex:1 1 auto;min-width:0}
+.sidebar nav a:hover .member-admin-nav-icon,.sidebar nav a:focus-visible .member-admin-nav-icon{color:#0967bd;background:#fff}
+.sidebar nav a.active .member-admin-nav-icon{color:#fff;background:#1680df;border-color:#1680df;box-shadow:0 3px 9px rgba(0,91,174,.25)}
+.sidebar nav a.active .member-admin-nav-label{font-weight:700}
+.sidebar nav a.locked-nav .member-admin-nav-icon{opacity:.62}
+@media(max-width:780px){.sidebar nav a{min-height:54px!important;gap:11px!important}.sidebar nav a .member-admin-nav-icon{width:32px;height:32px;flex-basis:32px;border-radius:9px}.sidebar nav a .member-admin-nav-icon svg{width:18px;height:18px}}
+
+
+
+/* ============================================================
+   NurseLink Members Portal React-Safe Shell v1.0.8
+   ============================================================ */
+.member-react-safe-shell-v108 .mobile-menu-button,
+.member-react-safe-shell-v108 .mobile-nav-close,
+.member-react-safe-shell-v108 .mobile-nav-backdrop {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 780px) {
+  .member-react-safe-shell-v108 .topbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 900 !important;
+  }
+
+  .member-react-safe-shell-v108 .mobile-menu-button,
+  .member-react-safe-shell-v108 .mobile-nav-close {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* ============================================================
+   NurseLink v636.1 Canonical Member Dashboard Shell
+   Replaces the obsolete Clean Sidebar v1.0.9 override generation.
+   ============================================================ */
+
+@media (min-width: 1101px) {
+  .member-react-safe-shell-v108.member-shell-v636.app-shell {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f7faff 0, #f2f7fb 100%);
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 264px;
+    max-width: 264px;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 22px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform: none;
+    background: linear-gradient(180deg, #0b477f 0%, #07396e 100%);
+    color: #fff;
+    box-shadow: 10px 0 35px rgba(8, 49, 92, 0.12);
+    z-index: 100;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar .logo,
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar .logo strong,
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar .logo small {
+    color: #fff;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 20px;
+    min-width: 0;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar nav .member-admin-nav-icon,
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar nav .member-nav-icon {
+    display: inline-flex;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar nav a,
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar-bottom a,
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar-logout {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 9px;
+    color: rgba(255,255,255,.88);
+    font-size: 14px;
+    line-height: 1.3;
+    text-decoration: none;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar nav a:hover,
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar nav a:focus-visible,
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar nav a.active,
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar-bottom a:hover {
+    background: rgba(255,255,255,.13);
+    color: #fff;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar nav a.active {
+    box-shadow: inset 3px 0 0 #64b5ff;
+    font-weight: 700;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar-bottom {
+    margin-top: auto;
+    padding-top: 16px;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .main-area {
+    width: calc(100% - 264px);
+    max-width: none;
+    min-width: 0;
+    margin-left: 264px;
+    padding: 0;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .topbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    min-height: 72px;
+    height: auto;
+    padding: 10px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: rgba(255,255,255,.98);
+    border-bottom: 1px solid #e5eaf1;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 90;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .topbar-member-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .page {
+    width: 100%;
+    max-width: 1500px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 28px 32px 44px;
+    box-sizing: border-box;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .page-header,
+  .member-react-safe-shell-v108.member-shell-v636 .stats-grid,
+  .member-react-safe-shell-v108.member-shell-v636 .content-grid,
+  .member-react-safe-shell-v108.member-shell-v636 .dashboard-grid,
+  .member-react-safe-shell-v108.member-shell-v636 .panel {
+    max-width: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .member-react-safe-shell-v108.member-shell-v636 .main-area {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .page {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* ============================================================
+   NurseLink Members Portal Fixed Mobile Header v1.0.13
+   True fixed mobile header; no sticky-container dependency.
+   ============================================================ */
+
+@media (max-width: 780px) {
+  .member-react-safe-shell-v108 .topbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1500 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    background: rgba(255,255,255,.98) !important;
+    border-bottom: 1px solid #dbe5ef !important;
+    box-shadow: 0 4px 16px rgba(23,54,82,.08) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Reserve the fixed header's space so dashboard content never slides underneath it. */
+  .member-react-safe-shell-v108 {
+    padding-top: 72px !important;
+  }
+
+  /* Mobile drawer begins below the fixed header. */
+  .member-react-safe-shell-v108 .sidebar {
+    top: 72px !important;
+    height: calc(100dvh - 72px) !important;
+    max-height: calc(100dvh - 72px) !important;
+  }
+
+  .member-react-safe-shell-v108 .mobile-nav-backdrop {
+    top: 72px !important;
+  }
+
+  .member-react-safe-shell-v108 .mobile-menu-button {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+
+
+/* NurseLink Smart Registration Application Workflow v2.0.0 */
+.nl-v200-application-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+.nl-v200-stage {
+  min-height: 64px;
+  border: 1px solid #dbe4ee;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #fff;
+}
+.nl-v200-stage.is-current {
+  border-color: #1677e8;
+  box-shadow: inset 0 0 0 1px #1677e8;
+}
+.nl-v200-stage.is-complete {
+  background: #f4f9ff;
+}
+.nl-v200-form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nl-v200-form-actions button,
+.nl-v200-form-actions a {
+  min-height: 44px;
+}
+@media (max-width: 780px) {
+  .nl-v200-application-timeline {
+    grid-template-columns: 1fr;
+  }
+  .nl-v200-stage {
+    min-height: 54px;
+  }
+  .nl-v200-form-actions > * {
+    width: 100%;
+    min-height: 54px;
+  }
+}
+
+
+/* NurseLink canonical native mobile topbar — 2026-08-26 */
+@media (max-width: 780px) {
+  .member-react-safe-shell-v108 .topbar {
+    min-height: 64px !important;
+    height: 64px !important;
+    padding: 8px 10px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 7px !important;
+    overflow: visible !important;
+  }
+
+  .member-react-safe-shell-v108 .mobile-menu-button {
+    display: inline-flex !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    flex: 0 0 44px !important;
+    padding: 0 !important;
+  }
+
+  .member-react-safe-shell-v108 .topbar > div:first-of-type {
+    flex: 1 1 auto !important;
+    min-width: 70px !important;
+    max-width: none !important;
+  }
+
+  .member-react-safe-shell-v108 .topbar-member-actions {
+    margin-left: auto !important;
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 5px !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .member-react-safe-shell-v108 .navigation-help-button {
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 0 !important;
+    display: inline-grid !important;
+    place-items: center !important;
+    font-size: 18px !important;
+  }
+
+  .member-react-safe-shell-v108 .navigation-help-button > span {
+    display: none !important;
+  }
+
+  .member-react-safe-shell-v108 .member-theme-control-v337 {
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+
+  .member-react-safe-shell-v108 .member-theme-control-v337 button {
+    width: 40px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 0 !important;
+  }
+
+  .member-react-safe-shell-v108 .user-chip {
+    margin: 0 !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    flex: 0 0 40px !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .member-react-safe-shell-v108 .user-chip .avatar {
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .member-react-safe-shell-v108 .nurselink-notification-button {
+    width: 40px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    margin: 0 !important;
+  }
+}
+
+/* NurseLink canonical mobile action order — 2026-08-26 */
+@media (max-width: 780px) {
+  .member-react-safe-shell-v108 .topbar > div:first-of-type {
+    max-width: 190px !important;
+  }
+
+  .member-react-safe-shell-v108 .topbar-member-actions {
+    order: 3 !important;
+    overflow: visible !important;
+  }
+
+  .member-react-safe-shell-v108 .navigation-help-button {
+    order: 1 !important;
+    position: static !important;
+  }
+
+  .member-react-safe-shell-v108 .navigation-help-button::before,
+  .member-react-safe-shell-v108 .navigation-help-button::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .member-react-safe-shell-v108 .user-chip {
+    order: 2 !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+  }
+
+  .member-react-safe-shell-v108 .member-theme-control-v337 {
+    order: 3 !important;
+  }
+
+  .member-react-safe-shell-v108 .nurselink-notification-button {
+    order: 4 !important;
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    flex: 0 0 40px !important;
+  }
+
+  .member-react-safe-shell-v108 .nurselink-notification-badge {
+    top: -5px !important;
+    right: -5px !important;
+  }
+}

@@ -1,0 +1,476 @@
+/* NurseLink Global Responsive Dual Theme System v64.9.0
+   Approved global Light + Dark theme contract for desktop, tablet and mobile.
+*/
+
+/* ============================================================
+   THEME TOKENS
+   ============================================================ */
+:root {
+  /* Light reference */
+  --nl-page:#f5f7fb;
+  --nl-page-2:#eef3f8;
+  --nl-card:#ffffff;
+  --nl-card-soft:#f8fafc;
+  --nl-card-blue:#f1f6ff;
+
+  --nl-text:#20304b;
+  --nl-text-strong:#0b1730;
+  --nl-text-muted:#617393;
+  --nl-text-label:#7386a8;
+
+  --nl-border:#d8e1ec;
+  --nl-border-strong:#c5d1df;
+
+  --nl-blue:#1769e0;
+  --nl-blue-bright:#0f6fff;
+  --nl-blue-soft:#edf4ff;
+
+  --nl-green:#0aa83f;
+  --nl-green-bright:#00b934;
+  --nl-green-soft:#ebfaef;
+
+  --nl-purple:#6b35b3;
+  --nl-purple-bright:#7c3fd1;
+  --nl-purple-soft:#f5effc;
+
+  --nl-amber:#a66b10;
+  --nl-amber-bright:#f0a21e;
+  --nl-amber-soft:#fff8e9;
+
+  --nl-icon-bg:#f2f6fc;
+  --nl-icon-border:#cddbf0;
+  --nl-icon-fg:#1769e0;
+
+  --nl-shadow:0 6px 18px rgba(31,48,78,.055);
+  --nl-radius:12px;
+  --nl-radius-sm:9px;
+
+  --nl-space-1:4px;
+  --nl-space-2:8px;
+  --nl-space-3:12px;
+  --nl-space-4:16px;
+  --nl-space-5:20px;
+  --nl-space-6:24px;
+
+  color-scheme:light;
+}
+
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark {
+  /* Approved dark reference */
+  --nl-page:#06111f;
+  --nl-page-2:#081522;
+  --nl-card:#0a1625;
+  --nl-card-soft:#0d1b2d;
+  --nl-card-blue:#0b1d35;
+
+  --nl-text:#dce6f3;
+  --nl-text-strong:#f8fbff;
+  --nl-text-muted:#b0c0d3;
+  --nl-text-label:#91a4be;
+
+  --nl-border:#22334a;
+  --nl-border-strong:#30445f;
+
+  --nl-blue:#3c8cff;
+  --nl-blue-bright:#4f98ff;
+  --nl-blue-soft:#0c2241;
+
+  --nl-green:#49e47f;
+  --nl-green-bright:#25ef65;
+  --nl-green-soft:#0b301f;
+
+  --nl-purple:#a35cff;
+  --nl-purple-bright:#b276ff;
+  --nl-purple-soft:#211337;
+
+  --nl-amber:#ffb52e;
+  --nl-amber-bright:#ffc34d;
+  --nl-amber-soft:#2c210c;
+
+  --nl-icon-bg:#0b1b31;
+  --nl-icon-border:#1f4d87;
+  --nl-icon-fg:#4a92ff;
+
+  --nl-shadow:0 12px 30px rgba(0,0,0,.34);
+
+  color-scheme:dark;
+}
+
+/* ============================================================
+   GLOBAL MEMBER CANVAS / TYPOGRAPHY
+   ============================================================ */
+.member-react-safe-shell-v108,
+.member-react-safe-shell-v108 main,
+.member-react-safe-shell-v108 .main,
+.member-react-safe-shell-v108 .content,
+.member-react-safe-shell-v108 [class*="workspace"],
+.member-react-safe-shell-v108 [class*="page"],
+.member-react-safe-shell-v108 [class*="canvas"] {
+  background:var(--nl-page)!important;
+  color:var(--nl-text)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  h1,h2,h3,h4,h5,h6,strong,b,dt,th,
+  [class*="title"],[class*="heading"],[class*="name"],[class*="value"]
+) {
+  color:var(--nl-text-strong)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  p,small,dd,td,label,
+  [class*="muted"],[class*="meta"],[class*="subtitle"],
+  [class*="description"],[class*="caption"],[class*="helper"]
+) {
+  color:var(--nl-text-muted)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="label"],[class*="eyebrow"],[class*="kicker"],dt,small
+) {
+  color:var(--nl-text-label)!important;
+}
+
+.member-react-safe-shell-v108 a {
+  color:var(--nl-blue)!important;
+}
+
+/* ============================================================
+   CARDS / PANELS / TILES
+   ============================================================ */
+.member-react-safe-shell-v108 :is(
+  .card,.panel,[class*="-card"],[class*="-panel"],
+  [class*="tile"],[class*="summary"],[class*="widget"],
+  [class*="module"],[class*="section-card"]
+):not(.sidebar):not([class*="sidebar"]):not([class*="topbar"]):not([class*="header"]) {
+  background:var(--nl-card)!important;
+  color:var(--nl-text)!important;
+  border-color:var(--nl-border)!important;
+  border-radius:var(--nl-radius)!important;
+  box-shadow:var(--nl-shadow)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="subcard"],[class*="section-inner"],[class*="detail"],
+  [class*="metadata"],[class*="source"],[class*="policy"],
+  [class*="verification"],[class*="mapping"]
+) {
+  background:var(--nl-card-soft)!important;
+  border-color:var(--nl-border)!important;
+  box-shadow:none!important;
+}
+
+/* ============================================================
+   ICON SYSTEM
+   ============================================================ */
+.member-react-safe-shell-v108 :is(
+  [class*="icon-wrap"],[class*="icon-circle"],[class*="icon-badge"],
+  [class*="status-icon"],[class*="summary-icon"],[class*="meta-icon"],
+  [class*="info-icon"],[class*="row-icon"],[class*="item-icon"]
+) {
+  background:var(--nl-icon-bg)!important;
+  border:1px solid var(--nl-icon-border)!important;
+  color:var(--nl-icon-fg)!important;
+  box-shadow:none!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="icon-wrap"],[class*="icon-circle"],[class*="icon-badge"],
+  [class*="status-icon"],[class*="summary-icon"],[class*="meta-icon"],
+  [class*="info-icon"],[class*="row-icon"],[class*="item-icon"]
+) :is(svg,i) {
+  color:inherit!important;
+  stroke:currentColor!important;
+}
+
+/* Semantic icon colors */
+.member-react-safe-shell-v108 :is(
+  [class*="success-icon"],[class*="verified-icon"],[class*="current-icon"]
+) {
+  background:var(--nl-green-soft)!important;
+  border-color:color-mix(in srgb,var(--nl-green-bright) 45%,var(--nl-border))!important;
+  color:var(--nl-green-bright)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="qualification-icon"],[class*="pqf-icon"]
+) {
+  background:var(--nl-purple-soft)!important;
+  border-color:color-mix(in srgb,var(--nl-purple-bright) 40%,var(--nl-border))!important;
+  color:var(--nl-purple-bright)!important;
+}
+
+/* ============================================================
+   TABS / NAV PILLS
+   ============================================================ */
+.member-react-safe-shell-v108 :is(
+  [role="tab"],.tab,[class*="tab"]
+) {
+  color:var(--nl-text-muted)!important;
+  border-color:var(--nl-border)!important;
+  background:var(--nl-card)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [role="tab"][aria-selected="true"],.tab.active,[class*="tab"].active
+) {
+  color:var(--nl-blue)!important;
+  border-color:color-mix(in srgb,var(--nl-blue) 55%,var(--nl-border))!important;
+  background:var(--nl-card)!important;
+}
+
+/* ============================================================
+   FORMS / TABLES / BUTTONS
+   ============================================================ */
+.member-react-safe-shell-v108 :is(input,select,textarea) {
+  background:var(--nl-card-soft)!important;
+  color:var(--nl-text-strong)!important;
+  border-color:var(--nl-border)!important;
+}
+
+.member-react-safe-shell-v108 :is(input,textarea)::placeholder {
+  color:var(--nl-text-label)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  button,[role="button"],.button,.btn
+):not([class*="primary"]):not([class*="accent"]):not([class*="danger"]) {
+  background:var(--nl-card)!important;
+  color:var(--nl-text-strong)!important;
+  border-color:var(--nl-border)!important;
+}
+
+.member-react-safe-shell-v108 table {
+  background:var(--nl-card)!important;
+  color:var(--nl-text)!important;
+  border-color:var(--nl-border)!important;
+}
+
+.member-react-safe-shell-v108 :is(tr,td,th) {
+  border-color:var(--nl-border)!important;
+}
+
+/* ============================================================
+   BADGES / STATUS
+   ============================================================ */
+.member-react-safe-shell-v108 :is(
+  [class*="current"],[class*="high"]
+)[class*="badge"],
+.member-react-safe-shell-v108 :is(
+  [class*="current"],[class*="high"]
+) {
+  background:var(--nl-green-bright)!important;
+  border-color:var(--nl-green-bright)!important;
+  color:#fff!important;
+  font-weight:800!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="verified"],[class*="success"],[class*="approved"]
+):not([class*="badge"]) {
+  color:var(--nl-green)!important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="advanced"],[class*="postgraduate"],
+  [class*="qualification-level"],[class*="reference-band"]
+) {
+  color:var(--nl-purple)!important;
+}
+
+/* ============================================================
+   NOTICES / DISCLAIMERS
+   ============================================================ */
+.member-react-safe-shell-v108 :is(
+  [class*="disclaimer"],[class*="important"],[class*="notice"],[class*="warning"]
+) {
+  background:var(--nl-amber-soft)!important;
+  border-color:color-mix(in srgb,var(--nl-amber) 45%,var(--nl-border))!important;
+  color:var(--nl-text)!important;
+}
+
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+  [class*="disclaimer"],[class*="important"],[class*="notice"],[class*="warning"]
+) :is(h1,h2,h3,strong,[class*="title"],[class*="icon"]) {
+  color:var(--nl-amber)!important;
+}
+
+/* ============================================================
+   RESPONSIVE GLOBAL LAYOUT
+   ============================================================ */
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content {
+    padding:var(--nl-space-6)!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [class*="grid"],[class*="cards-grid"],[class*="summary-grid"]
+  ) {
+    gap:var(--nl-space-4)!important;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content {
+    padding:var(--nl-space-4)!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [class*="grid"],[class*="cards-grid"],[class*="summary-grid"]
+  ) {
+    gap:var(--nl-space-3)!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [class*="three-column"],[class*="four-column"]
+  ) {
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content {
+    padding:12px!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [class*="grid"],[class*="cards-grid"],[class*="summary-grid"],
+    [class*="two-column"],[class*="three-column"],[class*="four-column"]
+  ) {
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    .card,.panel,[class*="-card"],[class*="-panel"]
+  ) {
+    border-radius:10px!important;
+    box-shadow:none!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    table,[class*="table-wrap"],[class*="data-grid"]
+  ) {
+    max-width:100%!important;
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [role="tablist"],[class*="tabs"]
+  ) {
+    overflow-x:auto!important;
+    scrollbar-width:thin;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [role="tab"],.tab,[class*="tab"]
+  ) {
+    flex:0 0 auto!important;
+    white-space:nowrap!important;
+  }
+
+  /* Adaptive mobile topbar remains owned by v64.6.8 runtime */
+  [data-nl-mobile-topbar="true"] {
+    background:var(--nl-card)!important;
+    border-color:var(--nl-border)!important;
+  }
+}
+
+/* ============================================================
+   SIDEBAR / NAVIGATION ANCHOR
+   ============================================================ */
+.member-react-safe-shell-v108 .sidebar,
+.member-react-safe-shell-v108 [class*="sidebar"] {
+  box-shadow:none!important;
+}
+
+/* Keep current blue sidebar identity in both themes. */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 .sidebar,
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 [class*="sidebar"] {
+  background:linear-gradient(180deg,#13518b 0%,#0d477f 100%)!important;
+}
+
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 .sidebar,
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 [class*="sidebar"] {
+  background:linear-gradient(180deg,#082b55 0%,#061f3d 100%)!important;
+}
+
+/* ============================================================
+   QUALIFICATIONS REFERENCE LAYOUT
+   ============================================================ */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="framework-reference"],[class*="qualification-framework"]
+) {
+  background:var(--nl-card)!important;
+  border:1px solid var(--nl-border)!important;
+  border-radius:var(--nl-radius)!important;
+  box-shadow:var(--nl-shadow)!important;
+}
+
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="framework-card"],[class*="framework-main"],
+  [class*="your-qualification"],[class*="qualification-card"],
+  [class*="standing"],[class*="snapshot"]
+) {
+  background:var(--nl-card)!important;
+  border-color:var(--nl-border)!important;
+}
+
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],
+  [class*="framework-meta"],[class*="metadata-grid"]
+) {
+  background:var(--nl-card)!important;
+  border:1px solid var(--nl-border)!important;
+  border-radius:var(--nl-radius-sm)!important;
+  overflow:hidden!important;
+}
+
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],
+  [class*="framework-meta"],[class*="metadata-grid"]
+) > * {
+  background:var(--nl-card)!important;
+  border-color:var(--nl-border)!important;
+}
+
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],
+  [class*="framework-meta"],[class*="metadata-grid"]
+) :is(small,dt,label,[class*="label"],[class*="meta-label"],[class*="field-label"]) {
+  color:var(--nl-text-label)!important;
+  font-weight:500!important;
+}
+
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],
+  [class*="framework-meta"],[class*="metadata-grid"]
+) :is(strong,b,dd,[class*="value"],[class*="meta-value"],[class*="field-value"]) {
+  color:var(--nl-text-strong)!important;
+  font-weight:700!important;
+}
+
+/* info strip */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="framework-info"],[class*="source-note"],[class*="info-note"]
+) {
+  background:var(--nl-card-soft)!important;
+  border-color:var(--nl-border)!important;
+  color:var(--nl-text-label)!important;
+}

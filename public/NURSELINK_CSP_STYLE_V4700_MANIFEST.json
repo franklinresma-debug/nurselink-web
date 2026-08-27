@@ -1,0 +1,44 @@
+[
+  {
+    "page": "nurselink-temporary-encoders.html",
+    "css": "nurselink-temporary-encoders.csp-v4700.css",
+    "style_blocks": 1,
+    "style_attributes": 1
+  },
+  {
+    "page": "nurselink-encoder-login.html",
+    "css": "nurselink-encoder-login.csp-v4700.css",
+    "style_blocks": 0,
+    "style_attributes": 1
+  },
+  {
+    "page": "nurselink-admin-dashboard.html",
+    "css": "nurselink-admin-dashboard.csp-v4700.css",
+    "style_blocks": 1,
+    "style_attributes": 1
+  },
+  {
+    "page": "nurselink-encoder.html",
+    "css": "nurselink-encoder.csp-v4700.css",
+    "style_blocks": 0,
+    "style_attributes": 2
+  },
+  {
+    "page": "nurselink-bulk-intake.html",
+    "css": "nurselink-bulk-intake.csp-v4700.css",
+    "style_blocks": 0,
+    "style_attributes": 5
+  },
+  {
+    "page": "nurselink-partner-portal.html",
+    "css": "nurselink-partner-portal.csp-v4700.css",
+    "style_blocks": 0,
+    "style_attributes": 4
+  },
+  {
+    "page": "admin/index.html",
+    "css": "admin/index.csp-v4700.css",
+    "style_blocks": 1,
+    "style_attributes": 0
+  }
+]

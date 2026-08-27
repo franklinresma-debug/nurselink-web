@@ -1,0 +1,62 @@
+/* NURSELINK_MEMBER_PORTAL_EXACT_DESKTOP_V6400 */
+
+@media (min-width: 1280px) {
+  html[data-nl-v64-member="1"] .nl64-route-root {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  html[data-nl-v64-member="1"] .nl64-page-wrapper {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  html[data-nl-v64-member="1"] .nl64-readable {
+    max-width: 760px !important;
+  }
+
+  html[data-nl-v64-member="1"] .nl64-grid-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    gap: 18px !important;
+    align-items: stretch !important;
+  }
+
+  html[data-nl-v64-member="1"] .nl64-grid-3 {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap: 18px !important;
+    align-items: stretch !important;
+  }
+
+  html[data-nl-v64-member="1"] .nl64-grid-2 > *,
+  html[data-nl-v64-member="1"] .nl64-grid-3 > * {
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+  }
+}
+
+/* Target only v64-tagged surfaces that were visually light on dark pages. */
+html[data-nl-v64-member="1"][data-nl-v64-dark="1"] .nl64-dark-card {
+  background: #182537 !important;
+  background-color: #182537 !important;
+  color: #eef3f7 !important;
+  border-color: #314257 !important;
+  box-shadow: none !important;
+}
+html[data-nl-v64-member="1"][data-nl-v64-dark="1"] .nl64-dark-card h1,
+html[data-nl-v64-member="1"][data-nl-v64-dark="1"] .nl64-dark-card h2,
+html[data-nl-v64-member="1"][data-nl-v64-dark="1"] .nl64-dark-card h3,
+html[data-nl-v64-member="1"][data-nl-v64-dark="1"] .nl64-dark-card strong {
+  color: #f5f8fa !important;
+}
+html[data-nl-v64-member="1"][data-nl-v64-dark="1"] .nl64-dark-card p,
+html[data-nl-v64-member="1"][data-nl-v64-dark="1"] .nl64-dark-card small,
+html[data-nl-v64-member="1"][data-nl-v64-dark="1"] .nl64-dark-card span {
+  color: #b6c3cf !important;
+}

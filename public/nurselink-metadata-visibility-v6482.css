@@ -1,0 +1,229 @@
+/* NurseLink Metadata Visibility Refinement v64.8.2
+   Applies approved provenance-grid readability treatment.
+   Brighter labels, stronger values, vibrant green status indicators.
+*/
+
+:root {
+  /* LIGHT */
+  --nll-page:#f5f7fb;
+  --nll-card:#ffffff;
+  --nll-soft:#f8fafc;
+  --nll-soft-blue:#f1f6ff;
+  --nll-text:#20304b;
+  --nll-strong:#0b1730;
+  --nll-muted:#617393;
+  --nll-label:#7386a8;
+  --nll-line:#d8e1ec;
+  --nll-line-strong:#c5d1df;
+  --nll-blue:#1769e0;
+  --nll-blue-soft:#edf4ff;
+  --nll-green:#0aa83f;
+  --nll-green-strong:#00b934;
+  --nll-green-soft:#ebfaef;
+  --nll-purple:#6b35b3;
+  --nll-purple-soft:#f5effc;
+  --nll-amber:#a66b10;
+  --nll-amber-soft:#fff8e9;
+  --nll-icon-bg:#f2f6fc;
+  --nll-icon-border:#cddbf0;
+  --nll-icon:#1769e0;
+  --nll-shadow:0 6px 18px rgba(31,48,78,.055);
+  color-scheme:light;
+}
+
+/* APPROVED DARK */
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark {
+  --nll-page:#06111f;
+  --nll-card:#0a1625;
+  --nll-soft:#0d1b2d;
+  --nll-soft-blue:#0b1d35;
+  --nll-text:#dce6f3;
+  --nll-strong:#f8fbff;
+  --nll-muted:#b0c0d3;
+  --nll-label:#91a4be;
+  --nll-line:#22334a;
+  --nll-line-strong:#30445f;
+  --nll-blue:#3c8cff;
+  --nll-blue-soft:#0c2241;
+  --nll-green:#49e47f;
+  --nll-green-strong:#25ef65;
+  --nll-green-soft:#0b301f;
+  --nll-purple:#a35cff;
+  --nll-purple-soft:#211337;
+  --nll-amber:#ffb52e;
+  --nll-amber-soft:#2c210c;
+  --nll-icon-bg:#0b1b31;
+  --nll-icon-border:#1f4d87;
+  --nll-icon:#4a92ff;
+  --nll-shadow:0 12px 30px rgba(0,0,0,.34);
+  color-scheme:dark;
+}
+
+/* Global shell */
+.member-react-safe-shell-v108,
+.member-react-safe-shell-v108 main,
+.member-react-safe-shell-v108 .main,
+.member-react-safe-shell-v108 .content,
+.member-react-safe-shell-v108 [class*="workspace"],
+.member-react-safe-shell-v108 [class*="page"] {
+  background:var(--nll-page)!important;
+  color:var(--nll-text)!important;
+}
+
+.member-react-safe-shell-v108 :is(h1,h2,h3,h4,h5,h6,strong,b,dt,th,[class*="title"],[class*="heading"],[class*="name"],[class*="value"]) {
+  color:var(--nll-strong)!important;
+}
+.member-react-safe-shell-v108 :is(p,small,dd,td,label,[class*="muted"],[class*="meta"],[class*="subtitle"],[class*="description"],[class*="caption"],[class*="helper"]) {
+  color:var(--nll-muted)!important;
+}
+.member-react-safe-shell-v108 :is([class*="label"],[class*="eyebrow"],[class*="kicker"],dt,small) {
+  color:var(--nll-label)!important;
+}
+.member-react-safe-shell-v108 a { color:var(--nll-blue)!important; }
+
+/* Cards */
+.member-react-safe-shell-v108 :is(.card,.panel,[class*="-card"],[class*="-panel"],[class*="tile"],[class*="summary"],[class*="widget"])
+:not(.sidebar):not([class*="sidebar"]):not([class*="topbar"]):not([class*="header"]) {
+  background:var(--nll-card)!important;
+  border-color:var(--nll-line)!important;
+  color:var(--nll-text)!important;
+  box-shadow:var(--nll-shadow);
+}
+
+/* Generic icon system */
+.member-react-safe-shell-v108 :is(
+  [class*="icon-wrap"],[class*="icon-circle"],[class*="icon-badge"],
+  [class*="status-icon"],[class*="summary-icon"],[class*="meta-icon"],
+  [class*="info-icon"],[class*="row-icon"],[class*="item-icon"]
+) {
+  background:var(--nll-icon-bg)!important;
+  border:1px solid var(--nll-icon-border)!important;
+  color:var(--nll-icon)!important;
+  box-shadow:none!important;
+}
+
+/* QUALIFICATIONS PROVENANCE/METADATA GRID */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],[class*="framework-meta"],[class*="metadata-grid"]
+) {
+  background:var(--nll-card)!important;
+  border:1px solid var(--nll-line)!important;
+  border-radius:10px!important;
+  overflow:hidden!important;
+  box-shadow:none!important;
+}
+
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],[class*="framework-meta"],[class*="metadata-grid"]
+) > * {
+  background:var(--nll-card)!important;
+  border-color:var(--nll-line)!important;
+}
+
+/* Stronger label hierarchy in each metadata cell */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],[class*="framework-meta"],[class*="metadata-grid"]
+) :is(
+  small,dt,label,[class*="label"],[class*="meta-label"],[class*="field-label"]
+) {
+  color:var(--nll-label)!important;
+  font-weight:500!important;
+}
+
+/* Values remain strong, crisp and easy to scan */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],[class*="framework-meta"],[class*="metadata-grid"]
+) :is(
+  strong,b,dd,[class*="value"],[class*="meta-value"],[class*="field-value"]
+) {
+  color:var(--nll-strong)!important;
+  font-weight:700!important;
+}
+
+/* Bright blue metadata/source icons */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="provenance"],[class*="source-grid"],[class*="framework-meta"],[class*="metadata-grid"]
+) :is(
+  [class*="icon"],[class*="marker"]
+) {
+  background:var(--nll-icon-bg)!important;
+  border:1px solid var(--nll-icon-border)!important;
+  color:var(--nll-blue)!important;
+}
+
+/* Vibrant status treatments */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="current"],[class*="high"],[class*="success"],[class*="verified"]
+)[class*="badge"],
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="current"],[class*="high"]
+) {
+  background:var(--nll-green-strong)!important;
+  border-color:var(--nll-green-strong)!important;
+  color:#ffffff!important;
+  font-weight:800!important;
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--nll-green-strong) 50%,transparent)!important;
+}
+
+/* More conservative green for text-only success values */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="verified"],[class*="success"]
+):not([class*="badge"]) {
+  color:var(--nll-green)!important;
+}
+
+/* semantic green icon tiles */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="success-icon"],[class*="verified-icon"],[class*="current-icon"]
+) {
+  background:var(--nll-green-soft)!important;
+  border-color:color-mix(in srgb,var(--nll-green-strong) 45%,var(--nll-line))!important;
+  color:var(--nll-green-strong)!important;
+}
+
+/* Framework cards / standing / snapshot retained */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="framework-reference"],[class*="qualification-framework"],
+  [class*="standing"],[class*="snapshot"]
+) {
+  background:var(--nll-card)!important;
+  border-color:var(--nll-line)!important;
+}
+
+/* Qualifications purple stays visible */
+.member-react-safe-shell-v108 :is(
+  [class*="advanced"],[class*="postgraduate"],[class*="qualification-level"],[class*="reference-band"]
+) {
+  color:var(--nll-purple)!important;
+}
+
+/* Info line gets lighter text but still readable */
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108 :is(
+  [class*="framework-info"],[class*="source-note"],[class*="info-note"]
+) {
+  background:var(--nll-soft)!important;
+  border-color:var(--nll-line)!important;
+  color:var(--nll-label)!important;
+}
+
+/* Disclaimer */
+.member-react-safe-shell-v108 :is([class*="disclaimer"],[class*="important"],[class*="notice"]) {
+  background:var(--nll-amber-soft)!important;
+  border-color:color-mix(in srgb,var(--nll-amber) 45%,var(--nll-line))!important;
+  color:var(--nll-text)!important;
+}
+
+.member-react-safe-shell-v108 .sidebar,
+.member-react-safe-shell-v108 [class*="sidebar"] {
+  box-shadow:none!important;
+}
+
+@media(max-width:767px){
+  .member-react-safe-shell-v108 :is(.card,.panel,[class*="-card"],[class*="-panel"]) {
+    box-shadow:none!important;
+  }
+}

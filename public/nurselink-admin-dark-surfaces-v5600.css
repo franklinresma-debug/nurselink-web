@@ -1,0 +1,144 @@
+/* NURSELINK_ADMIN_DARK_SURFACES_V5600 */
+
+:root[data-nl-theme="dark"],
+html[data-nl-theme="dark"],
+body[data-nl-theme="dark"],
+[data-nl-theme="dark"] {
+  --nl56-surface: #17232e;
+  --nl56-surface-2: #1d2a36;
+  --nl56-surface-3: #22313e;
+  --nl56-border: #344452;
+  --nl56-border-strong: #465968;
+  --nl56-text: #eef3f7;
+  --nl56-muted: #aebbc6;
+  --nl56-input: #14202a;
+  --nl56-blue: #2684d8;
+}
+
+/* Generic form controls inside Admin dark mode */
+[data-nl-theme="dark"] .nl-admin-body input,
+[data-nl-theme="dark"] .nl-admin-body select,
+[data-nl-theme="dark"] .nl-admin-body textarea,
+[data-nl-theme="dark"] .nl-admin-body .nl530-input,
+[data-nl-theme="dark"] .nl-admin-body .nl530-select,
+[data-nl-theme="dark"] .nl-admin-body .nl530-textarea {
+  background: var(--nl56-input) !important;
+  color: var(--nl56-text) !important;
+  border-color: var(--nl56-border) !important;
+}
+
+[data-nl-theme="dark"] .nl-admin-body input::placeholder,
+[data-nl-theme="dark"] .nl-admin-body textarea::placeholder {
+  color: #81909c !important;
+}
+
+/* White utility/action buttons visible across Members, Applications, Verification, Support */
+[data-nl-theme="dark"] .nl-admin-body button:not(.nl-primary):not(.nl-danger),
+[data-nl-theme="dark"] .nl-admin-body .nl530-btn:not(.primary):not(.danger),
+[data-nl-theme="dark"] .nl-admin-body a.nl530-btn:not(.primary):not(.danger) {
+  background: #182530 !important;
+  color: #edf3f7 !important;
+  border-color: #3a4a58 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl-admin-body button:not(.nl-primary):not(.nl-danger):hover,
+[data-nl-theme="dark"] .nl-admin-body .nl530-btn:not(.primary):not(.danger):hover,
+[data-nl-theme="dark"] .nl-admin-body a.nl530-btn:not(.primary):not(.danger):hover {
+  background: #22313e !important;
+  color: #fff !important;
+  border-color: #526574 !important;
+}
+
+/* Top administrator profile card */
+[data-nl-theme="dark"] .nl-admin-body .nl530-admin-card,
+[data-nl-theme="dark"] .nl-admin-body .nl530-profile-card,
+[data-nl-theme="dark"] .nl-admin-body .nl-admin-profile,
+[data-nl-theme="dark"] .nl-admin-body .nl530-user-card {
+  background: var(--nl56-surface) !important;
+  color: var(--nl56-text) !important;
+  border-color: var(--nl56-border) !important;
+}
+[data-nl-theme="dark"] .nl-admin-body .nl530-admin-card *,
+[data-nl-theme="dark"] .nl-admin-body .nl530-profile-card *,
+[data-nl-theme="dark"] .nl-admin-body .nl-admin-profile *,
+[data-nl-theme="dark"] .nl-admin-body .nl530-user-card * {
+  color: inherit !important;
+}
+
+/* Members: chips / action groups / onboarding rows */
+[data-nl-theme="dark"] .nl-admin-body .nl530-chip,
+[data-nl-theme="dark"] .nl-admin-body .nl530-badge,
+[data-nl-theme="dark"] .nl-admin-body .nl530-pill {
+  background: #20303d !important;
+  color: #dce7ef !important;
+  border-color: #3b4c5a !important;
+}
+[data-nl-theme="dark"] .nl-admin-body .nl530-member-row,
+[data-nl-theme="dark"] .nl-admin-body .nl530-onboarding-row {
+  background: var(--nl56-surface-2) !important;
+  color: var(--nl56-text) !important;
+  border-color: var(--nl56-border) !important;
+}
+
+/* Applications: quick views, saved view, filter strip, checkbox/reset row */
+[data-nl-theme="dark"] .nl-admin-body .nl530-quickviews,
+[data-nl-theme="dark"] .nl-admin-body .nl530-filters,
+[data-nl-theme="dark"] .nl-admin-body .nl530-filter-grid,
+[data-nl-theme="dark"] .nl-admin-body .nl530-saved-view,
+[data-nl-theme="dark"] .nl-admin-body .nl530-toolbar {
+  background: var(--nl56-surface) !important;
+  color: var(--nl56-text) !important;
+  border-color: var(--nl56-border) !important;
+}
+[data-nl-theme="dark"] .nl-admin-body .nl530-filter-grid label,
+[data-nl-theme="dark"] .nl-admin-body .nl530-toolbar label {
+  color: var(--nl56-muted) !important;
+}
+
+/* Support case filter bar */
+[data-nl-theme="dark"] .nl-admin-body .nl530-support-filters,
+[data-nl-theme="dark"] .nl-admin-body .nl530-support-toolbar {
+  background: var(--nl56-surface) !important;
+  border-color: var(--nl56-border) !important;
+}
+
+/* Settings: administrator rows */
+[data-nl-theme="dark"] .nl-admin-body .nl530-admin-row,
+[data-nl-theme="dark"] .nl-admin-body .nl540-admin-row,
+[data-nl-theme="dark"] .nl-admin-body #administratorsList > *,
+[data-nl-theme="dark"] .nl-admin-body [data-admin-row] {
+  background: var(--nl56-surface-2) !important;
+  color: var(--nl56-text) !important;
+  border-color: var(--nl56-border) !important;
+}
+[data-nl-theme="dark"] .nl-admin-body .nl530-admin-row *,
+[data-nl-theme="dark"] .nl-admin-body .nl540-admin-row *,
+[data-nl-theme="dark"] .nl-admin-body #administratorsList > * * {
+  color: inherit;
+}
+
+/* Keep role/status pills readable without turning the whole row white */
+[data-nl-theme="dark"] .nl-admin-body .nl530-admin-row .nl530-pill,
+[data-nl-theme="dark"] .nl-admin-body .nl540-admin-row .nl530-pill,
+[data-nl-theme="dark"] .nl-admin-body #administratorsList .nl530-pill {
+  background: #20303d !important;
+  color: #dce7ef !important;
+  border-color: #3b4c5a !important;
+}
+
+/* Generic white child panels that are clearly controls/rows in dark Admin */
+[data-nl-theme="dark"] .nl-admin-body .nl530-card .nl530-light,
+[data-nl-theme="dark"] .nl-admin-body .nl530-card .nl530-white,
+[data-nl-theme="dark"] .nl-admin-body .nl530-card [data-surface="light"] {
+  background: var(--nl56-surface-2) !important;
+  color: var(--nl56-text) !important;
+  border-color: var(--nl56-border) !important;
+}
+
+/* Pagination light controls */
+[data-nl-theme="dark"] .nl-admin-body .nl530-pagination button,
+[data-nl-theme="dark"] .nl-admin-body .nl530-pagination select {
+  background: #182530 !important;
+  color: #edf3f7 !important;
+  border-color: #3a4a58 !important;
+}

@@ -1,0 +1,268 @@
+/* NurseLink Qualifications Light/Dark Theme v64.7.0
+   Dedicated Qualifications visual token layer.
+   Dark mode preserved; light mode fully normalized.
+*/
+
+/* ---------- LIGHT DEFAULT ---------- */
+html[data-nl-route="qualifications"] {
+  --nlq-bg: #f4f7fb;
+  --nlq-bg-soft: #eef3f8;
+  --nlq-surface: #ffffff;
+  --nlq-surface-alt: #f8fafc;
+  --nlq-surface-strong: #edf2f7;
+  --nlq-text: #172033;
+  --nlq-text-strong: #0f172a;
+  --nlq-muted: #64748b;
+  --nlq-subtle: #8b98aa;
+  --nlq-border: #dbe3ec;
+  --nlq-border-strong: #cbd5e1;
+  --nlq-blue: #1769e0;
+  --nlq-blue-soft: #eaf2ff;
+  --nlq-green: #15805f;
+  --nlq-green-soft: #e8f7f0;
+  --nlq-purple: #7257e7;
+  --nlq-purple-soft: #f0edff;
+  --nlq-gold: #a46712;
+  --nlq-gold-soft: #fff6df;
+  --nlq-danger: #c2413b;
+  --nlq-shadow: 0 10px 28px rgba(37, 52, 82, .08);
+  color-scheme: light;
+}
+
+/* ---------- DARK ---------- */
+html[data-nl-route="qualifications"][data-nl-effective-theme="dark"],
+html[data-nl-route="qualifications"][data-theme="dark"],
+html[data-nl-route="qualifications"].dark {
+  --nlq-bg: #0d1423;
+  --nlq-bg-soft: #101a2a;
+  --nlq-surface: #141d2d;
+  --nlq-surface-alt: #192436;
+  --nlq-surface-strong: #202d42;
+  --nlq-text: #eaf0f8;
+  --nlq-text-strong: #ffffff;
+  --nlq-muted: #aab7c9;
+  --nlq-subtle: #8795a9;
+  --nlq-border: #2c3a50;
+  --nlq-border-strong: #3b4a62;
+  --nlq-blue: #68a5ff;
+  --nlq-blue-soft: #172d4f;
+  --nlq-green: #66d4a7;
+  --nlq-green-soft: #17352e;
+  --nlq-purple: #aa97ff;
+  --nlq-purple-soft: #29234c;
+  --nlq-gold: #f2c46e;
+  --nlq-gold-soft: #332b19;
+  --nlq-danger: #ff918a;
+  --nlq-shadow: 0 12px 34px rgba(0,0,0,.26);
+  color-scheme: dark;
+}
+
+/* ---------- PAGE ---------- */
+html[data-nl-route="qualifications"] body,
+html[data-nl-route="qualifications"] .member-react-safe-shell-v108,
+html[data-nl-route="qualifications"] main,
+html[data-nl-route="qualifications"] .main,
+html[data-nl-route="qualifications"] .content,
+html[data-nl-route="qualifications"] [class*="qualification"] {
+  background-color: var(--nlq-bg);
+  color: var(--nlq-text);
+}
+
+html[data-nl-route="qualifications"] body {
+  transition: background-color .18s ease, color .18s ease;
+}
+
+/* ---------- TITLES / COPY ---------- */
+html[data-nl-route="qualifications"] :is(
+  h1,h2,h3,h4,h5,h6,strong,b,dt,th,
+  [class*="title"],[class*="heading"],[class*="name"],[class*="value"]
+) {
+  color: var(--nlq-text-strong) !important;
+}
+
+html[data-nl-route="qualifications"] :is(
+  p,small,dd,td,label,
+  [class*="muted"],[class*="meta"],[class*="subtitle"],
+  [class*="description"],[class*="caption"],[class*="helper"]
+) {
+  color: var(--nlq-muted) !important;
+}
+
+html[data-nl-route="qualifications"] a {
+  color: var(--nlq-blue);
+}
+
+/* ---------- CARDS / PANELS ---------- */
+html[data-nl-route="qualifications"] :is(
+  .card,.panel,
+  [class*="-card"],[class*="-panel"],
+  [class*="framework"],[class*="standing"],
+  [class*="snapshot"],[class*="provenance"],
+  [class*="readiness"],[class*="qualification-summary"]
+):not(.sidebar):not([class*="sidebar"]) {
+  background: var(--nlq-surface) !important;
+  border-color: var(--nlq-border) !important;
+  color: var(--nlq-text) !important;
+  box-shadow: var(--nlq-shadow);
+}
+
+/* Nested data tiles should be slightly differentiated. */
+html[data-nl-route="qualifications"] :is(
+  [class*="detail"],[class*="metadata"],[class*="source"],
+  [class*="policy"],[class*="verification"],[class*="mapping"]
+) {
+  border-color: var(--nlq-border) !important;
+}
+
+/* ---------- PROFILE / MEMBER SUMMARY ---------- */
+html[data-nl-route="qualifications"] :is(
+  [class*="member-summary"],[class*="profile-summary"],[class*="identity-card"]
+) {
+  background: var(--nlq-surface) !important;
+  border-color: var(--nlq-border) !important;
+}
+
+/* ---------- FRAMEWORK ---------- */
+html[data-nl-route="qualifications"] :is(
+  [class*="framework-card"],[class*="framework-reference"]
+) {
+  background: var(--nlq-surface) !important;
+  border-color: var(--nlq-border) !important;
+}
+
+html[data-nl-route="qualifications"] :is(
+  [class*="your-qualification"],[class*="qualification-level"],
+  [class*="pqf-level"],[class*="reference-band"]
+) {
+  background: var(--nlq-purple-soft) !important;
+  border-color: color-mix(in srgb, var(--nlq-purple) 28%, var(--nlq-border)) !important;
+}
+
+html[data-nl-route="qualifications"] :is(
+  [class*="qualification-level"],[class*="pqf-level"],
+  [class*="reference-band"]
+) :is(strong,b,[class*="value"]) {
+  color: var(--nlq-purple) !important;
+}
+
+/* ---------- STATUS BADGES ---------- */
+html[data-nl-route="qualifications"] :is(
+  [class*="verified"],[class*="current"],[class*="success"]
+) {
+  color: var(--nlq-green) !important;
+}
+
+html[data-nl-route="qualifications"] :is(
+  [class*="verified"],[class*="current"],[class*="success"]
+)[class*="badge"],
+html[data-nl-route="qualifications"] :is(
+  .badge,.pill,[class*="badge"],[class*="pill"]
+)[data-status="verified"] {
+  background: var(--nlq-green-soft) !important;
+}
+
+/* ---------- TABS ---------- */
+html[data-nl-route="qualifications"] :is(
+  [role="tab"],.tab,[class*="tab"]
+) {
+  color: var(--nlq-muted) !important;
+  border-color: var(--nlq-border) !important;
+}
+
+html[data-nl-route="qualifications"] :is(
+  [role="tab"][aria-selected="true"],
+  .tab.active,
+  [class*="tab"].active
+) {
+  color: var(--nlq-blue) !important;
+  border-color: var(--nlq-blue) !important;
+  background: transparent !important;
+}
+
+/* ---------- BUTTONS ---------- */
+html[data-nl-route="qualifications"] :is(button,[role="button"],.button,.btn) {
+  border-color: var(--nlq-border);
+}
+
+html[data-nl-route="qualifications"] :is(
+  button,[role="button"],.button,.btn
+):not([class*="primary"]):not([class*="accent"]) {
+  background: var(--nlq-surface) !important;
+  color: var(--nlq-text-strong) !important;
+}
+
+/* ---------- FORMS ---------- */
+html[data-nl-route="qualifications"] :is(input,select,textarea) {
+  background: var(--nlq-surface-alt) !important;
+  color: var(--nlq-text-strong) !important;
+  border-color: var(--nlq-border) !important;
+}
+
+html[data-nl-route="qualifications"] :is(input,textarea)::placeholder {
+  color: var(--nlq-subtle) !important;
+}
+
+/* ---------- DISCLAIMER ---------- */
+html[data-nl-route="qualifications"] :is(
+  [class*="disclaimer"],[class*="notice"],[class*="important"]
+) {
+  background: var(--nlq-gold-soft) !important;
+  border-color: color-mix(in srgb, var(--nlq-gold) 35%, var(--nlq-border)) !important;
+  color: var(--nlq-text) !important;
+}
+
+/* ---------- TABLE / GRID ROWS ---------- */
+html[data-nl-route="qualifications"] table {
+  background: var(--nlq-surface) !important;
+  color: var(--nlq-text);
+  border-color: var(--nlq-border);
+}
+
+html[data-nl-route="qualifications"] :is(tr,td,th) {
+  border-color: var(--nlq-border) !important;
+}
+
+/* ---------- LIGHT-MODE ANTI-LEAK FIXES ---------- */
+html[data-nl-route="qualifications"][data-nl-effective-theme="light"] :is(
+  [style*="background: rgb(1"],
+  [style*="background-color: rgb(1"],
+  [style*="background:#0"],
+  [style*="background-color:#0"]
+) {
+  background-color: var(--nlq-surface) !important;
+}
+
+html[data-nl-route="qualifications"][data-nl-effective-theme="light"] :is(
+  [style*="color: white"],
+  [style*="color:#fff"],
+  [style*="color: #fff"]
+) {
+  color: var(--nlq-text-strong) !important;
+}
+
+/* ---------- DARK-MODE ANTI-LEAK FIXES ---------- */
+html[data-nl-route="qualifications"][data-nl-effective-theme="dark"] :is(
+  [style*="background: white"],
+  [style*="background-color: white"],
+  [style*="background:#fff"],
+  [style*="background-color:#fff"]
+) {
+  background-color: var(--nlq-surface) !important;
+}
+
+html[data-nl-route="qualifications"][data-nl-effective-theme="dark"] :is(
+  [style*="color: black"],
+  [style*="color:#000"],
+  [style*="color: #000"]
+) {
+  color: var(--nlq-text-strong) !important;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 767px) {
+  html[data-nl-route="qualifications"] :is(
+    .card,.panel,[class*="-card"],[class*="-panel"]
+  ) {
+    box-shadow: none;
+  }
+}

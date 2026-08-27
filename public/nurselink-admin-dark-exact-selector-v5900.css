@@ -1,0 +1,74 @@
+/* NURSELINK_ADMIN_DARK_EXACT_SELECTOR_V5900 */
+
+/* Preserve the correct v58 Applications target */
+[data-nl-theme="dark"] .nl550-check-filter {
+  background: #14202a !important;
+  background-color: #14202a !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl550-check-filter span {
+  color: #eef3f7 !important;
+}
+
+/* Exact Support Cases filter/search container */
+[data-nl-theme="dark"] .nl542-support-toolbar {
+  background: #17232e !important;
+  background-color: #17232e !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+  box-shadow: none !important;
+}
+[data-nl-theme="dark"] .nl542-support-toolbar label,
+[data-nl-theme="dark"] .nl542-support-toolbar span {
+  color: #eef3f7 !important;
+}
+[data-nl-theme="dark"] .nl542-support-toolbar input,
+[data-nl-theme="dark"] .nl542-support-toolbar select {
+  background: #14202a !important;
+  background-color: #14202a !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+}
+
+/* Exact Dashboard Global Search popup */
+[data-nl-theme="dark"] .nl542-search-panel {
+  background: #17232e !important;
+  background-color: #17232e !important;
+  color: #eef3f7 !important;
+  border: 1px solid #344452 !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,.32) !important;
+}
+[data-nl-theme="dark"] .nl542-search-panel-head {
+  background: #1d2a36 !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+}
+[data-nl-theme="dark"] .nl542-search-panel-head span,
+[data-nl-theme="dark"] .nl542-search-panel-head strong {
+  color: #eef3f7 !important;
+}
+[data-nl-theme="dark"] .nl542-search-results {
+  background: #17232e !important;
+  color: #eef3f7 !important;
+}
+[data-nl-theme="dark"] .nl542-search-results .nl530-empty {
+  background: #14202a !important;
+  color: #aebbc6 !important;
+  border-color: #344452 !important;
+}
+[data-nl-theme="dark"] .nl542-search-result {
+  background: #1d2a36 !important;
+  color: #eef3f7 !important;
+  border-color: #344452 !important;
+}
+[data-nl-theme="dark"] .nl542-search-result strong {
+  color: #f2f6f9 !important;
+}
+[data-nl-theme="dark"] .nl542-search-result small {
+  color: #aebbc6 !important;
+}
+[data-nl-theme="dark"] .nl542-search-group h3 {
+  color: #eef3f7 !important;
+}

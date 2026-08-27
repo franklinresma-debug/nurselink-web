@@ -1,0 +1,32 @@
+/* NurseLink Drawer Brand White Text Repair v4.3.3
+   Scope: drawer/sidebar brand text only.
+*/
+.member-react-safe-shell-v108 .sidebar .sidebar-brand,
+.member-react-safe-shell-v108 .sidebar .sidebar-brand *,
+.member-react-safe-shell-v108 .sidebar > div:first-child strong,
+.member-react-safe-shell-v108 .sidebar > div:first-child b,
+.member-react-safe-shell-v108 .sidebar > div:first-child h1,
+.member-react-safe-shell-v108 .sidebar > div:first-child h2,
+.member-react-safe-shell-v108 .sidebar > div:first-child h3,
+.member-react-safe-shell-v108 .sidebar > div:first-child span,
+.member-react-safe-shell-v108 .sidebar > div:first-child small,
+.member-react-safe-shell-v108 .sidebar > div:first-child p {
+  color: #ffffff !important;
+}
+
+/* NURSELINK_DRAWER_EXACT_LOGO_WHITE_V434 */
+/* NurseLink Drawer Exact Logo White Fix v4.3.4
+   Exact live React markup:
+   <div className="logo">
+     ...
+     <strong>NurseLink</strong>
+     <small>KAPIT-BISIG</small>
+   </div>
+*/
+.member-react-safe-shell-v108 .sidebar .logo > div:last-child > strong,
+.member-react-safe-shell-v108 .sidebar .logo strong,
+.member-react-safe-shell-v108.mobile-nav-open .sidebar .logo strong {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  opacity: 1 !important;
+}

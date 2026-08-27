@@ -1,0 +1,272 @@
+.bnai-main{
+  min-width:0;
+}
+
+.bnai-summary{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(190px,1fr));
+  gap:14px;
+  margin:0 0 18px;
+}
+
+.bnai-stat{
+  padding:18px;
+  border:1px solid #d9e4ee;
+  border-radius:14px;
+  background:#fff;
+}
+
+.bnai-stat span,
+.bnai-stat small{
+  display:block;
+  color:#6a7c91;
+}
+
+.bnai-stat strong{
+  display:block;
+  margin:5px 0;
+  color:#173253;
+  font-size:1.7rem;
+}
+
+.bnai-governance{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:18px;
+  padding:16px 18px;
+  border:1px solid #f2cf80;
+  border-radius:12px;
+  background:#fff9e8;
+  color:#694b05;
+}
+
+.bnai-governance strong{
+  flex:0 0 auto;
+}
+
+.bnai-layout{
+  display:grid;
+  grid-template-columns:
+    minmax(300px,.8fr)
+    minmax(0,1.7fr);
+  gap:18px;
+}
+
+.bnai-panel{
+  min-width:0;
+  padding:18px;
+  border:1px solid #d9e4ee;
+  border-radius:14px;
+  background:#fff;
+}
+
+.bnai-panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:14px;
+  margin-bottom:16px;
+}
+
+.bnai-panel-head span{
+  color:#0b72d5;
+  font-size:.72rem;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.bnai-panel-head h2{
+  margin:4px 0 0;
+}
+
+.bnai-list{
+  display:grid;
+  gap:10px;
+}
+
+.bnai-candidate{
+  width:100%;
+  padding:14px;
+  border:1px solid #d8e3ed;
+  border-radius:11px;
+  background:#f9fbfd;
+  text-align:left;
+  cursor:pointer;
+}
+
+.bnai-candidate:hover,
+.bnai-candidate[data-active="true"]{
+  border-color:#0b72d5;
+  background:#eef7ff;
+}
+
+.bnai-candidate strong,
+.bnai-candidate span,
+.bnai-candidate small{
+  display:block;
+}
+
+.bnai-candidate span{
+  margin-top:4px;
+  color:#38546f;
+}
+
+.bnai-candidate small{
+  margin-top:5px;
+  color:#75879a;
+}
+
+.bnai-empty{
+  padding:26px;
+  border:1px dashed #cbd8e4;
+  border-radius:12px;
+  color:#728397;
+  text-align:center;
+}
+
+.bnai-detail{
+  display:grid;
+  gap:16px;
+}
+
+.bnai-person{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;
+}
+
+.bnai-field{
+  padding:11px;
+  border:1px solid #e0e8ef;
+  border-radius:9px;
+  background:#fbfcfd;
+}
+
+.bnai-field span,
+.bnai-field strong{
+  display:block;
+}
+
+.bnai-field span{
+  margin-bottom:3px;
+  color:#738397;
+  font-size:.78rem;
+  font-weight:800;
+}
+
+.bnai-section{
+  border-top:1px solid #e2e9ef;
+  padding-top:15px;
+}
+
+.bnai-section h3{
+  margin:0 0 10px;
+}
+
+.bnai-records{
+  display:grid;
+  gap:8px;
+}
+
+.bnai-record{
+  padding:11px 12px;
+  border:1px solid #e0e8ef;
+  border-radius:9px;
+  background:#fbfcfd;
+}
+
+.bnai-record strong,
+.bnai-record span,
+.bnai-record small{
+  display:block;
+}
+
+.bnai-record span{
+  margin-top:3px;
+  color:#455e75;
+}
+
+.bnai-record small{
+  margin-top:4px;
+  color:#78889a;
+}
+
+.bnai-badge{
+  display:inline-flex !important;
+  width:max-content;
+  margin-top:7px !important;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#eaf7ef;
+  color:#23653b !important;
+  font-size:.72rem;
+  font-weight:900;
+}
+
+.bnai-badge.warn{
+  background:#fff4d8;
+  color:#75520a !important;
+}
+
+.bnai-badge.danger{
+  background:#ffebeb;
+  color:#8f2424 !important;
+}
+
+.bnai-duplicate{
+  padding:12px 14px;
+  border:1px solid #d4e5d9;
+  border-radius:10px;
+  background:#f3fbf5;
+}
+
+.bnai-duplicate.danger{
+  border-color:#efb6b6;
+  background:#fff3f3;
+  color:#8d2727;
+}
+
+.bnai-import-box{
+  padding:16px;
+  border:1px solid #bcd8ee;
+  border-radius:12px;
+  background:#f3f9ff;
+}
+
+.bnai-import-box p{
+  margin:5px 0 12px;
+  color:#526b82;
+  line-height:1.5;
+}
+
+.bnai-import-box button{
+  min-height:44px;
+  padding:0 17px;
+  border:0;
+  border-radius:9px;
+  background:#0b72d5;
+  color:#fff;
+  font-weight:900;
+}
+
+.bnai-import-box button:disabled{
+  opacity:.48;
+  cursor:not-allowed;
+}
+
+.bnai-private{
+  padding:10px 12px;
+  border-radius:9px;
+  background:#f7f1ff;
+  color:#644785;
+  font-size:.84rem;
+}
+
+@media(max-width:1000px){
+  .bnai-layout{
+    grid-template-columns:1fr;
+  }
+}

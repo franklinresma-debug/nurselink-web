@@ -1,0 +1,402 @@
+/* ======================================================
+   NurseLink v715
+   Senior-Friendly Mobile Readability Layer
+   ====================================================== */
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+@media (max-width: 700px) {
+    html {
+        font-size: 18px !important;
+    }
+
+    body {
+        font-size: 18px !important;
+        line-height: 1.55 !important;
+    }
+
+    p, li, dd, dt {
+        line-height: 1.55 !important;
+    }
+
+    h1 {
+        font-size: clamp(1.75rem, 7vw, 2rem) !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.02em !important;
+    }
+
+    h2 {
+        font-size: clamp(1.45rem, 6vw, 1.7rem) !important;
+        line-height: 1.2 !important;
+    }
+
+    h3 {
+        font-size: clamp(1.2rem, 5vw, 1.4rem) !important;
+        line-height: 1.25 !important;
+    }
+
+    small {
+        font-size: 0.86rem !important;
+        line-height: 1.45 !important;
+    }
+
+    input, select, textarea {
+        min-height: 52px !important;
+        font-size: 17px !important;
+        line-height: 1.35 !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        border-radius: 11px !important;
+    }
+
+    textarea {
+        min-height: 110px !important;
+        padding-top: 13px !important;
+        padding-bottom: 13px !important;
+    }
+
+    input, textarea, select {
+        font-size: max(16px, 0.95rem) !important;
+    }
+
+    label,
+    label > span,
+    .form-label,
+    .field-label {
+        font-size: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    button,
+    [role="button"],
+    a.button,
+    a.primary,
+    a.secondary {
+        min-height: 52px;
+        font-size: 17px !important;
+        line-height: 1.2 !important;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    table {
+        font-size: 16px !important;
+    }
+
+    th {
+        font-size: 15px !important;
+        line-height: 1.35 !important;
+    }
+
+    td {
+        font-size: 16px !important;
+        line-height: 1.45 !important;
+    }
+
+    .nl530-menu a,
+    .nl-admin-sidebar nav a {
+        min-height: 52px !important;
+        display: flex !important;
+        align-items: center !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        font-size: 17px !important;
+        line-height: 1.25 !important;
+    }
+
+    .nl530-menu a span,
+    .nl-admin-sidebar nav a span {
+        font-size: 17px !important;
+        line-height: 1.3 !important;
+    }
+
+    .nl630-nav-group {
+        margin-top: 18px !important;
+        margin-bottom: 7px !important;
+        font-size: 14px !important;
+        line-height: 1.3 !important;
+        letter-spacing: 0.08em !important;
+    }
+
+    .nl-admin-eyebrow {
+        font-size: 14px !important;
+        line-height: 1.35 !important;
+    }
+
+    #operationsTitle {
+        font-size: 30px !important;
+        line-height: 1.15 !important;
+    }
+
+    #operationsSubtitle {
+        font-size: 17px !important;
+        line-height: 1.5 !important;
+    }
+
+    .nl530-card,
+    .nl540-progress-card,
+    .nl550-progress-card,
+    .nl550-queue-card,
+    .nl552-workload-card,
+    .nl530-toolbar {
+        line-height: 1.5 !important;
+    }
+
+    .nl530-card-head span,
+    .nl550-section-heading span,
+    .nl550-queue-heading span,
+    .nl552-workload-heading span {
+        font-size: 14px !important;
+        line-height: 1.35 !important;
+    }
+
+    .nl530-card-head h2,
+    .nl550-section-heading h2,
+    .nl550-queue-heading h2,
+    .nl552-workload-heading h2 {
+        font-size: 24px !important;
+        line-height: 1.2 !important;
+    }
+
+    .nl530-card-head p,
+    .nl550-section-heading p,
+    .nl550-queue-heading p,
+    .nl552-workload-heading p {
+        font-size: 16px !important;
+        line-height: 1.55 !important;
+    }
+
+    .nl-admin-role-badge,
+    .nl-admin-status,
+    [class*="badge"],
+    [class*="status-pill"] {
+        font-size: 14px !important;
+        line-height: 1.3 !important;
+    }
+
+    .nl-admin-loading,
+    .nl-admin-empty,
+    .nl530-empty {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+    }
+
+    #adminGlobalSearch {
+        min-height: 52px !important;
+        font-size: 17px !important;
+    }
+
+    .user-chip strong,
+    .nl-admin-identity strong {
+        font-size: 16px !important;
+        line-height: 1.3 !important;
+    }
+
+    .user-chip small,
+    .nl-admin-identity small {
+        font-size: 14px !important;
+        line-height: 1.35 !important;
+    }
+
+    .navigation-help-button {
+        min-height: 48px !important;
+        font-size: 16px !important;
+        padding-left: 13px !important;
+        padding-right: 13px !important;
+    }
+
+    .member-theme-control-v337 button {
+        min-width: 48px !important;
+        min-height: 48px !important;
+    }
+
+    .nl555-mobile-menu-button,
+    .nl555-mobile-close {
+        min-width: 52px !important;
+        width: 52px !important;
+        min-height: 52px !important;
+        height: 52px !important;
+    }
+
+    .nl530-sidebar-footer a,
+    .nl530-sidebar-footer button {
+        min-height: 52px !important;
+        font-size: 16px !important;
+        line-height: 1.3 !important;
+    }
+
+    .form-note,
+    .privacy-banner,
+    .description,
+    .helper-text,
+    .help-text,
+    .field-help,
+    .form-hint,
+    .hint,
+    .caption {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+    }
+
+    .member-react-safe-shell-v108 p,
+    .member-react-safe-shell-v108 li {
+        font-size: 17px !important;
+        line-height: 1.55 !important;
+    }
+
+    .member-react-safe-shell-v108 label {
+        font-size: 16px !important;
+    }
+
+    .member-react-safe-shell-v108 button {
+        font-size: 17px !important;
+    }
+
+    main section,
+    main article {
+        scroll-margin-top: 80px;
+    }
+}
+
+@media
+    (min-width: 414px)
+    and (max-width: 480px)
+    and (hover: none)
+    and (pointer: coarse) {
+
+    body {
+        font-size: 19px !important;
+    }
+
+    p, li {
+        font-size: 18px;
+        line-height: 1.58 !important;
+    }
+
+    label {
+        font-size: 17px !important;
+    }
+
+    input, select, textarea {
+        min-height: 56px !important;
+        font-size: 18px !important;
+    }
+
+    button,
+    [role="button"] {
+        min-height: 56px;
+        font-size: 18px !important;
+    }
+
+    #operationsTitle {
+        font-size: 32px !important;
+    }
+
+    #operationsSubtitle {
+        font-size: 18px !important;
+    }
+
+    .nl530-menu a,
+    .nl-admin-sidebar nav a {
+        min-height: 56px !important;
+        font-size: 18px !important;
+    }
+
+    .nl530-menu a span,
+    .nl-admin-sidebar nav a span {
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .nl714-guide-card {
+        font-size: 18px !important;
+        line-height: 1.55 !important;
+    }
+
+    .nl714-guide-card h1 {
+        font-size: 30px !important;
+    }
+
+    .nl714-guide-card h2 {
+        font-size: 28px !important;
+    }
+
+    .nl714-guide-card h3 {
+        font-size: 23px !important;
+    }
+
+    .nl714-guide-card p {
+        font-size: 18px !important;
+        line-height: 1.58 !important;
+    }
+
+    .nl714-guide-card button,
+    .nl714-guide-card [role="button"] {
+        min-height: 58px !important;
+        font-size: 18px !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    .nl714-guide-tab {
+        min-height: 56px !important;
+        font-size: 17px !important;
+    }
+
+    .nl714-guide-skip {
+        min-height: 60px !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+    }
+
+    button,
+    input,
+    select,
+    textarea,
+    .nl530-menu a {
+        max-width: 100%;
+    }
+
+    button,
+    [role="button"],
+    .nl530-menu a {
+        white-space: normal;
+    }
+}
+
+@media
+    (min-width: 414px)
+    and (max-width: 480px)
+    and (hover: none)
+    and (pointer: coarse) {
+
+    .nl714-guide-card {
+        padding: 24px !important;
+    }
+
+    .nl714-guide-card h2 {
+        font-size: 30px !important;
+    }
+
+    .nl714-guide-card p {
+        font-size: 19px !important;
+    }
+
+    .nl714-guide-card button,
+    .nl714-guide-card [role="button"] {
+        min-height: 60px !important;
+        font-size: 18px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+    }
+}

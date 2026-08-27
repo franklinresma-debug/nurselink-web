@@ -1,0 +1,251 @@
+/* NurseLink Global Light Theme Refinement v64.7.3
+   Refines the shared member light theme based on the approved Qualifications light screenshot.
+*/
+
+:root {
+  --nl-page: #f3f6fa;
+  --nl-page-soft: #edf2f7;
+  --nl-surface: #ffffff;
+  --nl-surface-alt: #f8fafc;
+  --nl-surface-strong: #eef3f8;
+  --nl-text: #1b2436;
+  --nl-text-strong: #111827;
+  --nl-muted: #5f6f84;
+  --nl-subtle: #7f8da3;
+  --nl-label: #7f93b3;
+  --nl-border: #d8e1eb;
+  --nl-border-strong: #c8d3df;
+  --nl-blue: #1769e0;
+  --nl-blue-soft: #eaf2ff;
+  --nl-green: #0f6b50;
+  --nl-green-soft: #e7f5ef;
+  --nl-purple: #5a2a8e;
+  --nl-purple-soft: #f1ebf8;
+  --nl-gold: #9a6717;
+  --nl-gold-soft: #fff7e7;
+  --nl-shadow: 0 6px 20px rgba(36, 51, 79, .06);
+  color-scheme: light;
+}
+
+html[data-nl-effective-theme="dark"],
+html[data-theme="dark"],
+html.dark,
+body[data-theme="dark"],
+body.dark {
+  --nl-page: #0d1423;
+  --nl-page-soft: #101a2a;
+  --nl-surface: #141d2d;
+  --nl-surface-alt: #192436;
+  --nl-surface-strong: #202d42;
+  --nl-text: #eaf0f8;
+  --nl-text-strong: #ffffff;
+  --nl-muted: #aab7c9;
+  --nl-subtle: #8795a9;
+  --nl-label: #92a3bb;
+  --nl-border: #2c3a50;
+  --nl-border-strong: #3b4a62;
+  --nl-blue: #68a5ff;
+  --nl-blue-soft: #172d4f;
+  --nl-green: #66d4a7;
+  --nl-green-soft: #17352e;
+  --nl-purple: #aa97ff;
+  --nl-purple-soft: #29234c;
+  --nl-gold: #f2c46e;
+  --nl-gold-soft: #332b19;
+  --nl-shadow: 0 12px 34px rgba(0,0,0,.26);
+  color-scheme: dark;
+}
+
+/* Global member canvas */
+.member-react-safe-shell-v108,
+.member-react-safe-shell-v108 main,
+.member-react-safe-shell-v108 .main,
+.member-react-safe-shell-v108 .content,
+.member-react-safe-shell-v108 [class*="workspace"],
+.member-react-safe-shell-v108 [class*="page"] {
+  background-color: var(--nl-page) !important;
+  color: var(--nl-text) !important;
+}
+
+/* Global typography */
+.member-react-safe-shell-v108 :is(
+  h1,h2,h3,h4,h5,h6,strong,b,dt,th,
+  [class*="title"],[class*="heading"],[class*="name"],[class*="value"]
+) {
+  color: var(--nl-text-strong) !important;
+}
+
+.member-react-safe-shell-v108 :is(
+  p,small,dd,td,label,
+  [class*="muted"],[class*="meta"],[class*="subtitle"],
+  [class*="description"],[class*="caption"],[class*="helper"]
+) {
+  color: var(--nl-muted) !important;
+}
+
+/* Small data labels: stronger than previous build */
+.member-react-safe-shell-v108 :is(
+  [class*="label"], [class*="eyebrow"], [class*="kicker"],
+  dt, small
+) {
+  color: var(--nl-label) !important;
+}
+
+.member-react-safe-shell-v108 a {
+  color: var(--nl-blue);
+}
+
+/* Shared card language */
+.member-react-safe-shell-v108 :is(
+  .card,.panel,[class*="-card"],[class*="-panel"],
+  [class*="tile"],[class*="summary"],[class*="widget"]
+):not(.sidebar):not([class*="sidebar"]):not([class*="topbar"]):not([class*="header"]) {
+  background: var(--nl-surface) !important;
+  border-color: var(--nl-border) !important;
+  color: var(--nl-text) !important;
+  box-shadow: var(--nl-shadow);
+}
+
+/* Nested cards should be flatter/lighter than outer cards */
+.member-react-safe-shell-v108 :is(
+  [class*="detail"],[class*="metadata"],[class*="source"],
+  [class*="policy"],[class*="verification"],[class*="mapping"],
+  [class*="section-inner"],[class*="subcard"]
+) {
+  background: var(--nl-surface-alt) !important;
+  border-color: var(--nl-border) !important;
+  box-shadow: none !important;
+}
+
+/* Qualification / PQF emphasis */
+.member-react-safe-shell-v108 :is(
+  [class*="qualification-level"],[class*="pqf-level"],
+  [class*="reference-band"],[class*="your-qualification"]
+) {
+  background: var(--nl-purple-soft) !important;
+  border-color: color-mix(in srgb, var(--nl-purple) 24%, var(--nl-border)) !important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="qualification-level"],[class*="pqf-level"],
+  [class*="reference-band"],[class*="your-qualification"]
+) :is(strong,b,[class*="value"]) {
+  color: var(--nl-purple) !important;
+}
+
+/* Status */
+.member-react-safe-shell-v108 :is(
+  [class*="verified"],[class*="current"],[class*="success"],[class*="approved"]
+) {
+  color: var(--nl-green) !important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [class*="verified"],[class*="current"],[class*="success"],[class*="approved"]
+)[class*="badge"],
+.member-react-safe-shell-v108 :is(.badge,.pill,[class*="badge"],[class*="pill"])[data-status="verified"] {
+  background: var(--nl-green-soft) !important;
+}
+
+/* Tabs */
+.member-react-safe-shell-v108 :is([role="tab"],.tab,[class*="tab"]) {
+  color: var(--nl-muted) !important;
+  border-color: var(--nl-border) !important;
+}
+
+.member-react-safe-shell-v108 :is(
+  [role="tab"][aria-selected="true"],.tab.active,[class*="tab"].active
+) {
+  color: var(--nl-blue) !important;
+  border-color: var(--nl-blue) !important;
+  background: var(--nl-surface) !important;
+}
+
+/* Inputs */
+.member-react-safe-shell-v108 :is(input,select,textarea) {
+  background: var(--nl-surface-alt) !important;
+  color: var(--nl-text-strong) !important;
+  border-color: var(--nl-border) !important;
+}
+
+.member-react-safe-shell-v108 :is(input,textarea)::placeholder {
+  color: var(--nl-subtle) !important;
+}
+
+/* Secondary buttons */
+.member-react-safe-shell-v108 :is(button,[role="button"],.button,.btn)
+:not([class*="primary"]):not([class*="accent"]):not([class*="danger"]) {
+  background: var(--nl-surface) !important;
+  color: var(--nl-text-strong) !important;
+  border-color: var(--nl-border) !important;
+}
+
+/* Tables/grids */
+.member-react-safe-shell-v108 table {
+  background: var(--nl-surface) !important;
+  color: var(--nl-text);
+  border-color: var(--nl-border);
+}
+.member-react-safe-shell-v108 :is(tr,td,th) {
+  border-color: var(--nl-border) !important;
+}
+
+/* Notices/disclaimers: softer, less yellow-heavy */
+.member-react-safe-shell-v108 :is(
+  [class*="warning"],[class*="notice"],[class*="important"],[class*="disclaimer"]
+) {
+  background: var(--nl-gold-soft) !important;
+  border-color: color-mix(in srgb, var(--nl-gold) 28%, var(--nl-border)) !important;
+  color: var(--nl-text) !important;
+}
+
+/* Light anti-leak */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+  [style*="background: rgb(1"],
+  [style*="background-color: rgb(1"],
+  [style*="background:#0"],
+  [style*="background-color:#0"]
+) {
+  background-color: var(--nl-surface) !important;
+}
+
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+  [style*="color: white"],
+  [style*="color:#fff"],
+  [style*="color: #fff"]
+) {
+  color: var(--nl-text-strong) !important;
+}
+
+/* Dark anti-leak */
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+  [style*="background: white"],
+  [style*="background-color: white"],
+  [style*="background:#fff"],
+  [style*="background-color:#fff"]
+) {
+  background-color: var(--nl-surface) !important;
+}
+
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+  [style*="color: black"],
+  [style*="color:#000"],
+  [style*="color: #000"]
+) {
+  color: var(--nl-text-strong) !important;
+}
+
+/* Sidebar stays as the stable NurseLink blue anchor */
+.member-react-safe-shell-v108 .sidebar,
+.member-react-safe-shell-v108 [class*="sidebar"] {
+  box-shadow: none !important;
+}
+
+/* Slightly tighter card feel on small screens */
+@media (max-width: 767px) {
+  .member-react-safe-shell-v108 :is(
+    .card,.panel,[class*="-card"],[class*="-panel"]
+  ) {
+    box-shadow: none !important;
+  }
+}

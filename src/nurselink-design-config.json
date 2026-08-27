@@ -1,0 +1,314 @@
+{
+  "version": 2,
+  "globalDesign": {
+    "typography": {
+      "fontFamily": "Inter, system-ui, sans-serif",
+      "h1": {
+        "size": 32,
+        "lineHeight": 40,
+        "weight": 700
+      },
+      "h2": {
+        "size": 24,
+        "lineHeight": 32,
+        "weight": 650
+      },
+      "h3": {
+        "size": 20,
+        "lineHeight": 28,
+        "weight": 650
+      },
+      "body": {
+        "size": 14,
+        "lineHeight": 22,
+        "weight": 400
+      },
+      "small": {
+        "size": 12,
+        "lineHeight": 18,
+        "weight": 400
+      }
+    },
+    "buttons": {
+      "radius": 8,
+      "sizes": {
+        "small": 36,
+        "medium": 44,
+        "large": 52
+      },
+      "primary": {
+        "variant": "solid"
+      },
+      "secondary": {
+        "variant": "outline"
+      },
+      "tertiary": {
+        "variant": "text"
+      }
+    },
+    "spacing": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      24,
+      32,
+      48,
+      64
+    ],
+    "container": {
+      "desktop": 1280,
+      "tablet": 1024,
+      "mobile": 640
+    }
+  },
+  "heroSliders": {
+    "login": {
+      "enabled": true,
+      "autoplay": true,
+      "durationMs": 5000,
+      "transition": "fade",
+      "transitionMs": 800,
+      "loop": true,
+      "showDots": true,
+      "showArrows": true,
+      "pauseOnHover": true,
+      "responsive": {
+        "desktop": {
+          "fit": "cover",
+          "x": 50,
+          "y": 46
+        },
+        "tablet": {
+          "fit": "cover",
+          "x": 50,
+          "y": 44
+        },
+        "mobile": {
+          "fit": "cover",
+          "x": 50,
+          "y": 36
+        }
+      },
+      "slides": [
+        {
+          "id": "login-hero-01-global-hospital",
+          "name": "Login Hero — Global Hospital",
+          "enabled": true,
+          "desktopImage": "/images/registration-hero/nurselink-hero-global-hospital-01.png",
+          "tabletImage": "/images/registration-hero/nurselink-hero-global-hospital-01.png",
+          "mobileImage": "/images/registration-hero/nurselink-hero-global-hospital-01-mob.png",
+          "alt": "Filipino nurses in a global hospital setting",
+          "headline": "",
+          "description": "",
+          "buttonLabel": "",
+          "buttonUrl": "",
+          "openInNewTab": false,
+          "responsive": {
+            "desktop": {
+              "fit": "cover",
+              "x": 50,
+              "y": 46
+            },
+            "tablet": {
+              "fit": "cover",
+              "x": 50,
+              "y": 44
+            },
+            "mobile": {
+              "fit": "cover",
+              "x": 50,
+              "y": 36
+            }
+          }
+        }
+      ]
+    },
+    "registration": {
+      "enabled": true,
+      "autoplay": true,
+      "durationMs": 5000,
+      "transition": "fade",
+      "transitionMs": 800,
+      "loop": true,
+      "showDots": true,
+      "showArrows": true,
+      "pauseOnHover": true,
+      "responsive": {
+        "desktop": {
+          "fit": "cover",
+          "x": 50,
+          "y": 46
+        },
+        "tablet": {
+          "fit": "cover",
+          "x": 50,
+          "y": 44
+        },
+        "mobile": {
+          "fit": "cover",
+          "x": 50,
+          "y": 36
+        }
+      },
+      "slides": [
+        {
+          "id": "hero-01-global-hospital",
+          "name": "Global Hospital",
+          "enabled": true,
+          "desktopImage": "/images/registration-hero/nurselink-hero-global-hospital-01.png",
+          "tabletImage": "/images/registration-hero/nurselink-hero-global-hospital-01.png",
+          "mobileImage": "/images/registration-hero/nurselink-hero-global-hospital-01-mob.png",
+          "alt": "Filipino nurses in a global hospital setting",
+          "headline": "",
+          "description": "",
+          "buttonLabel": "",
+          "buttonUrl": "",
+          "openInNewTab": false,
+          "responsive": {
+            "desktop": {
+              "fit": "cover",
+              "x": 50,
+              "y": 46
+            },
+            "tablet": {
+              "fit": "cover",
+              "x": 50,
+              "y": 44
+            },
+            "mobile": {
+              "fit": "cover",
+              "x": 50,
+              "y": 36
+            }
+          }
+        },
+        {
+          "id": "hero-02-surgery",
+          "name": "Surgery",
+          "enabled": true,
+          "desktopImage": "/images/registration-hero/nurselink-hero-surgery-02.png",
+          "tabletImage": "/images/registration-hero/nurselink-hero-surgery-02.png",
+          "mobileImage": "/images/registration-hero/nurselink-hero-surgery-02-mob.png",
+          "alt": "Nurses working in a surgical care environment",
+          "headline": "",
+          "description": "",
+          "buttonLabel": "",
+          "buttonUrl": "",
+          "openInNewTab": false,
+          "responsive": {
+            "desktop": {
+              "fit": "cover",
+              "x": 50,
+              "y": 46
+            },
+            "tablet": {
+              "fit": "cover",
+              "x": 50,
+              "y": 44
+            },
+            "mobile": {
+              "fit": "cover",
+              "x": 50,
+              "y": 36
+            }
+          }
+        },
+        {
+          "id": "hero-03-hallway",
+          "name": "Hospital Hallway",
+          "enabled": true,
+          "desktopImage": "/images/registration-hero/nurselink-hero-hallway-03.png",
+          "tabletImage": "/images/registration-hero/nurselink-hero-hallway-03.png",
+          "mobileImage": "/images/registration-hero/nurselink-hero-hallway-03-mob.png",
+          "alt": "Nurses in a modern hospital hallway",
+          "headline": "",
+          "description": "",
+          "buttonLabel": "",
+          "buttonUrl": "",
+          "openInNewTab": false,
+          "responsive": {
+            "desktop": {
+              "fit": "cover",
+              "x": 50,
+              "y": 46
+            },
+            "tablet": {
+              "fit": "cover",
+              "x": 50,
+              "y": 44
+            },
+            "mobile": {
+              "fit": "cover",
+              "x": 50,
+              "y": 36
+            }
+          }
+        },
+        {
+          "id": "hero-04-senior-global",
+          "name": "Senior Global",
+          "enabled": true,
+          "desktopImage": "/images/registration-hero/nurselink-hero-senior-global-04.png",
+          "tabletImage": "/images/registration-hero/nurselink-hero-senior-global-04.png",
+          "mobileImage": "/images/registration-hero/nurselink-hero-senior-global-04-mob.png",
+          "alt": "Experienced Filipino nurses in an international care setting",
+          "headline": "",
+          "description": "",
+          "buttonLabel": "",
+          "buttonUrl": "",
+          "openInNewTab": false,
+          "responsive": {
+            "desktop": {
+              "fit": "cover",
+              "x": 50,
+              "y": 46
+            },
+            "tablet": {
+              "fit": "cover",
+              "x": 50,
+              "y": 44
+            },
+            "mobile": {
+              "fit": "cover",
+              "x": 50,
+              "y": 36
+            }
+          }
+        },
+        {
+          "id": "hero-05-middle-east",
+          "name": "Middle East",
+          "enabled": true,
+          "desktopImage": "/images/registration-hero/nurselink-hero-middle-east-05.png",
+          "tabletImage": "/images/registration-hero/nurselink-hero-middle-east-05.png",
+          "mobileImage": "/images/registration-hero/nurselink-hero-middle-east-05-mob.png",
+          "alt": "Filipino nurses working in a Middle East healthcare setting",
+          "headline": "",
+          "description": "",
+          "buttonLabel": "",
+          "buttonUrl": "",
+          "openInNewTab": false,
+          "responsive": {
+            "desktop": {
+              "fit": "cover",
+              "x": 50,
+              "y": 46
+            },
+            "tablet": {
+              "fit": "cover",
+              "x": 50,
+              "y": 44
+            },
+            "mobile": {
+              "fit": "cover",
+              "x": 50,
+              "y": 36
+            }
+          }
+        }
+      ]
+    }
+  }
+}

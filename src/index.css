@@ -78,3 +78,158 @@ canvas {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* NURSELINK_MANAGED_THEME_BEGIN v1.0 */
+:root {
+  --nl-blue-900: #0F2742;
+  --nl-blue-800: #123D68;
+  --nl-blue-700: #0B5FA5;
+  --nl-blue-500: #0EA5D8;
+  --nl-blue-400: #32B9E8;
+  --nl-turquoise-600: #0F9F91;
+  --nl-turquoise-500: #14B8A6;
+  --nl-turquoise-400: #2DD4BF;
+  --nl-gold-500: #F4B942;
+  --nl-gold-400: #F7C95B;
+  --nl-bg: #F6FAFD;
+  --nl-surface: #FFFFFF;
+  --nl-surface-2: #EEF7FB;
+  --nl-border: #D7E8F2;
+  --nl-text: #0F2742;
+  --nl-muted: #63778B;
+  --nl-primary: var(--nl-blue-700);
+  --nl-accent: var(--nl-turquoise-500);
+  --nl-highlight: var(--nl-gold-500);
+  --nl-shadow: 0 12px 34px rgba(15, 39, 66, .09);
+  color-scheme: light;
+}
+
+html.dark,
+html[data-theme="dark"],
+body.dark,
+body[data-theme="dark"],
+[data-theme="dark"] {
+  --nl-bg: #06182B;
+  --nl-surface: #0A2340;
+  --nl-surface-2: #0D2C4D;
+  --nl-border: #164366;
+  --nl-text: #F5FAFF;
+  --nl-muted: #A9C0D4;
+  --nl-primary: #1BA7E1;
+  --nl-accent: #19D3C5;
+  --nl-highlight: #F6BD46;
+  --nl-shadow: 0 14px 38px rgba(0, 0, 0, .28);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--nl-bg);
+  color: var(--nl-text);
+}
+
+/* Generic NurseLink surfaces: intentionally additive and framework-neutral */
+.nl-card,
+.card,
+.dashboard-card,
+.profile-card,
+.panel,
+.sidebar,
+.topbar,
+header[role="banner"],
+nav[aria-label] {
+  border-color: var(--nl-border);
+}
+
+.nl-card,
+.dashboard-card,
+.profile-card,
+.panel {
+  background: var(--nl-surface);
+  color: var(--nl-text);
+  box-shadow: var(--nl-shadow);
+}
+
+button.primary,
+.btn-primary,
+.button-primary,
+[data-variant="primary"] {
+  background: var(--nl-primary);
+  border-color: var(--nl-primary);
+  color: #fff;
+}
+
+button.primary:hover,
+.btn-primary:hover,
+.button-primary:hover,
+[data-variant="primary"]:hover {
+  filter: brightness(1.06);
+}
+
+button.secondary,
+.btn-secondary,
+.button-secondary,
+[data-variant="secondary"] {
+  background: var(--nl-accent);
+  border-color: var(--nl-accent);
+  color: #042B2A;
+}
+
+.badge-gold,
+.status-gold,
+.readiness-badge,
+[data-accent="gold"] {
+  background: color-mix(in srgb, var(--nl-highlight) 18%, transparent);
+  border-color: color-mix(in srgb, var(--nl-highlight) 58%, transparent);
+  color: var(--nl-text);
+}
+
+a,
+.link,
+.text-link {
+  color: var(--nl-primary);
+}
+
+input,
+select,
+textarea {
+  background: var(--nl-surface);
+  color: var(--nl-text);
+  border-color: var(--nl-border);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible,
+a:focus-visible {
+  outline-color: var(--nl-accent);
+}
+
+/* Optional semantic hooks for NurseLink navigation */
+.nl-nav-item[aria-current="page"],
+.sidebar a[aria-current="page"],
+nav a.active {
+  background: color-mix(in srgb, var(--nl-primary) 13%, transparent);
+  color: var(--nl-primary);
+}
+
+.nl-progress > *,
+progress {
+  accent-color: var(--nl-accent);
+}
+
+.nl-hero,
+.dashboard-hero {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--nl-primary) 92%, #ffffff 8%),
+    color-mix(in srgb, var(--nl-accent) 76%, #ffffff 24%));
+  color: #fff;
+}
+
+[data-theme="dark"] .nl-hero,
+[data-theme="dark"] .dashboard-hero,
+html.dark .nl-hero,
+html.dark .dashboard-hero {
+  background: linear-gradient(135deg, #0A3658, #074B5A);
+}
+/* NURSELINK_MANAGED_THEME_END */

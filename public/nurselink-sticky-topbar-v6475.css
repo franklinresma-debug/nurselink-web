@@ -1,0 +1,81 @@
+/* NurseLink Sticky Topbar All Devices v64.7.5 */
+
+:root {
+  --nl6475-topbar-z: 9000;
+}
+
+/* Existing NurseLink topbar only — no visual redesign. */
+[data-nl6475-sticky-topbar="1"] {
+  position: sticky !important;
+  position: -webkit-sticky !important;
+  top: 0 !important;
+  z-index: var(--nl6475-topbar-z) !important;
+  isolation: isolate;
+}
+
+/* Keep the topbar opaque while content scrolls underneath it. */
+html[data-theme="dark"] [data-nl6475-sticky-topbar="1"],
+html.dark [data-nl6475-sticky-topbar="1"],
+body.dark [data-nl6475-sticky-topbar="1"] {
+  background-color: #0f1a2a !important;
+}
+
+html[data-theme="light"] [data-nl6475-sticky-topbar="1"],
+html.light [data-nl6475-sticky-topbar="1"],
+body.light [data-nl6475-sticky-topbar="1"] {
+  background-color: #ffffff !important;
+}
+
+/* Fallback mode is enabled only when JS confirms sticky cannot hold. */
+html[data-nl6475-fixed-fallback="1"] [data-nl6475-sticky-topbar="1"] {
+  position: fixed !important;
+  top: 0 !important;
+  left: var(--nl6475-fixed-left, 0px) !important;
+  right: 0 !important;
+  width: auto !important;
+}
+
+/* Spacer prevents content jump in fixed fallback mode. */
+[data-nl6475-topbar-spacer="1"] {
+  display: none;
+  width: 100%;
+  height: var(--nl6475-topbar-height, 0px);
+}
+
+html[data-nl6475-fixed-fallback="1"] [data-nl6475-topbar-spacer="1"] {
+  display: block;
+}
+
+/* Mobile/tablet: topbar spans the viewport while drawer still sits above it. */
+@media (max-width: 900px) {
+  :root {
+    --nl6475-topbar-z: 9000;
+  }
+
+  html[data-nl6475-fixed-fallback="1"] [data-nl6475-sticky-topbar="1"] {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+  }
+
+  /* v64.7.2 drawer remains above sticky topbar. */
+  body.nl6472-drawer-open .nurselink-sidebar,
+  body.nl6472-drawer-open .nl-sidebar,
+  body.nl6472-drawer-open aside[class*="sidebar"],
+  body.nl6472-drawer-open [data-nl-sidebar] {
+    z-index: 9998 !important;
+  }
+
+  body.nl6472-drawer-open::after {
+    z-index: 9997 !important;
+  }
+}
+
+/* Preserve safe-area spacing on devices with display cutouts. */
+@supports (padding-top: env(safe-area-inset-top)) {
+  @media (max-width: 900px) {
+    [data-nl6475-sticky-topbar="1"] {
+      padding-top: max(0px, env(safe-area-inset-top));
+    }
+  }
+}

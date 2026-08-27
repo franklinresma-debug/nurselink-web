@@ -1,0 +1,282 @@
+/* NurseLink Always-On Sticky Shell v64.9.9
+   Topbar and blue sidebar remain pinned at all times on all member pages.
+*/
+
+:root{
+  --nlaos-sidebar-w:232px;
+  --nlaos-topbar-h:72px;
+  --nlaos-sidebar-z:1300;
+  --nlaos-topbar-z:1200;
+  --nlaos-light-blue-a:#145a97;
+  --nlaos-light-blue-b:#0c477d;
+  --nlaos-dark-blue-a:#082b55;
+  --nlaos-dark-blue-b:#061f3d;
+}
+
+/* ============================================================
+   DESKTOP + TABLET: FIXED BLUE SIDEBAR
+   ============================================================ */
+@media (min-width:768px){
+
+  /* Native shell sidebars */
+  .member-react-safe-shell-v108 :is(
+    .sidebar,
+    [class*="sidebar"],
+    aside[class*="nav"]
+  ){
+    position:fixed!important;
+    top:0!important;
+    bottom:0!important;
+    left:0!important;
+    width:var(--nlaos-sidebar-w)!important;
+    height:100vh!important;
+    max-height:100vh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    z-index:var(--nlaos-sidebar-z)!important;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+  }
+
+  /* Legacy fallback sidebar */
+  #nurselink-universal-sidebar{
+    position:fixed!important;
+    top:0!important;
+    bottom:0!important;
+    left:0!important;
+    width:var(--nlaos-sidebar-w)!important;
+    height:100vh!important;
+    max-height:100vh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    z-index:var(--nlaos-sidebar-z)!important;
+  }
+
+  /* Native topbars */
+  .member-react-safe-shell-v108 :is(
+    [data-nl-minimal-topbar="true"],
+    [data-nl-mobile-topbar="true"],
+    .topbar,.top-bar,.app-header,.member-header,.member-topbar
+  ){
+    position:fixed!important;
+    top:0!important;
+    left:var(--nlaos-sidebar-w)!important;
+    right:0!important;
+    width:auto!important;
+    min-height:var(--nlaos-topbar-h)!important;
+    z-index:var(--nlaos-topbar-z)!important;
+  }
+
+  /* Legacy topbar */
+  #nurselink-universal-topbar{
+    position:fixed!important;
+    top:0!important;
+    left:var(--nlaos-sidebar-w)!important;
+    right:0!important;
+    width:auto!important;
+    height:var(--nlaos-topbar-h)!important;
+    z-index:var(--nlaos-topbar-z)!important;
+  }
+
+  /* Ensure page content never slides underneath fixed shell. */
+  .member-react-safe-shell-v108{
+    padding-left:var(--nlaos-sidebar-w)!important;
+    box-sizing:border-box!important;
+  }
+
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content,
+  .member-react-safe-shell-v108 [class*="workspace"],
+  .member-react-safe-shell-v108 [class*="page"]{
+    padding-top:var(--nlaos-topbar-h)!important;
+    box-sizing:border-box!important;
+  }
+
+  html[data-nl-force-legacy-shell="true"] body,
+  html[data-nl-legacy-shell="true"] body{
+    margin-left:var(--nlaos-sidebar-w)!important;
+    padding-top:var(--nlaos-topbar-h)!important;
+    box-sizing:border-box!important;
+  }
+}
+
+/* ============================================================
+   BLUE SIDEBAR IN BOTH THEMES
+   ============================================================ */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+),
+html[data-nl-effective-theme="light"] #nurselink-universal-sidebar{
+  background:linear-gradient(
+    180deg,
+    var(--nlaos-light-blue-a) 0%,
+    var(--nlaos-light-blue-b) 100%
+  )!important;
+}
+
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+),
+html[data-nl-effective-theme="dark"] #nurselink-universal-sidebar,
+html.dark .member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+),
+html.dark #nurselink-universal-sidebar{
+  background:linear-gradient(
+    180deg,
+    var(--nlaos-dark-blue-a) 0%,
+    var(--nlaos-dark-blue-b) 100%
+  )!important;
+}
+
+/* ============================================================
+   TOPBAR THEMING
+   ============================================================ */
+html[data-nl-effective-theme="light"] .member-react-safe-shell-v108 :is(
+  [data-nl-minimal-topbar="true"],
+  [data-nl-mobile-topbar="true"],
+  .topbar,.top-bar,.app-header,.member-header,.member-topbar
+){
+  background:rgba(255,255,255,.98)!important;
+  border-bottom:1px solid #d8e1ec!important;
+  box-shadow:0 4px 16px rgba(31,48,78,.05)!important;
+}
+
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+  [data-nl-minimal-topbar="true"],
+  [data-nl-mobile-topbar="true"],
+  .topbar,.top-bar,.app-header,.member-header,.member-topbar
+),
+html.dark .member-react-safe-shell-v108 :is(
+  [data-nl-minimal-topbar="true"],
+  [data-nl-mobile-topbar="true"],
+  .topbar,.top-bar,.app-header,.member-header,.member-topbar
+){
+  background:rgba(10,22,37,.98)!important;
+  border-bottom:1px solid #22334a!important;
+  box-shadow:0 6px 18px rgba(0,0,0,.24)!important;
+}
+
+/* Legacy forced blue topbar stays blue */
+html[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar{
+  background:linear-gradient(
+    90deg,
+    var(--nlaos-light-blue-a) 0%,
+    var(--nlaos-light-blue-b) 100%
+  )!important;
+}
+
+html[data-nl-force-legacy-shell="true"][data-nl-effective-theme="dark"]
+#nurselink-universal-topbar,
+html.dark[data-nl-force-legacy-shell="true"]
+#nurselink-universal-topbar{
+  background:linear-gradient(
+    90deg,
+    var(--nlaos-dark-blue-a) 0%,
+    var(--nlaos-dark-blue-b) 100%
+  )!important;
+}
+
+/* ============================================================
+   SIDEBAR INTERNAL SCROLL
+   ============================================================ */
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+),
+#nurselink-universal-sidebar{
+  scrollbar-color:rgba(255,255,255,.35) transparent;
+}
+
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+)::-webkit-scrollbar,
+#nurselink-universal-sidebar::-webkit-scrollbar{
+  width:6px;
+}
+
+.member-react-safe-shell-v108 :is(
+  .sidebar,[class*="sidebar"],aside[class*="nav"]
+)::-webkit-scrollbar-thumb,
+#nurselink-universal-sidebar::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.30);
+  border-radius:999px;
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+@media (min-width:768px) and (max-width:1199px){
+  :root{
+    --nlaos-sidebar-w:210px;
+    --nlaos-topbar-h:64px;
+  }
+}
+
+/* ============================================================
+   MOBILE: FIXED TOPBAR + FIXED OFF-CANVAS BLUE SIDEBAR
+   ============================================================ */
+@media (max-width:767px){
+  :root{
+    --nlaos-sidebar-w:260px;
+    --nlaos-topbar-h:58px;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    [data-nl-minimal-topbar="true"],
+    [data-nl-mobile-topbar="true"],
+    .topbar,.top-bar,.app-header,.member-header,.member-topbar
+  ),
+  #nurselink-universal-topbar{
+    position:fixed!important;
+    top:0!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    min-height:var(--nlaos-topbar-h)!important;
+    height:var(--nlaos-topbar-h)!important;
+    z-index:var(--nlaos-topbar-z)!important;
+    flex-wrap:nowrap!important;
+  }
+
+  .member-react-safe-shell-v108 :is(
+    .sidebar,[class*="sidebar"],aside[class*="nav"]
+  ),
+  #nurselink-universal-sidebar{
+    position:fixed!important;
+    top:0!important;
+    bottom:0!important;
+    left:0!important;
+    width:var(--nlaos-sidebar-w)!important;
+    height:100dvh!important;
+    max-height:100dvh!important;
+    overflow-y:auto!important;
+    z-index:var(--nlaos-sidebar-z)!important;
+  }
+
+  /* Keep native/off-canvas transforms owned by existing mobile shell.
+     Force fallback shell off canvas until menu opens. */
+  html[data-nl-force-legacy-shell="true"] #nurselink-universal-sidebar{
+    transform:translateX(-102%)!important;
+    transition:transform .18s ease!important;
+  }
+
+  html[data-nl-force-legacy-shell="true"][data-nl-sidebar-open="true"]
+  #nurselink-universal-sidebar{
+    transform:translateX(0)!important;
+  }
+
+  .member-react-safe-shell-v108 main,
+  .member-react-safe-shell-v108 .main,
+  .member-react-safe-shell-v108 .content,
+  .member-react-safe-shell-v108 [class*="workspace"],
+  .member-react-safe-shell-v108 [class*="page"]{
+    padding-top:var(--nlaos-topbar-h)!important;
+  }
+
+  html[data-nl-force-legacy-shell="true"] body,
+  html[data-nl-legacy-shell="true"] body{
+    margin-left:0!important;
+    padding-top:var(--nlaos-topbar-h)!important;
+  }
+}

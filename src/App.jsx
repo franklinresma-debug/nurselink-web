@@ -1265,6 +1265,13 @@ function Placeholder({
   )
 }
 
+function PortfolioWorkspace() {
+  // The member portfolio UI is mounted by the portfolio workspace runtime.
+  // Keep this route host intentionally empty so the former scaffold placeholder
+  // cannot appear underneath the live portfolio and public-profile sections.
+  return <div className="page nurselink-portfolio-route" />
+}
+
 function MemberLocked({
   title,
 }) {
@@ -2161,10 +2168,7 @@ function AppLayout() {
             path="/portfolio"
             element={routeForMemberFeature(
               'Professional Portfolio',
-              <Placeholder
-                title="Professional Portfolio"
-                description="Build and maintain your nursing professional portfolio."
-              />
+              <PortfolioWorkspace />
             )}
           />
 

@@ -3683,7 +3683,7 @@ a {
     min-height: 0 !important;
     padding: 2px 8px !important;
     gap: 7px !important;
-    font-size: clamp(11px, 1.25vh, 13px) !important;
+    font-size: clamp(12px, 1.45vh, 14px) !important;
     white-space: nowrap;
   }
 
@@ -3701,12 +3701,33 @@ a {
   }
 
   .member-react-safe-shell-v108.member-shell-v636 .sidebar-bottom a,
-  .member-react-safe-shell-v108.member-shell-v636 .sidebar-logout,
   .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-center-link,
   .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-test-center-link {
-    min-height: 34px !important;
-    margin: 4px 0 !important;
-    padding: 5px 8px !important;
-    font-size: 11px !important;
+    min-height: 42px !important;
+    height: 42px !important;
+    margin: 3px 0 !important;
+    padding: 4px 8px !important;
+    font-size: 12px !important;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar-logout {
+    min-height: 42px !important;
+    height: 42px !important;
+    margin: 4px 0 0 !important;
+    padding: 4px 8px !important;
+    font-size: 13px !important;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-center-icon {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-center-copy strong {
+    font-size: 12px !important;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-center-copy small {
+    font-size: 8px !important;
   }
 }

@@ -1,0 +1,8 @@
+/* Applied only when the runtime audit finds insufficient rendered contrast. */
+.nl-control-contrast-repaired,
+.nl-control-contrast-repaired :is(span,strong,b,small,i,svg,path) {
+  color:var(--nl-control-foreground) !important;
+  -webkit-text-fill-color:var(--nl-control-foreground) !important;
+  fill:currentColor !important;
+  stroke:currentColor !important;
+}

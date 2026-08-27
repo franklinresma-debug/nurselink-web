@@ -1,5 +1,5 @@
 /* NurseLink Phase 3 Real Inbox + Professional Learning v4.1.0 */
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
 
 async function nlRequest(path, options = {}) {
   const response = await fetch(path, {
@@ -202,6 +202,37 @@ export function Phase3LearningPage() {
   const [form,setForm]=useState(EMPTY_FORM);
   const [editing,setEditing]=useState(null);
   const [busy,setBusy]=useState(false);
+  const workspaceRef=useRef(null);
+
+  useLayoutEffect(() => {
+    const root=workspaceRef.current;
+    if (!root) return undefined;
+    const setImportant=(node,property,value) => {
+      if (!node || (node.style.getPropertyValue(property) === value && node.style.getPropertyPriority(property) === 'important')) return;
+      node.style.setProperty(property,value,'important');
+    };
+    const apply=() => {
+      const compact=window.matchMedia('(max-width: 760px)').matches;
+      setImportant(root,'display','block');
+      setImportant(root,'width','100%');
+      const head=root.querySelector('.nl410-page-head');
+      const stats=root.querySelector('.nl410-stats');
+      const grid=root.querySelector('.nl410-learning-grid');
+      setImportant(head,'display','flex');
+      setImportant(head,'width','100%');
+      setImportant(stats,'display','grid');
+      setImportant(stats,'width','100%');
+      setImportant(stats,'grid-template-columns',compact?'repeat(2,minmax(0,1fr))':'repeat(4,minmax(0,1fr))');
+      setImportant(grid,'display','grid');
+      setImportant(grid,'width','100%');
+      setImportant(grid,'grid-template-columns',compact?'1fr':'minmax(300px,380px) minmax(0,1fr)');
+    };
+    apply();
+    const observer=new MutationObserver(apply);
+    observer.observe(root,{subtree:true,attributes:true,attributeFilter:['class','style']});
+    window.addEventListener('resize',apply);
+    return () => { observer.disconnect(); window.removeEventListener('resize',apply); };
+  },[]);
 
   const load=useCallback(async()=>{
     setLoading(true); setError('');
@@ -256,7 +287,7 @@ export function Phase3LearningPage() {
   }
 
   return <section className="nl410-page">
-    <div className="nl410-learning-flow">
+    <div className="nl410-learning-flow" ref={workspaceRef}>
     <header className="nl410-page-head">
       <div><span>PROFESSIONAL LEARNING</span><h1>Learning</h1><p>Maintain your actual NurseLink professional development record.</p></div>
     </header>

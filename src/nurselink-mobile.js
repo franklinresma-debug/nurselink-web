@@ -10010,7 +10010,16 @@ import './nurselink-mobile.css';
 
     const sidebar = shell.querySelector('.sidebar');
     const topbar = shell.querySelector('.topbar');
-    const page = shell.querySelector('.page') || shell.querySelector('main');
+    // React owns .main-area and its persistent topbar.  During route changes
+    // .page can be briefly absent; never fall back to the main area or an
+    // enhancer may insert cards ahead of the topbar.
+    const page = shell.querySelector('.main-area > .page');
+
+    if (!page) return false;
+
+    // Remove only legacy launcher cards that a previous transition placed as
+    // direct main-area children.  Valid route content always belongs in .page.
+    shell.querySelectorAll('.main-area > [class*="-launcher"]').forEach(node => node.remove());
 
     shell.classList.add('nurselink-mobile-ready');
 
@@ -10029,29 +10038,29 @@ import './nurselink-mobile.css';
      * Mobile navigation controls are now rendered by React in AppLayout.
      * Do not insert backdrop/menu/close controls into React-owned nodes here.
      */
-    markWideContent(page || shell);
-    markLockedQualification(page || shell);
-    enhanceProfessionalOnboarding(page || shell);
-    enhanceProfilePhoto(page || shell);
-    enhanceV150(page || shell);
-    enhanceV160(page || shell);
-    enhanceV170(page || shell);
-    enhanceV180(page || shell);
-    enhanceV190(page || shell);
-    enhanceV200(page || shell);
-    enhanceV220(page || shell);
-    enhanceV230(page || shell);
-    enhanceV250(page || shell);
-    enhanceV260(page || shell);
-    enhanceV270(page || shell);
-    enhanceV280(page || shell);
-    enhanceV290(page || shell);
-    enhanceV320(page || shell);
-    enhanceV420(page || shell);
-    enhanceV520Portal(page || shell);
-    enhanceSmartRegistration557(page || shell);
-    enhanceSuperAdministratorIdentity(shell, page || shell);
-    enhanceSuperAdminTestMode(shell, page || shell);
+    markWideContent(page);
+    markLockedQualification(page);
+    enhanceProfessionalOnboarding(page);
+    enhanceProfilePhoto(page);
+    enhanceV150(page);
+    enhanceV160(page);
+    enhanceV170(page);
+    enhanceV180(page);
+    enhanceV190(page);
+    enhanceV200(page);
+    enhanceV220(page);
+    enhanceV230(page);
+    enhanceV250(page);
+    enhanceV260(page);
+    enhanceV270(page);
+    enhanceV280(page);
+    enhanceV290(page);
+    enhanceV320(page);
+    enhanceV420(page);
+    enhanceV520Portal(page);
+    enhanceSmartRegistration557(page);
+    enhanceSuperAdministratorIdentity(shell, page);
+    enhanceSuperAdminTestMode(shell, page);
     return true;
   }
 

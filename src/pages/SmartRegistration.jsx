@@ -38,25 +38,16 @@ export default function SmartRegistration() {
 
   async function loadData() {
     try {
-      let app =
-        await getApplication()
-
-      if (!app) {
-        app =
-          await createApplication()
-      }
-
-      setApplication(app)
+      const smart = await getSmartRegistration()
+      setOverview(smart.application)
 
       try {
-        const smart =
-          await getSmartRegistration()
-
-        setOverview(
-          smart.application
-        )
+        let app = await getApplication()
+        if (!app) app = await createApplication()
+        setApplication(app)
       } catch {
-        setOverview(null)
+        // Approved members use Smart Registration without an applicant record.
+        setApplication(null)
       }
     } catch (err) {
       setError(

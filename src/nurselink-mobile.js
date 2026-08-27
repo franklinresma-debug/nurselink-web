@@ -1267,7 +1267,7 @@ import './nurselink-mobile.css';
   }
 
   function enhanceSmartRegistrationApplication(page) {
-    if (!page || routeSlug() !== 'smart-registration' || !isApplicantPortal()) return;
+    if (!page || routeSlug() !== 'smart-registration') return;
 
     const step = applicationStepFromLocation();
     page.classList.add(`nurselink-smart-step-${step}`);
@@ -10783,7 +10783,7 @@ import './nurselink-mobile.css';
   }
 
   function renderSmartRegistration557(page) {
-    if (!page || routeSlug() !== 'smart-registration' || !isApplicantPortal()) return;
+    if (!page || routeSlug() !== 'smart-registration') return;
 
     page.classList.add('nurselink-smart-registration-v557');
     document.documentElement.classList.add('nurselink-smart-registration-v557');
@@ -10863,7 +10863,7 @@ import './nurselink-mobile.css';
   }
 
   function enhanceSmartRegistration557(page) {
-    if (!page || routeSlug() !== 'smart-registration' || !isApplicantPortal()) return;
+    if (!page || routeSlug() !== 'smart-registration') return;
 
     const root = page.querySelector('.nurselink-smart557');
     const locationKey = location.pathname + location.search + location.hash;

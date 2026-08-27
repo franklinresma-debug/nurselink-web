@@ -1,0 +1,42 @@
+/* Final ownership boundary for the React Learning workspace. */
+html body .member-react-safe-shell-v108 .main-area .page > .nl410-page{
+  display:block !important;
+  width:100% !important;
+  max-width:1180px !important;
+  min-width:0 !important;
+  margin-inline:auto !important;
+}
+html body .member-react-safe-shell-v108 .main-area .page > .nl410-page > .nl410-page-head{
+  display:flex !important;
+  width:100% !important;
+  min-width:0 !important;
+  margin-bottom:22px !important;
+}
+html body .member-react-safe-shell-v108 .main-area .page > .nl410-page > .nl410-stats{
+  display:grid !important;
+  width:100% !important;
+  min-width:0 !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:10px !important;
+  margin:0 0 18px !important;
+}
+html body .member-react-safe-shell-v108 .main-area .page > .nl410-page > .nl410-notice{
+  display:block !important;
+  width:100% !important;
+}
+html body .member-react-safe-shell-v108 .main-area .page > .nl410-page > .nl410-learning-grid{
+  display:grid !important;
+  width:100% !important;
+  min-width:0 !important;
+  grid-template-columns:minmax(300px,380px) minmax(0,1fr) !important;
+  gap:18px !important;
+  align-items:start !important;
+}
+@media(max-width:760px){
+  html body .member-react-safe-shell-v108 .main-area .page > .nl410-page > .nl410-stats{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  html body .member-react-safe-shell-v108 .main-area .page > .nl410-page > .nl410-learning-grid{
+    grid-template-columns:1fr !important;
+  }
+}

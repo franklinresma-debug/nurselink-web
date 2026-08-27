@@ -10023,6 +10023,12 @@ import './nurselink-mobile.css';
 
     shell.classList.add('nurselink-mobile-ready');
 
+    // Learning is a complete React-owned workspace.  None of the legacy
+    // member enhancers may inspect or mutate it: several run asynchronously
+    // and can turn its intentionally vertical sections into a horizontal row
+    // after a hard reload.
+    if (routeSlug() === 'learning') return true;
+
     // React Router may reuse the same .page node during SPA navigation.
     // Remove Dashboard-only DOM injected by earlier enhancement passes so
     // those unmanaged nodes cannot leak onto member feature routes.

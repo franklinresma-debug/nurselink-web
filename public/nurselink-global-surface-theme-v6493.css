@@ -1,0 +1,96 @@
+/* NurseLink global member surface theme completion v64.9.3 */
+
+/* Theme changes should be visible without a flash on persistent portal UI. */
+.member-react-safe-shell-v108 :is(
+  main,.page,.content,
+  article,fieldset,table,thead,tbody,tr,th,td,
+  .card,.panel,[class*="-card"],[class*="-panel"],
+  [class*="table-wrap"],[class*="table-container"],
+  [class*="list-row"],[class*="data-row"],[class*="document-row"],
+  [class*="credential-row"],[class*="application-row"],[class*="event-row"]
+) {
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+/* Containers missed by the earlier -card/-panel naming contract. */
+.member-react-safe-shell-v108 .page :is(
+  article,fieldset,
+  [class*="table-wrap"],[class*="table-container"],
+  [class*="data-table"],[class*="responsive-table"]
+):not([class*="alert"]):not([class*="notice"]):not([class*="status"]):not([class*="badge"]) {
+  background-color: var(--nldyn-card) !important;
+  color: var(--nldyn-text) !important;
+  border-color: var(--nldyn-border) !important;
+}
+
+/* Repeated list/detail rows that otherwise retain hard-coded light fills. */
+.member-react-safe-shell-v108 .page :is(
+  [class*="list-row"],[class*="data-row"],[class*="document-row"],
+  [class*="credential-row"],[class*="application-row"],[class*="event-row"],
+  [class*="record-row"],[class*="history-row"],[class*="detail-row"],
+  [class*="info-row"],[class*="summary-row"]
+):not([class*="status"]):not([class*="badge"]) {
+  background-color: var(--nldyn-card-soft) !important;
+  color: var(--nldyn-text) !important;
+  border-color: var(--nldyn-border) !important;
+}
+
+/* Full table contract, including headers and cells with legacy fills. */
+.member-react-safe-shell-v108 .page table {
+  background-color: var(--nldyn-card) !important;
+  color: var(--nldyn-text) !important;
+  border-color: var(--nldyn-border) !important;
+}
+
+.member-react-safe-shell-v108 .page :is(thead,thead tr,th) {
+  background-color: var(--nldyn-card-soft) !important;
+  color: var(--nldyn-strong) !important;
+  border-color: var(--nldyn-border) !important;
+}
+
+.member-react-safe-shell-v108 .page :is(tbody,tbody tr,td) {
+  color: var(--nldyn-text) !important;
+  border-color: var(--nldyn-border) !important;
+}
+
+.member-react-safe-shell-v108 .page tbody tr:nth-child(odd) {
+  background-color: var(--nldyn-card) !important;
+}
+
+.member-react-safe-shell-v108 .page tbody tr:nth-child(even) {
+  background-color: var(--nldyn-card-soft) !important;
+}
+
+.member-react-safe-shell-v108 .page tbody tr:hover {
+  background-color: var(--nldyn-blue-soft) !important;
+}
+
+/* Native controls and field groups must switch with the same effective theme. */
+.member-react-safe-shell-v108 .page :is(fieldset,input,select,textarea) {
+  background-color: var(--nldyn-card-soft) !important;
+  color: var(--nldyn-strong) !important;
+  border-color: var(--nldyn-border) !important;
+}
+
+.member-react-safe-shell-v108 .page legend {
+  color: var(--nldyn-strong) !important;
+}
+
+/* Keep semantic feedback surfaces distinct after generic normalization. */
+.member-react-safe-shell-v108 .page :is([class*="success"],[class*="approved"]):not(button):not(a) {
+  border-color: color-mix(in srgb, var(--nldyn-green) 45%, var(--nldyn-border)) !important;
+}
+
+.member-react-safe-shell-v108 .page :is([class*="warning"],[class*="attention"]):not(button):not(a) {
+  border-color: color-mix(in srgb, var(--nldyn-amber) 50%, var(--nldyn-border)) !important;
+}
+
+.member-react-safe-shell-v108 .page :is([class*="error"],[class*="danger"]):not(button):not(a) {
+  border-color: color-mix(in srgb, var(--nldyn-danger) 50%, var(--nldyn-border)) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .member-react-safe-shell-v108 * {
+    transition-duration: 0s !important;
+  }
+}

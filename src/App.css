@@ -3773,4 +3773,18 @@ a {
     padding: 3px 8px !important;
     font-size: 12px !important;
   }
+
+  .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-center-link,
+  .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-test-center-link {
+    justify-content: center !important;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-center-icon {
+    display: none !important;
+  }
+
+  .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-center-copy {
+    flex: 0 1 auto !important;
+    text-align: center !important;
+  }
 }

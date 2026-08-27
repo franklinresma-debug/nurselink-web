@@ -244,3 +244,60 @@ html:not([data-nl-force-legacy-shell="true"])
     display:none!important;
   }
 }
+
+/* Standard NurseLink member topbar for standalone member pages. */
+html[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar{
+  justify-content:flex-start!important;
+  gap:12px!important;
+  color:#10233f!important;
+  background:rgba(255,255,255,.98)!important;
+  border-bottom:1px solid #dce5ef!important;
+  box-shadow:0 1px 0 rgba(20,60,100,.08)!important;
+}
+#nurselink-universal-topbar .nlub-standard-brand{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:1px!important;
+  color:#10233f!important;
+  text-decoration:none!important;
+  line-height:1.15!important;
+}
+#nurselink-universal-topbar .nlub-standard-brand strong{font-size:16px!important;font-weight:800!important}
+#nurselink-universal-topbar .nlub-standard-brand span{color:#d64040!important;font-size:10px!important;font-weight:800!important}
+#nurselink-universal-topbar .nlub-standard-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+  margin-left:auto!important;
+}
+#nurselink-universal-topbar .nlub-action{
+  border-color:#cbdced!important;
+  background:#fff!important;
+  color:#095fac!important;
+  font-weight:750!important;
+}
+#nurselink-universal-topbar .nlub-action:hover{background:#f1f7fd!important;border-color:#79aee2!important}
+#nurselink-universal-topbar .nlub-profile{padding:0 10px!important;color:#10233f!important}
+#nurselink-universal-topbar .nlub-avatar{background:#e7f2ff!important;color:#0b67c3!important}
+#nurselink-universal-topbar .nlub-label{color:#10233f!important}
+html[data-nl-force-legacy-shell="true"][data-nl-effective-theme="dark"] #nurselink-universal-topbar,
+html.dark[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar{
+  color:#edf4fc!important;
+  background:#172234!important;
+  border-color:#34465c!important;
+  box-shadow:none!important;
+}
+html[data-nl-force-legacy-shell="true"][data-nl-effective-theme="dark"] #nurselink-universal-topbar .nlub-action,
+html.dark[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar .nlub-action{
+  color:#edf4fc!important;
+  background:#111c2c!important;
+  border-color:#41536b!important;
+}
+html[data-nl-force-legacy-shell="true"][data-nl-effective-theme="dark"] #nurselink-universal-topbar .nlub-label,
+html.dark[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar .nlub-label{color:#edf4fc!important}
+@media(max-width:767px){
+  #nurselink-universal-topbar .nlub-standard-brand{margin-left:2px!important}
+  #nurselink-universal-topbar .nlub-standard-actions{gap:5px!important}
+  #nurselink-universal-topbar .nlub-help{display:none!important}
+}

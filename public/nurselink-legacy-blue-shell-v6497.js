@@ -104,11 +104,19 @@
         h.dataset.nlSidebarOpen=h.dataset.nlSidebarOpen==='true'?'false':'true';
       });
 
-      const profile=document.createElement('a');
-      profile.href='/profile';
-      profile.className='nlub-action nlub-profile';
-      profile.setAttribute('aria-label','Profile');
-      profile.innerHTML='<span class="nlub-avatar">NL</span><span class="nlub-label">Profile</span>';
+      const brand=document.createElement('a');
+      brand.href='/dashboard';
+      brand.className='nlub-standard-brand';
+      brand.innerHTML='<strong>NurseLink</strong><span>by Kapit-Bisig</span>';
+
+      const actions=document.createElement('div');
+      actions.className='nlub-standard-actions';
+
+      const help=document.createElement('a');
+      help.href='/help';
+      help.className='nlub-action nlub-help';
+      help.setAttribute('aria-label','Open Help');
+      help.textContent='?';
 
       const theme=document.createElement('button');
       theme.type='button';
@@ -119,6 +127,12 @@
         setTheme(detectTheme()==='dark'?'light':'dark');
       });
 
+      const profile=document.createElement('a');
+      profile.href='/profile';
+      profile.className='nlub-action nlub-profile';
+      profile.setAttribute('aria-label','Profile');
+      profile.innerHTML='<span class="nlub-avatar">NL</span><span class="nlub-label">My Profile</span>';
+
       const notif=document.createElement('button');
       notif.type='button';
       notif.className='nlub-action nlub-notification';
@@ -128,7 +142,8 @@
         dispatchEvent(new CustomEvent('nurselink:notifications'));
       });
 
-      bar.append(menu,profile,theme,notif);
+      actions.append(help,theme,profile,notif);
+      bar.append(menu,brand,actions);
       document.body.prepend(bar);
     }
 

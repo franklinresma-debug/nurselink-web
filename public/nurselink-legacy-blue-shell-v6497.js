@@ -11,10 +11,10 @@
   ]);
 
   const navItems=[
-    ['Dashboard','/'],
+    ['Dashboard','/dashboard'],
     ['My Profile','/profile'],
     ['Smart Registration','/smart-registration'],
-    ['Application Status','/applications'],
+    ['Application Status','/application-status'],
     ['Portfolio','/portfolio'],
     ['Jobs','/jobs'],
     ['Applications','/applications'],

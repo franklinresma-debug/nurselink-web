@@ -1,0 +1,70 @@
+/* NurseLink global control foreground contrast v64.9.4 */
+
+/* Filled blue/purple action controls must never inherit the global link blue. */
+html body .member-react-safe-shell-v108 :is(
+  a,button,[role="button"],input[type="button"],input[type="submit"]
+):is(
+  .primary-button,.primary,.button-primary,.btn-primary,
+  [class*="primary-action"],[class*="primary-button"],
+  [class*="accent-button"],[class*="submit-button"]
+) {
+  color: #ffffff !important;
+  fill: currentColor !important;
+}
+
+html body .member-react-safe-shell-v108 :is(
+  a,button,[role="button"],input[type="button"],input[type="submit"]
+):is(
+  .primary-button,.primary,.button-primary,.btn-primary,
+  [class*="primary-action"],[class*="primary-button"],
+  [class*="accent-button"],[class*="submit-button"]
+) :is(span,strong,b,small,svg,path,i) {
+  color: #ffffff !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* Explicit colored buttons used by legacy and dynamically mounted pages. */
+html body .member-react-safe-shell-v108 :is(
+  .browse,.save-button,.confirm-button,.continue-button,
+  [class*="approve-button"],[class*="upload-button"]
+) {
+  color: #ffffff !important;
+}
+
+/* PQF/reference-band pill shown in the reported Qualifications layout. */
+html[data-nl-route="qualifications"] body .nl6439-pill.purple,
+html[data-nl-route="qualifications"] body .nl6439-pill.advanced,
+html[data-nl-route="qualifications"] body .nl6439-qualification-card > .nl6439-pill {
+  background: #5b21b6 !important;
+  border: 1px solid #8b5cf6 !important;
+  color: #ffffff !important;
+}
+
+/* Filled status pills use a foreground chosen for their actual fill. */
+html body .member-react-safe-shell-v108 :is(
+  .badge,.pill,[class*="-badge"],[class*="-pill"]
+):is([class*="current"],[class*="high"]) {
+  color: #052e16 !important;
+}
+
+html body .member-react-safe-shell-v108 :is(
+  .badge,.pill,[class*="-badge"],[class*="-pill"]
+):is([class*="purple"],[class*="advanced"],[class*="postgraduate"]) {
+  background: #5b21b6 !important;
+  border-color: #8b5cf6 !important;
+  color: #ffffff !important;
+}
+
+/* Preserve contrast for disabled filled actions without reverting to blue text. */
+html body .member-react-safe-shell-v108 :is(
+  .primary-button,.primary,.button-primary,.btn-primary,
+  [class*="primary-action"],[class*="primary-button"]
+):disabled,
+html body .member-react-safe-shell-v108 :is(
+  .primary-button,.primary,.button-primary,.btn-primary,
+  [class*="primary-action"],[class*="primary-button"]
+)[aria-disabled="true"] {
+  color: rgba(255,255,255,.82) !important;
+  opacity: .68;
+}

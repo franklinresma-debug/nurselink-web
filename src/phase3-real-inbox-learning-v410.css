@@ -43,3 +43,30 @@ html[data-theme="dark"] .nl410-state{border-color:#41536b;color:#aebed0}html[dat
  .nl410-page{padding:22px 16px 44px}.nl410-page-head{align-items:stretch}.nl410-page-head h1{font-size:30px}.nl410-grid,.nl410-learning-grid{grid-template-columns:1fr}.nl410-stats{grid-template-columns:1fr 1fr}.nl410-message-main{flex-direction:column}.nl410-message-meta{align-items:flex-start}.nl410-form-two{grid-template-columns:1fr}.nl410-panel{padding:15px}.nl410-count{align-self:flex-start}
  .nl410-page button,.nl410-page a.primary-button,.nl410-page a.secondary-button,.nl410-page input,.nl410-page select{min-height:54px}
 }
+
+/* The member shell also styles generic sections.  Keep the React Learning
+   workspace as a vertical document so its heading, summary, form and record
+   list cannot be forced into one horizontal row by a legacy page rule. */
+.nl410-page{
+  display:block !important;
+  width:100% !important;
+  max-width:1180px !important;
+  min-width:0 !important;
+}
+.nl410-page > :is(.nl410-page-head,.nl410-stats,.nl410-notice,.nl410-grid){
+  width:100% !important;
+  min-width:0 !important;
+}
+.nl410-learning-grid{
+  display:grid !important;
+  grid-template-columns:minmax(300px,380px) minmax(0,1fr) !important;
+  align-items:start !important;
+}
+.nl410-stats{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+}
+@media(max-width:760px){
+  .nl410-learning-grid,.nl410-stats{grid-template-columns:1fr !important}
+  .nl410-stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+}

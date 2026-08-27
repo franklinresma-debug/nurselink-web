@@ -1,0 +1,65 @@
+/* NurseLink Qualifications icon contrast v6.6.1 */
+.nurselink-approved-qualifications .nurselink-readiness-item-state {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 900;
+  border: 1px solid #94a3b8;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .12);
+}
+
+html[data-theme="light"] .nurselink-approved-qualifications .nurselink-readiness-item-state,
+html:not([data-theme="dark"]) .nurselink-approved-qualifications .nurselink-readiness-item-state {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+  color: #334155;
+}
+
+html[data-theme="light"] .nurselink-approved-qualifications .nurselink-readiness-item[data-state="complete"] .nurselink-readiness-item-state,
+html:not([data-theme="dark"]) .nurselink-approved-qualifications .nurselink-readiness-item[data-state="complete"] .nurselink-readiness-item-state {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #166534;
+}
+
+html[data-theme="light"] .nurselink-approved-qualifications .nurselink-readiness-item[data-state="attention"] .nurselink-readiness-item-state,
+html:not([data-theme="dark"]) .nurselink-approved-qualifications .nurselink-readiness-item[data-state="attention"] .nurselink-readiness-item-state {
+  background: #fef3c7;
+  border-color: #d97706;
+  color: #92400e;
+}
+
+html[data-theme="light"] .nurselink-approved-qualifications .nurselink-readiness-item[data-state="pending"] .nurselink-readiness-item-state,
+html:not([data-theme="dark"]) .nurselink-approved-qualifications .nurselink-readiness-item[data-state="pending"] .nurselink-readiness-item-state {
+  background: #dbeafe;
+  border-color: #2563eb;
+  color: #1e40af;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-approved-qualifications .nurselink-readiness-item-state {
+  background: #334155 !important;
+  border-color: #94a3b8 !important;
+  color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-approved-qualifications .nurselink-readiness-item[data-state="complete"] .nurselink-readiness-item-state {
+  background: #14532d !important;
+  border-color: #4ade80 !important;
+  color: #dcfce7 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-approved-qualifications .nurselink-readiness-item[data-state="attention"] .nurselink-readiness-item-state {
+  background: #78350f !important;
+  border-color: #fbbf24 !important;
+  color: #fef3c7 !important;
+}
+
+html[data-theme="dark"] .member-react-safe-shell-v108 .nurselink-approved-qualifications .nurselink-readiness-item[data-state="pending"] .nurselink-readiness-item-state {
+  background: #1e3a8a !important;
+  border-color: #60a5fa !important;
+  color: #eff6ff !important;
+}
+
+.nurselink-approved-qualifications .nurselink-readiness-item:focus-visible .nurselink-readiness-item-state {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}

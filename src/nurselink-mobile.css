@@ -1606,6 +1606,48 @@ html.nurselink-public-login #root {
   }
 }
 
+/* Final guard: Super Administrator sidebar controls are text-only on desktop. */
+@media (min-width: 781px) {
+  .sidebar .nurselink-super-admin-center-link > :not(.nurselink-super-admin-center-copy),
+  .sidebar .nurselink-super-admin-test-center-link > :not(.nurselink-super-admin-center-copy) {
+    display: none !important;
+  }
+
+  .sidebar .nurselink-super-admin-center-link::before,
+  .sidebar .nurselink-super-admin-center-link::after,
+  .sidebar .nurselink-super-admin-test-center-link::before,
+  .sidebar .nurselink-super-admin-test-center-link::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .sidebar .nurselink-super-admin-center-link,
+  .sidebar .nurselink-super-admin-test-center-link {
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 3px 8px !important;
+  }
+
+  .sidebar .nurselink-super-admin-center-copy {
+    display: grid !important;
+    align-content: center !important;
+    justify-items: center !important;
+    text-align: center !important;
+    height: 100% !important;
+  }
+
+  .sidebar .sidebar-logout {
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    padding: 3px 8px !important;
+  }
+}
+
 /* Digital Member ID: keep membership and verification information legible. */
 .nurselink-digital-member-card .nurselink-member-id-band > div > small {
   color: #fff !important;

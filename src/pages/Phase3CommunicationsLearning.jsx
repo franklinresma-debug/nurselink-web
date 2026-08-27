@@ -256,6 +256,7 @@ export function Phase3LearningPage() {
   }
 
   return <section className="nl410-page">
+    <div className="nl410-learning-flow">
     <header className="nl410-page-head">
       <div><span>PROFESSIONAL LEARNING</span><h1>Learning</h1><p>Maintain your actual NurseLink professional development record.</p></div>
     </header>
@@ -309,6 +310,7 @@ export function Phase3LearningPage() {
           </article>)}</div>
         </CardState>
       </section>
+    </div>
     </div>
   </section>;
 }

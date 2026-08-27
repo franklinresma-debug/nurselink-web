@@ -1,5 +1,6 @@
 /* NurseLink Phase 3 Real Inbox + Professional Learning v4.1.0 */
 .nl410-page{max-width:1180px;margin:0 auto;padding:28px 24px 48px;color:var(--text,#10233f)}
+.nl410-learning-flow{display:block!important;width:100%!important;min-width:0!important;max-width:1180px!important;margin:0 auto!important}
 .nl410-page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:22px}
 .nl410-page-head>div:first-child>span,.nl410-panel-head span,.nl410-learning-head>div>span{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1477d4}
 .nl410-page-head h1{font-size:32px;line-height:1.1;margin:5px 0 7px}.nl410-page-head p,.nl410-panel-head p{margin:0;color:#64748b}

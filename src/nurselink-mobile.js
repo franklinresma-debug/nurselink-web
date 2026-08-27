@@ -10500,9 +10500,16 @@ import './nurselink-mobile.css';
     const missing = Array.isArray(data?.missing) ? data.missing : [];
     const membership = data?.membership || {};
     const status = String(membership.status || 'draft');
-    const canSubmit = missing.length === 0 && ['draft', 'needs_information'].includes(status);
-    const activeReview = ['submitted', 'under_review', 'ready_for_approval'].includes(status);
+    const updateStatus = String(membership.profile_update_status || '');
+    const memberUpdatePending = status === 'approved' && ['submitted', 'under_review', 'ready_for_approval'].includes(updateStatus);
+    const memberUpdateNeedsInfo = status === 'approved' && updateStatus === 'needs_information';
+    const canSubmit = missing.length === 0 && (['draft', 'needs_information'].includes(status) || (status === 'approved' && !memberUpdatePending));
+    const activeReview = ['submitted', 'under_review', 'ready_for_approval'].includes(status) || memberUpdatePending;
     const approved = status === 'approved';
+    const eligibility = data?.eligibility_insights || {};
+    const pqf = eligibility?.pqf || null;
+    const positions = Array.isArray(eligibility?.suggested_positions) ? eligibility.suggested_positions : [];
+    const countries = Array.isArray(eligibility?.country_readiness) ? eligibility.country_readiness : [];
 
     return `
       <section class="nurselink-smart557-card">
@@ -10546,18 +10553,30 @@ import './nurselink-mobile.css';
           ${documents.length ? documents.map(doc => `<span>▤ ${smartEsc(doc.name)} <small>${smartEsc(doc.document_type || 'document')}</small></span>`).join('') : '<p>No supporting documents uploaded.</p>'}
         </div>
 
-        ${membership.reviewer_notes && status === 'needs_information' ? `<div class="nurselink-smart557-reviewer-note"><strong>Reviewer requested more information</strong><p>${smartEsc(membership.reviewer_notes)}</p></div>` : ''}
+        <section class="nurselink-smart557-review-documents nurselink-smart-eligibility">
+          <div class="nurselink-smart557-review-head"><strong>Qualification & Job-Matching Insights</strong><a href="/qualifications">Open Qualifications</a></div>
+          ${pqf
+            ? `<p><strong>Indicative PQF Level ${smartEsc(pqf.level)}</strong> · ${smartEsc(String(pqf.status || '').replace(/_/g, ' '))}<br><small>${smartEsc(pqf.basis)}</small></p>`
+            : '<p><strong>PQF level not yet indicated.</strong><br><small>Add and confirm your highest nursing education and supporting evidence.</small></p>'}
+          <p><strong>Suggested positions</strong><br>${positions.length ? positions.map(item => `<span>${smartEsc(item)}</span>`).join('') : '<small>Complete professional details to generate suggestions.</small>'}</p>
+          <p><strong>Destination readiness</strong><br><small>${countries.length} country framework${countries.length === 1 ? '' : 's'} available as references. Eligibility will appear only after governed country rules are published and evidence is verified.</small></p>
+          <div class="nurselink-smart557-review-note"><strong>Advisory:</strong> ${smartEsc(eligibility.advisory || '')}</div>
+        </section>
+
+        ${(membership.reviewer_notes && status === 'needs_information') || (membership.profile_update_reviewer_notes && memberUpdateNeedsInfo) ? `<div class="nurselink-smart557-reviewer-note"><strong>Reviewer requested more information</strong><p>${smartEsc(memberUpdateNeedsInfo ? membership.profile_update_reviewer_notes : membership.reviewer_notes)}</p></div>` : ''}
 
         <div class="nurselink-smart557-submit-state">
-          <span>Status</span><strong>${smartEsc(status.replace(/_/g, ' '))}</strong>
+          <span>Status</span><strong>${smartEsc((memberUpdatePending || memberUpdateNeedsInfo ? `member update ${updateStatus}` : status).replace(/_/g, ' '))}</strong>
         </div>
 
         <div class="nurselink-smart557-actions split">
           <button type="button" class="secondary-button" data-smart-next="3">← Professional</button>
-          ${approved
-            ? '<a class="primary-button" href="/dashboard">Membership Approved · Open Dashboard →</a>'
-            : activeReview
+          ${activeReview
               ? '<a class="primary-button" href="/application-status">Application in Review · View Status →</a>'
+            : canSubmit
+              ? `<button type="button" class="primary-button" data-smart-submit>${approved ? 'Submit Updates for Review →' : 'Submit Application →'}</button>`
+            : approved
+              ? '<a class="primary-button" href="/dashboard">Membership Approved · Open Dashboard →</a>'
               : status === 'declined'
                 ? '<a class="primary-button" href="/application-status">Decision Completed · View Status →</a>'
                 : `<button type="button" class="primary-button" data-smart-submit ${canSubmit ? '' : 'disabled'}>${status === 'needs_information' ? 'Resubmit Application →' : 'Submit Application →'}</button>`

@@ -1,0 +1,76 @@
+/* NurseLink final dark text contrast audit remediation v64.9.6 */
+
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 .page :is(
+  article,section,fieldset,[class*="card"],[class*="panel"],[class*="row"],[class*="item"]
+):not([class*="badge"]):not([class*="pill"]) :is(
+  h1,h2,h3,h4,h5,h6,strong,b,dt,th,[class*="title"],[class*="heading"],[class*="name"],[class*="value"]
+):not([class*="icon"]):not([class*="badge"]):not([class*="pill"]) {
+  color: var(--nldyn-strong) !important;
+}
+
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 .page :is(
+  article,section,fieldset,[class*="card"],[class*="panel"],[class*="row"],[class*="item"]
+):not([class*="badge"]):not([class*="pill"]) :is(
+  p,small,dd,td,label,[class*="muted"],[class*="meta"],[class*="subtitle"],
+  [class*="description"],[class*="caption"],[class*="helper"]
+):not([class*="icon"]):not([class*="badge"]):not([class*="pill"]) {
+  color: var(--nldyn-muted) !important;
+}
+
+/* Legacy profile tabs: Portfolio, Certificates, Experience, Licenses, Education, Documents. */
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-inline-panel,
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-record-card,
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-empty,
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-overview-grid button {
+  background: var(--nldyn-card) !important;
+  border-color: var(--nldyn-border) !important;
+  color: var(--nldyn-text) !important;
+}
+
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-inline-head {
+  border-color: var(--nldyn-border) !important;
+}
+
+html[data-nl-effective-theme="dark"] .nl6439-page :is(
+  .nl6441-inline-head h2,.nl6441-record-head h3,.nl6441-empty h3,
+  .nl6441-count strong,.nl6441-overview-grid button strong
+) {
+  color: var(--nldyn-strong) !important;
+}
+
+html[data-nl-effective-theme="dark"] .nl6439-page :is(
+  .nl6441-inline-head p,.nl6441-record-copy > p,.nl6441-record-copy .nl6441-sub,
+  .nl6441-meta,.nl6441-empty p,.nl6441-loading,.nl6441-count span,
+  .nl6441-overview-grid button small
+) {
+  color: var(--nldyn-muted) !important;
+}
+
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-record-icon,
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-empty > div,
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-overview-grid button > span {
+  background: var(--nldyn-icon-bg) !important;
+  border-color: var(--nldyn-icon-border) !important;
+  color: var(--nldyn-icon) !important;
+}
+
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-status {
+  background: #334155 !important;
+  color: #f8fafc !important;
+}
+
+html[data-nl-effective-theme="dark"] .nl6439-page .nl6441-status.good {
+  background: #14532d !important;
+  color: #dcfce7 !important;
+}
+
+/* Reassert control foregrounds after generic text normalization. */
+html[data-nl-effective-theme="dark"] .member-react-safe-shell-v108 :is(
+  a,button,[role="button"],input[type="button"],input[type="submit"]
+):is(
+  .primary-button,.primary,.button-primary,.btn-primary,
+  [class*="primary-action"],[class*="primary-button"],
+  [class*="accent-button"],[class*="submit-button"]
+) {
+  color: #ffffff !important;
+}

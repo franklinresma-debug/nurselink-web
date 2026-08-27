@@ -4869,7 +4869,10 @@ import './nurselink-mobile.css';
     const onboardingComplete = await memberOnboardingComplete520();
 
     enhanceCareerMatching(page, onboardingComplete);
-    enhanceLearningTracker(page);
+    // /learning is now rendered by the React professional-development workspace.
+    // Do not add the legacy tracker beside it; that produced duplicate cards,
+    // controls, and record layouts on the same page.
+    if (routeSlug() !== 'learning') enhanceLearningTracker(page);
     enhanceMemberHubV200(page, onboardingComplete);
   }
 
@@ -8764,6 +8767,10 @@ import './nurselink-mobile.css';
   }
 
   function enhanceV420(page) {
+    // The Learning workspace owns its page layout.  These are cross-product
+    // launchers intended for the legacy pages and make its record panels stack
+    // out of order when injected into the React route.
+    if (routeSlug() === 'learning') return;
     enhanceCareerIntelligenceLauncher(page);
     enhanceCredentialRenewalLauncher(page);
     enhanceEventsProgramsLauncher(page);

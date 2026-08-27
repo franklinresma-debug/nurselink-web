@@ -8992,7 +8992,11 @@ import './nurselink-mobile.css';
       '.nurselink-super-admin-center-link'
     );
 
-    if (link) return link;
+    if (link) {
+      link.querySelectorAll('.nurselink-super-admin-center-icon')
+        .forEach(node => node.remove());
+      return link;
+    }
 
     link = document.createElement('a');
     link.className = 'nurselink-super-admin-center-link';
@@ -9001,7 +9005,6 @@ import './nurselink-mobile.css';
     link.setAttribute('aria-label', 'Open separate NurseLink Administrator sign-in');
 
     link.innerHTML = `
-      <span class="nurselink-super-admin-center-icon" aria-hidden="true">SA</span>
       <span class="nurselink-super-admin-center-copy">
         <strong>Admin Center</strong>
         <small>Super Administrator</small>
@@ -9036,7 +9039,11 @@ import './nurselink-mobile.css';
       '.nurselink-super-admin-test-center-link'
     );
 
-    if (link) return link;
+    if (link) {
+      link.querySelectorAll('.nurselink-super-admin-center-icon')
+        .forEach(node => node.remove());
+      return link;
+    }
 
     link = document.createElement('a');
     link.className = 'nurselink-super-admin-test-center-link';
@@ -9051,7 +9058,6 @@ import './nurselink-mobile.css';
     );
 
     link.innerHTML = `
-      <span class="nurselink-super-admin-center-icon" aria-hidden="true">QA</span>
       <span class="nurselink-super-admin-center-copy">
         <strong>Test Center</strong>
         <small>Super Administrator QA</small>

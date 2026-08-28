@@ -9,6 +9,7 @@
     ['Smart Registration','/smart-registration'],
     ['Application Status','/applications'],
     ['Portfolio','/portfolio'],
+    ['CV Maker','/nurselink-cv-maker.html'],
     ['Jobs','/jobs'],
     ['Applications','/applications'],
     ['Mentoring','/nurselink-mentoring.html'],

@@ -227,6 +227,35 @@
     return document.querySelector('.main-area .page') || null;
   }
 
+  async function hydrateMemberAvatar(page) {
+    const avatar = page?.querySelector('.nl6439-avatar');
+    if (!avatar || avatar.tagName === 'IMG') return;
+
+    try {
+      const response = await fetch('https://api.amsertech.com/api/profile-photo/image', {
+        credentials: 'include',
+        headers: { Accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8' }
+      });
+
+      if (!response.ok) return;
+
+      const blob = await response.blob();
+      if (!blob.type.startsWith('image/')) return;
+
+      const image = document.createElement('img');
+      const objectUrl = URL.createObjectURL(blob);
+      image.className = 'nl6439-avatar';
+      image.alt = 'NurseLink member profile photo';
+      image.src = objectUrl;
+      image.addEventListener('load', () => {
+        avatar.replaceWith(image);
+      }, { once: true });
+      image.addEventListener('error', () => URL.revokeObjectURL(objectUrl), { once: true });
+    } catch (_) {
+      // Keep the initials fallback when no authenticated photo is available.
+    }
+  }
+
   function forceMount(data=fallback) {
     const main = findRoot();
     if (!main) return false;
@@ -257,6 +286,8 @@
         setTimeout(()=>e.currentTarget.textContent='⧉',900);
       }catch(_){}
     });
+
+    hydrateMemberAvatar(page);
 
     return true;
   }

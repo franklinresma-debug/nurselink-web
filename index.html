@@ -100,7 +100,7 @@
   <link rel="stylesheet" href="/nurselink-overview-dark-v6453.css?v=6467">
   <link rel="stylesheet" href="/nurselink-qualifications-loop-free-v6467.css?v=6467">
   <script src="/nurselink-v6441-db-feed-shim-v6452.js?v=6467"></script>
-  <script src="/nurselink-qualifications-force-v6439.js?v=6501" defer></script>
+  <script src="/nurselink-qualifications-force-v6439.js?v=6502" defer></script>
   <script src="/nurselink-qualifications-interactions-v6440.js?v=6467" defer></script>
   <script src="/nurselink-dynamic-profile-tabs-v6441.js?v=6467" defer></script>
   <script src="/nurselink-qualifications-loop-free-v6467.js?v=6467" defer></script>
@@ -1958,10 +1958,32 @@ body[data-theme="dark"] .nl-password-eye:focus-visible {
 <link rel="stylesheet" href="/nurselink-password-visibility-v4.css?v=4">
 <script src="/nurselink-password-visibility-v3.js?v=5" defer></script>
 <link rel="stylesheet" href="/nurselink-smart-registration-layout-v5591.css?v=5591">
+<style id="nurselink-super-admin-badge-removal">
+@media (min-width: 781px) {
+  .sidebar [data-nurselink-system-access="super-admin"] > :not(.nurselink-super-admin-center-copy),
+  .sidebar [data-nurselink-system-access="super-admin-test"] > :not(.nurselink-super-admin-center-copy) {
+    display: none !important;
+  }
+  .sidebar [data-nurselink-system-access="super-admin"]::before,
+  .sidebar [data-nurselink-system-access="super-admin"]::after,
+  .sidebar [data-nurselink-system-access="super-admin-test"]::before,
+  .sidebar [data-nurselink-system-access="super-admin-test"]::after {
+    content: none !important;
+    display: none !important;
+  }
+  .sidebar [data-nurselink-system-access="super-admin"],
+  .sidebar [data-nurselink-system-access="super-admin-test"],
+  .sidebar .sidebar-logout {
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+  }
+}
+</style>
 </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-</body>
-<script src="/nurselink-smart-registration-employment-emergency-v1.js?v=1" defer></script>
+    <script src="/nurselink-smart-registration-employment-emergency-v1.js?v=1" defer></script>
+  </body>
 </html>

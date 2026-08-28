@@ -108,6 +108,24 @@
   <section id="progressCard" class="nlbi-card nlbi-hidden">
     <h2>3. Processing Status</h2>
 
+    <div
+      id="processingProgress"
+      class="nlbi-processing-progress"
+      role="progressbar"
+      aria-label="Document processing progress"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+    >
+      <div class="nlbi-processing-progress-head">
+        <strong id="processingProgressLabel">0 of 0 documents processed</strong>
+        <span id="processingProgressPercent">0%</span>
+      </div>
+      <div class="nlbi-processing-progress-track" aria-hidden="true">
+        <div id="processingProgressFill" class="nlbi-processing-progress-fill"></div>
+      </div>
+    </div>
+
     <div class="nlbi-progress">
       <div class="nlbi-stat">
         <strong id="statFiles">0</strong>
@@ -165,6 +183,6 @@
 
 </div>
 
-<script src="/nurselink-bulk-intake.js?v=155" defer></script>
+<script src="/nurselink-bulk-intake.js?v=156" defer></script>
 </body>
 </html>

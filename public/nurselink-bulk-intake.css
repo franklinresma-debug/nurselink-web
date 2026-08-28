@@ -91,6 +91,35 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 .nlbi-stat strong{display:block;font-size:1.3rem}
 .nlbi-stat small{color:#607585}
+.nlbi-processing-progress{
+  margin:0 0 14px;
+  padding:12px 14px;
+  border:1px solid #dce7ed;
+  border-radius:11px;
+  background:#f9fbfc
+}
+.nlbi-processing-progress-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:baseline;
+  margin-bottom:8px
+}
+.nlbi-processing-progress-head strong{font-size:.92rem}
+.nlbi-processing-progress-head span{color:#0b699a;font-weight:850;font-variant-numeric:tabular-nums}
+.nlbi-processing-progress-track{
+  height:10px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#dceaf1
+}
+.nlbi-processing-progress-fill{
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,#0d78b3,#11a6a4);
+  transition:width .25s ease
+}
 .nlbi-notice{
   border:1px solid #b9ccd7;
   border-radius:10px;

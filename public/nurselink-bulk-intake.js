@@ -367,6 +367,21 @@
     $('statReview').textContent =
       batch.review_count || 0;
 
+    const totalFiles = Number(batch.file_count || 0);
+    const processedFiles = Number(batch.processed_count || 0);
+    const progressPercent = totalFiles > 0
+      ? Math.min(100, Math.round((processedFiles / totalFiles) * 100))
+      : 0;
+
+    $('processingProgressLabel').textContent =
+      `${processedFiles} of ${totalFiles} document${totalFiles === 1 ? '' : 's'} processed`;
+    $('processingProgressPercent').textContent = `${progressPercent}%`;
+    $('processingProgressFill').style.width = `${progressPercent}%`;
+    $('processingProgress').setAttribute(
+      'aria-valuenow',
+      String(progressPercent)
+    );
+
     const rows =
       Array.isArray(batchPayload?.files)
         ? batchPayload.files

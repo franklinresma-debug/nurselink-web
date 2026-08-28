@@ -99,6 +99,9 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 .nlbi-remove-file:hover:not(:disabled){background:#fee4e2}
 .nlbi-remove-file:disabled{opacity:.55;cursor:not-allowed}
+.nlbi-reprocess-file{align-self:center;padding:7px 11px;border:1px solid #8fc6dc;border-radius:8px;background:#f0f9ff;color:#075985;font-weight:750;cursor:pointer}
+.nlbi-reprocess-file:hover:not(:disabled){background:#e0f2fe}
+.nlbi-reprocess-file:disabled{opacity:.55;cursor:not-allowed}
 .nlbi-progress{
   display:grid;
   grid-template-columns:repeat(6,minmax(0,1fr));

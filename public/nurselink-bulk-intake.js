@@ -413,6 +413,13 @@
               >
                 Remove
               </button>
+              <button
+                class="nlbi-reprocess-file"
+                type="button"
+                data-reprocess-file="${row.id}"
+              >
+                Reprocess
+              </button>
             </div>
           `).join('')
         : '<div>No files uploaded yet.</div>';
@@ -443,6 +450,36 @@
               'success'
             );
 
+            await refreshBatch();
+          } catch (error) {
+            button.disabled = false;
+            notice(error.message, 'error');
+          }
+        });
+      });
+
+    $('batchFiles')
+      .querySelectorAll('[data-reprocess-file]')
+      .forEach(button => {
+        button.addEventListener('click', async () => {
+          const fileId = Number(button.dataset.reprocessFile);
+          const file = rows.find(row => Number(row.id) === fileId);
+
+          if (!fileId || !file) return;
+
+          if (!confirm(`Reprocess ${file.original_name}? After processing completes, rebuild the candidate record to refresh its fields.`)) {
+            return;
+          }
+
+          button.disabled = true;
+
+          try {
+            const result = await request(
+              `/api/nurselink/encoder/bulk-intake/${batchId}/files/${fileId}/reprocess`,
+              { method: 'POST', body: '{}' }
+            );
+
+            notice(result?.message || 'Document reprocessing started.', 'success');
             await refreshBatch();
           } catch (error) {
             button.disabled = false;

@@ -12329,3 +12329,16 @@ html.nurselink-public-register .nurselink-auth-hero-inner {
     text-align: center !important;
   }
 }
+
+/* Compact spacing for the three member sidebar utility controls. */
+@media (min-width: 781px) {
+  .sidebar .nurselink-super-admin-center-link,
+  .sidebar .nurselink-super-admin-test-center-link,
+  .sidebar .sidebar-logout {
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    margin: 2px 0 !important;
+    padding: 2px 8px !important;
+  }
+}

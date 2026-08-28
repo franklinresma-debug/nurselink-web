@@ -34,15 +34,20 @@
   <div id="notice" class="nlbi-notice nlbi-hidden"></div>
 
   <section class="nlbi-card">
-    <h2>1. Create Intake Batch</h2>
+    <h2>1. Create Candidate Batch</h2>
+
+    <p class="nlbi-batch-guidance">
+      One batch creates one new candidate record. Upload that nurse’s CV,
+      certificates, licences, and other supporting documents together.
+    </p>
 
     <div class="nlbi-grid">
       <label>
-        Batch name
+        Candidate name / batch label
         <input
           id="batchName"
           maxlength="190"
-          placeholder="August 2026 Nurse Records"
+          placeholder="Jane Dela Cruz — August 2026"
         >
       </label>
 
@@ -52,7 +57,7 @@
           class="primary"
           type="button"
         >
-          Create Batch
+          Create Candidate Batch
         </button>
       </div>
     </div>
@@ -141,7 +146,7 @@
       </div>
       <div class="nlbi-stat">
         <strong id="statCandidates">0</strong>
-        <small>Candidates</small>
+        <small>Candidate record</small>
       </div>
       <div class="nlbi-stat">
         <strong id="statReady">0</strong>
@@ -161,7 +166,7 @@
         class="primary"
         type="button"
       >
-        Build Nurse Candidates
+        Build Candidate Record
       </button>
     </div>
   </section>
@@ -170,7 +175,7 @@
     <div class="nlbi-head nl-csp-v4700-005">
       <div>
         <span class="nlbi-eyebrow">HUMAN REVIEW REQUIRED</span>
-        <h2>4. Review Extracted Nurses</h2>
+        <h2>4. Review Extracted Candidate</h2>
         <p>
           Correct OCR values before import. Saving here does not create
           a NurseLink member and does not verify a credential.
@@ -183,6 +188,6 @@
 
 </div>
 
-<script src="/nurselink-bulk-intake.js?v=157" defer></script>
+<script src="/nurselink-bulk-intake.js?v=158" defer></script>
 </body>
 </html>

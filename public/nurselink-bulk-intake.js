@@ -571,7 +571,7 @@
 
       notice(
         result?.message
-        || 'Nurse candidates built.',
+        || 'Candidate record built for review.',
         'success'
       );
 
@@ -2153,7 +2153,7 @@
 
       if (!name) {
         return notice(
-          'Enter a batch name.',
+          'Enter a candidate name or batch label.',
           'error'
         );
       }
@@ -2182,7 +2182,7 @@
 
         notice(
           result?.message
-          || 'Bulk Intake batch created.',
+          || 'Candidate batch created. Upload this nurse’s documents next.',
           'success'
         );
 

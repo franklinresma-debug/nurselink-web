@@ -8993,8 +8993,12 @@ import './nurselink-mobile.css';
     );
 
     if (link) {
-      link.querySelectorAll('.nurselink-super-admin-center-icon')
-        .forEach(node => node.remove());
+      link.innerHTML = `
+        <span class="nurselink-super-admin-center-copy">
+          <strong>Admin Center</strong>
+          <small>Super Administrator</small>
+        </span>
+      `;
       return link;
     }
 
@@ -9040,8 +9044,12 @@ import './nurselink-mobile.css';
     );
 
     if (link) {
-      link.querySelectorAll('.nurselink-super-admin-center-icon')
-        .forEach(node => node.remove());
+      link.innerHTML = `
+        <span class="nurselink-super-admin-center-copy">
+          <strong>Test Center</strong>
+          <small>Super Administrator QA</small>
+        </span>
+      `;
       return link;
     }
 

@@ -1,0 +1,19 @@
+.nurselink-smart557-field-group[data-smart-employment-emergency] {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid #d8e4f2;
+  border-radius: 12px;
+  background: #f8fbff;
+}
+
+.nurselink-smart557-field-group[data-smart-employment-emergency] > strong {
+  color: #102a43;
+  font-size: 15px;
+}
+
+.nurselink-smart557-field-group[data-smart-employment-emergency] > small {
+  margin-top: -7px;
+  color: #607695;
+  line-height: 1.45;
+}

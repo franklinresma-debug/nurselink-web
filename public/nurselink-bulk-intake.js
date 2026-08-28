@@ -847,6 +847,14 @@
 
   function candidateReadinessSummary(bundle) {
     const row = bundle.candidate || {};
+    let rosterDetails = {};
+    try {
+      rosterDetails = typeof row.roster_details === 'string'
+        ? JSON.parse(row.roster_details || '{}')
+        : (row.roster_details || {});
+    } catch (_) {}
+    const rosterEntries = Object.entries(rosterDetails || {})
+      .filter(([, value]) => String(value || '').trim() !== '');
     const fields = [
       ['first_name', 'First name'], ['last_name', 'Last name'],
       ['birth_date', 'Birth date'], ['sex', 'Sex'],
@@ -891,6 +899,10 @@
             <h4>Documents in this batch (${documents.length})</h4>
             ${documents.length ? `<ul class="nlbi-summary-documents">${documents.map(file => `<li>${esc(file.original_name)} <small>${esc(label(file.document_type || 'unclassified'))}</small></li>`).join('')}</ul>` : '<p class="nlbi-summary-empty">No processed documents are attached.</p>'}
             ${pendingReviews.length ? `<p class="nlbi-summary-warning">Pending professional-record review: ${esc(pendingReviews.join(' · '))}</p>` : '<p class="nlbi-summary-complete">Professional records reviewed.</p>'}
+          </div>
+          <div>
+            <h4>Roster details (${rosterEntries.length})</h4>
+            ${rosterEntries.length ? `<dl class="nlbi-summary-fields">${rosterEntries.map(([fieldLabel, value]) => `<div><dt>${esc(fieldLabel)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>` : '<p class="nlbi-summary-empty">No additional roster details supplied.</p>'}
           </div>
         </div>
       </section>

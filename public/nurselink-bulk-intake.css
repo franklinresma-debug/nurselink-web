@@ -109,6 +109,8 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .nlbi-reprocess-file{align-self:center;padding:7px 11px;border:1px solid #8fc6dc;border-radius:8px;background:#f0f9ff;color:#075985;font-weight:750;cursor:pointer}
 .nlbi-reprocess-file:hover:not(:disabled){background:#e0f2fe}
 .nlbi-reprocess-file:disabled{opacity:.55;cursor:not-allowed}
+.nlbi-preview-file{align-self:center;padding:7px 11px;border:1px solid #8fc6dc;border-radius:8px;background:#fff;color:#075985;font-weight:750;cursor:pointer}
+.nlbi-preview-file:hover{background:#e0f2fe}
 .nlbi-progress{
   display:grid;
   grid-template-columns:repeat(6,minmax(0,1fr));
@@ -203,6 +205,12 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 .nlbi-doc small,.nlbi-cred small{display:block;color:#607585;margin-top:3px}
 .nlbi-hidden{display:none!important}
+.nlbi-preview-dialog{width:min(1100px,94vw);height:min(850px,92vh);padding:0;border:1px solid #b9ccd7;border-radius:14px;box-shadow:0 24px 70px rgba(15,35,50,.3)}
+.nlbi-preview-dialog::backdrop{background:rgba(15,35,50,.55)}
+.nlbi-preview-header{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 16px;border-bottom:1px solid #dce7ed;background:#f8fbfd}
+.nlbi-preview-header h2{margin:0;font-size:1.05rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nlbi-preview-content{height:calc(100% - 65px);padding:12px;color:#607585}
+.nlbi-preview-content iframe,.nlbi-preview-content img{width:100%;height:100%;border:0;object-fit:contain;background:#f4f8fb}
 @media(max-width:900px){
  .nlbi-grid,.nlbi-grid.three{grid-template-columns:1fr}
  .nlbi-readiness-grid{grid-template-columns:1fr}

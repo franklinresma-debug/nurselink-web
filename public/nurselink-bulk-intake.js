@@ -9,6 +9,7 @@
   let selectedFiles = [];
   let currentCandidateBundles = [];
   let processingRefreshTimer = null;
+  let previewObjectUrl = null;
 
   function esc(value) {
     return String(value ?? '')
@@ -422,6 +423,13 @@
               >
                 Reprocess
               </button>
+              <button
+                class="nlbi-preview-file"
+                type="button"
+                data-preview-file="${row.id}"
+              >
+                Preview
+              </button>
             </div>
           `).join('')
         : '<div>No files uploaded yet.</div>';
@@ -456,6 +464,19 @@
           } catch (error) {
             button.disabled = false;
             notice(error.message, 'error');
+          }
+        });
+      });
+
+    $('batchFiles')
+      .querySelectorAll('[data-preview-file]')
+      .forEach(button => {
+        button.addEventListener('click', () => {
+          const fileId = Number(button.dataset.previewFile);
+          const file = rows.find(row => Number(row.id) === fileId);
+
+          if (fileId && file) {
+            openDocumentPreview(file);
           }
         });
       });
@@ -544,6 +565,82 @@
         notice(error.message, 'error');
       }
     }, 3000);
+  }
+
+  function closeDocumentPreview() {
+    const dialog = $('documentPreviewDialog');
+
+    if (previewObjectUrl) {
+      URL.revokeObjectURL(previewObjectUrl);
+      previewObjectUrl = null;
+    }
+
+    $('documentPreviewContent').innerHTML = '';
+
+    if (dialog.open) {
+      dialog.close();
+    }
+  }
+
+  async function openDocumentPreview(file) {
+    const dialog = $('documentPreviewDialog');
+    const content = $('documentPreviewContent');
+    const previewUrl =
+      `${API}/api/nurselink/encoder/bulk-intake/${batchId}/files/${file.id}/preview`;
+    const isPdf =
+      /pdf/i.test(String(file.mime_type || ''))
+      || /\.pdf$/i.test(String(file.original_name || ''));
+
+    /*
+     * PDFs are opened in a secure browser tab. This lets the browser use its
+     * native PDF viewer without weakening the portal's frame CSP.
+     */
+    if (isPdf) {
+      const opened = window.open(previewUrl, '_blank', 'noopener');
+
+      if (!opened) {
+        notice('Your browser blocked the document preview. Allow pop-ups and try again.', 'error');
+      }
+
+      return;
+    }
+
+    closeDocumentPreview();
+    $('documentPreviewTitle').textContent = file.original_name || 'Document Preview';
+    content.textContent = 'Loading secure preview…';
+
+    if (typeof dialog.showModal === 'function') {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute('open', '');
+    }
+
+    try {
+      const response = await fetch(
+        previewUrl,
+        {
+          credentials: 'include',
+          headers: {
+            Accept: 'application/pdf,image/*,application/octet-stream',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Unable to load the document preview.');
+      }
+
+      const blob = await response.blob();
+      previewObjectUrl = URL.createObjectURL(blob);
+      const mime = blob.type || file.mime_type || '';
+
+      content.innerHTML = mime.startsWith('image/')
+        ? `<img src="${previewObjectUrl}" alt="Preview of ${esc(file.original_name)}">`
+        : `<iframe src="${previewObjectUrl}" title="Preview of ${esc(file.original_name)}"></iframe>`;
+    } catch (error) {
+      content.textContent = error.message;
+    }
   }
 
   function renderSelectedFiles() {
@@ -2359,6 +2456,17 @@
       'click',
       refreshBatch
     );
+
+  $('closeDocumentPreview')
+    ?.addEventListener('click', closeDocumentPreview);
+
+  $('documentPreviewDialog')
+    ?.addEventListener('close', () => {
+      if (previewObjectUrl) {
+        URL.revokeObjectURL(previewObjectUrl);
+        previewObjectUrl = null;
+      }
+    });
 
   $('buildCandidates')
     ?.addEventListener(

@@ -12306,3 +12306,26 @@ html.nurselink-public-register .nurselink-auth-hero-inner {
     bottom: 16px;
   }
 }
+
+/* Desktop member shortcut controls: one-line labels and equal heights. */
+@media (min-width: 781px) {
+  .sidebar .nurselink-super-admin-center-link,
+  .sidebar .nurselink-super-admin-test-center-link,
+  .sidebar .sidebar-logout {
+    box-sizing: border-box !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    margin: 3px 0 !important;
+    padding: 3px 8px !important;
+  }
+
+  .sidebar .nurselink-super-admin-center-link,
+  .sidebar .nurselink-super-admin-test-center-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+  }
+}

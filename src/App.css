@@ -2,6 +2,19 @@
   box-sizing: border-box;
 }
 
+/* Final desktop Sign Out sizing: match the two utility shortcuts exactly. */
+@media (min-width: 781px) {
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar button.sidebar-logout {
+    box-sizing: border-box !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    margin: 2px 0 !important;
+    padding: 2px 8px !important;
+    line-height: 1 !important;
+  }
+}
+
 body {
   margin: 0;
   background: #f5f8fc;
@@ -3786,5 +3799,18 @@ a {
   .member-react-safe-shell-v108.member-shell-v636 .nurselink-super-admin-center-copy {
     flex: 0 1 auto !important;
     text-align: center !important;
+  }
+}
+
+/* Final desktop Sign Out sizing, after all legacy member-shell rules. */
+@media (min-width: 781px) {
+  .member-react-safe-shell-v108.member-shell-v636 .sidebar button.sidebar-logout {
+    box-sizing: border-box !important;
+    height: 34px !important;
+    min-height: 34px !important;
+    max-height: 34px !important;
+    margin: 2px 0 !important;
+    padding: 2px 8px !important;
+    line-height: 1 !important;
   }
 }

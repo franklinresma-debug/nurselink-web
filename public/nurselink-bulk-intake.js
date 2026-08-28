@@ -715,6 +715,7 @@
     let uploaded = 0;
     let failed = 0;
     let duplicates = 0;
+    let reprocessed = 0;
 
     for (const file of selectedFiles) {
       const body = new FormData();
@@ -726,7 +727,7 @@
       );
 
       try {
-        await request(
+        const response = await request(
           `/api/nurselink/encoder/bulk-intake/${batchId}/files`,
           {
             method: 'POST',
@@ -734,7 +735,11 @@
           }
         );
 
-        uploaded++;
+        if (response?.reused_existing_file) {
+          reprocessed++;
+        } else {
+          uploaded++;
+        }
       } catch (error) {
         if (error.status === 409) {
           duplicates++;
@@ -764,7 +769,7 @@
     renderSelectedFiles();
 
     notice(
-      `${uploaded} document(s) uploaded${duplicates ? `; ${duplicates} already in this batch` : ''}${failed ? `; ${failed} failed` : ''}. OCR is processing in the background.`,
+      `${uploaded} document(s) uploaded${reprocessed ? `; ${reprocessed} existing roster reprocessing` : ''}${duplicates ? `; ${duplicates} already in this batch` : ''}${failed ? `; ${failed} failed` : ''}. OCR is processing in the background.`,
       failed ? 'error' : 'success'
     );
 

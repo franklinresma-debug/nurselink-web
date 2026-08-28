@@ -158,6 +158,23 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 .nlbi-candidate-head strong{display:block;font-size:1.05rem}
 .nlbi-candidate-head small{display:block;color:#607585;margin-top:4px}
+.nlbi-readiness-summary{margin-top:22px;padding:16px;border:1px solid #b9d7e7;border-radius:12px;background:#f5fbfe}
+.nlbi-readiness-heading{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
+.nlbi-readiness-heading h3{margin:4px 0 5px}
+.nlbi-readiness-heading p{margin:0;color:#607585;font-size:.9rem}
+.nlbi-readiness-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.nlbi-readiness-grid>div{padding:12px;border:1px solid #d9e8ef;border-radius:9px;background:#fff}
+.nlbi-readiness-grid h4{margin:0 0 9px;font-size:.9rem}
+.nlbi-summary-fields{display:grid;gap:7px;margin:0}
+.nlbi-summary-fields div{display:grid;gap:1px}
+.nlbi-summary-fields dt{color:#607585;font-size:.74rem;font-weight:700}
+.nlbi-summary-fields dd{margin:0;font-size:.85rem;overflow-wrap:anywhere}
+.nlbi-summary-missing,.nlbi-summary-documents{display:grid;gap:7px;margin:0;padding-left:18px;font-size:.85rem}
+.nlbi-summary-missing li::marker{color:#b42318}
+.nlbi-summary-documents small{display:block;color:#607585;margin-top:2px}
+.nlbi-summary-empty{margin:0;color:#607585;font-size:.85rem}
+.nlbi-summary-complete{margin:12px 0 0;color:#067647;font-size:.84rem;font-weight:700}
+.nlbi-summary-warning{margin:12px 0 0;color:#b54708;font-size:.84rem;font-weight:700}
 .nlbi-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .nlbi-badge{
   display:inline-flex;padding:4px 8px;border-radius:999px;
@@ -178,6 +195,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .nlbi-hidden{display:none!important}
 @media(max-width:900px){
  .nlbi-grid,.nlbi-grid.three{grid-template-columns:1fr}
+ .nlbi-readiness-grid{grid-template-columns:1fr}
  .nlbi-progress{grid-template-columns:repeat(2,minmax(0,1fr))}
  .nlbi-head{display:block}
 }

@@ -623,6 +623,58 @@
     `;
   }
 
+  function candidateReadinessSummary(bundle) {
+    const row = bundle.candidate || {};
+    const fields = [
+      ['first_name', 'First name'], ['last_name', 'Last name'],
+      ['birth_date', 'Birth date'], ['sex', 'Sex'],
+      ['nationality', 'Nationality'], ['email', 'Email address'],
+      ['phone', 'Mobile / phone'], ['address_line1', 'Address'],
+      ['city', 'City'], ['province', 'Province / region'],
+      ['country', 'Country'], ['professional_title', 'Professional title'],
+      ['current_position', 'Current position'], ['current_employer', 'Current employer'],
+      ['specialty', 'Specialty'], ['years_experience', 'Years of experience'],
+      ['highest_nursing_education', 'Highest nursing education'], ['graduation_year', 'Graduation year'],
+      ['primary_license_number', 'Professional licence number'],
+      ['primary_license_country', 'Licence country'], ['primary_license_expiry', 'Licence expiry'],
+    ];
+    const hasValue = value => value !== null && value !== undefined && String(value).trim() !== '';
+    const detected = fields.filter(([key]) => hasValue(row[key]));
+    const missing = fields.filter(([key]) => !hasValue(row[key]));
+    const documents = Array.isArray(bundle.files) ? bundle.files : [];
+    const pendingReviews = structuredReviewCounts(bundle);
+
+    return `
+      <section class="nlbi-readiness-summary">
+        <div class="nlbi-readiness-heading">
+          <div>
+            <span class="nlbi-eyebrow">PRE-SUBMISSION SUMMARY</span>
+            <h3>Candidate record readiness</h3>
+            <p>Review the saved, collated details below before submitting this candidate for Administrator Import.</p>
+          </div>
+          <span class="nlbi-badge ${missing.length || pendingReviews.length ? 'warn' : 'ok'}">
+            ${missing.length || pendingReviews.length ? 'Review needed' : 'Information complete'}
+          </span>
+        </div>
+        <div class="nlbi-readiness-grid">
+          <div>
+            <h4>Detected fields (${detected.length})</h4>
+            ${detected.length ? `<dl class="nlbi-summary-fields">${detected.map(([key, fieldLabel]) => `<div><dt>${esc(fieldLabel)}</dt><dd>${esc(row[key])}</dd></div>`).join('')}</dl>` : '<p class="nlbi-summary-empty">No profile fields detected yet.</p>'}
+          </div>
+          <div>
+            <h4>Missing information (${missing.length})</h4>
+            ${missing.length ? `<ul class="nlbi-summary-missing">${missing.map(([, fieldLabel]) => `<li>${esc(fieldLabel)}</li>`).join('')}</ul>` : '<p class="nlbi-summary-complete">No profile fields are missing.</p>'}
+          </div>
+          <div>
+            <h4>Documents in this batch (${documents.length})</h4>
+            ${documents.length ? `<ul class="nlbi-summary-documents">${documents.map(file => `<li>${esc(file.original_name)} <small>${esc(label(file.document_type || 'unclassified'))}</small></li>`).join('')}</ul>` : '<p class="nlbi-summary-empty">No processed documents are attached.</p>'}
+            ${pendingReviews.length ? `<p class="nlbi-summary-warning">Pending professional-record review: ${esc(pendingReviews.join(' · '))}</p>` : '<p class="nlbi-summary-complete">Professional records reviewed.</p>'}
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
   function renderCandidates(rows) {
     currentCandidateBundles =
       Array.isArray(rows)
@@ -1182,6 +1234,8 @@
                   : '<div>No credential candidates extracted.</div>'
               }
             </div>
+
+            ${candidateReadinessSummary(bundle)}
 
 
             ${

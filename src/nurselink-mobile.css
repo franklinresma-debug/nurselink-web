@@ -1606,6 +1606,27 @@ html.nurselink-public-login #root {
   }
 }
 
+@media (min-width: 781px) {
+  .sidebar .nurselink-super-admin-center-link,
+  .sidebar .nurselink-super-admin-test-center-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    padding: 3px 8px !important;
+    text-align: center !important;
+  }
+
+  .sidebar .sidebar-logout {
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    padding: 3px 8px !important;
+  }
+}
+
 /* Final guard: Super Administrator sidebar controls are text-only on desktop. */
 @media (min-width: 781px) {
   .sidebar .nurselink-super-admin-center-link > :not(.nurselink-super-admin-center-copy),

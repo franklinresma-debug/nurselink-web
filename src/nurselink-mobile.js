@@ -8993,12 +8993,7 @@ import './nurselink-mobile.css';
     );
 
     if (link) {
-      link.innerHTML = `
-        <span class="nurselink-super-admin-center-copy">
-          <strong>Admin Center</strong>
-          <small>Super Administrator</small>
-        </span>
-      `;
+      link.textContent = 'Admin Center';
       return link;
     }
 
@@ -9008,12 +9003,7 @@ import './nurselink-mobile.css';
     link.setAttribute('data-nurselink-system-access', 'super-admin');
     link.setAttribute('aria-label', 'Open separate NurseLink Administrator sign-in');
 
-    link.innerHTML = `
-      <span class="nurselink-super-admin-center-copy">
-        <strong>Admin Center</strong>
-        <small>Super Administrator</small>
-      </span>
-    `;
+    link.textContent = 'Admin Center';
 
     const signOut = [...sidebar.querySelectorAll('a,button')]
       .find(node => {
@@ -9044,12 +9034,7 @@ import './nurselink-mobile.css';
     );
 
     if (link) {
-      link.innerHTML = `
-        <span class="nurselink-super-admin-center-copy">
-          <strong>Test Center</strong>
-          <small>Super Administrator QA</small>
-        </span>
-      `;
+      link.textContent = 'Test Center';
       return link;
     }
 
@@ -9065,12 +9050,7 @@ import './nurselink-mobile.css';
       'Open Super Administrator Test Center'
     );
 
-    link.innerHTML = `
-      <span class="nurselink-super-admin-center-copy">
-        <strong>Test Center</strong>
-        <small>Super Administrator QA</small>
-      </span>
-    `;
+    link.textContent = 'Test Center';
 
     const adminLink = sidebar.querySelector(
       '.nurselink-super-admin-center-link'

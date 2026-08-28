@@ -211,6 +211,13 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .nlbi-preview-header h2{margin:0;font-size:1.05rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nlbi-preview-content{height:calc(100% - 65px);padding:12px;color:#607585}
 .nlbi-preview-content iframe,.nlbi-preview-content img{width:100%;height:100%;border:0;object-fit:contain;background:#f4f8fb}
+.nlbi-pdf-preview-message{display:grid;place-items:center;align-content:center;height:100%;text-align:center;color:#193444}
+.nlbi-pdf-preview-message p{max-width:430px;color:#607585}
+.nlbi-notification-dialog{width:min(460px,92vw);padding:30px;border:1px solid #b9d7e7;border-radius:16px;text-align:center;box-shadow:0 24px 70px rgba(15,35,50,.3)}
+.nlbi-notification-dialog::backdrop{background:rgba(15,35,50,.55)}
+.nlbi-notification-dialog h2{margin:12px 0 8px}
+.nlbi-notification-dialog p{margin:0 0 22px;color:#526b7b;line-height:1.5}
+.nlbi-notification-mark{display:grid;place-items:center;width:48px;height:48px;margin:auto;border-radius:50%;background:#d1fadf;color:#067647;font-size:1.5rem;font-weight:900}
 @media(max-width:900px){
  .nlbi-grid,.nlbi-grid.three{grid-template-columns:1fr}
  .nlbi-readiness-grid{grid-template-columns:1fr}

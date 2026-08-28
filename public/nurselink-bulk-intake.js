@@ -596,10 +596,20 @@
      * native PDF viewer without weakening the portal's frame CSP.
      */
     if (isPdf) {
-      const opened = window.open(previewUrl, '_blank', 'noopener');
+      closeDocumentPreview();
+      $('documentPreviewTitle').textContent = file.original_name || 'Document Preview';
+      content.innerHTML = `
+        <div class="nlbi-pdf-preview-message">
+          <strong>PDF preview is ready.</strong>
+          <p>Open it directly in a secure browser tab to inspect the scanned pages.</p>
+          <a class="nlbi-button primary" href="${previewUrl}" target="_blank" rel="noopener">Open PDF Preview</a>
+        </div>
+      `;
 
-      if (!opened) {
-        notice('Your browser blocked the document preview. Allow pop-ups and try again.', 'error');
+      if (typeof dialog.showModal === 'function') {
+        dialog.showModal();
+      } else {
+        dialog.setAttribute('open', '');
       }
 
       return;
@@ -640,6 +650,22 @@
         : `<iframe src="${previewObjectUrl}" title="Preview of ${esc(file.original_name)}"></iframe>`;
     } catch (error) {
       content.textContent = error.message;
+    }
+  }
+
+  function showCandidateBuiltNotice() {
+    const dialog = $('candidateBuiltNotice');
+
+    if (!dialog) return;
+
+    if (dialog.open) {
+      dialog.close();
+    }
+
+    if (typeof dialog.showModal === 'function') {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute('open', '');
     }
   }
 
@@ -759,6 +785,7 @@
 
       await refreshBatch();
       await loadCandidates();
+      showCandidateBuiltNotice();
 
     } catch (error) {
       notice(
@@ -2465,6 +2492,15 @@
       if (previewObjectUrl) {
         URL.revokeObjectURL(previewObjectUrl);
         previewObjectUrl = null;
+      }
+    });
+
+  $('closeCandidateBuiltNotice')
+    ?.addEventListener('click', () => {
+      const dialog = $('candidateBuiltNotice');
+
+      if (dialog?.open) {
+        dialog.close();
       }
     });
 

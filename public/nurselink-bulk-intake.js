@@ -405,9 +405,51 @@
                   Security: ${esc(label(row.security_status))}
                 </small>
               </div>
+              <button
+                class="nlbi-remove-file"
+                type="button"
+                data-remove-file="${row.id}"
+                ${Number(batch.candidate_count || 0) > 0 ? 'disabled title="Documents cannot be removed after candidates are built."' : ''}
+              >
+                Remove
+              </button>
             </div>
           `).join('')
         : '<div>No files uploaded yet.</div>';
+
+    $('batchFiles')
+      .querySelectorAll('[data-remove-file]')
+      .forEach(button => {
+        button.addEventListener('click', async () => {
+          const fileId = Number(button.dataset.removeFile);
+          const file = rows.find(row => Number(row.id) === fileId);
+
+          if (!fileId || !file) return;
+
+          if (!confirm(`Remove ${file.original_name} from this batch? This cannot be undone.`)) {
+            return;
+          }
+
+          button.disabled = true;
+
+          try {
+            const result = await request(
+              `/api/nurselink/encoder/bulk-intake/${batchId}/files/${fileId}`,
+              { method: 'DELETE' }
+            );
+
+            notice(
+              result?.message || 'Document removed from this batch.',
+              'success'
+            );
+
+            await refreshBatch();
+          } catch (error) {
+            button.disabled = false;
+            notice(error.message, 'error');
+          }
+        });
+      });
 
     const unfinished =
       rows.some(row =>

@@ -1467,6 +1467,13 @@
                       >
                         Approve All Extracted Records
                       </button>
+
+                      <button
+                        type="button"
+                        data-reject-all-records
+                      >
+                        Reject All Extracted Records
+                      </button>
                     </div>
                   </div>
                 `
@@ -1611,6 +1618,20 @@
         button.addEventListener(
           'click',
           () => approveAllStructuredRecords(
+            button.closest(
+              '[data-candidate-id]'
+            ),
+            button
+          )
+        );
+      });
+
+    list
+      .querySelectorAll('[data-reject-all-records]')
+      .forEach(button => {
+        button.addEventListener(
+          'click',
+          () => rejectAllStructuredRecords(
             button.closest(
               '[data-candidate-id]'
             ),
@@ -2067,6 +2088,69 @@
         'error'
       );
 
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+
+  async function rejectAllStructuredRecords(
+    card,
+    button
+  ) {
+    const candidateId =
+      Number(card.dataset.candidateId);
+
+    if (!candidateId || !batchId) {
+      return;
+    }
+
+    const reviewNotes = window.prompt(
+      'Reason for rejecting all pending extracted records:',
+      ''
+    );
+
+    if (reviewNotes === null) {
+      return;
+    }
+
+    if (!reviewNotes.trim()) {
+      return notice(
+        'Enter a rejection reason before rejecting all records.',
+        'error'
+      );
+    }
+
+    const confirmed = window.confirm(
+      'Reject every extracted record still marked Review Required? Rejected records stay in the audit trail and are excluded from import staging.'
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    button.disabled = true;
+
+    try {
+      const result = await request(
+        `/api/nurselink/encoder/bulk-intake/${batchId}/candidates/${candidateId}/records/reject-all`,
+        {
+          method: 'POST',
+          body: JSON.stringify({review_notes: reviewNotes.trim()})
+        }
+      );
+
+      const total = Object.values(result?.data || {})
+        .reduce((sum, value) => sum + Number(value || 0), 0);
+
+      notice(
+        `Rejected ${total} pending structured record${total === 1 ? '' : 's'}.`,
+        'success'
+      );
+
+      await loadCandidates();
+    } catch (error) {
+      notice(error.message, 'error');
     } finally {
       button.disabled = false;
     }

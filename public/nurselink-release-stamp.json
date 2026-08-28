@@ -1,0 +1,10 @@
+{
+  "product": "NurseLink",
+  "release": "5.5.9",
+  "build": "NL-5.5.9-20260828.01",
+  "environment": "production",
+  "stamped_at_utc": "2026-08-28T02:14:47Z",
+  "baseline_commit": "5dc6eb1",
+  "scope": "Full-width portal and standalone-page layout release; completed new-member registration guide.",
+  "status": "stamped"
+}

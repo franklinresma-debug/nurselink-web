@@ -8,6 +8,7 @@
   let batchPayload = null;
   let selectedFiles = [];
   let currentCandidateBundles = [];
+  let processingRefreshTimer = null;
 
   function esc(value) {
     return String(value ?? '')
@@ -404,6 +405,7 @@
                 <small>
                   Security: ${esc(label(row.security_status))}
                 </small>
+                ${fileProcessingProgress(row)}
               </div>
               <button
                 class="nlbi-remove-file"
@@ -496,6 +498,52 @@
 
     $('buildCandidates').disabled =
       rows.length === 0 || unfinished;
+
+    scheduleProcessingRefresh(rows);
+  }
+
+  function fileProcessingProgress(row) {
+    const status = String(row.extraction_status || 'queued');
+    const values = {
+      queued: [15, 'Queued for OCR'],
+      processing: [60, 'Scanning and extracting'],
+      extracted: [100, 'Extraction complete'],
+      needs_input: [100, 'Extraction complete — review fields'],
+      blocked: [100, 'Processing blocked'],
+      failed: [100, 'Processing failed'],
+    };
+    const [percent, description] = values[status] || [0, 'Waiting'];
+    const tone = ['blocked', 'failed'].includes(status) ? 'error' : status === 'needs_input' ? 'warn' : '';
+
+    return `
+      <div class="nlbi-file-progress ${tone}" role="progressbar" aria-label="${esc(row.original_name)} processing progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}">
+        <span>${esc(description)}</span>
+        <div><i style="width:${percent}%"></i></div>
+      </div>
+    `;
+  }
+
+  function scheduleProcessingRefresh(rows) {
+    if (processingRefreshTimer) {
+      clearTimeout(processingRefreshTimer);
+      processingRefreshTimer = null;
+    }
+
+    const unfinished = rows.some(row =>
+      ['queued', 'processing'].includes(row.extraction_status)
+    );
+
+    if (!unfinished || !batchId) return;
+
+    processingRefreshTimer = setTimeout(async () => {
+      processingRefreshTimer = null;
+
+      try {
+        await refreshBatch();
+      } catch (error) {
+        notice(error.message, 'error');
+      }
+    }, 3000);
   }
 
   function renderSelectedFiles() {

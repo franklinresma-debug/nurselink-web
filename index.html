@@ -1979,22 +1979,6 @@ body[data-theme="dark"] .nl-password-eye:focus-visible {
   }
 }
 </style>
-<script>
-(() => {
-  const removeSidebarBadges = () => {
-    document.querySelectorAll(
-      '.sidebar [data-nurselink-system-access="super-admin"], .sidebar [data-nurselink-system-access="super-admin-test"]'
-    ).forEach(control => {
-      control.querySelectorAll('*').forEach(node => {
-        const label = (node.textContent || '').trim();
-        if (label === 'SA' || label === 'QA') node.remove();
-      });
-    });
-  };
-  new MutationObserver(removeSidebarBadges).observe(document.documentElement, { childList: true, subtree: true });
-  document.addEventListener('DOMContentLoaded', removeSidebarBadges, { once: true });
-})();
-</script>
 </head>
   <body>
     <div id="root"></div>

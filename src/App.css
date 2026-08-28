@@ -1677,6 +1677,14 @@ td {
   min-width: 0;
 }
 
+/* The member status screen is enhanced into a single review timeline.
+   Do not reserve an empty desktop column beside that timeline. */
+@media (min-width: 1051px) {
+  .nurselink-review-submit-page .application-status-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .application-status-heading {
   display: flex;
   align-items: flex-start;

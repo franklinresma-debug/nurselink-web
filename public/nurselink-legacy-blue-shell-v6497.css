@@ -245,6 +245,15 @@ html:not([data-nl-force-legacy-shell="true"])
   }
 }
 
+/* Standalone member pages share the same usable desktop workspace as React routes. */
+@media (min-width: 768px) {
+  html[data-nl-force-legacy-shell="true"] :is(.mt-shell, .eg-shell, .ndi-main) {
+    width: 100% !important;
+    max-width: none !important;
+    margin-inline: 0 !important;
+  }
+}
+
 /* Standard NurseLink member topbar for standalone member pages. */
 html[data-nl-force-legacy-shell="true"] #nurselink-universal-topbar{
   justify-content:flex-start!important;

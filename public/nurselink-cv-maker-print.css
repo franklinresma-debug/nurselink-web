@@ -1,0 +1,14 @@
+@page { size: A4; margin: 15mm 16mm; }
+@media print {
+  html,body { background:#fff !important; color:#13233d !important; }
+  #nurselink-canonical-topbar,#nurselink-canonical-sidebar,.left,.page-actions { display:none !important; }
+  .page { max-width:none !important; margin:0 !important; padding:0 !important; }
+  .grid { display:block !important; }
+  .card,.cv { border:0 !important; box-shadow:none !important; border-radius:0 !important; padding:0 !important; min-height:0 !important; }
+  .head { break-after:avoid-page; page-break-after:avoid; padding-bottom:8mm !important; }
+  .section,.item { break-inside:avoid; page-break-inside:avoid; }
+  .section { margin-top:7mm !important; }
+  .section h3 { margin:0 0 3mm; padding-bottom:2mm; border-bottom:1px solid #1977d3; }
+  .item { padding:3mm 0 !important; }
+  .photo { width:28mm !important; height:28mm !important; }
+}

@@ -10,6 +10,7 @@
   let currentCandidateBundles = [];
   let processingRefreshTimer = null;
   let previewObjectUrl = null;
+  let previewState = { scale: 1, x: 0, y: 0, image: null };
 
   function esc(value) {
     return String(value ?? '')
@@ -576,10 +577,54 @@
     }
 
     $('documentPreviewContent').innerHTML = '';
+    previewState = { scale: 1, x: 0, y: 0, image: null };
+    updatePreviewControls();
 
     if (dialog.open) {
       dialog.close();
     }
+  }
+
+  function updatePreviewControls() {
+    const enabled = Boolean(previewState.image);
+    const value = $('previewZoomValue');
+    if (value) value.textContent = `${Math.round(previewState.scale * 100)}%`;
+    ['previewZoomOut', 'previewZoomIn', 'previewReset'].forEach(id => {
+      const control = $(id);
+      if (control) control.disabled = !enabled;
+    });
+    if (previewState.image) {
+      previewState.image.style.transform = `translate(${previewState.x}px, ${previewState.y}px) scale(${previewState.scale})`;
+    }
+  }
+
+  function setPreviewZoom(nextScale) {
+    previewState.scale = Math.max(0.5, Math.min(3, nextScale));
+    updatePreviewControls();
+  }
+
+  function enableImagePanZoom(canvas, image) {
+    previewState = { scale: 1, x: 0, y: 0, image };
+    updatePreviewControls();
+    let drag = null;
+    canvas.addEventListener('wheel', event => {
+      event.preventDefault();
+      setPreviewZoom(previewState.scale + (event.deltaY < 0 ? 0.15 : -0.15));
+    }, { passive: false });
+    canvas.addEventListener('pointerdown', event => {
+      drag = { x: event.clientX, y: event.clientY, offsetX: previewState.x, offsetY: previewState.y };
+      canvas.classList.add('is-dragging');
+      canvas.setPointerCapture(event.pointerId);
+    });
+    canvas.addEventListener('pointermove', event => {
+      if (!drag) return;
+      previewState.x = drag.offsetX + event.clientX - drag.x;
+      previewState.y = drag.offsetY + event.clientY - drag.y;
+      updatePreviewControls();
+    });
+    const stop = () => { drag = null; canvas.classList.remove('is-dragging'); };
+    canvas.addEventListener('pointerup', stop);
+    canvas.addEventListener('pointercancel', stop);
   }
 
   async function openDocumentPreview(file) {
@@ -646,8 +691,11 @@
       const mime = blob.type || file.mime_type || '';
 
       content.innerHTML = mime.startsWith('image/')
-        ? `<img src="${previewObjectUrl}" alt="Preview of ${esc(file.original_name)}">`
+        ? `<div class="nlbi-preview-canvas"><img src="${previewObjectUrl}" alt="Preview of ${esc(file.original_name)}"></div>`
         : `<iframe src="${previewObjectUrl}" title="Preview of ${esc(file.original_name)}"></iframe>`;
+      const canvas = content.querySelector('.nlbi-preview-canvas');
+      const image = canvas?.querySelector('img');
+      if (canvas && image) enableImagePanZoom(canvas, image);
     } catch (error) {
       content.textContent = error.message;
     }
@@ -2511,6 +2559,15 @@
 
   $('closeDocumentPreview')
     ?.addEventListener('click', closeDocumentPreview);
+
+  $('previewZoomIn')?.addEventListener('click', () => setPreviewZoom(previewState.scale + 0.25));
+  $('previewZoomOut')?.addEventListener('click', () => setPreviewZoom(previewState.scale - 0.25));
+  $('previewReset')?.addEventListener('click', () => {
+    previewState.x = 0;
+    previewState.y = 0;
+    setPreviewZoom(1);
+  });
+  updatePreviewControls();
 
   $('documentPreviewDialog')
     ?.addEventListener('close', () => {

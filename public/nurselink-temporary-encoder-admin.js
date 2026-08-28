@@ -336,6 +336,13 @@
 
             <button
               type="button"
+              data-reset-encoder
+            >
+              Reset Password
+            </button>
+
+            <button
+              type="button"
               data-toggle-encoder
             >
               ${account.active ? 'Disable' : 'Enable'}
@@ -417,6 +424,26 @@
                 'error'
               );
             }
+          }
+        );
+      });
+
+    el
+      .querySelectorAll('[data-reset-encoder]')
+      .forEach(button => {
+        button.addEventListener(
+          'click',
+          () => {
+            const row =
+              button.closest('[data-encoder-id]');
+
+            selectEncoder(
+              Number(row.dataset.encoderId)
+            );
+
+            setTimeout(() => {
+              $('temporaryEncoderNewPassword')?.focus();
+            }, 250);
           }
         );
       });
@@ -612,6 +639,7 @@
       toLocalInput(account.expires_at);
 
     $('temporaryEncoderNewPassword').value = '';
+    $('temporaryEncoderConfirmPassword').value = '';
 
     $('temporaryEncoderToggleSelected').textContent =
       account.active
@@ -879,9 +907,19 @@
         const password =
           $('temporaryEncoderNewPassword').value;
 
+        const confirmation =
+          $('temporaryEncoderConfirmPassword').value;
+
         if (!password) {
           return showNotice(
             'Enter the new Temporary Encoder password.',
+            'error'
+          );
+        }
+
+        if (password !== confirmation) {
+          return showNotice(
+            'The new password and confirmation must match.',
             'error'
           );
         }
@@ -898,10 +936,11 @@
           );
 
           $('temporaryEncoderNewPassword').value = '';
+          $('temporaryEncoderConfirmPassword').value = '';
 
           showNotice(
             result?.message
-            || 'Temporary Encoder password reset.',
+            || 'Temporary Encoder password updated.',
             'success'
           );
         } catch (error) {

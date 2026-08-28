@@ -333,7 +333,13 @@
 
           <section class="nl590-manager-box">
 
-            <h4>Reset Password</h4>
+            <h4>Set / Edit Password</h4>
+
+            <p>
+              For security, an existing password cannot be viewed. Enter and
+              confirm a replacement password below; use the eye controls to
+              view or hide only the password you are entering.
+            </p>
 
             <div class="nl590-encoder-form">
 
@@ -344,6 +350,18 @@
                   id="temporaryEncoderNewPassword"
                   type="password"
                   autocomplete="new-password"
+                  data-nl-password-visible
+                >
+              </label>
+
+              <label>
+                <span>Confirm new password</span>
+
+                <input
+                  id="temporaryEncoderConfirmPassword"
+                  type="password"
+                  autocomplete="new-password"
+                  data-nl-password-visible
                 >
               </label>
 
@@ -351,7 +369,7 @@
                 id="temporaryEncoderResetPassword"
                 type="button"
               >
-                Reset Password
+                Save New Password
               </button>
 
             </div>
@@ -442,7 +460,7 @@
 
 
 <script
-  src="/nurselink-temporary-encoder-admin.js?v=699"
+  src="/nurselink-temporary-encoder-admin.js?v=700"
   defer
 ></script>
 

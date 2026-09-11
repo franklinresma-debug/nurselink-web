@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#84B728" />
+  <title>LBS NurseLink Medical Services</title>
+  <link rel="stylesheet" href="./nurselink-dashboard.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-cluster">
+        <button class="icon-button menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+        <div class="brand-lockup">
+          <div class="brand-mark">LBS</div>
+          <div class="brand-copy">
+            <strong>LBS RECRUITMENT SOLUTIONS CORP.</strong>
+            <span>NurseLink Medical Services</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <label class="global-search">
+          <span class="search-icon">⌕</span>
+          <input id="globalSearch" type="search" placeholder="Search nurses / orders" autocomplete="off" />
+        </label>
+        <button class="topbar-link" id="advancedSearchButton">Advanced Search</button>
+        <button class="profile-chip" aria-label="User menu">
+          <span class="avatar">SC</span>
+          <span class="profile-copy"><strong>Super Admin</strong><small>Medical Operations</small></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <aside class="sidebar" id="sidebar">
+        <section class="admin-card">
+          <div class="admin-avatar">SC</div>
+          <div>
+            <strong>Ma. Concepcion Sicat</strong>
+            <span>Medical Operations Admin</span>
+          </div>
+        </section>
+
+        <nav class="side-nav" aria-label="Medical Services navigation">
+          <div class="nav-label">Navigation</div>
+          <a class="nav-item active" href="#dashboard"><span>⌂</span> Home</a>
+
+          <div class="nav-label">Nurse Applicants</div>
+          <a class="nav-item" href="#masterlist"><span>♙</span> Masterlist & Profiles</a>
+          <a class="nav-item" href="#credentials"><span>✓</span> Credential Verification</a>
+          <a class="nav-item" href="#dataflow"><span>◈</span> DataFlow / Prometric</a>
+          <a class="nav-item" href="#deployment"><span>⇢</span> Deployment Processing</a>
+
+          <div class="nav-label">Hospital Job Orders</div>
+          <a class="nav-item" href="#requisitions"><span>▣</span> Active Requisitions</a>
+          <a class="nav-item" href="#lineup"><span>▦</span> Lineup Matrix</a>
+
+          <div class="nav-label">Principals & Clients</div>
+          <a class="nav-item" href="#hospitals"><span>✚</span> Hospital Directory</a>
+          <a class="nav-item" href="#visa"><span>⌁</span> Visa Allotment</a>
+
+          <div class="nav-label">Operations</div>
+          <a class="nav-item" href="#reports"><span>▤</span> Reports & Deployment</a>
+          <a class="nav-item" href="#settings"><span>⚙</span> System Settings</a>
+        </nav>
+      </aside>
+
+      <main class="content" id="dashboard">
+        <div class="breadcrumbs">Home / Medical Services / <strong>Dashboard Overview</strong></div>
+
+        <section class="page-heading">
+          <div>
+            <span class="eyebrow">NurseLink × ARMS Control Panel</span>
+            <h1>Medical Recruitment & Qualification Dashboard</h1>
+            <p>Unified nurse credentialing, hospital lineups, requisitions, and deployment control.</p>
+          </div>
+          <div class="sync-status" id="syncStatus"><span class="status-dot"></span> Integration ready</div>
+        </section>
+
+        <section class="action-bar" aria-label="Quick actions">
+          <button class="action-button primary" data-action="register">＋ Register Nurse</button>
+          <button class="action-button" data-action="pool">≡ Nurse Pool</button>
+          <button class="action-button" data-action="lineup">▦ Hospital Lineups</button>
+          <button class="action-button" data-action="interviews">⌃ Interviews</button>
+        </section>
+
+        <section class="metrics-grid" aria-label="Medical recruitment metrics">
+          <article class="metric-card green">
+            <div class="metric-label">Active Clinical Pool</div>
+            <div class="metric-value" id="metricPool">12,482</div>
+            <div class="metric-meta">Registered nurse inventory</div>
+          </article>
+          <article class="metric-card blue">
+            <div class="metric-label">DMW / PRC Verified</div>
+            <div class="metric-value" id="metricVerified">9,840</div>
+            <div class="metric-meta">PRC, DataFlow & Prometric cleared</div>
+          </article>
+          <article class="metric-card orange">
+            <div class="metric-label">Hospital Openings</div>
+            <div class="metric-value" id="metricOpenings">480</div>
+            <div class="metric-meta">Across active hospital requisitions</div>
+          </article>
+          <article class="metric-card slate">
+            <div class="metric-label">Deployed</div>
+            <div class="metric-value" id="metricDeployed">1,219</div>
+            <div class="metric-meta">Visa endorsed & ticketed</div>
+          </article>
+        </section>
+
+        <section class="panel job-order-strip" id="requisitions">
+          <div class="panel-heading compact">
+            <div>
+              <span class="panel-kicker">Active Hospital Requisition</span>
+              <h2>King Faisal Specialist Hospital & Research Centre</h2>
+            </div>
+            <div class="job-order-controls">
+              <label>Job Order
+                <select id="jobOrderSelect">
+                  <option value="KFSHRC-2026-480">KFSHRC-2026-480</option>
+                  <option value="AIPH-2026-118">AIPH-2026-118</option>
+                  <option value="ADH-2026-092">ADH-2026-092</option>
+                </select>
+              </label>
+              <button class="small-button" id="refreshLineup">Refresh Lineup</button>
+            </div>
+          </div>
+          <div class="job-order-stats">
+            <div><span>Openings</span><strong>480</strong></div>
+            <div><span>Accepted</span><strong>216</strong></div>
+            <div><span>Pending Endorsement</span><strong>174</strong></div>
+            <div><span>Interview Queue</span><strong>90</strong></div>
+          </div>
+        </section>
+
+        <section class="panel" id="lineup">
+          <div class="panel-heading">
+            <div>
+              <span class="panel-kicker">Medical Recruitment & Qualification Pipeline</span>
+              <h2>Nurse Lineup & Verification Registry</h2>
+            </div>
+            <div class="panel-tools">
+              <button class="small-button ghost" id="exportButton">Export CSV</button>
+              <button class="small-button" id="backToControls">Back to Controls</button>
+            </div>
+          </div>
+
+          <div class="table-toolbar">
+            <label>Show
+              <select id="pageSize">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+              </select>
+              entries
+            </label>
+            <div class="filters">
+              <select id="credentialFilter" aria-label="Credential status filter">
+                <option value="all">All credential statuses</option>
+                <option value="verified">Verified</option>
+                <option value="prometric">Prometric Pass</option>
+                <option value="pending">Pending</option>
+              </select>
+              <input id="tableSearch" type="search" placeholder="Search candidate, specialty, principal…" />
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Control No.</th>
+                  <th>Candidate Name</th>
+                  <th>Specialty / Area</th>
+                  <th>DMW & License</th>
+                  <th>Target Hospital / Principal</th>
+                  <th>Deployment Stage</th>
+                  <th class="center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="candidateRows"></tbody>
+            </table>
+          </div>
+
+          <div class="table-footer">
+            <span id="tableSummary">Showing 0 entries</span>
+            <div class="pagination" id="pagination"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./nurselink-dashboard.js"></script>
+</body>
+</html>
